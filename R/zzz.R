@@ -1,6 +1,7 @@
 #' @import hera
 #' @import jsonlite
 #' @import R6
+#' @import glue
 NULL
 
 .onLoad <- function(libname, pkgname) {
