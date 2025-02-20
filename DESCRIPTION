@@ -14,4 +14,4 @@ BugReports: https://github.com/romainfrancois/wiipoc/issues
 Imports: 
     hera
 Remotes:
-    github::jupyter-xeus/xeus-r/subdir=hera
+    github::jupyter-xeus/xeus-r/hera
