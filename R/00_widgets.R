@@ -26,6 +26,6 @@ Widget <- R6Class("jupyter.widget.Widget")
 
 #' @importFrom hera mime_bundle
 #' @export
-mime_bundle.Widget <- function(obj, mimetypes = c("text/plain", "application/vnd.jupyter.widget-view+json"), ...) {
+mime_bundle.jupyter.widget.Widget <- function(obj, mimetypes = c("text/plain", "application/vnd.jupyter.widget-view+json"), ...) {
   obj$mime_bundle()
 }
