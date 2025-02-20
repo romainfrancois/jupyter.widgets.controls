@@ -24,8 +24,8 @@ handler_jupyter.widget <- function(comm, message) {
 
 Widget <- R6Class("jupyter.widget.Widget")
 
-#' @importFrom hera bundle
+#' @importFrom hera mime_bundle
 #' @export
-bundle.Widget <- function(obj, mimetypes = getOption("jupyter.display_mimetypes"), ...) {
-  obj$bundle()
+mime_bundle.Widget <- function(obj, mimetypes = getOption("jupyter.display_mimetypes"), ...) {
+  obj$mime_bundle()
 }
