@@ -40,8 +40,9 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
-      - name: Install package
+      - name: Install hera
         run: |
+          install.packages("remotes")
           remotes::install_github("jupyter-xeus/xeus-r", subdir = "hera")
         shell: Rscript {0}
 
