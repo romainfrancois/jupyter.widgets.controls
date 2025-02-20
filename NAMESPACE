@@ -3,6 +3,7 @@
 S3method(mime_bundle,jupyter.widget.Widget)
 export(Button)
 export(IntSlider)
+export(mime_types.jupyter.widget.Widget)
 import(R6)
 import(glue)
 import(hera)
