@@ -59,6 +59,8 @@ IntSliderModel <- R6Class("jupyter.widget.IntSliderModel", inherit = Model,
     )
 )
 
+#' int slider
+#' @export
 IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = Widget,
     public = list(
         layout = NULL,

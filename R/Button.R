@@ -71,6 +71,9 @@ ButtonModel <- R6Class("jupyter.widget.ButtonModel", inherit = Model,
     )
 )
 
+#' Button
+#'
+#' @export
 Button <- R6Class("jupyter.widget.Button", inherit = Widget,
     public = list(
         layout = NULL,
