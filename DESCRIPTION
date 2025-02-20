@@ -13,5 +13,3 @@ URL: https://github.com/romainfrancois/wiipoc
 BugReports: https://github.com/romainfrancois/wiipoc/issues
 Imports: 
     hera
-Remotes:
-    jupyter-xeus/xeus-r/hera
