@@ -80,4 +80,3 @@ Model <- R6Class("jupyter.widget.Model",
     )
 
 )
-

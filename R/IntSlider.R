@@ -100,3 +100,8 @@ IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = Widget,
         }
     )
 )
+
+#' @export
+mime_bundle.IntSlider <- function(obj, mimetypes = c("text/plain", "application/vnd.jupyter.widget-view+json"), ...) {
+  obj$mime_bundle()
+}

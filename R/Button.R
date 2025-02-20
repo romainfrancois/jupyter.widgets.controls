@@ -109,3 +109,9 @@ Button <- R6Class("jupyter.widget.Button", inherit = Widget,
         }
     )
 )
+
+
+#' @export
+mime_bundle.Button <- function(obj, mimetypes = c("text/plain", "application/vnd.jupyter.widget-view+json"), ...) {
+  obj$mime_bundle()
+}
