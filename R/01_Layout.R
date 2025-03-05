@@ -1,8 +1,8 @@
-Layout <- R6Class("jupyter.widget.Layout",
+jupyter.widget.Layout <- R6Class("jupyter.widget.Layout",
     public = list(
         comm = NULL,
 
-        initialize = function() {
+        initialize = function(...) {
             comm <- CommManager$new_comm("jupyter.widget", "slider layout")
             comm$on_message(function(request) {
 
@@ -80,3 +80,12 @@ Layout <- R6Class("jupyter.widget.Layout",
         )
     )
 )
+
+#' Layout
+#'
+#' @param ... currently unused
+#'
+#' @export
+Layout <- function(...) {
+  jupyter.widget.Layout$new(...)
+}

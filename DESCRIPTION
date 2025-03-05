@@ -1,6 +1,6 @@
 Package: wiipoc
 Title: Proof of concept Jupyter Widget in xeusr
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: c(
     person("Romain", "François", email = "romain@tada.science", role = c("aut", "cre"))
   )
