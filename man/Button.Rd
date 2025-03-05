@@ -4,14 +4,16 @@
 \alias{Button}
 \title{Button}
 \usage{
-Button(layout = Layout(), style = ButtonStyle(), ...)
+Button(layout = Layout(), style = ButtonStyle(), description = "Click Me", ...)
 }
 \arguments{
 \item{layout}{a \code{\link[=Layout]{Layout()}}}
 
 \item{style}{a \code{\link[=ButtonStyle]{ButtonStyle()}}}
 
-\item{...}{additional model parameters, currently unused}
+\item{description}{text description of the button}
+
+\item{...}{These dots are for future extensions and must be empty.}
 }
 \description{
 Button

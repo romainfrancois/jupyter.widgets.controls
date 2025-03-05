@@ -4,14 +4,27 @@
 \alias{ButtonModel}
 \title{Button Model}
 \usage{
-ButtonModel(layout = Layout(), style = ButtonStyle(), ...)
+ButtonModel(
+  layout = Layout(),
+  style = ButtonStyle(),
+  description = "Click Me",
+  ...,
+  error_call = current_env()
+)
 }
 \arguments{
 \item{layout}{a \code{\link[=Layout]{Layout()}}}
 
 \item{style}{a \code{\link[=ButtonStyle]{ButtonStyle()}}}
 
-\item{...}{additional model parameters, currently unused}
+\item{description}{text description of the button}
+
+\item{...}{These dots are for future extensions and must be empty.}
+
+\item{error_call}{The execution environment of a currently
+running function, e.g. \code{caller_env()}. The function will be
+mentioned in error messages as the source of the error. See the
+\code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
 }
 \description{
 Button Model
