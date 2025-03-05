@@ -37,103 +37,129 @@ ButtonStyle <- function(...) {
 }
 
 jupyter.widget.ButtonModel <- R6Class("jupyter.widget.ButtonModel", inherit = jupyter.widget.Model,
-    public = list(
-        comm = NULL,
+  public = list(
+    comm = NULL,
 
-        initialize = function(layout = Layout(), style = ButtonStyle(), comm_description = "button model", ...) {
-            super$initialize(
-              layout = layout,
-              style = style,
-              comm_description = comm_description,
-              ...
-            )
+    initialize = function(
+      layout = Layout(),
+      style = ButtonStyle(),
+      description = "Click Me",
+      ...,
+      error_call = caller_env(),
+      comm_description = "button model"
+    ) {
 
-            self$on_custom(function(content) {
-                if (content$event == "click") {
-                    click_handler <- private$handlers[["custom/click"]]
-                    if (!is.null(click_handler)) {
-                        click_handler()
-                    }
-                }
-            })
-        },
+      assert_that(
+        is.string(description)
+      )
+      # set initial state
+      private$state_$description <- description
 
-        on_click = function(handler = NULL) {
-            private$handlers[["custom/click"]] <- handler
+      super$initialize(
+        layout = layout,
+        style = style,
+        ...,
+        comm_description = comm_description,
+        error_call = error_call
+      )
+
+      self$on_custom(function(content) {
+        if (content$event == "click") {
+          click_handler <- private$handlers[["custom/click"]]
+          if (!is.null(click_handler)) {
+            click_handler()
+          }
         }
-    ),
+      })
+    },
 
-    private = list(
-        state_ = list(
-            "_dom_classes" = list(),
-            "_model_module" = "@jupyter-widgets/controls",
-            "_model_module_version" = "2.0.0",
-            "_model_name" = "ButtonModel",
-            "_view_count" = NULL,
-            "_view_module" = "@jupyter-widgets/controls",
-            "_view_module_version" = "2.0.0",
-            "_view_name" = "ButtonView",
-            "button_style" = "",
-            "description" = "Click Me",
-            "disabled" = FALSE,
-            "icon" = "",
-            "layout" = "IPY_MODEL_{layout}",
-            "style" = "IPY_MODEL_{style}",
-            "tabbable" = NULL,
-            "tooltip" = NULL
-        )
+    on_click = function(handler = NULL) {
+      private$handlers[["custom/click"]] <- handler
+    }
+  ),
+
+  private = list(
+    state_ = list(
+      "_dom_classes" = list(),
+      "_model_module" = "@jupyter-widgets/controls",
+      "_model_module_version" = "2.0.0",
+      "_model_name" = "ButtonModel",
+      "_view_count" = NULL,
+      "_view_module" = "@jupyter-widgets/controls",
+      "_view_module_version" = "2.0.0",
+      "_view_name" = "ButtonView",
+      "button_style" = "",
+      "description" = "Click Me",
+      "disabled" = FALSE,
+      "icon" = "",
+      "layout" = "IPY_MODEL_{layout}",
+      "style" = "IPY_MODEL_{style}",
+      "tabbable" = NULL,
+      "tooltip" = NULL
     )
+  )
 )
 
 #' Button Model
 #'
 #' @param layout a [Layout()]
 #' @param style a [ButtonStyle()]
-#' @param ... additional model parameters, currently unused
+#' @param description text description of the button
+#'
+#' @inheritParams rlang::args_dots_empty
 #'
 #' @export
-ButtonModel <- function(layout = Layout(), style = ButtonStyle(), ...) {
-  jupyter.widget.ButtonModel$new(layout = layout, style = style, ...)
+ButtonModel <- function(layout = Layout(), style = ButtonStyle(), description = "Click Me", ..., error_call = current_env()) {
+  jupyter.widget.ButtonModel$new(
+    layout      = layout,
+    style       = style,
+    description = description,
+    ...,
+    error_call  = error_call
+  )
 }
 
 jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widget.Widget,
-    public = list(
-        layout = NULL,
-        style = NULL,
-        model = NULL,
+  public = list(
+    layout = NULL,
+    style = NULL,
+    model = NULL,
 
-        initialize = function(layout = Layout(), style = ButtonStyle(), ...) {
-            self$layout <- layout
-            self$style  <- style
-            self$model  <- ButtonModel(
-              layout = self$layout,
-              style  = self$style,
-              ...
-            )
-        },
+    initialize = function(layout = Layout(), style = ButtonStyle(), description = "Click Me", ...) {
+      self$layout <- layout
+      self$style  <- style
+      self$model  <- ButtonModel(
+        layout = self$layout,
+        style  = self$style,
 
-        mime_bundle = function() {
-            data <- list(
-                "text/plain" = unbox(
-                    glue("<Button id = {self$model$comm$id} >")
-                ),
-                "application/vnd.jupyter.widget-view+json" = list(
-                    "version_major" = unbox(2L),
-                    "version_minor" = unbox(0L),
-                    "model_id" = unbox(self$model$comm$id)
-                )
-            )
-            list(data = data, metadata = namedlist())
-        },
+        # model parameters
+        description = description,
+        ...
+      )
+    },
 
-        state = function(what) {
-            self$model$state(what)
-        },
+    mime_bundle = function() {
+      data <- list(
+        "text/plain" = unbox(
+          glue("<Button id = {self$model$comm$id} >")
+        ),
+        "application/vnd.jupyter.widget-view+json" = list(
+          "version_major" = unbox(2L),
+          "version_minor" = unbox(0L),
+          "model_id" = unbox(self$model$comm$id)
+        )
+      )
+      list(data = data, metadata = namedlist())
+    },
 
-        on_click = function(handler) {
-            self$model$on_click(handler)
-        }
-    )
+    state = function(what) {
+      self$model$state(what)
+    },
+
+    on_click = function(handler) {
+      self$model$on_click(handler)
+    }
+  )
 )
 
 #' Button
@@ -141,6 +167,11 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
 #' @inheritParams ButtonModel
 #'
 #' @export
-Button <- function(layout = Layout(), style = ButtonStyle(), ...) {
-    jupyter.widget.Button$new(layout = layout, style = style, ...)
+Button <- function(layout = Layout(), style = ButtonStyle(), description = "Click Me", ...) {
+  jupyter.widget.Button$new(
+    layout = layout,
+    style = style,
+    description = description,
+    ...
+  )
 }

@@ -2,6 +2,7 @@
 #' @import jsonlite
 #' @import R6
 #' @import glue
+#' @import assertthat
 NULL
 
 namedlist <- function() {
