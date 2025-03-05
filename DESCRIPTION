@@ -16,4 +16,5 @@ Imports:
     glue,
     hera,
     jsonlite,
-    R6
+    R6, 
+    rlang

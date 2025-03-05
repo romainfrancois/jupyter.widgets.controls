@@ -107,6 +107,7 @@ jupyter.widget.ButtonModel <- R6Class("jupyter.widget.ButtonModel", inherit = ju
 #' @param description text description of the button
 #'
 #' @inheritParams rlang::args_dots_empty
+#' @inheritParams rlang::args_error_context
 #'
 #' @export
 ButtonModel <- function(layout = Layout(), style = ButtonStyle(), description = "Click Me", ..., error_call = current_env()) {

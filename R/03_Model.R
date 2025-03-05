@@ -3,7 +3,7 @@ jupyter.widget.Model <- R6Class("jupyter.widget.Model",
     comm = NULL,
 
     initialize = function(layout, style, ..., comm_description = "model", error_call = caller_env()) {
-      rlang::check_dots_empty(call = error_call)
+      check_dots_empty(call = error_call)
 
       comm <- CommManager$new_comm("jupyter.widget", description = comm_description)
       comm$on_message(function(request) {
