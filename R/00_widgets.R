@@ -22,7 +22,7 @@ handler_jupyter.widget <- function(comm, message) {
     })
 }
 
-Widget <- R6Class("jupyter.widget.Widget")
+jupyter.widget.Widget <- R6Class("jupyter.widget.Widget")
 
 #' @importFrom hera mime_types
 #' @export

@@ -1,7 +1,7 @@
-ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = Style,
+jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = jupyter.widget.Style,
 
     public = list(
-        initialize = function() {
+        initialize = function(...) {
             super$initialize("button style")
         }
     ),
@@ -27,12 +27,26 @@ ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = Style,
     )
 )
 
-ButtonModel <- R6Class("jupyter.widget.ButtonModel", inherit = Model,
+#' Style for the Button widget
+#'
+#' @param ... currently unused
+#'
+#' @export
+ButtonStyle <- function(...) {
+  jupyter.widget.ButtonStyle$new(...)
+}
+
+jupyter.widget.ButtonModel <- R6Class("jupyter.widget.ButtonModel", inherit = jupyter.widget.Model,
     public = list(
         comm = NULL,
 
-        initialize = function(layout, style) {
-            super$initialize(layout, style, "button model")
+        initialize = function(layout = Layout(), style = ButtonStyle(), comm_description = "button model", ...) {
+            super$initialize(
+              layout = layout,
+              style = style,
+              comm_description = comm_description,
+              ...
+            )
 
             self$on_custom(function(content) {
                 if (content$event == "click") {
@@ -71,19 +85,31 @@ ButtonModel <- R6Class("jupyter.widget.ButtonModel", inherit = Model,
     )
 )
 
-#' Button
+#' Button Model
+#'
+#' @param layout a [Layout()]
+#' @param style a [ButtonStyle()]
+#' @param ... additional model parameters, currently unused
 #'
 #' @export
-Button <- R6Class("jupyter.widget.Button", inherit = Widget,
+ButtonModel <- function(layout = Layout(), style = ButtonStyle(), ...) {
+  jupyter.widget.ButtonModel$new(layout = layout, style = style, ...)
+}
+
+jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widget.Widget,
     public = list(
         layout = NULL,
         style = NULL,
         model = NULL,
 
-        initialize = function() {
-            self$layout <- Layout$new()
-            self$style  <- ButtonStyle$new()
-            self$model  <- ButtonModel$new(self$layout, self$style)
+        initialize = function(layout = Layout(), style = ButtonStyle(), ...) {
+            self$layout <- layout
+            self$style  <- style
+            self$model  <- ButtonModel(
+              layout = self$layout,
+              style  = self$style,
+              ...
+            )
         },
 
         mime_bundle = function() {
@@ -109,3 +135,12 @@ Button <- R6Class("jupyter.widget.Button", inherit = Widget,
         }
     )
 )
+
+#' Button
+#'
+#' @inheritParams ButtonModel
+#'
+#' @export
+Button <- function(layout = Layout(), style = ButtonStyle(), ...) {
+    jupyter.widget.Button$new(layout = layout, style = style, ...)
+}

@@ -1,9 +1,9 @@
-Model <- R6Class("jupyter.widget.Model",
+jupyter.widget.Model <- R6Class("jupyter.widget.Model",
     public = list(
         comm = NULL,
 
-        initialize = function(layout, style, description = "model") {
-            comm <- CommManager$new_comm("jupyter.widget", description)
+        initialize = function(layout, style, comm_description = "model", ...) {
+            comm <- CommManager$new_comm("jupyter.widget", description = comm_description)
             comm$on_message(function(request) {
                 data <- request$content$data
                 method <- data$method
@@ -80,3 +80,7 @@ Model <- R6Class("jupyter.widget.Model",
     )
 
 )
+
+Model <- function(...) {
+  jupyter.widget.Model$new(...)
+}

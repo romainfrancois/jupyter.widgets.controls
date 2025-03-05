@@ -1,4 +1,4 @@
-Style <- R6Class("jupyter.widget.Style",
+jupyter.widget.Style <- R6Class("jupyter.widget.Style",
     public = list(
         comm = NULL,
 
@@ -22,3 +22,7 @@ Style <- R6Class("jupyter.widget.Style",
         }
     )
 )
+
+Style <- function(...) {
+  jupyter.widget.Style$new(...)
+}

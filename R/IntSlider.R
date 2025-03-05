@@ -1,6 +1,6 @@
-IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inherit = Style,
+jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inherit = jupyter.widget.Style,
     public = list(
-        initialize = function() {
+        initialize = function(...) {
             super$initialize("slider style")
         }
     ),
@@ -20,12 +20,26 @@ IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inherit = Style,
     )
 )
 
-IntSliderModel <- R6Class("jupyter.widget.IntSliderModel", inherit = Model,
+#' Style for the IntSlider widget
+#'
+#' @param ... currently unused
+#'
+#' @export
+IntSliderStyle <- function(...) {
+  jupyter.widget.IntSliderStyle$new(...)
+}
+
+jupyter.widget.IntSliderModel <- R6Class("jupyter.widget.IntSliderModel", inherit = jupyter.widget.Model,
     public = list(
         comm = NULL,
 
-        initialize = function(layout, style) {
-            super$initialize(layout, style, "slider model")
+        initialize = function(layout = Layout(), style = IntSliderStyle(), comm_description = "int slider model", ...) {
+            super$initialize(
+              layout = layout,
+              style = style,
+              comm_description = comm_description,
+              ...
+            )
         }
     ),
 
@@ -59,18 +73,31 @@ IntSliderModel <- R6Class("jupyter.widget.IntSliderModel", inherit = Model,
     )
 )
 
-#' int slider
+#' IntSlider model
+#'
+#' @param layout See [Layout()]
+#' @param style See [IntSliderStyle()]
+#' @param ... additional model parameters
+#'
 #' @export
-IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = Widget,
+IntSliderModel <- function(layout = Layout(), style = IntSliderStyle(), ...) {
+  jupyter.widget.IntSliderModel$new(layout = layout, style = style, ...)
+}
+
+jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyter.widget.Widget,
     public = list(
         layout = NULL,
         style = NULL,
         model = NULL,
 
-        initialize = function() {
-            self$layout <- Layout$new()
-            self$style  <- IntSliderStyle$new()
-            self$model  <- IntSliderModel$new(self$layout, self$style)
+        initialize = function(layout = Layout(), style = IntSliderStyle(), ...) {
+            self$layout <- layout
+            self$style  <- style
+            self$model  <- IntSliderModel(
+              layout = self$layout,
+              style = self$style,
+              ...
+            )
         },
 
         mime_bundle = function() {
@@ -100,3 +127,12 @@ IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = Widget,
         }
     )
 )
+
+#' Int slider
+#'
+#' @inheritParams IntSliderModel
+#'
+#' @export
+IntSlider <- function(layout = Layout(), style = IntSliderStyle(), ...) {
+  jupyter.widget.IntSlider$new(layout = layout, style = style, ...)
+}

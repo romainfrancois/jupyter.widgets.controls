@@ -25,12 +25,12 @@ devtools::install_github("romainfrancois/wiipoc")
 
 ``` r
 library(wiipoc)
-x <- IntSlider$new()
+x <- IntSlider()
 x
 ```
 
 ``` r
-b <- Button$new()
+b <- Button()
 b$on_click(function(){
     x$update(value = round(runif(1, min = 0, max = 100)))
 })
