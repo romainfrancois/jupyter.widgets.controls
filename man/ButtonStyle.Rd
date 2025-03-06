@@ -4,11 +4,43 @@
 \alias{ButtonStyle}
 \title{Style for the Button widget}
 \usage{
-ButtonStyle(...)
+ButtonStyle(
+  button_color = NULL,
+  font_family = NULL,
+  font_size = NULL,
+  font_style = NULL,
+  font_variant = NULL,
+  font_weight = NULL,
+  text_color = NULL,
+  text_decoration = NULL,
+  ...,
+  error_call = current_env()
+)
 }
 \arguments{
-\item{...}{currently unused}
+\item{button_color}{A valid css color, e.g. "red" or "#ff0000"}
+
+\item{font_family}{css "font-family" value, e.g. "monospace", "Times New Roman", "Georgia, 'Times New Roman', serif", ...}
+
+\item{font_size}{css "font-size" value, e.g. "small", "large", "16px", "2em", "80\%"}
+
+\item{font_style}{"normal", "italic" or "oblique"}
+
+\item{font_variant}{text formatting variations, e.g. "normal", "small-caps", ...}
+
+\item{font_weight}{boldness of the text, either one of "normal", "bold", "lighter", and "bolder" or a number between 100 and 900}
+
+\item{text_color}{A valid css color for the text of the Button.}
+
+\item{text_decoration}{text styling effects, e.g. "underline, "overline", "line-through" or "blink"}
+
+\item{...}{These dots are for future extensions and must be empty.}
+
+\item{error_call}{The execution environment of a currently
+running function, e.g. \code{caller_env()}. The function will be
+mentioned in error messages as the source of the error. See the
+\code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
 }
 \description{
-Style for the Button widget
+Configure the appearance of a \code{\link[=Button]{Button()}}
 }
