@@ -1,6 +1,6 @@
 Package: wiipoc
 Title: Proof of concept Jupyter Widget in xeusr
-Version: 0.0.0.9001
+Version: 0.0.0.9002
 Authors@R: c(
     person("Romain", "François", email = "romain@tada.science", role = c("aut", "cre"))
   )
@@ -13,8 +13,9 @@ URL: https://github.com/romainfrancois/wiipoc
 BugReports: https://github.com/romainfrancois/wiipoc/issues
 Imports: 
     assertthat,
+    fontawesome,
     glue,
     hera,
     jsonlite,
-    R6, 
+    R6,
     rlang

@@ -8,6 +8,10 @@ ButtonModel(
   layout = Layout(),
   style = ButtonStyle(),
   description = "Click Me",
+  disabled = FALSE,
+  button_style = "",
+  icon = "",
+  tooltip = NULL,
   ...,
   error_call = current_env()
 )
@@ -18,6 +22,14 @@ ButtonModel(
 \item{style}{a \code{\link[=ButtonStyle]{ButtonStyle()}}}
 
 \item{description}{text description of the button}
+
+\item{disabled}{TRUE if the Button is disabled}
+
+\item{button_style}{"", "primary", "success", "info", "warning" or "danger"}
+
+\item{icon}{name of a font-awesome icon, see \code{\link[fontawesome:fa]{fontawesome::fa()}} or "" for no icon (default)}
+
+\item{tooltip}{hover message for the button.}
 
 \item{...}{These dots are for future extensions and must be empty.}
 
