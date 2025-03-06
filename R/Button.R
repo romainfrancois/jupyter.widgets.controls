@@ -49,11 +49,8 @@ jupyter.widget.ButtonModel <- R6Class("jupyter.widget.ButtonModel", inherit = ju
       comm_description = "button model"
     ) {
 
-      assert_that(
-        is.string(description)
-      )
       # set initial state
-      private$state_$description <- description
+      private$state_$description <- ensure(description, is.string)
 
       super$initialize(
         layout = layout,
