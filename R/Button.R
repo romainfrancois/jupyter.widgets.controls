@@ -41,31 +41,38 @@ jupyter.widget.ButtonModel <- R6Class("jupyter.widget.ButtonModel", inherit = ju
     comm = NULL,
 
     initialize = function(
-      layout = Layout(),
-      style = ButtonStyle(),
-      description  = "Click Me",
-      button_style = c("", "primary", "success", "info", "warning", "danger"),
-      ìcon         = "",
+      layout           = Layout(),
+      style            = ButtonStyle(),
+      button_style     = c("", "primary", "success", "info", "warning", "danger"),
+      description      = "Click Me",
+      disabled         = FALSE,
+      icon             = "",
       ...,
-      error_call = caller_env(),
+      error_call       = caller_env(),
       comm_description = "button model"
     ) {
 
       # set initial state
       private$state_$description  <- ensure(description, is.string)
+      private$state_$disabled     <- ensure(disabled, rlang::is_scalar_logical)
       private$state_$button_style <- arg_match(button_style, error_call = error_call)
       private$state_$icon         <- if (identical(icon, "")) "" else {
-        arg_match(icon, values = fontawesome::fa_metadata()$icon_names, error_call = error_call)
+        arg_match(icon, values = fa_metadata()$icon_names, error_call = error_call)
+      }
+      if (!is.null(tooltip)) {
+        private$state_$tooltip  <- ensure(tooltip, is.string)
       }
 
+      # jupyter.widget.Model
       super$initialize(
-        layout = layout,
-        style = style,
+        layout           = layout,
+        style            = style,
         ...,
         comm_description = comm_description,
-        error_call = error_call
+        error_call       = error_call
       )
 
+      # setup click handler
       self$on_custom(function(content) {
         if (content$event == "click") {
           click_handler <- private$handlers[["custom/click"]]
@@ -108,19 +115,23 @@ jupyter.widget.ButtonModel <- R6Class("jupyter.widget.ButtonModel", inherit = ju
 #' @param layout a [Layout()]
 #' @param style a [ButtonStyle()]
 #' @param description text description of the button
+#' @param disabled TRUE if the Button is disabled
 #' @param button_style "", "primary", "success", "info", "warning" or "danger"
 #' @param icon name of a font-awesome icon, see [fontawesome::fa()] or "" for no icon (default)
+#' @param tooltip hover message for the button.
 #'
 #' @inheritParams rlang::args_dots_empty
 #' @inheritParams rlang::args_error_context
 #'
 #' @export
 ButtonModel <- function(
-    layout = Layout(),
-    style = ButtonStyle(),
-    description = "Click Me",
+    layout       = Layout(),
+    style        = ButtonStyle(),
+    description  = "Click Me",
+    disabled     = FALSE,
     button_style = "",
-    icon = "",
+    icon         = "",
+    tooltip      = NULL,
     ...,
     error_call = current_env()
   ) {
@@ -128,8 +139,10 @@ ButtonModel <- function(
     layout       = layout,
     style        = style,
     description  = description,
+    disabled     = disabled,
     button_style = button_style,
     icon         = icon,
+    tooltip      = tooltip,
     ...,
     error_call   = error_call
   )
@@ -141,7 +154,7 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
     style = NULL,
     model = NULL,
 
-    initialize = function(layout = Layout(), style = ButtonStyle(), description = "Click Me", button_style = "", icon = "", ...) {
+    initialize = function(layout = Layout(), style = ButtonStyle(), description = "Click Me", disabled = FALSE, button_style = "", icon = "", tooltip = NULL, ...) {
       self$layout <- layout
       self$style  <- style
       self$model  <- ButtonModel(
@@ -150,8 +163,10 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
 
         # model parameters
         description  = description,
+        dsiabled     = disabled,
         button_style = button_style,
         icon         = icon,
+        tooltip      = tooltip,
         ...
       )
     },
@@ -185,13 +200,15 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
 #' @inheritParams ButtonModel
 #'
 #' @export
-Button <- function(layout = Layout(), style = ButtonStyle(), description = "Click Me", button_style = "", icon = "", ...) {
+Button <- function(layout = Layout(), style = ButtonStyle(), description = "Click Me", disabled = FALSE, button_style = "", icon = "", tooltip = NULL, ...) {
   jupyter.widget.Button$new(
     layout = layout,
     style = style,
     description = description,
+    disabled = disabled,
     button_style = button_style,
     icon = icon,
+    tooltip = tooltip,
     ...
   )
 }
