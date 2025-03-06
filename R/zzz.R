@@ -3,7 +3,7 @@
 #' @import R6
 #' @import glue
 #' @import assertthat
-#' @importFrom rlang current_env check_dots_empty caller_env
+#' @importFrom rlang current_env check_dots_empty caller_env arg_match
 NULL
 
 namedlist <- function() {

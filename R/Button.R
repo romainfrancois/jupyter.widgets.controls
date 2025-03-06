@@ -43,14 +43,20 @@ jupyter.widget.ButtonModel <- R6Class("jupyter.widget.ButtonModel", inherit = ju
     initialize = function(
       layout = Layout(),
       style = ButtonStyle(),
-      description = "Click Me",
+      description  = "Click Me",
+      button_style = c("", "primary", "success", "info", "warning", "danger"),
+      ìcon         = "",
       ...,
       error_call = caller_env(),
       comm_description = "button model"
     ) {
 
       # set initial state
-      private$state_$description <- ensure(description, is.string)
+      private$state_$description  <- ensure(description, is.string)
+      private$state_$button_style <- arg_match(button_style, error_call = error_call)
+      private$state_$icon         <- if (identical(icon, "")) "" else {
+        arg_match(icon, values = fontawesome::fa_metadata()$icon_names, error_call = error_call)
+      }
 
       super$initialize(
         layout = layout,
@@ -102,18 +108,30 @@ jupyter.widget.ButtonModel <- R6Class("jupyter.widget.ButtonModel", inherit = ju
 #' @param layout a [Layout()]
 #' @param style a [ButtonStyle()]
 #' @param description text description of the button
+#' @param button_style "", "primary", "success", "info", "warning" or "danger"
+#' @param icon name of a font-awesome icon, see [fontawesome::fa()] or "" for no icon (default)
 #'
 #' @inheritParams rlang::args_dots_empty
 #' @inheritParams rlang::args_error_context
 #'
 #' @export
-ButtonModel <- function(layout = Layout(), style = ButtonStyle(), description = "Click Me", ..., error_call = current_env()) {
-  jupyter.widget.ButtonModel$new(
-    layout      = layout,
-    style       = style,
-    description = description,
+ButtonModel <- function(
+    layout = Layout(),
+    style = ButtonStyle(),
+    description = "Click Me",
+    button_style = "",
+    icon = "",
     ...,
-    error_call  = error_call
+    error_call = current_env()
+  ) {
+  jupyter.widget.ButtonModel$new(
+    layout       = layout,
+    style        = style,
+    description  = description,
+    button_style = button_style,
+    icon         = icon,
+    ...,
+    error_call   = error_call
   )
 }
 
@@ -123,7 +141,7 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
     style = NULL,
     model = NULL,
 
-    initialize = function(layout = Layout(), style = ButtonStyle(), description = "Click Me", ...) {
+    initialize = function(layout = Layout(), style = ButtonStyle(), description = "Click Me", button_style = "", icon = "", ...) {
       self$layout <- layout
       self$style  <- style
       self$model  <- ButtonModel(
@@ -131,7 +149,9 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
         style  = self$style,
 
         # model parameters
-        description = description,
+        description  = description,
+        button_style = button_style,
+        icon         = icon,
         ...
       )
     },
@@ -165,11 +185,13 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
 #' @inheritParams ButtonModel
 #'
 #' @export
-Button <- function(layout = Layout(), style = ButtonStyle(), description = "Click Me", ...) {
+Button <- function(layout = Layout(), style = ButtonStyle(), description = "Click Me", button_style = "", icon = "", ...) {
   jupyter.widget.Button$new(
     layout = layout,
     style = style,
     description = description,
+    button_style = button_style,
+    icon = icon,
     ...
   )
 }

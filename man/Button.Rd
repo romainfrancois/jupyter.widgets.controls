@@ -4,7 +4,14 @@
 \alias{Button}
 \title{Button}
 \usage{
-Button(layout = Layout(), style = ButtonStyle(), description = "Click Me", ...)
+Button(
+  layout = Layout(),
+  style = ButtonStyle(),
+  description = "Click Me",
+  button_style = "",
+  icon = "",
+  ...
+)
 }
 \arguments{
 \item{layout}{a \code{\link[=Layout]{Layout()}}}
@@ -12,6 +19,10 @@ Button(layout = Layout(), style = ButtonStyle(), description = "Click Me", ...)
 \item{style}{a \code{\link[=ButtonStyle]{ButtonStyle()}}}
 
 \item{description}{text description of the button}
+
+\item{button_style}{"", "primary", "success", "info", "warning" or "danger"}
+
+\item{icon}{name of a font-awesome icon, see \code{\link[fontawesome:fa]{fontawesome::fa()}} or "" for no icon (default)}
 
 \item{...}{These dots are for future extensions and must be empty.}
 }
