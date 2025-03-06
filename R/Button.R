@@ -1,39 +1,128 @@
 jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = jupyter.widget.Style,
 
     public = list(
-        initialize = function(...) {
-            super$initialize("button style")
+      initialize = function(
+        button_color = NULL,
+        font_family = NULL,
+        font_size = NULL,
+        font_style = NULL,
+        font_variant = NULL,
+        font_weight = NULL,
+        text_color = NULL,
+        text_decoration = NULL,
+        ...,
+        comm_description = "button style",
+        error_call = caller_env()
+      ) {
+
+        if (!is.null(button_color)) {
+          private$state_$button_color  <- ensure(button_color, is.string)
         }
+        if (!is.null(font_family)) {
+          private$state_$font_family  <- ensure(font_family, is.string)
+        }
+        if (!is.null(font_size)) {
+          private$state_$font_size  <- ensure(font_size, is.string)
+        }
+        if (!is.null(font_style)) {
+          accepted_font_style <- c("normal", "italic", "oblique")
+          private$state_$font_style  <- rlang::arg_match(font_style, values = accepted_font_style, error_call = error_call)
+        }
+        if (!is.null(font_variant)) {
+          accepted_font_variant <- c("normal", "small-caps", "all-small-caps", "petite-caps", "all-petite-caps", "unicase", "titling-caps")
+          private$state_$font_variant  <- rlang::arg_match(font_variant, values = accepted_font_variant, error_call = error_call)
+        }
+        if (!is.null(font_weight)) {
+          accepted_font_weight <- c("normal", "bold", "lighter", "bolder")
+          if (is.string(font_weight)) {
+            private$state_$font_weight<- rlang::arg_match(font_weight, values = accepted_font_weight, error_call = error_call)
+          } else if (is.numeric(font_weight) && font_weight >= 100 && font_weight <= 900) {
+            private$state_$font_weight <- as.character(round(font_weight))
+          } else {
+            cli_abort(c(
+              "{.arg font_weight} is not supported.",
+              i = "{.arg font_weight} can be one of {.val {accepted_font_weight}}.",
+              i = "or a number between 100 and 900."
+            ), call = error_call)
+          }
+        }
+        if (!is.null(text_color)) {
+          private$state_$text_color  <- ensure(text_color, is.string)
+        }
+        if (!is.null(text_decoration)) {
+          accepted_text_decoration <- c("none", "underline", "overline", "line-through", "blink")
+          private$state_$text_decoration  <- rlang::arg_match(text_decoration, values = accepted_text_decoration, error_call = error_call)
+        }
+
+        super$initialize(
+          comm_description = "button style",
+          error_call = error_call
+        )
+      }
     ),
 
     private = list(
-        state_ = list(
-            "_model_module" = "@jupyter-widgets/controls",
-            "_model_module_version" = "2.0.0",
-            "_model_name" = "ButtonStyleModel",
-            "_view_count" = NULL,
-            "_view_module" = "@jupyter-widgets/base",
-            "_view_module_version" = "2.0.0",
-            "_view_name" = "StyleView",
-            "button_color" = NULL,
-            "font_family" = NULL,
-            "font_size" = NULL,
-            "font_style" = NULL,
-            "font_variant" = NULL,
-            "font_weight" = NULL,
-            "text_color" = NULL,
-            "text_decoration" = NULL
-        )
+      state_ = list(
+        "_model_module" = "@jupyter-widgets/controls",
+        "_model_module_version" = "2.0.0",
+        "_model_name" = "ButtonStyleModel",
+        "_view_count" = NULL,
+        "_view_module" = "@jupyter-widgets/base",
+        "_view_module_version" = "2.0.0",
+        "_view_name" = "StyleView",
+        "button_color" = NULL,
+        "font_family" = NULL,
+        "font_size" = NULL,
+        "font_style" = NULL,
+        "font_variant" = NULL,
+        "font_weight" = NULL,
+        "text_color" = NULL,
+        "text_decoration" = NULL
+      )
     )
 )
 
 #' Style for the Button widget
 #'
-#' @param ... currently unused
+#' Configure the appearance of a [Button()]
+#'
+#' @param button_color A valid css color, e.g. "red" or "#ff0000"
+#' @param font_family css "font-family" value, e.g. "monospace", "Times New Roman", "Georgia, 'Times New Roman', serif", ...
+#' @param font_size css "font-size" value, e.g. "small", "large", "16px", "2em", "80%"
+#' @param font_style "normal", "italic" or "oblique"
+#' @param font_variant text formatting variations, e.g. "normal", "small-caps", ...
+#' @param font_weight boldness of the text, either one of "normal", "bold", "lighter", and "bolder" or a number between 100 and 900
+#' @param text_color A valid css color for the text of the Button.
+#' @param text_decoration text styling effects, e.g. "underline, "overline", "line-through" or "blink"
+#'
+#' @inheritParams rlang::args_dots_empty
+#' @inheritParams rlang::args_error_context
 #'
 #' @export
-ButtonStyle <- function(...) {
-  jupyter.widget.ButtonStyle$new(...)
+ButtonStyle <- function(
+    button_color = NULL,
+    font_family = NULL,
+    font_size = NULL,
+    font_style = NULL,
+    font_variant = NULL,
+    font_weight = NULL,
+    text_color = NULL,
+    text_decoration = NULL,
+    ...,
+    error_call = current_env()
+) {
+  jupyter.widget.ButtonStyle$new(
+    button_color    = button_color,
+    font_family     = font_family,
+    font_size       = font_size,
+    font_style      = font_style,
+    font_variant    = font_variant,
+    font_weight     = font_weight,
+    text_color      = text_color,
+    text_decoration = text_decoration,
+    ...,
+    error_call = error_call
+  )
 }
 
 jupyter.widget.ButtonModel <- R6Class("jupyter.widget.ButtonModel", inherit = jupyter.widget.Model,
