@@ -136,6 +136,7 @@ jupyter.widget.ButtonModel <- R6Class("jupyter.widget.ButtonModel", inherit = ju
       description      = "Click Me",
       disabled         = FALSE,
       icon             = "",
+      tooltip          = NULL,
       ...,
       error_call       = caller_env(),
       comm_description = "button model"
@@ -252,7 +253,7 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
 
         # model parameters
         description  = description,
-        dsiabled     = disabled,
+        disabled     = disabled,
         button_style = button_style,
         icon         = icon,
         tooltip      = tooltip,
