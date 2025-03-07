@@ -1,5 +1,5 @@
-ensure <- function(x, fun, env = parent.frame(), msg = NULL) {
-  assert_that(fun(x), env = env, msg = msg)
+ensure <- function(x, fun = assertthat::is.string, msg = NULL) {
+  assert_that(fun(x), msg = msg)
 
   x
 }
