@@ -1,37 +1,52 @@
 jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inherit = jupyter.widget.Style,
     public = list(
-        initialize = function(..., error_call = caller_env()) {
-            super$initialize(
-              ...,
-              comm_description = "slider style",
-              error_call = error_call
-            )
-        }
+      initialize = function(
+        description_width = "",
+        handle_color = NULL,
+        ...,
+        error_call = caller_env()
+      ) {
+        private$state_$description_width <- ensure(description_width, is.string)
+        private$state_$handle_color <- ensure(handle_color, null_or(is.string))
+
+        super$initialize(
+          ...,
+          comm_description = "slider style",
+          error_call = error_call
+        )
+      }
     ),
 
     private = list(
-        state_ = list(
-            "_model_module" = "@jupyter-widgets/controls",
-            "_model_module_version" = "2.0.0",
-            "_model_name" = "SliderStyleModel",
-            "_view_count" = NULL,
-            "_view_module" = "@jupyter-widgets/base",
-            "_view_module_version" = "2.0.0",
-            "_view_name" = "StyleView",
-            "description_width" = "",
-            "handle_color" = NULL
-        )
+      state_ = list(
+        "_model_module" = "@jupyter-widgets/controls",
+        "_model_module_version" = "2.0.0",
+        "_model_name" = "SliderStyleModel",
+        "_view_count" = NULL,
+        "_view_module" = "@jupyter-widgets/base",
+        "_view_module_version" = "2.0.0",
+        "_view_name" = "StyleView",
+        "description_width" = "",
+        "handle_color" = NULL
+      )
     )
 )
 
 #' Style for the IntSlider widget
 #'
-#' @param ... currently unused
+#' @param description_width description width
+#' @param handle_color css color for the handle
+#'
+#' @inheritParams rlang::args_dots_empty
+#' @inheritParams rlang::args_error_context
 #'
 #' @export
-IntSliderStyle <- function(...) {
+IntSliderStyle <- function(description_width = "", handle_color = NULL, ..., error_call = current_env()) {
   jupyter.widget.IntSliderStyle$new(
-    ...
+    description_width = description_width,
+    handle_color = handle_color,
+    ...,
+    error_call = error_call
   )
 }
 

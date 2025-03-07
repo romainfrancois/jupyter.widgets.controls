@@ -4,10 +4,24 @@
 \alias{IntSliderStyle}
 \title{Style for the IntSlider widget}
 \usage{
-IntSliderStyle(...)
+IntSliderStyle(
+  description_width = "",
+  handle_color = NULL,
+  ...,
+  error_call = current_env()
+)
 }
 \arguments{
-\item{...}{currently unused}
+\item{description_width}{description width}
+
+\item{handle_color}{css color for the handle}
+
+\item{...}{These dots are for future extensions and must be empty.}
+
+\item{error_call}{The execution environment of a currently
+running function, e.g. \code{caller_env()}. The function will be
+mentioned in error messages as the source of the error. See the
+\code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
 }
 \description{
 Style for the IntSlider widget
