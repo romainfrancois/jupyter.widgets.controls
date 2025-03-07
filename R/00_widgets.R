@@ -22,7 +22,13 @@ handler_jupyter.widget <- function(comm, message) {
     })
 }
 
-jupyter.widget.Widget <- R6Class("jupyter.widget.Widget")
+jupyter.widget.Widget <- R6Class("jupyter.widget.Widget",
+  public = list(
+    initialize = function(..., error_call = caller_env()) {
+      rlang::check_dots_empty(error_call = error_call)
+    }
+  )
+)
 
 #' @importFrom hera mime_types
 #' @export

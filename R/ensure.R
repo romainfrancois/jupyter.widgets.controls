@@ -1,3 +1,9 @@
+default_or <- function(default, fun) {
+  function(x) {
+    identical(x, default) || fun(x)
+  }
+}
+
 null_or <- function(fun) {
   function(x) {
     is.null(x) || fun(x)

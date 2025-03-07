@@ -54,10 +54,7 @@ jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = ju
           private$state_$text_decoration  <- rlang::arg_match(text_decoration, values = accepted_text_decoration, error_call = error_call)
         }
 
-        super$initialize(
-          comm_description = "button style",
-          error_call = error_call
-        )
+        super$initialize(comm_description = "button style", error_call = error_call)
       }
     ),
 
@@ -242,21 +239,18 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
     style = NULL,
     model = NULL,
 
-    initialize = function(layout = Layout(), style = ButtonStyle(), description = "Click Me", disabled = FALSE, button_style = "", icon = "", tooltip = NULL, ...) {
+    initialize = function(
+      layout = Layout(),
+      style = ButtonStyle(),
+      model = ButtonModel(layout = lauout, style = style, error_call = error_call),
+      ...,
+      error_call = caller_env()
+    ) {
       self$layout <- layout
       self$style  <- style
-      self$model  <- ButtonModel(
-        layout = self$layout,
-        style  = self$style,
+      self$model  <- model
 
-        # model parameters
-        description  = description,
-        disabled     = disabled,
-        button_style = button_style,
-        icon         = icon,
-        tooltip      = tooltip,
-        ...
-      )
+      super$initialize(..., error_call = error_call)
     },
 
     mime_bundle = function() {
@@ -288,8 +282,18 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
 #' @inheritParams ButtonModel
 #'
 #' @export
-Button <- function(layout = Layout(), style = ButtonStyle(), description = "Click Me", disabled = FALSE, button_style = "", icon = "", tooltip = NULL, ...) {
-  jupyter.widget.Button$new(
+Button <- function(
+    layout = Layout(),
+    style = ButtonStyle(),
+    description = "Click Me",
+    disabled = FALSE,
+    button_style = "",
+    icon = "",
+    tooltip = NULL,
+    ...,
+    error_call = current_env()
+  ) {
+  model <- ButtonModel(
     layout = layout,
     style = style,
     description = description,
@@ -297,6 +301,12 @@ Button <- function(layout = Layout(), style = ButtonStyle(), description = "Clic
     button_style = button_style,
     icon = icon,
     tooltip = tooltip,
-    ...
+    ...,
+    error_call = error_call
+  )
+  jupyter.widget.Button$new(
+    layout = layout,
+    style = style,
+    model = model
   )
 }

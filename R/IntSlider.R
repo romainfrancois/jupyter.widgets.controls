@@ -54,12 +54,46 @@ jupyter.widget.IntSliderModel <- R6Class("jupyter.widget.IntSliderModel", inheri
     public = list(
         comm = NULL,
 
-        initialize = function(layout = Layout(), style = IntSliderStyle(), comm_description = "int slider model", ...) {
+        initialize = function(
+          layout = Layout(),
+          style = IntSliderStyle(),
+          min = 0,
+          max = 100,
+          value = 0,
+          behavior = c("drag-tap", "drag", "release", "throttle"),
+          continuous_update = TRUE,
+          description = "",
+          description_allow_html = FALSE,
+          disabled = FALSE,
+          orientation = c("horizontal", "vertical"),
+          readout = TRUE,
+          readout_format = "d",
+          tooltip = NULL,
+          ...,
+          comm_description = "int slider model",
+          error_call = caller_env()
+        ) {
+
+            private$state_$min   <- ensure(min  , default_or(0, is_number))
+            private$state_$max   <- ensure(max  , default_or(100, is_number))
+            private$state_$step  <- ensure(step , default_or(1, is_number))
+            private$state_$value <- ensure(value, default_or(0, is_number))
+
+            private$state_$behavior <- rlang::arg_match(behavior, error_call = error_call)
+            private$state_$continuous_update <- is_true(continuous_update)
+            private$state_$description <- ensure(description, is.string)
+            private$state_$description_allow_html <- is_true(description_allow_html)
+            private$state_$disabled <- is_true(disabled)
+            private$state_$orientation <- rlang::arg_match(orientation, error_call = error_call)
+            private$state_$readout <- is_true(readout)
+            private$state_$tooltip <- ensure(tooltip, null_or(is.string))
+
             super$initialize(
               layout = layout,
               style = style,
+              ...,
               comm_description = comm_description,
-              ...
+              error_call = error_call
             )
         }
     ),
@@ -98,14 +132,58 @@ jupyter.widget.IntSliderModel <- R6Class("jupyter.widget.IntSliderModel", inheri
 #'
 #' @param layout See [Layout()]
 #' @param style See [IntSliderStyle()]
-#' @param ... additional model parameters
+#'
+#' @param min,max minimum and maximum value for the slider
+#' @param step step
+#' @param value initial value
+#' @param behavior determines how the slider interacts with changes in its value
+#' @param continuous_update if TRUE (default) the value updates as the slider is dragged, otherwise only when released
+#' @param description descrption
+#' @param description_allow_html whether the description allows html
+#' @param disabled TRUE if the slider is disabled
+#' @param orientation "horizontal" (default) or "vertical"
+#' @param readout the value is displayed next to the slider if TRUE
+#' @param readout_format with this format, e.g. ".2f"
+#'
+#' @inheritParams rlang::args_dots_empty
+#' @inheritParams rlang::args_error_context
 #'
 #' @export
-IntSliderModel <- function(layout = Layout(), style = IntSliderStyle(), ...) {
+IntSliderModel <- function(
+    layout = Layout(),
+    style = IntSliderStyle(),
+    min = 0,
+    max = 100,
+    step = 1,
+    value = 0,
+    behavior = c("drag-tap", "drag", "release", "throttle"),
+    continuous_update = TRUE,
+    description = "",
+    description_allow_html = FALSE,
+    disabled = FALSE,
+    orientation = c("horizontal", "vertical"),
+    readout = TRUE,
+    readout_format = "d",
+    ...,
+    error_call = current_env()
+  ) {
   jupyter.widget.IntSliderModel$new(
     layout = layout,
-    style = style,
-    ...
+    style  = style,
+
+    min = min,
+    max = max,
+    step = step,
+    behavior = behavior,
+    continuous_update = continuous_update,
+    description = description,
+    description_allow_html = description_allow_html,
+    disabled = disabled,
+    orientation = orientation,
+    readout = readout,
+    readout_format = readout_format,
+    ...,
+    error_call = error_call
   )
 }
 
@@ -115,14 +193,18 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
         style = NULL,
         model = NULL,
 
-        initialize = function(layout = Layout(), style = IntSliderStyle(), ...) {
+        initialize = function(
+          layout = Layout(),
+          style = IntSliderStyle(),
+          model = IntSliderModel(layout = layout, style = style),
+          ...,
+          error_call = caller_env()
+        ) {
             self$layout <- layout
             self$style  <- style
-            self$model  <- IntSliderModel(
-              layout = self$layout,
-              style = self$style,
-              ...
-            )
+            self$model  <- model
+
+            super$initialize(..., error_call = error_call)
         },
 
         mime_bundle = function() {
@@ -158,10 +240,44 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
 #' @inheritParams IntSliderModel
 #'
 #' @export
-IntSlider <- function(layout = Layout(), style = IntSliderStyle(), ...) {
+IntSlider <- function(
+    layout = Layout(),
+    style = IntSliderStyle(),
+    min = 0,
+    max = 100,
+    step = 1,
+    value = 0,
+    behavior = c("drag-tap", "drag", "release", "throttle"),
+    continuous_update = TRUE,
+    description = "",
+    description_allow_html = FALSE,
+    disabled = FALSE,
+    orientation = c("horizontal", "vertical"),
+    readout = TRUE,
+    readout_format = "d",
+    ...,
+    error_call = current_env()
+) {
+  model <- IntSliderModel(
+    layout = layout,
+    style = style,
+    ...,
+    min = min,
+    max = max,
+    step = step,
+    value = value,
+    behavior = behavior,
+    continuous_update = continuous_update,
+    description = description,
+    description_allow_html= description_allow_html,
+    readout = readout,
+    readout_format = readout_format,
+    ...,
+    error_call = error_call
+  )
   jupyter.widget.IntSlider$new(
     layout = layout,
     style = style,
-    ...
+    model = model
   )
 }
