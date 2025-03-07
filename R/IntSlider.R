@@ -1,7 +1,11 @@
 jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inherit = jupyter.widget.Style,
     public = list(
-        initialize = function(...) {
-            super$initialize("slider style")
+        initialize = function(..., error_call = caller_env()) {
+            super$initialize(
+              ...,
+              comm_description = "slider style",
+              error_call = error_call
+            )
         }
     ),
 
@@ -26,7 +30,9 @@ jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inheri
 #'
 #' @export
 IntSliderStyle <- function(...) {
-  jupyter.widget.IntSliderStyle$new(...)
+  jupyter.widget.IntSliderStyle$new(
+    ...
+  )
 }
 
 jupyter.widget.IntSliderModel <- R6Class("jupyter.widget.IntSliderModel", inherit = jupyter.widget.Model,
@@ -81,7 +87,11 @@ jupyter.widget.IntSliderModel <- R6Class("jupyter.widget.IntSliderModel", inheri
 #'
 #' @export
 IntSliderModel <- function(layout = Layout(), style = IntSliderStyle(), ...) {
-  jupyter.widget.IntSliderModel$new(layout = layout, style = style, ...)
+  jupyter.widget.IntSliderModel$new(
+    layout = layout,
+    style = style,
+    ...
+  )
 }
 
 jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyter.widget.Widget,
@@ -134,5 +144,9 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
 #'
 #' @export
 IntSlider <- function(layout = Layout(), style = IntSliderStyle(), ...) {
-  jupyter.widget.IntSlider$new(layout = layout, style = style, ...)
+  jupyter.widget.IntSlider$new(
+    layout = layout,
+    style = style,
+    ...
+  )
 }
