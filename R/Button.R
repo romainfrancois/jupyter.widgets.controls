@@ -146,12 +146,10 @@ jupyter.widget.ButtonModel <- R6Class("jupyter.widget.ButtonModel", inherit = ju
       private$state_$description  <- ensure(description, is.string)
       private$state_$disabled     <- ensure(disabled, rlang::is_scalar_logical)
       private$state_$button_style <- arg_match(button_style, error_call = error_call)
-      private$state_$icon         <- if (identical(icon, "")) "" else {
-        arg_match(icon, values = fa_metadata()$icon_names, error_call = error_call)
+      if (!identical(icon, "")) {
+        private$state_$icon <- arg_match(icon, values = fa_metadata()$icon_names, error_call = error_call)
       }
-      if (!is.null(tooltip)) {
-        private$state_$tooltip  <- ensure(tooltip, is.string)
-      }
+      private$state_$tooltip  <- ensure(tooltip, null_or(is.string))
 
       # jupyter.widget.Model
       super$initialize(
