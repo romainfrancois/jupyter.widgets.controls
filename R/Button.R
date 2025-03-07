@@ -54,10 +54,7 @@ jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = ju
           private$state_$text_decoration  <- rlang::arg_match(text_decoration, values = accepted_text_decoration, error_call = error_call)
         }
 
-        super$initialize(
-          comm_description = "button style",
-          error_call = error_call
-        )
+        super$initialize(comm_description = "button style", error_call = error_call)
       }
     ),
 
@@ -146,12 +143,10 @@ jupyter.widget.ButtonModel <- R6Class("jupyter.widget.ButtonModel", inherit = ju
       private$state_$description  <- ensure(description, is.string)
       private$state_$disabled     <- ensure(disabled, rlang::is_scalar_logical)
       private$state_$button_style <- arg_match(button_style, error_call = error_call)
-      private$state_$icon         <- if (identical(icon, "")) "" else {
-        arg_match(icon, values = fa_metadata()$icon_names, error_call = error_call)
+      if (!identical(icon, "")) {
+        private$state_$icon <- arg_match(icon, values = fa_metadata()$icon_names, error_call = error_call)
       }
-      if (!is.null(tooltip)) {
-        private$state_$tooltip  <- ensure(tooltip, is.string)
-      }
+      private$state_$tooltip  <- ensure(tooltip, null_or(is.string))
 
       # jupyter.widget.Model
       super$initialize(
@@ -200,65 +195,24 @@ jupyter.widget.ButtonModel <- R6Class("jupyter.widget.ButtonModel", inherit = ju
   )
 )
 
-#' Button Model
-#'
-#' @param layout a [Layout()]
-#' @param style a [ButtonStyle()]
-#' @param description text description of the button
-#' @param disabled TRUE if the Button is disabled
-#' @param button_style "", "primary", "success", "info", "warning" or "danger"
-#' @param icon name of a font-awesome icon, see [fontawesome::fa()] or "" for no icon (default)
-#' @param tooltip hover message for the button.
-#'
-#' @inheritParams rlang::args_dots_empty
-#' @inheritParams rlang::args_error_context
-#'
-#' @export
-ButtonModel <- function(
-    layout       = Layout(),
-    style        = ButtonStyle(),
-    description  = "Click Me",
-    disabled     = FALSE,
-    button_style = "",
-    icon         = "",
-    tooltip      = NULL,
-    ...,
-    error_call = current_env()
-  ) {
-  jupyter.widget.ButtonModel$new(
-    layout       = layout,
-    style        = style,
-    description  = description,
-    disabled     = disabled,
-    button_style = button_style,
-    icon         = icon,
-    tooltip      = tooltip,
-    ...,
-    error_call   = error_call
-  )
-}
-
 jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widget.Widget,
   public = list(
     layout = NULL,
     style = NULL,
     model = NULL,
 
-    initialize = function(layout = Layout(), style = ButtonStyle(), description = "Click Me", disabled = FALSE, button_style = "", icon = "", tooltip = NULL, ...) {
+    initialize = function(
+      layout = Layout(),
+      style = ButtonStyle(),
+      model = ButtonModel(layout = lauout, style = style, error_call = error_call),
+      ...,
+      error_call = caller_env()
+    ) {
       self$layout <- layout
       self$style  <- style
-      self$model  <- ButtonModel(
-        layout = self$layout,
-        style  = self$style,
+      self$model  <- model
 
-        # model parameters
-        description  = description,
-        disabled     = disabled,
-        button_style = button_style,
-        icon         = icon,
-        tooltip      = tooltip,
-        ...
-      )
+      super$initialize(..., error_call = error_call)
     },
 
     mime_bundle = function() {
@@ -287,18 +241,44 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
 
 #' Button
 #'
-#' @inheritParams ButtonModel
+#' @param layout a [Layout()]
+#' @param style a [ButtonStyle()]
+#' @param description text description of the button
+#' @param disabled TRUE if the Button is disabled
+#' @param button_style "", "primary", "success", "info", "warning" or "danger"
+#' @param icon name of a font-awesome icon, see [fontawesome::fa()] or "" for no icon (default)
+#' @param tooltip hover message for the button.
+#'
+#' @inheritParams rlang::args_dots_empty
+#' @inheritParams rlang::args_error_context
 #'
 #' @export
-Button <- function(layout = Layout(), style = ButtonStyle(), description = "Click Me", disabled = FALSE, button_style = "", icon = "", tooltip = NULL, ...) {
+Button <- function(
+    layout = Layout(),
+    style = ButtonStyle(),
+    description = "Click Me",
+    disabled = FALSE,
+    button_style = "",
+    icon = "",
+    tooltip = NULL,
+    ...,
+    error_call = current_env()
+  ) {
+
+  model <- jupyter.widget.ButtonModel$new(
+    layout       = layout,
+    style        = style,
+    description  = description,
+    disabled     = disabled,
+    button_style = button_style,
+    icon         = icon,
+    tooltip      = tooltip,
+    ...,
+    error_call   = error_call
+  )
   jupyter.widget.Button$new(
     layout = layout,
     style = style,
-    description = description,
-    disabled = disabled,
-    button_style = button_style,
-    icon = icon,
-    tooltip = tooltip,
-    ...
+    model = model
   )
 }
