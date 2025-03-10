@@ -24,6 +24,7 @@ jupyter.widget.DOMWidget <- R6Class("jupyter.widget.DOMWidget",
   ),
 
   private = list(
-    layout_ = NULL
+    layout_ = NULL,
+    init_state = function() {}
   )
 )
