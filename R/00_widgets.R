@@ -23,7 +23,7 @@ handler_jupyter.widget <- function(comm, message) {
 }
 
 update_list <- function(x, ...) {
-  dots <- tibble::lst(...)
+  dots <- rlang::list2(...)
   x[names(dots)] <- dots
   x
 }
@@ -31,7 +31,7 @@ update_list <- function(x, ...) {
 jupyter.widget.Widget <- R6Class("jupyter.widget.Widget",
   public = list(
     initialize = function(..., error_call = caller_env()) {
-      rlang::check_dots_empty(error_call = error_call)
+      rlang::check_dots_empty(call = error_call)
     }
   ),
 
@@ -53,7 +53,10 @@ jupyter.widget.CoreWidget <- R6Class("jupyter.widget.CoreWidget",
     ) {
 
       private$handlers_ <- new.env()
-      private$state_ <- update_list(private$state_, `_model_module`, `_model_module_version`)
+      private$state_ <- update_list(private$state_,
+        `_model_module`         = `_model_module`,
+        `_model_module_version` = `_model_module_version`
+      )
       super$initialize(..., error_call = error_call)
 
       private$comm_ <- comm <- CommManager$new_comm("jupyter.widget", description = comm_description)
@@ -128,16 +131,52 @@ jupyter.widget.CoreWidget <- R6Class("jupyter.widget.CoreWidget",
 
 jupyter.widget.Style <- R6Class("jupyter.widget.Style", inherit = jupyter.widget.CoreWidget,
   public = list(
-    initialize = function(..., comm_description = "", error_call) {
+    initialize = function(..., comm_description = "", error_call = caller_env()) {
       private$state_ <- update_list(private$state_,
-        "_view_count" = NULL,
-        "_view_module" = "@jupyter-widgets/base",
+        "_view_count"          = NULL,
+        "_view_module"         = "@jupyter-widgets/base",
         "_view_module_version" = "2.0.0"
       )
-      super$initialise(..., comm_description = comm_description, error_call = error_call)
+      super$initialize(..., comm_description = comm_description, error_call = error_call)
     }
   )
+)
 
+jupyter.widget.DOMWidget <- R6Class("jupyter.widget.DOMWidget",
+  inherit = jupyter.widget.CoreWidget,
+
+  public = list(
+    initialize = function(layout = Layout(), style = NULL, tabbable = NULL, tooltip = "", ..., comm_description = "", error_call = caller_env()) {
+      private$layout_ <- layout
+      private$style_  <- style
+
+      private$state_ <- update_list(private$state_,
+        tabbable = tabbable,
+        tooltip  = ensure(tooltip, null_or(is.string)),
+        layout   = glue("IPY_MODEL_{layout$comm$id}"),
+        style    = glue("IPY_MODEL_{style$comm$id}")
+      )
+
+      super$initialize(
+        ...,
+        comm_description = comm_description,
+        error_call = error_call
+      )
+    }
+  ),
+
+  active = list(
+    layout = function() layout_,
+    style  = function() style_,
+
+    tabbable = function() private$state_[["tabbable"]],
+    tooltip  = function() private$state_[["tooltip"]]
+  ),
+
+  private = list(
+    layout_ = NULL,
+    style_  = NULL
+  )
 )
 
 #' @importFrom hera mime_types

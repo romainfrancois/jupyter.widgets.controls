@@ -19,5 +19,4 @@ Imports:
     hera,
     jsonlite,
     R6,
-    rlang,
-    tibble
+    rlang

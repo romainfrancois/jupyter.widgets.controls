@@ -11,7 +11,7 @@ jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inheri
           description_width = ensure(description_width, is.string),
           handle_color      = ensure(handle_color, null_or(is.string)),
 
-          "_model_name" = "SliderStyleModel"
+          `_model_name`     = "SliderStyleModel"
         )
 
         super$initialize(
@@ -49,6 +49,7 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
       min = 0,
       max = 100,
       value = 0,
+      step = 1,
       behavior = c("drag-tap", "drag", "release", "throttle"),
       continuous_update = TRUE,
       description = "",
@@ -62,8 +63,21 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
     ) {
 
       private$state_ <- update_list(private$state_,
-        "_view_name" = "IntSliderView",
-        "_model_name" = "IntSliderModel"
+        `_view_name`  = "IntSliderView",
+        `_model_name` = "IntSliderModel",
+
+        min = min,
+        max = max,
+        value = value,
+        step = step,
+        behavior = rlang::arg_match(behavior, error_call = error_call()),
+        continuous_update = behavior,
+        description = description,
+        description_allow_html = description_allow_html,
+        disabled = disabled,
+        orientation = rlang::arg_match(orientation, error_call = error_call()),
+        readout = readout,
+        readout_format = readout_format
       )
 
       super$initialize(
@@ -77,7 +91,7 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
     mime_bundle = function() {
       data <- list(
         "text/plain" = unbox(
-          glue("<IntSlider id = {self$comm$id} value={self$state('value')})>")
+          glue("<IntSlider id = {self$comm$id} value={self$value})>")
         ),
         "application/vnd.jupyter.widget-view+json" = list(
           "version_major" = unbox(2L),
@@ -91,6 +105,21 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
     update = function(...) {
       self$model$update(...)
     }
+  ),
+
+  active = list(
+    min = function() private$state_$min,
+    max = function() private$state_$max,
+    value = function() private$state_$value,
+    step = function() private$state_$step,
+    behavior = function() private$state_$behavior,
+    continuous_update = function() private$state_$continuous_update,
+    description = function() private$state_$description,
+    description_allow_html = function() private$state_$description_allow_html,
+    disabled = function() private$state_$disabled,
+    orientation = function() private$state_$orientation,
+    readout = function() private$state_$readout,
+    readout_format = function() private$state_$readout_format
   )
 )
 
