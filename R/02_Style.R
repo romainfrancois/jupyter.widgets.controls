@@ -17,7 +17,7 @@ jupyter.widget.DOMWidget <- R6Class("jupyter.widget.DOMWidget",
   ),
 
   active = list(
-    layout = function() layout_
+    layout = function() layout_,
 
     tabbable = read_only_state("tabbable"),
     tooltip = read_only_state("tooltip")
