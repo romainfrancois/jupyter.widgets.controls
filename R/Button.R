@@ -98,7 +98,6 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
   public = list(
     layout = NULL,
     style = NULL,
-    model = NULL,
 
     initialize = function(
       layout = Layout(),
@@ -111,9 +110,6 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
       ...,
       error_call = caller_env()
     ) {
-      self$layout <- layout
-      self$style  <- ensure(style, inherits, "jupyter.widget.ButtonStyle")
-
       # set initial state
       private$state_ <- update_list(
         description  = ensure(description, is.string),
@@ -124,19 +120,23 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
         },
 
         "_model_name" = "ButtonModel",
-        "_view_count" = NULL,
-        "_view_module" = "@jupyter-widgets/controls",
-        "_view_module_version" = "2.0.0",
         "_view_name" = "ButtonView"
       )
 
-      super$initialize(..., error_call = error_call)
+      super$initialize(
+        layout = layout,
+        style = ensure(style, inherits, "jupyter.widget.ButtonStyle"),
+        ...,
+        error_call = error_call
+      )
 
-      private$handlers[["custom"]] <- function(content) {
-        if (content$event == "click") {
-          private$handle("custom/click")
+      self$on_custom(
+        function(content) {
+          if (content$event == "click") {
+            private$handle("custom/click")
+          }
         }
-      }
+      )
     },
 
     mime_bundle = function() {
