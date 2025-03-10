@@ -22,12 +22,6 @@ handler_jupyter.widget <- function(comm, message) {
     })
 }
 
-read_only_state <- function(name) {
-  function() {
-    private$state[[name]]
-  }
-}
-
 update_list <- function(x, ...) {
   dots <- tibble::lst(...)
   x[names(dots)] <- dots
@@ -114,8 +108,8 @@ jupyter.widget.CoreWidget <- R6Class("jupyter.widget.CoreWidget",
   active = list(
     comm = function() private$comm_,
 
-    `_model_name`  = read_only_state("_model_name"),
-    `_dom_classes` = read_only_state("_dom_classes")
+    `_model_name`  = function() private$state_[["_model_name"]],
+    `_dom_classes` = function() private$state_[["_dom_classes"]]
   ),
 
   private = list(

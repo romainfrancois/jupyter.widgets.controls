@@ -25,8 +25,8 @@ jupyter.widget.DOMWidget <- R6Class("jupyter.widget.DOMWidget",
     layout = function() layout_,
     style  = function() style_,
 
-    tabbable = read_only_state("tabbable"),
-    tooltip = read_only_state("tooltip")
+    tabbable = function() private$state_[["tabbable"]],
+    tooltip  = function() private$state_[["tooltip"]]
   ),
 
   private = list(
