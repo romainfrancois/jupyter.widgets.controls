@@ -43,11 +43,7 @@ jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = ju
           text_color = ensure(text_color, null_or(is.string)),
           text_decoration = rlang::arg_match(text_decoration, values = accepted_text_decoration, error_call = error_call),
 
-          "_model_name" = "ButtonStyleModel",
-          "_view_count" = NULL,
-          "_view_module" = "@jupyter-widgets/base",
-          "_view_module_version" = "2.0.0",
-          "_view_name" = "StyleView"
+          "_model_name" = "ButtonStyleModel"
         )
 
         super$initialize(..., comm_description = "button style", error_call = error_call)

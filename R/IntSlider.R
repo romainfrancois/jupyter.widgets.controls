@@ -6,8 +6,13 @@ jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inheri
         ...,
         error_call = caller_env()
       ) {
-        private$state_$description_width <- ensure(description_width, is.string)
-        private$state_$handle_color <- ensure(handle_color, null_or(is.string))
+
+        private$state_ <- update_list(private$state_,
+          description_width = ensure(description_width, is.string),
+          handle_color      = ensure(handle_color, null_or(is.string)),
+
+          "_model_name" = "SliderStyleModel"
+        )
 
         super$initialize(
           ...,
@@ -15,20 +20,6 @@ jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inheri
           error_call = error_call
         )
       }
-    ),
-
-    private = list(
-      state_ = list(
-        "_model_module" = "@jupyter-widgets/controls",
-        "_model_module_version" = "2.0.0",
-        "_model_name" = "SliderStyleModel",
-        "_view_count" = NULL,
-        "_view_module" = "@jupyter-widgets/base",
-        "_view_module_version" = "2.0.0",
-        "_view_name" = "StyleView",
-        "description_width" = "",
-        "handle_color" = NULL
-      )
     )
 )
 

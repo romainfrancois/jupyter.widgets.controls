@@ -120,7 +120,20 @@ jupyter.widget.CoreWidget <- R6Class("jupyter.widget.CoreWidget",
   )
 )
 
-jupyter.widget.Style <- R6Class("jupyter.widget.Style", inherit = jupyter.widget.CoreWidget)
+jupyter.widget.Style <- R6Class("jupyter.widget.Style", inherit = jupyter.widget.CoreWidget,
+  public = list(
+    initialize = function(..., comm_description = "", error_call) {
+      private$state_ <- update_list(private$state_,
+        "_view_count" = NULL,
+        "_view_module" = "@jupyter-widgets/base",
+        "_view_module_version" = "2.0.0",
+        "_view_name" = "StyleView"
+      )
+      super$initialise(..., comm_description = comm_description, error_call = error_call)
+    }
+  )
+
+)
 
 #' @importFrom hera mime_types
 #' @export
