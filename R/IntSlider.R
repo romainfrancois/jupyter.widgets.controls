@@ -6,8 +6,13 @@ jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inheri
         ...,
         error_call = caller_env()
       ) {
-        private$state_$description_width <- ensure(description_width, is.string)
-        private$state_$handle_color <- ensure(handle_color, null_or(is.string))
+
+        private$state_ <- update_list(private$state_,
+          description_width = ensure(description_width, is.string),
+          handle_color      = ensure(handle_color, null_or(is.string)),
+
+          `_model_name`     = "SliderStyleModel"
+        )
 
         super$initialize(
           ...,
@@ -15,20 +20,6 @@ jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inheri
           error_call = error_call
         )
       }
-    ),
-
-    private = list(
-      state_ = list(
-        "_model_module" = "@jupyter-widgets/controls",
-        "_model_module_version" = "2.0.0",
-        "_model_name" = "SliderStyleModel",
-        "_view_count" = NULL,
-        "_view_module" = "@jupyter-widgets/base",
-        "_view_module_version" = "2.0.0",
-        "_view_name" = "StyleView",
-        "description_width" = "",
-        "handle_color" = NULL
-      )
     )
 )
 
@@ -50,130 +41,82 @@ IntSliderStyle <- function(description_width = "", handle_color = NULL, ..., err
   )
 }
 
-jupyter.widget.IntSliderModel <- R6Class("jupyter.widget.IntSliderModel", inherit = jupyter.widget.Model,
-    public = list(
-        comm = NULL,
+jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyter.widget.DOMWidget,
+  public = list(
+    initialize = function(
+      layout = Layout(),
+      style = IntSliderStyle(),
+      min = 0,
+      max = 100,
+      value = 0,
+      step = 1,
+      behavior = c("drag-tap", "drag", "release", "throttle"),
+      continuous_update = TRUE,
+      description = "",
+      description_allow_html = FALSE,
+      disabled = FALSE,
+      orientation = c("horizontal", "vertical"),
+      readout = TRUE,
+      readout_format = "d",
+      ...,
+      error_call = caller_env()
+    ) {
 
-        initialize = function(
-          layout = Layout(),
-          style = IntSliderStyle(),
-          min = 0,
-          max = 100,
-          value = 0,
-          behavior = c("drag-tap", "drag", "release", "throttle"),
-          continuous_update = TRUE,
-          description = "",
-          description_allow_html = FALSE,
-          disabled = FALSE,
-          orientation = c("horizontal", "vertical"),
-          readout = TRUE,
-          readout_format = "d",
-          tooltip = NULL,
-          ...,
-          comm_description = "int slider model",
-          error_call = caller_env()
-        ) {
+      private$state_ <- update_list(private$state_,
+        `_view_name`  = "IntSliderView",
+        `_model_name` = "IntSliderModel",
 
-            private$state_$min   <- ensure(min  , default_or(0, is_number))
-            private$state_$max   <- ensure(max  , default_or(100, is_number))
-            private$state_$step  <- ensure(step , default_or(1, is_number))
-            private$state_$value <- ensure(value, default_or(0, is_number))
+        min = min,
+        max = max,
+        value = value,
+        step = step,
+        behavior = rlang::arg_match(behavior, error_call = error_call()),
+        continuous_update = behavior,
+        description = description,
+        description_allow_html = description_allow_html,
+        disabled = disabled,
+        orientation = rlang::arg_match(orientation, error_call = error_call()),
+        readout = readout,
+        readout_format = readout_format
+      )
 
-            private$state_$behavior <- rlang::arg_match(behavior, error_call = error_call)
-            private$state_$continuous_update <- is_true(continuous_update)
-            private$state_$description <- ensure(description, is.string)
-            private$state_$description_allow_html <- is_true(description_allow_html)
-            private$state_$disabled <- is_true(disabled)
-            private$state_$orientation <- rlang::arg_match(orientation, error_call = error_call)
-            private$state_$readout <- is_true(readout)
-            private$state_$tooltip <- ensure(tooltip, null_or(is.string))
+      super$initialize(
+        layout = layout,
+        style = style,
+        ...,
+        error_call = error_call
+      )
+    },
 
-            super$initialize(
-              layout = layout,
-              style = style,
-              ...,
-              comm_description = comm_description,
-              error_call = error_call
-            )
-        }
-    ),
-
-    private = list(
-        state_ = list(
-            "_dom_classes" = list(),
-            "_model_module" = "@jupyter-widgets/controls",
-            "_model_module_version" = "2.0.0",
-            "_model_name" = "IntSliderModel",
-            "_view_count" = NULL,
-            "_view_module" = "@jupyter-widgets/controls",
-            "_view_module_version" = "2.0.0",
-            "_view_name" = "IntSliderView",
-            "behavior" = "drag-tap",
-            "continuous_update" = TRUE,
-            "description" = "",
-            "description_allow_html" = FALSE,
-            "disabled" = FALSE,
-            "layout" = "IPY_MODEL_{layout$id}",
-            "max" = 100,
-            "min" = 0,
-            "orientation" = "horizontal",
-            "readout" = TRUE,
-            "readout_format" = "d",
-            "step" = 1,
-            "style" = "IPY_MODEL_{style$id}",
-            "tabbable" = NULL,
-            "tooltip" = NULL,
-            "value" = 0
+    mime_bundle = function() {
+      data <- list(
+        "text/plain" = unbox(
+          glue("<IntSlider id = {self$comm$id} value={self$value})>")
+        ),
+        "application/vnd.jupyter.widget-view+json" = list(
+          "version_major" = unbox(2L),
+          "version_minor" = unbox(0L),
+          "model_id" = unbox(self$comm$id)
         )
-    )
-)
+      )
+      list(data = data, metadata = namedlist())
+    }
+  ),
 
-jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyter.widget.Widget,
-    public = list(
-        layout = NULL,
-        style = NULL,
-        model = NULL,
-
-        initialize = function(
-          layout = Layout(),
-          style = IntSliderStyle(),
-          model = IntSliderModel(layout = layout, style = style),
-          ...,
-          error_call = caller_env()
-        ) {
-            self$layout <- layout
-            self$style  <- style
-            self$model  <- model
-
-            super$initialize(..., error_call = error_call)
-        },
-
-        mime_bundle = function() {
-            data <- list(
-                "text/plain" = unbox(
-                    glue("<IntSlider id = {self$model$comm$id} value={self$model$state('value')})>")
-                ),
-                "application/vnd.jupyter.widget-view+json" = list(
-                    "version_major" = unbox(2L),
-                    "version_minor" = unbox(0L),
-                    "model_id" = unbox(self$model$comm$id)
-                )
-            )
-            list(data = data, metadata = namedlist())
-        },
-
-        state = function(what) {
-            self$model$state(what)
-        },
-
-        on_update = function(handler) {
-            self$model$on_update(handler)
-        },
-
-        update = function(...) {
-            self$model$update(...)
-        }
-    )
+  active = list(
+    min = function() private$state_$min,
+    max = function() private$state_$max,
+    value = function() private$state_$value,
+    step = function() private$state_$step,
+    behavior = function() private$state_$behavior,
+    continuous_update = function() private$state_$continuous_update,
+    description = function() private$state_$description,
+    description_allow_html = function() private$state_$description_allow_html,
+    disabled = function() private$state_$disabled,
+    orientation = function() private$state_$orientation,
+    readout = function() private$state_$readout,
+    readout_format = function() private$state_$readout_format
+  )
 )
 
 #' Int slider
@@ -215,9 +158,9 @@ IntSlider <- function(
     ...,
     error_call = current_env()
 ) {
-  model <- jupyter.widget.IntSliderModel$new(
+  jupyter.widget.IntSlider$new(
     layout = layout,
-    style  = style,
+    style = style,
 
     min = min,
     max = max,
@@ -232,10 +175,5 @@ IntSlider <- function(
     readout_format = readout_format,
     ...,
     error_call = error_call
-  )
-  jupyter.widget.IntSlider$new(
-    layout = layout,
-    style = style,
-    model = model
   )
 }

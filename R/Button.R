@@ -15,67 +15,41 @@ jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = ju
         error_call = caller_env()
       ) {
 
-        if (!is.null(button_color)) {
-          private$state_$button_color  <- ensure(button_color, is.string)
-        }
-        if (!is.null(font_family)) {
-          private$state_$font_family  <- ensure(font_family, is.string)
-        }
-        if (!is.null(font_size)) {
-          private$state_$font_size  <- ensure(font_size, is.string)
-        }
-        if (!is.null(font_style)) {
-          accepted_font_style <- c("normal", "italic", "oblique")
-          private$state_$font_style  <- rlang::arg_match(font_style, values = accepted_font_style, error_call = error_call)
-        }
-        if (!is.null(font_variant)) {
-          accepted_font_variant <- c("normal", "small-caps", "all-small-caps", "petite-caps", "all-petite-caps", "unicase", "titling-caps")
-          private$state_$font_variant  <- rlang::arg_match(font_variant, values = accepted_font_variant, error_call = error_call)
-        }
-        if (!is.null(font_weight)) {
-          accepted_font_weight <- c("normal", "bold", "lighter", "bolder")
-          if (is.string(font_weight)) {
-            private$state_$font_weight<- rlang::arg_match(font_weight, values = accepted_font_weight, error_call = error_call)
-          } else if (is.numeric(font_weight) && font_weight >= 100 && font_weight <= 900) {
-            private$state_$font_weight <- as.character(round(font_weight))
-          } else {
-            cli_abort(c(
-              "{.arg font_weight} is not supported.",
-              i = "{.arg font_weight} can be one of {.val {accepted_font_weight}}.",
-              i = "or a number between 100 and 900."
-            ), call = error_call)
-          }
-        }
-        if (!is.null(text_color)) {
-          private$state_$text_color  <- ensure(text_color, is.string)
-        }
-        if (!is.null(text_decoration)) {
-          accepted_text_decoration <- c("none", "underline", "overline", "line-through", "blink")
-          private$state_$text_decoration  <- rlang::arg_match(text_decoration, values = accepted_text_decoration, error_call = error_call)
-        }
+        accepted_font_style <- c("normal", "italic", "oblique")
+        accepted_font_variant <- c("normal", "small-caps", "all-small-caps", "petite-caps", "all-petite-caps", "unicase", "titling-caps")
+        accepted_font_weight <- c("normal", "bold", "lighter", "bolder")
+        accepted_text_decoration <- c("none", "underline", "overline", "line-through", "blink")
 
-        super$initialize(comm_description = "button style", error_call = error_call)
+        private$state_ <- update_list(private$state_,
+          button_color = ensure(button_color, null_or(is.string)),
+          font_family  = ensure(font_family, null_or(is.string)),
+          font_size    = ensure(font_size, null_or(is.string)),
+          font_style   = if (is.null(font_style)) NULL else rlang::arg_match(font_style, values = accepted_font_style, error_call = error_call),
+          font_variant = if (is.null(font_variant)) NULL else rlang::arg_match(font_variant, values = accepted_font_variant, error_call = error_call),
+          font_weight  = {
+            # TODO: extract into a function for clarity
+            if (is.null(font_weight)) {
+              NULL
+            } else if (is.string(font_weight)) {
+               rlang::arg_match(font_weight, values = accepted_font_weight, error_call = error_call)
+            } else if (is.numeric(font_weight) && font_weight >= 100 && font_weight <= 900) {
+              as.character(round(font_weight))
+            } else {
+              cli_abort(c(
+                "{.arg font_weight} is not supported.",
+                i = "{.arg font_weight} can be one of {.val {accepted_font_weight}}.",
+                i = "or a number between 100 and 900."
+              ), call = error_call)
+            }
+          },
+          text_color = ensure(text_color, null_or(is.string)),
+          text_decoration = if (is.null(text_decoration)) NULL else rlang::arg_match(text_decoration, values = accepted_text_decoration, error_call = error_call),
+
+          `_model_name` = "ButtonStyleModel"
+        )
+
+        super$initialize(..., comm_description = "button style", error_call = error_call)
       }
-    ),
-
-    private = list(
-      state_ = list(
-        "_model_module" = "@jupyter-widgets/controls",
-        "_model_module_version" = "2.0.0",
-        "_model_name" = "ButtonStyleModel",
-        "_view_count" = NULL,
-        "_view_module" = "@jupyter-widgets/base",
-        "_view_module_version" = "2.0.0",
-        "_view_name" = "StyleView",
-        "button_color" = NULL,
-        "font_family" = NULL,
-        "font_size" = NULL,
-        "font_style" = NULL,
-        "font_variant" = NULL,
-        "font_weight" = NULL,
-        "text_color" = NULL,
-        "text_decoration" = NULL
-      )
     )
 )
 
@@ -122,119 +96,64 @@ ButtonStyle <- function(
   )
 }
 
-jupyter.widget.ButtonModel <- R6Class("jupyter.widget.ButtonModel", inherit = jupyter.widget.Model,
+jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widget.DOMWidget,
   public = list(
-    comm = NULL,
-
-    initialize = function(
-      layout           = Layout(),
-      style            = ButtonStyle(),
-      button_style     = c("", "primary", "success", "info", "warning", "danger"),
-      description      = "Click Me",
-      disabled         = FALSE,
-      icon             = "",
-      tooltip          = NULL,
-      ...,
-      error_call       = caller_env(),
-      comm_description = "button model"
-    ) {
-
-      # set initial state
-      private$state_$description  <- ensure(description, is.string)
-      private$state_$disabled     <- ensure(disabled, rlang::is_scalar_logical)
-      private$state_$button_style <- arg_match(button_style, error_call = error_call)
-      if (!identical(icon, "")) {
-        private$state_$icon <- arg_match(icon, values = fa_metadata()$icon_names, error_call = error_call)
-      }
-      private$state_$tooltip  <- ensure(tooltip, null_or(is.string))
-
-      # jupyter.widget.Model
-      super$initialize(
-        layout           = layout,
-        style            = style,
-        ...,
-        comm_description = comm_description,
-        error_call       = error_call
-      )
-
-      # setup click handler
-      self$on_custom(function(content) {
-        if (content$event == "click") {
-          click_handler <- private$handlers[["custom/click"]]
-          if (!is.null(click_handler)) {
-            click_handler()
-          }
-        }
-      })
-    },
-
-    on_click = function(handler = NULL) {
-      private$handlers[["custom/click"]] <- handler
-    }
-  ),
-
-  private = list(
-    state_ = list(
-      "_dom_classes" = list(),
-      "_model_module" = "@jupyter-widgets/controls",
-      "_model_module_version" = "2.0.0",
-      "_model_name" = "ButtonModel",
-      "_view_count" = NULL,
-      "_view_module" = "@jupyter-widgets/controls",
-      "_view_module_version" = "2.0.0",
-      "_view_name" = "ButtonView",
-      "button_style" = "",
-      "description" = "Click Me",
-      "disabled" = FALSE,
-      "icon" = "",
-      "layout" = "IPY_MODEL_{layout}",
-      "style" = "IPY_MODEL_{style}",
-      "tabbable" = NULL,
-      "tooltip" = NULL
-    )
-  )
-)
-
-jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widget.Widget,
-  public = list(
-    layout = NULL,
-    style = NULL,
-    model = NULL,
-
     initialize = function(
       layout = Layout(),
       style = ButtonStyle(),
-      model = ButtonModel(layout = lauout, style = style, error_call = error_call),
+
+      description = "Click Me",
+      disabled = FALSE,
+      button_style = "",
+      icon = "",
       ...,
       error_call = caller_env()
     ) {
-      self$layout <- layout
-      self$style  <- style
-      self$model  <- model
+      # set initial state
+      private$state_ <- update_list(private$state_,
+        description  = ensure(description, is.string),
+        disabled     = ensure(disabled, rlang::is_scalar_logical),
+        button_style = rlang::arg_match(button_style, error_call = error_call),
+        icon         = if (identical(icon, "")) "" else {
+          arg_match(icon, values = fa_metadata()$icon_names, error_call = error_call)
+        },
 
-      super$initialize(..., error_call = error_call)
+        `_model_name` = "ButtonModel",
+        `_view_name`  = "ButtonView"
+      )
+
+      super$initialize(
+        layout = layout,
+        style = ensure(style, inherits, "jupyter.widget.ButtonStyle"),
+        ...,
+        error_call = error_call
+      )
+
+      self$on_custom(
+        function(content) {
+          if (content$event == "click") {
+            private$handle("custom/click")
+          }
+        }
+      )
     },
 
     mime_bundle = function() {
       data <- list(
         "text/plain" = unbox(
-          glue("<Button id = {self$model$comm$id} >")
+          glue("<Button id = {self$comm$id} >")
         ),
         "application/vnd.jupyter.widget-view+json" = list(
           "version_major" = unbox(2L),
           "version_minor" = unbox(0L),
-          "model_id" = unbox(self$model$comm$id)
+          "model_id"      = unbox(self$comm$id)
         )
       )
       list(data = data, metadata = namedlist())
     },
 
-    state = function(what) {
-      self$model$state(what)
-    },
-
-    on_click = function(handler) {
-      self$model$on_click(handler)
+    on_click = function(handler = NULL) {
+      private$handlers_[["custom/click"]] <- handler
     }
   )
 )
@@ -243,6 +162,7 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
 #'
 #' @param layout a [Layout()]
 #' @param style a [ButtonStyle()]
+#'
 #' @param description text description of the button
 #' @param disabled TRUE if the Button is disabled
 #' @param button_style "", "primary", "success", "info", "warning" or "danger"
@@ -265,9 +185,10 @@ Button <- function(
     error_call = current_env()
   ) {
 
-  model <- jupyter.widget.ButtonModel$new(
-    layout       = layout,
-    style        = style,
+  jupyter.widget.Button$new(
+    layout = layout,
+    style = style,
+
     description  = description,
     disabled     = disabled,
     button_style = button_style,
@@ -275,10 +196,5 @@ Button <- function(
     tooltip      = tooltip,
     ...,
     error_call   = error_call
-  )
-  jupyter.widget.Button$new(
-    layout = layout,
-    style = style,
-    model = model
   )
 }
