@@ -1,56 +1,65 @@
 jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = jupyter.widget.Style,
+  public = list(
+    initialize = function(
+      button_color = NULL,
+      font_family = NULL,
+      font_size = NULL,
+      font_style = NULL,
+      font_variant = NULL,
+      font_weight = NULL,
+      text_color = NULL,
+      text_decoration = NULL,
+      ...,
+      comm_description = "button style",
+      error_call = caller_env()
+    ) {
 
-    public = list(
-      initialize = function(
-        button_color = NULL,
-        font_family = NULL,
-        font_size = NULL,
-        font_style = NULL,
-        font_variant = NULL,
-        font_weight = NULL,
-        text_color = NULL,
-        text_decoration = NULL,
-        ...,
-        comm_description = "button style",
-        error_call = caller_env()
-      ) {
+      accepted_font_style <- c("normal", "italic", "oblique")
+      accepted_font_variant <- c("normal", "small-caps", "all-small-caps", "petite-caps", "all-petite-caps", "unicase", "titling-caps")
+      accepted_font_weight <- c("normal", "bold", "lighter", "bolder")
+      accepted_text_decoration <- c("none", "underline", "overline", "line-through", "blink")
 
-        accepted_font_style <- c("normal", "italic", "oblique")
-        accepted_font_variant <- c("normal", "small-caps", "all-small-caps", "petite-caps", "all-petite-caps", "unicase", "titling-caps")
-        accepted_font_weight <- c("normal", "bold", "lighter", "bolder")
-        accepted_text_decoration <- c("none", "underline", "overline", "line-through", "blink")
+      private$state_ <- update_list(private$state_,
+        button_color = ensure(button_color, null_or(is.string)),
+        font_family  = ensure(font_family, null_or(is.string)),
+        font_size    = ensure(font_size, null_or(is.string)),
+        font_style   = if (is.null(font_style)) NULL else rlang::arg_match(font_style, values = accepted_font_style, error_call = error_call),
+        font_variant = if (is.null(font_variant)) NULL else rlang::arg_match(font_variant, values = accepted_font_variant, error_call = error_call),
+        font_weight  = {
+          # TODO: extract into a function for clarity
+          if (is.null(font_weight)) {
+            NULL
+          } else if (is.string(font_weight)) {
+             rlang::arg_match(font_weight, values = accepted_font_weight, error_call = error_call)
+          } else if (is.numeric(font_weight) && font_weight >= 100 && font_weight <= 900) {
+            as.character(round(font_weight))
+          } else {
+            cli_abort(c(
+              "{.arg font_weight} is not supported.",
+              i = "{.arg font_weight} can be one of {.val {accepted_font_weight}}.",
+              i = "or a number between 100 and 900."
+            ), call = error_call)
+          }
+        },
+        text_color = ensure(text_color, null_or(is.string)),
+        text_decoration = if (is.null(text_decoration)) NULL else rlang::arg_match(text_decoration, values = accepted_text_decoration, error_call = error_call),
 
-        private$state_ <- update_list(private$state_,
-          button_color = ensure(button_color, null_or(is.string)),
-          font_family  = ensure(font_family, null_or(is.string)),
-          font_size    = ensure(font_size, null_or(is.string)),
-          font_style   = if (is.null(font_style)) NULL else rlang::arg_match(font_style, values = accepted_font_style, error_call = error_call),
-          font_variant = if (is.null(font_variant)) NULL else rlang::arg_match(font_variant, values = accepted_font_variant, error_call = error_call),
-          font_weight  = {
-            # TODO: extract into a function for clarity
-            if (is.null(font_weight)) {
-              NULL
-            } else if (is.string(font_weight)) {
-               rlang::arg_match(font_weight, values = accepted_font_weight, error_call = error_call)
-            } else if (is.numeric(font_weight) && font_weight >= 100 && font_weight <= 900) {
-              as.character(round(font_weight))
-            } else {
-              cli_abort(c(
-                "{.arg font_weight} is not supported.",
-                i = "{.arg font_weight} can be one of {.val {accepted_font_weight}}.",
-                i = "or a number between 100 and 900."
-              ), call = error_call)
-            }
-          },
-          text_color = ensure(text_color, null_or(is.string)),
-          text_decoration = if (is.null(text_decoration)) NULL else rlang::arg_match(text_decoration, values = accepted_text_decoration, error_call = error_call),
+        `_model_name` = "ButtonStyleModel"
+      )
 
-          `_model_name` = "ButtonStyleModel"
-        )
+      super$initialize(..., comm_description = "button style", error_call = error_call)
+    }
+  ),
 
-        super$initialize(..., comm_description = "button style", error_call = error_call)
-      }
-    )
+  active = list(
+    button_color     = function(x) if (missing(x)) private$state_[["button_color"]] else self$update(button_color = x),
+    font_family      = function(x) if (missing(x)) private$state_[["font_family"]] else self$update(font_family = x),
+    font_size        = function(x) if (missing(x)) private$state_[["font_size"]] else self$update(font_size = x),
+    font_style       = function(x) if (missing(x)) private$state_[["font_style"]] else self$update(font_style = x),
+    font_variant     = function(x) if (missing(x)) private$state_[["font_variant"]] else self$update(font_variant = x),
+    text_color       = function(x) if (missing(x)) private$state_[["text_color"]] else self$update(text_color = x),
+    text_decoration  = function(x) if (missing(x)) private$state_[["text_decoration"]] else self$update(text_decoration = x)
+  )
 )
 
 #' Style for the Button widget
