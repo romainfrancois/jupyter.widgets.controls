@@ -99,6 +99,13 @@ jupyter.widget.CoreWidget <- R6Class("jupyter.widget.CoreWidget",
       private$state_[[what]]
     },
 
+    update = function(...) {
+      state <- list2(...)
+      private$comm_$send(
+        data = list(method = "update", state = state, buffer_paths = list())
+      )
+    },
+
     on_update = function(handler) {
       private$handlers_[["update"]] <- handler
     },

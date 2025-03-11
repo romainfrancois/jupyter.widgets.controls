@@ -100,10 +100,6 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
         )
       )
       list(data = data, metadata = namedlist())
-    },
-
-    update = function(...) {
-      self$model$update(...)
     }
   ),
 
