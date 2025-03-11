@@ -132,7 +132,6 @@ jupyter.widget.CoreWidget <- R6Class("jupyter.widget.CoreWidget",
         handler(...)
       }
     }
-
   )
 )
 
@@ -176,8 +175,8 @@ jupyter.widget.DOMWidget <- R6Class("jupyter.widget.DOMWidget",
     layout = function() layout_,
     style  = function() style_,
 
-    tabbable = function() private$state_[["tabbable"]],
-    tooltip  = function() private$state_[["tooltip"]]
+    tabbable = function(x) if (missing(x)) private$state_[["tabbable"]] else self$update(tabbable = x),
+    tooltip  = function(x) if (missing(x)) private$state_[["tooltip"]] else self$update(tooltip = x)
   ),
 
   private = list(
