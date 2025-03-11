@@ -153,7 +153,7 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
     },
 
     on_click = function(handler = NULL) {
-      private$handlers[["custom/click"]] <- handler
+      private$handlers_[["custom/click"]] <- handler
     }
   )
 )

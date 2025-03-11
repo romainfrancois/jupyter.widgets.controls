@@ -120,7 +120,7 @@ jupyter.widget.CoreWidget <- R6Class("jupyter.widget.CoreWidget",
     handlers_ = NULL,
 
     handle = function(name, ...) {
-      handler <- private$handlers[[name]]
+      handler <- private$handlers_[[name]]
       if (!is.null(handler)) {
         handler(...)
       }
