@@ -132,7 +132,6 @@ jupyter.widget.CoreWidget <- R6Class("jupyter.widget.CoreWidget",
         handler(...)
       }
     }
-
   )
 )
 

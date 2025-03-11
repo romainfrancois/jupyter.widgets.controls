@@ -104,18 +104,18 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
   ),
 
   active = list(
-    min = function() private$state_$min,
-    max = function() private$state_$max,
-    value = function() private$state_$value,
-    step = function() private$state_$step,
-    behavior = function() private$state_$behavior,
-    continuous_update = function() private$state_$continuous_update,
-    description = function() private$state_$description,
-    description_allow_html = function() private$state_$description_allow_html,
-    disabled = function() private$state_$disabled,
-    orientation = function() private$state_$orientation,
-    readout = function() private$state_$readout,
-    readout_format = function() private$state_$readout_format
+    min                    = function(x) if (missing(x)) private$state_[["min"]] else self$update(min = x),
+    max                    = function(x) if (missing(x)) private$state_[["max"]] else self$update(max = x),
+    value                  = function(x) if (missing(x)) private$state_[["value"]] else self$update(value = x),
+    step                   = function(x) if (missing(x)) private$state_[["step"]] else self$update(step = x),
+    behavior               = function(x) if (missing(x)) private$state_[["behavior"]] else self$update(behavior = x),
+    continuous_update      = function(x) if (missing(x)) private$state_[["continuous_update"]] else self$update(continuous_update = x),
+    description            = function(x) if (missing(x)) private$state_[["description"]] else self$update(description = x),
+    description_allow_html = function(x) if (missing(x)) private$state_[["description_allow_html"]] else self$update(description_allow_html = x),
+    disabled               = function(x) if (missing(x)) private$state_[["disabled"]] else self$update(disabled = x),
+    orientation            = function(x) if (missing(x)) private$state_[["orientation"]] else self$update(orientation = x),
+    readout                = function(x) if (missing(x)) private$state_[["readout"]] else self$update(readout = x),
+    readout_format         = function(x) if (missing(x)) private$state_[["readout_format"]] else self$update(readout_format = x)
   )
 )
 

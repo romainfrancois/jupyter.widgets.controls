@@ -155,6 +155,13 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
     on_click = function(handler = NULL) {
       private$handlers_[["custom/click"]] <- handler
     }
+  ),
+
+  active = list(
+    description            = function(x) if (missing(x)) private$state_[["description"]] else self$update(description = x),
+    disabled               = function(x) if (missing(x)) private$state_[["disabled"]] else self$update(disabled = x),
+    button_style           = function(x) if (missing(x)) private$state_[["button_style"]] else self$update(button_style = x),
+    icon                   = function(x) if (missing(x)) private$state_[["icon"]] else self$update(icon = x)
   )
 )
 
