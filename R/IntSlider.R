@@ -1,26 +1,31 @@
 jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inherit = jupyter.widget.Style,
-    public = list(
-      initialize = function(
-        description_width = "",
-        handle_color = NULL,
+  public = list(
+    initialize = function(
+      description_width = "",
+      handle_color = NULL,
+      ...,
+      error_call = caller_env()
+    ) {
+
+      private$state_ <- update_list(private$state_,
+        description_width = ensure(description_width, is.string),
+        handle_color      = ensure(handle_color, null_or(is.string)),
+
+        `_model_name`     = "SliderStyleModel"
+      )
+
+      super$initialize(
         ...,
-        error_call = caller_env()
-      ) {
+        comm_description = "slider style",
+        error_call = error_call
+      )
+    }
+  ),
 
-        private$state_ <- update_list(private$state_,
-          description_width = ensure(description_width, is.string),
-          handle_color      = ensure(handle_color, null_or(is.string)),
-
-          `_model_name`     = "SliderStyleModel"
-        )
-
-        super$initialize(
-          ...,
-          comm_description = "slider style",
-          error_call = error_call
-        )
-      }
-    )
+  active = list(
+    description_width = function(x) if (missing(x)) private$state_[["description_width"]] else self$update(description_width = x),
+    handle_color      = function(x) if (missing(x)) private$state_[["handle_color"]] else self$update(handle_color = x)
+  )
 )
 
 #' Style for the IntSlider widget
