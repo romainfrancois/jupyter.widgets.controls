@@ -54,8 +54,8 @@ jupyter.widget.CoreWidget <- R6Class("jupyter.widget.CoreWidget",
 
       private$handlers_ <- new.env()
       private$state_ <- update_list(private$state_,
-        `_model_module`         = `_model_module`,
-        `_model_module_version` = `_model_module_version`
+        `_model_module`         = unbox(`_model_module`),
+        `_model_module_version` = unbox(`_model_module_version`)
       )
       super$initialize(..., error_call = error_call)
 
@@ -69,6 +69,7 @@ jupyter.widget.CoreWidget <- R6Class("jupyter.widget.CoreWidget",
           update = {
             state <- data$state
             private$state_ <- replace(private$state_, names(state), state)
+            # TODO: handle change in $children because we would only get the id
 
             private$handle("update", state)
 
@@ -89,8 +90,12 @@ jupyter.widget.CoreWidget <- R6Class("jupyter.widget.CoreWidget",
         private$handle("on_close", data$content)
       })
 
+      data <- list(state = private$state_, buffer_paths = list())
+      if (isTRUE(getOption("comm.verbose"))) {
+        print(jsonlite::toJSON(data))
+      }
       comm$open(
-        data = list(state = private$state_, buffer_paths = list()),
+        data = data,
         metadata = list(version = "2.1.0")
       )
     },
@@ -101,6 +106,12 @@ jupyter.widget.CoreWidget <- R6Class("jupyter.widget.CoreWidget",
 
     update = function(...) {
       state <- list2(...)
+
+      # special case for children
+      if ("children" %in% names(state)) {
+        state$children <- map_chr(children, \(kid) kid$comm$id)
+      }
+
       private$comm_$send(
         data = list(method = "update", state = state, buffer_paths = list())
       )
@@ -152,16 +163,19 @@ jupyter.widget.DOMWidget <- R6Class("jupyter.widget.DOMWidget",
   inherit = jupyter.widget.CoreWidget,
 
   public = list(
-    initialize = function(layout = Layout(), style = NULL, tabbable = NULL, tooltip = "", ..., comm_description = "", error_call = caller_env()) {
+    initialize = function(layout = Layout(), style = NULL, tabbable = FALSE, tooltip = "", ..., comm_description = "", error_call = caller_env()) {
       private$layout_ <- layout
       private$style_  <- style
 
       private$state_ <- update_list(private$state_,
-        tabbable = tabbable,
-        tooltip  = ensure(tooltip, null_or(is.string)),
-        layout   = glue("IPY_MODEL_{layout$comm$id}"),
-        style    = glue("IPY_MODEL_{style$comm$id}")
+        tabbable = unbox(isTRUE(tabbable)),
+        tooltip  = unbox(ensure(tooltip, null_or(is.string))),
+        layout   = unbox(glue("IPY_MODEL_{layout$comm$id}"))
       )
+
+      if (!is.null(style)) {
+        private$state_$style <- unbox(glue("IPY_MODEL_{style$comm$id}"))
+      }
 
       super$initialize(
         ...,
