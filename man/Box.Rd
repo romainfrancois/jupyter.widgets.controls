@@ -15,6 +15,8 @@ Box(
 )
 }
 \arguments{
+\item{children}{children widgets}
+
 \item{layout}{a \code{\link[=Layout]{Layout()}}}
 
 \item{box_style}{box style. empty (default) or one of 'success', 'info', 'warning', 'danger', 'primary'.}

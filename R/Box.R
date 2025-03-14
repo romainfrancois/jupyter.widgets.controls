@@ -71,6 +71,7 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
 
 #' Box
 #'
+#' @param children children widgets
 #' @param layout a [Layout()]
 #' @param box_style box style. empty (default) or one of 'success', 'info', 'warning', 'danger', 'primary'.
 #' @param description text description of the button
