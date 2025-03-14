@@ -55,34 +55,33 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
       max = 100,
       value = 0,
       step = 1,
-      behavior = c("drag-tap", "drag", "release", "throttle"),
       continuous_update = TRUE,
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
-      orientation = c("horizontal", "vertical"),
+      orientation = "horizontal",
       readout = TRUE,
       readout_format = "d",
       ...,
       error_call = caller_env()
     ) {
 
+      allowed_orientation <- c("horizontal", "vertical")
       private$state_ <- update_list(private$state_,
-        `_view_name`  = "IntSliderView",
-        `_model_name` = "IntSliderModel",
+        `_view_name`  = unbox("IntSliderView"),
+        `_model_name` = unbox("IntSliderModel"),
 
-        min = min,
-        max = max,
-        value = value,
-        step = step,
-        behavior = rlang::arg_match(behavior, error_call = error_call()),
-        continuous_update = behavior,
-        description = description,
-        description_allow_html = description_allow_html,
-        disabled = disabled,
-        orientation = rlang::arg_match(orientation, error_call = error_call()),
-        readout = readout,
-        readout_format = readout_format
+        min = unbox(min),
+        max = unbox(max),
+        value = unbox(value),
+        step = unbox(step),
+        continuous_update = unbox(continuous_update),
+        description = unbox(description),
+        description_allow_html = unbox(description_allow_html),
+        disabled = unbox(disabled),
+        orientation = unbox(rlang::arg_match(orientation, values = allowed_orientation, error_call = error_call())),
+        readout = unbox(readout),
+        readout_format = unbox(readout_format)
       )
 
       super$initialize(
@@ -113,7 +112,6 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
     max                    = function(x) if (missing(x)) private$state_[["max"]] else self$update(max = x),
     value                  = function(x) if (missing(x)) private$state_[["value"]] else self$update(value = x),
     step                   = function(x) if (missing(x)) private$state_[["step"]] else self$update(step = x),
-    behavior               = function(x) if (missing(x)) private$state_[["behavior"]] else self$update(behavior = x),
     continuous_update      = function(x) if (missing(x)) private$state_[["continuous_update"]] else self$update(continuous_update = x),
     description            = function(x) if (missing(x)) private$state_[["description"]] else self$update(description = x),
     description_allow_html = function(x) if (missing(x)) private$state_[["description_allow_html"]] else self$update(description_allow_html = x),
@@ -132,7 +130,6 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
 #' @param min,max minimum and maximum value for the slider
 #' @param step step
 #' @param value initial value
-#' @param behavior determines how the slider interacts with changes in its value
 #' @param continuous_update if TRUE (default) the value updates as the slider is dragged, otherwise only when released
 #' @param description descrption
 #' @param description_allow_html whether the description allows html
@@ -152,12 +149,11 @@ IntSlider <- function(
     max = 100,
     step = 1,
     value = 0,
-    behavior = c("drag-tap", "drag", "release", "throttle"),
     continuous_update = TRUE,
     description = "",
     description_allow_html = FALSE,
     disabled = FALSE,
-    orientation = c("horizontal", "vertical"),
+    orientation = "horizontal",
     readout = TRUE,
     readout_format = "d",
     ...,
@@ -170,7 +166,6 @@ IntSlider <- function(
     min = min,
     max = max,
     step = step,
-    behavior = behavior,
     continuous_update = continuous_update,
     description = description,
     description_allow_html = description_allow_html,

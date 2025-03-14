@@ -11,12 +11,11 @@ IntSlider(
   max = 100,
   step = 1,
   value = 0,
-  behavior = c("drag-tap", "drag", "release", "throttle"),
   continuous_update = TRUE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  orientation = c("horizontal", "vertical"),
+  orientation = "horizontal",
   readout = TRUE,
   readout_format = "d",
   ...,
@@ -33,8 +32,6 @@ IntSlider(
 \item{step}{step}
 
 \item{value}{initial value}
-
-\item{behavior}{determines how the slider interacts with changes in its value}
 
 \item{continuous_update}{if TRUE (default) the value updates as the slider is dragged, otherwise only when released}
 
