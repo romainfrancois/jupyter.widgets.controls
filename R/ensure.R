@@ -10,9 +10,9 @@ null_or <- function(fun) {
   }
 }
 
-arg_match_or_empty <- function(x, values, ..., error_arg = caller_arg(arg), error_call = caller_env()) {
-  if (identical(x, "")) "" else {
-    rlang::arg_match(x, values = values, ..., error_arg = error_arg, error_call = error_call)
+arg_match_or_empty <- function(arg, values, ..., error_arg = caller_arg(arg), error_call = caller_env()) {
+  if (identical(arg, "")) "" else {
+    rlang::arg_match(arg, values = values, ..., error_arg = error_arg, error_call = error_call)
   }
 }
 
