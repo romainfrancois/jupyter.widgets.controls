@@ -151,8 +151,8 @@ jupyter.widget.Style <- R6Class("jupyter.widget.Style", inherit = jupyter.widget
     initialize = function(..., comm_description = "", error_call = caller_env()) {
       private$state_ <- update_list(private$state_,
         "_view_count"          = NULL,
-        "_view_module"         = "@jupyter-widgets/base",
-        "_view_module_version" = "2.0.0"
+        "_view_module"         = unbox("@jupyter-widgets/base"),
+        "_view_module_version" = unbox("2.0.0")
       )
       super$initialize(..., comm_description = comm_description, error_call = error_call)
     }

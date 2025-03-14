@@ -8,10 +8,10 @@ jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inheri
     ) {
 
       private$state_ <- update_list(private$state_,
-        description_width = ensure(description_width, is.string),
-        handle_color      = ensure(handle_color, null_or(is.string)),
+        description_width = unbox(ensure(description_width, is.string)),
+        handle_color      = unbox(ensure(handle_color, null_or(is.string))),
 
-        `_model_name`     = "SliderStyleModel"
+        `_model_name`     = unbox("SliderStyleModel")
       )
 
       super$initialize(
@@ -23,8 +23,8 @@ jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inheri
   ),
 
   active = list(
-    description_width = function(x) if (missing(x)) private$state_[["description_width"]] else self$update(description_width = x),
-    handle_color      = function(x) if (missing(x)) private$state_[["handle_color"]] else self$update(handle_color = x)
+    description_width = function(x) if (missing(x)) private$state_[["description_width"]] else self$update(description_width = unbox(x)),
+    handle_color      = function(x) if (missing(x)) private$state_[["handle_color"]] else self$update(handle_color = unbox(x))
   )
 )
 
