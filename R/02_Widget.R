@@ -120,13 +120,13 @@ jupyter.widget.Widget <- R6Class("jupyter.widget.Widget",
 
 #' Widget
 #'
-#' @param `_model_module` The namespace of the model.
-#' @param `_model_module_version` A semver requirement for namespace version containing the model.
-#' @param `_model_name` model name
-#' @param `_view_module` view mmodule
-#' @param `_view_count` view count
-#' @param `_view_module_version` view module version
-#' @param `_view_name` view name
+#' @param _model_module The namespace of the model.
+#' @param _model_module_version A semver requirement for namespace version containing the model.
+#' @param _model_name model name
+#' @param _view_module view mmodule
+#' @param _view_count view count
+#' @param _view_module_version view module version
+#' @param _view_name view name
 #'
 #' @inheritParams rlang::args_dots_empty
 #' @inheritParams rlang::args_error_context

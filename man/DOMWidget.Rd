@@ -30,14 +30,28 @@ DOMWidget(
 
 \item{tooltip}{tooltip}
 
+\item{_dom_classes}{CSS classes applied to widget DOM element}
+
+\item{_model_module}{The namespace of the model.}
+
+\item{_model_module_version}{A semver requirement for namespace version containing the model.}
+
+\item{_model_name}{model name}
+
+\item{_view_module}{view mmodule}
+
+\item{_view_count}{view count}
+
+\item{_view_module_version}{view module version}
+
+\item{_view_name}{view name}
+
 \item{...}{These dots are for future extensions and must be empty.}
 
 \item{error_call}{The execution environment of a currently
 running function, e.g. \code{caller_env()}. The function will be
 mentioned in error messages as the source of the error. See the
 \code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
-
-\item{`_dom_classes`}{CSS classes applied to widget DOM element}
 }
 \description{
 A DOM Widget

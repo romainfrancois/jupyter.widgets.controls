@@ -75,7 +75,7 @@ jupyter.widget.DOMWidget <- R6Class("jupyter.widget.DOMWidget",
 #'
 #' @param tabbable is the widget tabbable
 #' @param tooltip tooltip
-#' @param `_dom_classes` CSS classes applied to widget DOM element
+#' @param _dom_classes CSS classes applied to widget DOM element
 #'
 #' @inheritParams Widget
 #'

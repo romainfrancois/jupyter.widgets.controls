@@ -101,6 +101,7 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
 #' @param disabled TRUE if the Button is disabled
 #'
 #' @inheritParams DOMWidget
+#' @inheritParams Widget
 #'
 #' @export
 Box <- function(

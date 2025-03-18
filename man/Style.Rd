@@ -17,6 +17,20 @@ Style(
 )
 }
 \arguments{
+\item{_model_module}{The namespace of the model.}
+
+\item{_model_module_version}{A semver requirement for namespace version containing the model.}
+
+\item{_model_name}{model name}
+
+\item{_view_module}{view mmodule}
+
+\item{_view_count}{view count}
+
+\item{_view_module_version}{view module version}
+
+\item{_view_name}{view name}
+
 \item{...}{These dots are for future extensions and must be empty.}
 
 \item{error_call}{The execution environment of a currently
