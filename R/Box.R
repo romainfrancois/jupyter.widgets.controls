@@ -11,10 +11,16 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
       style = NULL,
       tabbable = FALSE,
       tooltip = "",
+      `_dom_classes` = character(),
 
-      # CoreWidget
-      `_model_module` = "@jupyter-widgets/controls",
+      # Widget
+      `_model_module` = '@jupyter-widgets/controls',
       `_model_module_version` = "2.0.0",
+      `_model_name` = "BoxModel",
+      `_view_module` = '@jupyter-widgets/controls',
+      `_view_count` = NULL,
+      `_view_module_version` = "2.0.0",
+      `_view_name` = "BoxView",
 
       ...,
       error_call = caller_env()
@@ -31,14 +37,7 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
         }),
         box_style    = unbox(arg_match_or_empty(box_style, values = accepted_box_style, error_call = error_call)),
         description  = unbox(ensure(description, is.string)),
-        disabled     = unbox(ensure(disabled, rlang::is_scalar_logical)),
-
-        `_model_name` = unbox("BoxModel"),
-        `_view_name`  = unbox("BoxView"),
-
-        # TODO: these probably need to move higher up
-        `_view_module` = unbox('@jupyter-widgets/controls'),
-        `_view_module_version` = unbox("2.0.0")
+        disabled     = unbox(ensure(disabled, rlang::is_scalar_logical))
       )
 
       super$initialize(
@@ -47,10 +46,16 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
         style   = style,
         tabbable = tabbable,
         tooltip = tooltip,
+        `_dom_classes` = `_dom_classes`,
 
-        # CoreWidget
-        `_model_module` = `_model_module`,
-        `_model_module_version` = `_model_module_version`,
+        # Widget
+        `_model_module` = unbox(`_model_module`),
+        `_model_module_version` = unbox(`_model_module_version`),
+        `_model_name` = unbox(`_model_name`),
+        `_view_module` = unbox(`_view_module`),
+        `_view_count` = `_view_count`,
+        `_view_module_version` = unbox(`_view_module_version`),
+        `_view_name` = unbox(`_view_name`),
 
         ...,
         error_call = error_call
@@ -110,10 +115,16 @@ Box <- function(
     style = NULL,
     tabbable = FALSE,
     tooltip = "",
+    `_dom_classes` = character(),
 
-    # CoreWidget
-    `_model_module` = "@jupyter-widgets/controls",
+    # Widget
+    `_model_module` = '@jupyter-widgets/controls',
     `_model_module_version` = "2.0.0",
+    `_model_name` = "BoxModel",
+    `_view_module` = '@jupyter-widgets/controls',
+    `_view_count` = NULL,
+    `_view_module_version` = "2.0.0",
+    `_view_name` = "BoxView",
 
     ...,
     error_call = current_env()
@@ -131,10 +142,16 @@ Box <- function(
     style = style,
     tabbable = tabbable,
     tooltip = tooltip,
+    `_dom_classes` = `_dom_classes`,
 
-    # CoreWidget
-    `_model_module` = `_model_module`,
-    `_model_module_version` = `_model_module_version`,
+    # Widget
+    `_model_module` = unbox(`_model_module`),
+    `_model_module_version` = unbox(`_model_module_version`),
+    `_model_name` = unbox(`_model_name`),
+    `_view_module` = unbox(`_view_module`),
+    `_view_count` = `_view_count`,
+    `_view_module_version` = unbox(`_view_module_version`),
+    `_view_name` = unbox(`_view_name`),
 
     ...,
     error_call   = error_call

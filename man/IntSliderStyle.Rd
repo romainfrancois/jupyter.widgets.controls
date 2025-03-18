@@ -7,11 +7,13 @@
 IntSliderStyle(
   description_width = "",
   handle_color = NULL,
-  `_view_count` = NULL,
-  `_view_module` = "@jupyter-widgets/base",
-  `_view_module_version` = "2.0.0",
   `_model_module` = "@jupyter-widgets/controls",
   `_model_module_version` = "2.0.0",
+  `_model_name` = "IntSliderModel",
+  `_view_module` = "@jupyter-widgets/controls",
+  `_view_count` = NULL,
+  `_view_module_version` = "2.0.0",
+  `_view_name` = "IntSliderView",
   ...,
   error_call = current_env()
 )

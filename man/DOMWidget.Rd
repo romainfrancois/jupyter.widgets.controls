@@ -9,8 +9,14 @@ DOMWidget(
   style = NULL,
   tabbable = FALSE,
   tooltip = "",
-  `_model_module` = "@jupyter-widgets/controls",
+  `_dom_classes` = character(),
+  `_model_module` = "@jupyter-widgets/base",
   `_model_module_version` = "2.0.0",
+  `_model_name` = "",
+  `_view_module` = "@jupyter-widgets/base",
+  `_view_count` = NULL,
+  `_view_module_version` = "2.0.0",
+  `_view_name` = "",
   ...,
   error_call = caller_env()
 )
@@ -30,6 +36,8 @@ DOMWidget(
 running function, e.g. \code{caller_env()}. The function will be
 mentioned in error messages as the source of the error. See the
 \code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
+
+\item{`_dom_classes`}{CSS classes applied to widget DOM element}
 }
 \description{
 A DOM Widget

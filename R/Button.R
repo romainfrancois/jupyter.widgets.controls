@@ -1,6 +1,7 @@
 jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = jupyter.widget.Style,
   public = list(
     initialize = function(
+      # ButtonStyle
       button_color = NULL,
       font_family = NULL,
       font_size = NULL,
@@ -9,8 +10,17 @@ jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = ju
       font_weight = NULL,
       text_color = NULL,
       text_decoration = NULL,
+
+      # Widget
+      `_model_module` = '@jupyter-widgets/controls',
+      `_model_module_version` = "2.0.0",
+      `_model_name` = "ButtonModel",
+      `_view_module` = '@jupyter-widgets/controls',
+      `_view_count` = NULL,
+      `_view_module_version` = "2.0.0",
+      `_view_name` = "ButtonView",
+
       ...,
-      comm_description = "button style",
       error_call = caller_env()
     ) {
 
@@ -20,19 +30,19 @@ jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = ju
       accepted_text_decoration <- c("none", "underline", "overline", "line-through", "blink")
 
       private$state_ <- update_list(private$state_,
-        button_color = ensure(button_color, null_or(is.string)),
-        font_family  = ensure(font_family, null_or(is.string)),
-        font_size    = ensure(font_size, null_or(is.string)),
-        font_style   = if (is.null(font_style)) NULL else rlang::arg_match(font_style, values = accepted_font_style, error_call = error_call),
-        font_variant = if (is.null(font_variant)) NULL else rlang::arg_match(font_variant, values = accepted_font_variant, error_call = error_call),
+        button_color = unbox(ensure(button_color, null_or(is.string))),
+        font_family  = unbox(ensure(font_family, null_or(is.string))),
+        font_size    = unbox(ensure(font_size, null_or(is.string))),
+        font_style   = if (is.null(font_style)) NULL else unbox(rlang::arg_match(font_style, values = accepted_font_style, error_call = error_call)),
+        font_variant = if (is.null(font_variant)) NULL else unbox(rlang::arg_match(font_variant, values = accepted_font_variant, error_call = error_call)),
         font_weight  = {
           # TODO: extract into a function for clarity
           if (is.null(font_weight)) {
             NULL
           } else if (is.string(font_weight)) {
-             rlang::arg_match(font_weight, values = accepted_font_weight, error_call = error_call)
+             unbox(rlang::arg_match(font_weight, values = accepted_font_weight, error_call = error_call))
           } else if (is.numeric(font_weight) && font_weight >= 100 && font_weight <= 900) {
-            as.character(round(font_weight))
+            unbox(as.character(round(font_weight)))
           } else {
             cli_abort(c(
               "{.arg font_weight} is not supported.",
@@ -41,24 +51,36 @@ jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = ju
             ), call = error_call)
           }
         },
-        text_color = ensure(text_color, null_or(is.string)),
-        text_decoration = if (is.null(text_decoration)) NULL else rlang::arg_match(text_decoration, values = accepted_text_decoration, error_call = error_call),
+        text_color = unbox(ensure(text_color, null_or(is.string))),
+        text_decoration = if (is.null(text_decoration)) NULL else unbox(rlang::arg_match(text_decoration, values = accepted_text_decoration, error_call = error_call)),
 
         `_model_name` = "ButtonStyleModel"
       )
 
-      super$initialize(..., comm_description = "button style", error_call = error_call)
+      super$initialize(
+        # Widget
+        `_model_module` = unbox(`_model_module`),
+        `_model_module_version` = unbox(`_model_module_version`),
+        `_model_name` = unbox(`_model_name`),
+        `_view_module` = unbox(`_view_module`),
+        `_view_count` = `_view_count`,
+        `_view_module_version` = unbox(`_view_module_version`),
+        `_view_name` = unbox(`_view_name`),
+
+        ...,
+        error_call = error_call
+      )
     }
   ),
 
   active = list(
-    button_color     = function(x) if (missing(x)) private$state_[["button_color"]] else self$update(button_color = x),
-    font_family      = function(x) if (missing(x)) private$state_[["font_family"]] else self$update(font_family = x),
-    font_size        = function(x) if (missing(x)) private$state_[["font_size"]] else self$update(font_size = x),
-    font_style       = function(x) if (missing(x)) private$state_[["font_style"]] else self$update(font_style = x),
-    font_variant     = function(x) if (missing(x)) private$state_[["font_variant"]] else self$update(font_variant = x),
-    text_color       = function(x) if (missing(x)) private$state_[["text_color"]] else self$update(text_color = x),
-    text_decoration  = function(x) if (missing(x)) private$state_[["text_decoration"]] else self$update(text_decoration = x)
+    button_color     = function(x) if (missing(x)) private$state_[["button_color"]] else self$update(button_color = unbox(x)),
+    font_family      = function(x) if (missing(x)) private$state_[["font_family"]] else self$update(font_family = unbox(x)),
+    font_size        = function(x) if (missing(x)) private$state_[["font_size"]] else self$update(font_size = unbox(x)),
+    font_style       = function(x) if (missing(x)) private$state_[["font_style"]] else self$update(font_style = unbox(x)),
+    font_variant     = function(x) if (missing(x)) private$state_[["font_variant"]] else self$update(font_variant = unbox(x)),
+    text_color       = function(x) if (missing(x)) private$state_[["text_color"]] else self$update(text_color = unbox(x)),
+    text_decoration  = function(x) if (missing(x)) private$state_[["text_decoration"]] else self$update(text_decoration = unbox(x))
   )
 )
 
@@ -75,7 +97,7 @@ jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = ju
 #' @param text_color A valid css color for the text of the Button.
 #' @param text_decoration text styling effects, e.g. "underline, "overline", "line-through" or "blink"
 #'
-#' @inheritParams Widget
+#' @inheritParams Style
 #'
 #' @export
 ButtonStyle <- function(
@@ -87,10 +109,21 @@ ButtonStyle <- function(
     font_weight = NULL,
     text_color = NULL,
     text_decoration = NULL,
+
+    # Widget
+    `_model_module` = '@jupyter-widgets/controls',
+    `_model_module_version` = "2.0.0",
+    `_model_name` = "ButtonModel",
+    `_view_module` = '@jupyter-widgets/controls',
+    `_view_count` = NULL,
+    `_view_module_version` = "2.0.0",
+    `_view_name` = "ButtonView",
+
     ...,
     error_call = current_env()
 ) {
   jupyter.widget.ButtonStyle$new(
+    # ButtonStyle
     button_color    = button_color,
     font_family     = font_family,
     font_size       = font_size,
@@ -99,6 +132,16 @@ ButtonStyle <- function(
     font_weight     = font_weight,
     text_color      = text_color,
     text_decoration = text_decoration,
+
+    # Widget
+    `_model_module` = `_model_module`,
+    `_model_module_version` = `_model_module_version`,
+    `_model_name` = `_model_name`,
+    `_view_module` = `_view_module`,
+    `_view_count` = `_view_count`,
+    `_view_module_version` = `_view_module_version`,
+    `_view_name` = `_view_name`,
+
     ...,
     error_call = error_call
   )
@@ -117,26 +160,28 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
       style = ButtonStyle(),
       tabbable = FALSE,
       tooltip = "",
+      `_dom_classes` = character(),
 
-      # CoreWidget
-      `_model_module` = "@jupyter-widgets/controls",
+      # Widget
+      `_model_module` = '@jupyter-widgets/controls',
       `_model_module_version` = "2.0.0",
+      `_model_name` = "ButtonModel",
+      `_view_module` = '@jupyter-widgets/controls',
+      `_view_count` = NULL,
+      `_view_module_version` = "2.0.0",
+      `_view_name` = "ButtonView",
 
       ...,
-      comm_description = "Button",
       error_call = caller_env()
     ) {
       # set initial state
       private$state_ <- update_list(private$state_,
-        description  = ensure(description, is.string),
-        disabled     = ensure(disabled, rlang::is_scalar_logical),
-        button_style = rlang::arg_match(button_style, error_call = error_call),
+        description  = unbox(ensure(description, is.string)),
+        disabled     = unbox(ensure(disabled, rlang::is_scalar_logical)),
+        button_style = unbox(rlang::arg_match(button_style, error_call = error_call)),
         icon         = if (identical(icon, "")) "" else {
-          arg_match(icon, values = fa_metadata()$icon_names, error_call = error_call)
-        },
-
-        `_model_name` = "ButtonModel",
-        `_view_name`  = "ButtonView"
+          unbox(arg_match(icon, values = fa_metadata()$icon_names, error_call = error_call))
+        }
       )
 
       super$initialize(
@@ -145,10 +190,16 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
         style   = ensure(style, inherits, "jupyter.widget.ButtonStyle"),
         tabbable = tabbable,
         tooltip = tooltip,
+        `_dom_classes` = `_dom_classes`,
 
-        # CoreWidget
-        `_model_module` = `_model_module`,
-        `_model_module_version` = `_model_module_version`,
+        # Widget
+        `_model_module` = unbox(`_model_module`),
+        `_model_module_version` = unbox(`_model_module_version`),
+        `_model_name` = unbox(`_model_name`),
+        `_view_module` = unbox(`_view_module`),
+        `_view_count` = `_view_count`,
+        `_view_module_version` = unbox(`_view_module_version`),
+        `_view_name` = unbox(`_view_name`),
 
         ...,
         error_call = error_call
@@ -183,10 +234,10 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
   ),
 
   active = list(
-    description            = function(x) if (missing(x)) private$state_[["description"]] else self$update(description = x),
-    disabled               = function(x) if (missing(x)) private$state_[["disabled"]] else self$update(disabled = x),
-    button_style           = function(x) if (missing(x)) private$state_[["button_style"]] else self$update(button_style = x),
-    icon                   = function(x) if (missing(x)) private$state_[["icon"]] else self$update(icon = x)
+    description            = function(x) if (missing(x)) private$state_[["description"]] else self$update(description = unbox(x)),
+    disabled               = function(x) if (missing(x)) private$state_[["disabled"]] else self$update(disabled = unbox(x)),
+    button_style           = function(x) if (missing(x)) private$state_[["button_style"]] else self$update(button_style = unbox(x)),
+    icon                   = function(x) if (missing(x)) private$state_[["icon"]] else self$update(icon = unbox(x))
   )
 )
 
@@ -213,11 +264,15 @@ Button <- function(
     tabbable = FALSE,
     tooltip = "",
 
-    # CoreWidget
-    `_model_module` = "@jupyter-widgets/controls",
-    `_model_module_version` = "2.0.0",
-
     # Widget
+    `_model_module` = '@jupyter-widgets/controls',
+    `_model_module_version` = "2.0.0",
+    `_model_name` = "ButtonModel",
+    `_view_module` = '@jupyter-widgets/controls',
+    `_view_count` = NULL,
+    `_view_module_version` = "2.0.0",
+    `_view_name` = "ButtonView",
+
     ...,
     error_call = current_env()
   ) {
@@ -235,9 +290,14 @@ Button <- function(
     tabbable = tabbable,
     tooltip = tooltip,
 
-    # CoreWidget
+    # Widget
     `_model_module` = `_model_module`,
     `_model_module_version` = `_model_module_version`,
+    `_model_name` = `_model_name`,
+    `_view_module` = `_view_module`,
+    `_view_count` = `_view_count`,
+    `_view_module_version` = `_view_module_version`,
+    `_view_name` = `_view_name`,
 
     ...,
     error_call   = error_call

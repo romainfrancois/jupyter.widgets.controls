@@ -1,14 +1,25 @@
 jupyter.widget.DOMWidget <- R6Class("jupyter.widget.DOMWidget",
-  inherit = jupyter.widget.CoreWidget,
+  inherit = jupyter.widget.Widget,
 
   public = list(
     initialize = function(
+      # DOMWidget
       layout = Layout(),
       style = NULL,
       tabbable = FALSE,
       tooltip = "",
+      `_dom_classes` = character(),
+
+      # Widget
+      `_model_module` = '@jupyter-widgets/base',
+      `_model_module_version` = "2.0.0",
+      `_model_name` = "",
+      `_view_module` = '@jupyter-widgets/base',
+      `_view_count` = NULL,
+      `_view_module_version` = "2.0.0",
+      `_view_name` = "",
+
       ...,
-      comm_description = "",
       error_call = caller_env()
     ) {
       private$layout_ <- layout
@@ -17,7 +28,8 @@ jupyter.widget.DOMWidget <- R6Class("jupyter.widget.DOMWidget",
       private$state_ <- update_list(private$state_,
         tabbable = unbox(isTRUE(tabbable)),
         tooltip  = unbox(ensure(tooltip, null_or(is.string))),
-        layout   = unbox(glue("IPY_MODEL_{layout$comm$id}"))
+        layout   = unbox(glue("IPY_MODEL_{layout$comm$id}")),
+        `_dom_classes` = `_dom_classes`
       )
 
       if (!is.null(style)) {
@@ -25,8 +37,16 @@ jupyter.widget.DOMWidget <- R6Class("jupyter.widget.DOMWidget",
       }
 
       super$initialize(
+        # Widget
+        `_model_module` = unbox(`_model_module`),
+        `_model_module_version` = unbox(`_model_module_version`),
+        `_model_name` = unbox(`_model_name`),
+        `_view_module` = unbox(`_view_module`),
+        `_view_count` = `_view_count`,
+        `_view_module_version` = unbox(`_view_module_version`),
+        `_view_name` = unbox(`_view_name`),
+
         ...,
-        comm_description = comm_description,
         error_call = error_call
       )
     }
@@ -37,7 +57,9 @@ jupyter.widget.DOMWidget <- R6Class("jupyter.widget.DOMWidget",
     style  = function() style_,
 
     tabbable = function(x) if (missing(x)) private$state_[["tabbable"]] else self$update(tabbable = x),
-    tooltip  = function(x) if (missing(x)) private$state_[["tooltip"]] else self$update(tooltip = x)
+    tooltip  = function(x) if (missing(x)) private$state_[["tooltip"]] else self$update(tooltip = x),
+
+    `_dom_classes` = function() private$state_[["_dom_classes"]]
   ),
 
   private = list(
@@ -53,20 +75,27 @@ jupyter.widget.DOMWidget <- R6Class("jupyter.widget.DOMWidget",
 #'
 #' @param tabbable is the widget tabbable
 #' @param tooltip tooltip
+#' @param `_dom_classes` CSS classes applied to widget DOM element
 #'
-#' @inheritParams CoreWidget
+#' @inheritParams Widget
 #'
 #' @export
 DOMWidget <- function(
-    # COMWidget
+    # DOMWidget
     layout = Layout(),
     style = NULL,
     tabbable = FALSE,
     tooltip = "",
+    `_dom_classes` = character(),
 
-    # CoreWidget
-    `_model_module` = "@jupyter-widgets/controls",
+    # Widget
+    `_model_module` = '@jupyter-widgets/base',
     `_model_module_version` = "2.0.0",
+    `_model_name` = "",
+    `_view_module` = '@jupyter-widgets/base',
+    `_view_count` = NULL,
+    `_view_module_version` = "2.0.0",
+    `_view_name` = "",
 
     ...,
     error_call = caller_env()
@@ -77,12 +106,17 @@ DOMWidget <- function(
     style = style,
     tabbable = tabbable,
     tooltip = tooltip,
-
-    # CoreWidget
-    `_model_module` = `_model_module`,
-    `_model_module_version` = `_model_module_version`,
+    `_dom_classes` = `_dom_classes`,
 
     # Widget
+    `_model_module` = `_model_module`,
+    `_model_module_version` = `_model_module_version`,
+    `_model_name` = `_model_name`,
+    `_view_module` = `_view_module`,
+    `_view_count` = `_view_count`,
+    `_view_module_version` = `_view_module_version`,
+    `_view_name` = `_view_name`,
+
     ...,
     error_call = error_call
   )
