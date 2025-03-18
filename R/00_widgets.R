@@ -40,164 +40,85 @@ jupyter.widget.Widget <- R6Class("jupyter.widget.Widget",
   )
 )
 
-jupyter.widget.CoreWidget <- R6Class("jupyter.widget.CoreWidget",
-  inherit = jupyter.widget.Widget,
+#' Widget
+#'
+#' @inheritParams rlang::args_dots_empty
+#' @inheritParams rlang::args_error_context
+#'
+#' @export
+Widget <- function(..., error_call = caller_env()) {
+  jupyter.widget.Widget$new(..., error_call = error_call)
+}
 
+jupyter.widget.Style <- R6Class("jupyter.widget.Style", inherit = jupyter.widget.CoreWidget,
   public = list(
     initialize = function(
+      # Style
+      `_view_count`          = NULL,
+      `_view_module`         = "@jupyter-widgets/base",
+      `_view_module_version` = "2.0.0",
+
+      # CoreWidget
       `_model_module` = "@jupyter-widgets/controls",
       `_model_module_version` = "2.0.0",
       ...,
       comm_description = "",
       error_call = caller_env()
     ) {
-
-      private$handlers_ <- new.env()
       private$state_ <- update_list(private$state_,
-        `_model_module`         = unbox(`_model_module`),
-        `_model_module_version` = unbox(`_model_module_version`)
+        `_view_count`          = NULL,
+        `_view_module`         = unbox(`_view_module`),
+        `_view_module_version` = unbox(`_view_module_version`)
       )
-      super$initialize(..., error_call = error_call)
-
-      private$comm_ <- comm <- CommManager$new_comm("jupyter.widget", description = comm_description)
-      comm$on_message(function(request) {
-        data <- request$content$data
-        method <- data$method
-
-        switch(
-          method,
-          update = {
-            state <- data$state
-            private$state_ <- replace(private$state_, names(state), state)
-            # TODO: handle change in $children because we would only get the id
-
-            private$handle("update", state)
-
-            comm$send(
-              data = list(
-                method = "echo_update", state = state, buffer_paths = list()
-              )
-            )
-          },
-
-          custom = {
-            private$handle("custom", data$content)
-          })
-
-        })
-
-      comm$on_close(function(request) {
-        private$handle("on_close", data$content)
-      })
-
-      data <- list(state = private$state_, buffer_paths = list())
-      if (isTRUE(getOption("comm.verbose"))) {
-        print(jsonlite::toJSON(data))
-      }
-      comm$open(
-        data = data,
-        metadata = list(version = "2.1.0")
-      )
-    },
-
-    state = function(what) {
-      private$state_[[what]]
-    },
-
-    update = function(...) {
-      state <- list2(...)
-
-      # special case for children
-      if ("children" %in% names(state)) {
-        state$children <- map_chr(children, \(kid) kid$comm$id)
-      }
-
-      private$comm_$send(
-        data = list(method = "update", state = state, buffer_paths = list())
-      )
-    },
-
-    on_update = function(handler) {
-      private$handlers_[["update"]] <- handler
-    },
-
-    on_custom = function(handler) {
-      private$handlers_[["custom"]] <- handler
-    }
-  ),
-
-  active = list(
-    comm = function() private$comm_,
-
-    `_model_name`  = function() private$state_[["_model_name"]],
-    `_dom_classes` = function() private$state_[["_dom_classes"]]
-  ),
-
-  private = list(
-    comm_ = NULL,
-    handlers_ = NULL,
-
-    handle = function(name, ...) {
-      handler <- private$handlers_[[name]]
-      if (!is.null(handler)) {
-        handler(...)
-      }
-    }
-  )
-)
-
-jupyter.widget.Style <- R6Class("jupyter.widget.Style", inherit = jupyter.widget.CoreWidget,
-  public = list(
-    initialize = function(..., comm_description = "", error_call = caller_env()) {
-      private$state_ <- update_list(private$state_,
-        "_view_count"          = NULL,
-        "_view_module"         = unbox("@jupyter-widgets/base"),
-        "_view_module_version" = unbox("2.0.0")
-      )
-      super$initialize(..., comm_description = comm_description, error_call = error_call)
-    }
-  )
-)
-
-jupyter.widget.DOMWidget <- R6Class("jupyter.widget.DOMWidget",
-  inherit = jupyter.widget.CoreWidget,
-
-  public = list(
-    initialize = function(layout = Layout(), style = NULL, tabbable = FALSE, tooltip = "", ..., comm_description = "", error_call = caller_env()) {
-      private$layout_ <- layout
-      private$style_  <- style
-
-      private$state_ <- update_list(private$state_,
-        tabbable = unbox(isTRUE(tabbable)),
-        tooltip  = unbox(ensure(tooltip, null_or(is.string))),
-        layout   = unbox(glue("IPY_MODEL_{layout$comm$id}"))
-      )
-
-      if (!is.null(style)) {
-        private$state_$style <- unbox(glue("IPY_MODEL_{style$comm$id}"))
-      }
-
       super$initialize(
+        # CoreWidget
+        `_model_module` = `_model_module`,
+        `_model_module_version` = `_model_module_version`,
+
+        # Widget
         ...,
         comm_description = comm_description,
         error_call = error_call
       )
     }
-  ),
-
-  active = list(
-    layout = function() layout_,
-    style  = function() style_,
-
-    tabbable = function(x) if (missing(x)) private$state_[["tabbable"]] else self$update(tabbable = x),
-    tooltip  = function(x) if (missing(x)) private$state_[["tooltip"]] else self$update(tooltip = x)
-  ),
-
-  private = list(
-    layout_ = NULL,
-    style_  = NULL
   )
 )
+
+#' Style
+#'
+#' @param `_view_count` view count
+#' @param `_view_module` view module
+#' @param `_view_module_version` view module version
+#'
+#' @inheritParams CoreWidget
+#'
+#' @export
+Style <- function(
+  # Style
+  `_view_count`          = NULL,
+  `_view_module`         = "@jupyter-widgets/base",
+  `_view_module_version` = "2.0.0",
+
+  # CoreWidget
+  `_model_module` = "@jupyter-widgets/controls",
+  `_model_module_version` = "2.0.0",
+
+  # Widget
+  ...,
+  error_call = caller_env()
+){
+  jupyter.widget.Style$new(
+    `_view_count` = `_view_count`,
+    `_view_module` = `_view_module`,
+    `_view_module_version` = `_view_module_version`,
+
+    `_model_module` = `_model_module`,
+    `_model_module_version` = `_model_module_version`,
+
+    ...,
+    error_call = error_call
+  )
+}
 
 #' @importFrom hera mime_types
 #' @export

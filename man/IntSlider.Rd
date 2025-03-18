@@ -5,8 +5,6 @@
 \title{Int slider}
 \usage{
 IntSlider(
-  layout = Layout(),
-  style = IntSliderStyle(),
   min = 0,
   max = 100,
   step = 1,
@@ -18,15 +16,17 @@ IntSlider(
   orientation = "horizontal",
   readout = TRUE,
   readout_format = "d",
+  layout = Layout(),
+  style = IntSliderStyle(),
+  tabbable = FALSE,
+  tooltip = "",
+  `_model_module` = "@jupyter-widgets/controls",
+  `_model_module_version` = "2.0.0",
   ...,
   error_call = current_env()
 )
 }
 \arguments{
-\item{layout}{See \code{\link[=Layout]{Layout()}}}
-
-\item{style}{See \code{\link[=IntSliderStyle]{IntSliderStyle()}}}
-
 \item{min, max}{minimum and maximum value for the slider}
 
 \item{step}{step}
@@ -46,6 +46,14 @@ IntSlider(
 \item{readout}{the value is displayed next to the slider if TRUE}
 
 \item{readout_format}{with this format, e.g. ".2f"}
+
+\item{layout}{a \code{\link[=Layout]{Layout()}}}
+
+\item{style}{a \code{\link[=Style]{Style()}}}
+
+\item{tabbable}{is the widget tabbable}
+
+\item{tooltip}{tooltip}
 
 \item{...}{These dots are for future extensions and must be empty.}
 

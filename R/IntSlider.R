@@ -1,8 +1,19 @@
 jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inherit = jupyter.widget.Style,
   public = list(
     initialize = function(
+      # IntSliderStyle
       description_width = "",
       handle_color = NULL,
+
+      # Style
+      `_view_count`          = NULL,
+      `_view_module`         = "@jupyter-widgets/base",
+      `_view_module_version` = "2.0.0",
+
+      # CoreWidget
+      `_model_module` = "@jupyter-widgets/controls",
+      `_model_module_version` = "2.0.0",
+
       ...,
       error_call = caller_env()
     ) {
@@ -15,6 +26,16 @@ jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inheri
       )
 
       super$initialize(
+        # Style
+        `_view_count`          = `_view_count`,
+        `_view_module`         = `_view_module`,
+        `_view_module_version` = `_view_module_version`,
+
+        # CoreWidget
+        `_model_module` = `_model_module`,
+        `_model_module_version` = `_model_module_version`,
+
+        # Widget
         ...,
         comm_description = "slider style",
         error_call = error_call
@@ -33,14 +54,38 @@ jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inheri
 #' @param description_width description width
 #' @param handle_color css color for the handle
 #'
-#' @inheritParams rlang::args_dots_empty
-#' @inheritParams rlang::args_error_context
+#' @inheritParams Style
 #'
 #' @export
-IntSliderStyle <- function(description_width = "", handle_color = NULL, ..., error_call = current_env()) {
+IntSliderStyle <- function(
+  # IntSliderStyle
+  description_width = "",
+  handle_color = NULL,
+
+  # Style
+  `_view_count`          = NULL,
+  `_view_module`         = "@jupyter-widgets/base",
+  `_view_module_version` = "2.0.0",
+
+  # CoreWidget
+  `_model_module` = "@jupyter-widgets/controls",
+  `_model_module_version` = "2.0.0",
+
+  # Widget
+  ...,
+  error_call = current_env()
+) {
   jupyter.widget.IntSliderStyle$new(
     description_width = description_width,
     handle_color = handle_color,
+
+    `_view_count` = `_view_count`,
+    `_view_module` = `_view_module`,
+    `_view_module_version` = `_view_module_version`,
+
+    `_model_module` = `_model_module`,
+    `_model_module_version` = `_model_module_version`,
+
     ...,
     error_call = error_call
   )
@@ -49,8 +94,6 @@ IntSliderStyle <- function(description_width = "", handle_color = NULL, ..., err
 jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyter.widget.DOMWidget,
   public = list(
     initialize = function(
-      layout = Layout(),
-      style = IntSliderStyle(),
       min = 0,
       max = 100,
       value = 0,
@@ -62,6 +105,17 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
       orientation = "horizontal",
       readout = TRUE,
       readout_format = "d",
+
+      # DOM Widget
+      layout = Layout(),
+      style = IntSliderStyle(),
+      tabbable = FALSE,
+      tooltip = "",
+
+      # CoreWidget
+      `_model_module` = "@jupyter-widgets/controls",
+      `_model_module_version` = "2.0.0",
+
       ...,
       error_call = caller_env()
     ) {
@@ -85,8 +139,16 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
       )
 
       super$initialize(
-        layout = layout,
-        style = style,
+        # DOMWidget
+        layout   = layout,
+        style    = ensure(style, inherits, "jupyter.widget.IntSliderStyle"),
+        tabbable = tabbable,
+        tooltip  = tooltip,
+
+        # CoreWidget
+        `_model_module` = `_model_module`,
+        `_model_module_version` = `_model_module_version`,
+
         ...,
         error_call = error_call
       )
@@ -124,9 +186,6 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
 
 #' Int slider
 #'
-#' @param layout See [Layout()]
-#' @param style See [IntSliderStyle()]
-#'
 #' @param min,max minimum and maximum value for the slider
 #' @param step step
 #' @param value initial value
@@ -138,13 +197,10 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
 #' @param readout the value is displayed next to the slider if TRUE
 #' @param readout_format with this format, e.g. ".2f"
 #'
-#' @inheritParams rlang::args_dots_empty
-#' @inheritParams rlang::args_error_context
+#' @inheritParams DOMWidget
 #'
 #' @export
 IntSlider <- function(
-    layout = Layout(),
-    style = IntSliderStyle(),
     min = 0,
     max = 100,
     step = 1,
@@ -156,13 +212,22 @@ IntSlider <- function(
     orientation = "horizontal",
     readout = TRUE,
     readout_format = "d",
+
+    # DOMWidget
+    layout = Layout(),
+    style = IntSliderStyle(),
+    tabbable = FALSE,
+    tooltip = "",
+
+    # CoreWidget
+    `_model_module` = "@jupyter-widgets/controls",
+    `_model_module_version` = "2.0.0",
+
     ...,
     error_call = current_env()
 ) {
   jupyter.widget.IntSlider$new(
-    layout = layout,
-    style = style,
-
+    # IntSlider
     min = min,
     max = max,
     step = step,
@@ -173,7 +238,19 @@ IntSlider <- function(
     orientation = orientation,
     readout = readout,
     readout_format = readout_format,
+
+    # DOMWidget
+    layout = layout,
+    style = style,
+    tabbable = tabbable,
+    tooltip = tooltip,
+
+    # CoreWidget
+    `_model_module` = `_model_module`,
+    `_model_module_version` = `_model_module_version`,
+
+    # Widget
     ...,
-    error_call = error_call
-  )
+    error_call = current_env()
+)
 }

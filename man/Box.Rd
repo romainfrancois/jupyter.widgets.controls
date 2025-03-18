@@ -6,10 +6,15 @@
 \usage{
 Box(
   children = list(),
-  layout = Layout(),
   box_style = "",
   description = "Click Me",
   disabled = FALSE,
+  layout = Layout(),
+  style = NULL,
+  tabbable = FALSE,
+  tooltip = "",
+  `_model_module` = "@jupyter-widgets/controls",
+  `_model_module_version` = "2.0.0",
   ...,
   error_call = current_env()
 )
@@ -17,13 +22,19 @@ Box(
 \arguments{
 \item{children}{children widgets}
 
-\item{layout}{a \code{\link[=Layout]{Layout()}}}
-
 \item{box_style}{box style. empty (default) or one of 'success', 'info', 'warning', 'danger', 'primary'.}
 
 \item{description}{text description of the button}
 
 \item{disabled}{TRUE if the Button is disabled}
+
+\item{layout}{a \code{\link[=Layout]{Layout()}}}
+
+\item{style}{a \code{\link[=Style]{Style()}}}
+
+\item{tabbable}{is the widget tabbable}
+
+\item{tooltip}{tooltip}
 
 \item{...}{These dots are for future extensions and must be empty.}
 

@@ -75,8 +75,7 @@ jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = ju
 #' @param text_color A valid css color for the text of the Button.
 #' @param text_decoration text styling effects, e.g. "underline, "overline", "line-through" or "blink"
 #'
-#' @inheritParams rlang::args_dots_empty
-#' @inheritParams rlang::args_error_context
+#' @inheritParams Widget
 #'
 #' @export
 ButtonStyle <- function(
@@ -108,14 +107,23 @@ ButtonStyle <- function(
 jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widget.DOMWidget,
   public = list(
     initialize = function(
-      layout = Layout(),
-      style = ButtonStyle(),
-
       description = "Click Me",
       disabled = FALSE,
       button_style = "",
       icon = "",
+
+      # DOM Widget
+      layout = Layout(),
+      style = ButtonStyle(),
+      tabbable = FALSE,
+      tooltip = "",
+
+      # CoreWidget
+      `_model_module` = "@jupyter-widgets/controls",
+      `_model_module_version` = "2.0.0",
+
       ...,
+      comm_description = "Button",
       error_call = caller_env()
     ) {
       # set initial state
@@ -132,8 +140,16 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
       )
 
       super$initialize(
-        layout = layout,
-        style = ensure(style, inherits, "jupyter.widget.ButtonStyle"),
+        # DOMWidget
+        layout  = layout,
+        style   = ensure(style, inherits, "jupyter.widget.ButtonStyle"),
+        tabbable = tabbable,
+        tooltip = tooltip,
+
+        # CoreWidget
+        `_model_module` = `_model_module`,
+        `_model_module_version` = `_model_module_version`,
+
         ...,
         error_call = error_call
       )
@@ -176,40 +192,53 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
 
 #' Button
 #'
-#' @param layout a [Layout()]
-#' @param style a [ButtonStyle()]
-#'
 #' @param description text description of the button
 #' @param disabled TRUE if the Button is disabled
 #' @param button_style "", "primary", "success", "info", "warning" or "danger"
 #' @param icon name of a font-awesome icon, see [fontawesome::fa()] or "" for no icon (default)
-#' @param tooltip hover message for the button.
 #'
-#' @inheritParams rlang::args_dots_empty
-#' @inheritParams rlang::args_error_context
+#' @inheritParams DOMWidget
 #'
 #' @export
 Button <- function(
-    layout = Layout(),
-    style = ButtonStyle(),
+    # Button
     description = "Click Me",
     disabled = FALSE,
     button_style = "",
     icon = "",
-    tooltip = NULL,
+
+    # DOMWidget
+    layout = Layout(),
+    style = ButtonStyle(),
+    tabbable = FALSE,
+    tooltip = "",
+
+    # CoreWidget
+    `_model_module` = "@jupyter-widgets/controls",
+    `_model_module_version` = "2.0.0",
+
+    # Widget
     ...,
     error_call = current_env()
   ) {
 
   jupyter.widget.Button$new(
-    layout = layout,
-    style = style,
-
+    # Button
     description  = description,
     disabled     = disabled,
     button_style = button_style,
     icon         = icon,
-    tooltip      = tooltip,
+
+    # DOMWidget
+    layout = layout,
+    style = style,
+    tabbable = tabbable,
+    tooltip = tooltip,
+
+    # CoreWidget
+    `_model_module` = `_model_module`,
+    `_model_module_version` = `_model_module_version`,
+
     ...,
     error_call   = error_call
   )

@@ -2,14 +2,25 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
   public = list(
     initialize = function(
       children = list(),
-      layout = Layout(),
-
       box_style = "",
       description = "",
       disabled = FALSE,
+
+      # DOM Widget
+      layout = Layout(),
+      style = NULL,
+      tabbable = FALSE,
+      tooltip = "",
+
+      # CoreWidget
+      `_model_module` = "@jupyter-widgets/controls",
+      `_model_module_version` = "2.0.0",
+
       ...,
       error_call = caller_env()
     ) {
+
+      private$children_ <- children
 
       # set initial state
       accepted_box_style <- c('success', 'info', 'warning', 'danger', 'primary')
@@ -31,11 +42,19 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
       )
 
       super$initialize(
-        layout = layout,
+        # DOMWidget
+        layout  = layout,
+        style   = style,
+        tabbable = tabbable,
+        tooltip = tooltip,
+
+        # CoreWidget
+        `_model_module` = `_model_module`,
+        `_model_module_version` = `_model_module_version`,
+
         ...,
         error_call = error_call
       )
-
     },
 
     mime_bundle = function() {
@@ -58,7 +77,7 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
     description = function(x) if (missing(x)) private$state_[["description"]] else self$update(description = x),
     disabled    = function(x) if (missing(x)) private$state_[["disabled"]] else self$update(disabled = x),
     children    = function(x) if (missing(x)) private$children_ else {
-      private$children_ = x
+      private$children_ <- x
       self$update(children = x)
     }
   ),
@@ -72,33 +91,51 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
 #' Box
 #'
 #' @param children children widgets
-#' @param layout a [Layout()]
 #' @param box_style box style. empty (default) or one of 'success', 'info', 'warning', 'danger', 'primary'.
 #' @param description text description of the button
 #' @param disabled TRUE if the Button is disabled
 #'
-#' @inheritParams rlang::args_dots_empty
-#' @inheritParams rlang::args_error_context
+#' @inheritParams DOMWidget
 #'
 #' @export
 Box <- function(
+    # Box
     children = list(),
-    layout = Layout(),
-
     box_style = "",
     description = "Click Me",
     disabled = FALSE,
+
+    # DOMWidget
+    layout = Layout(),
+    style = NULL,
+    tabbable = FALSE,
+    tooltip = "",
+
+    # CoreWidget
+    `_model_module` = "@jupyter-widgets/controls",
+    `_model_module_version` = "2.0.0",
+
     ...,
     error_call = current_env()
   ) {
 
   jupyter.widget.Box$new(
+    # Box
     children = children,
-    layout = layout,
-
     box_style = box_style,
     description = description,
     disabled = disabled,
+
+    # DOMWidget
+    layout = layout,
+    style = style,
+    tabbable = tabbable,
+    tooltip = tooltip,
+
+    # CoreWidget
+    `_model_module` = `_model_module`,
+    `_model_module_version` = `_model_module_version`,
+
     ...,
     error_call   = error_call
   )
