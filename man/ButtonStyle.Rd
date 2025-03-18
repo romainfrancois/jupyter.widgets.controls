@@ -13,6 +13,13 @@ ButtonStyle(
   font_weight = NULL,
   text_color = NULL,
   text_decoration = NULL,
+  `_model_module` = "@jupyter-widgets/controls",
+  `_model_module_version` = "2.0.0",
+  `_model_name` = "ButtonModel",
+  `_view_module` = "@jupyter-widgets/controls",
+  `_view_count` = NULL,
+  `_view_module_version` = "2.0.0",
+  `_view_name` = "ButtonView",
   ...,
   error_call = current_env()
 )
