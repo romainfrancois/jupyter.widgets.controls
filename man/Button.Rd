@@ -33,9 +33,9 @@ Button(
 
 \item{icon}{name of a font-awesome icon, see \code{\link[fontawesome:fa]{fontawesome::fa()}} or "" for no icon (default)}
 
-\item{layout}{a \code{\link[=Layout]{Layout()}}}
+\item{layout}{a \code{\link[jupyter.widgets.base:Layout]{Layout()}}}
 
-\item{style}{a \code{\link[=Style]{Style()}}}
+\item{style}{a \code{\link[jupyter.widgets.base:Style]{Style()}}}
 
 \item{tabbable}{is the widget tabbable}
 

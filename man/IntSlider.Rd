@@ -52,9 +52,9 @@ IntSlider(
 
 \item{readout_format}{with this format, e.g. ".2f"}
 
-\item{layout}{a \code{\link[=Layout]{Layout()}}}
+\item{layout}{a \code{\link[jupyter.widgets.base:Layout]{Layout()}}}
 
-\item{style}{a \code{\link[=Style]{Style()}}}
+\item{style}{a \code{\link[jupyter.widgets.base:Style]{Style()}}}
 
 \item{tabbable}{is the widget tabbable}
 

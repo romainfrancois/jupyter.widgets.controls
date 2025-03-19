@@ -18,6 +18,9 @@ Imports:
     glue,
     hera,
     jsonlite,
+    jupyter.widgets.base,
     purrr,
     R6,
     rlang
+Remotes:
+    romainfrancois/jupyter.widgets.base

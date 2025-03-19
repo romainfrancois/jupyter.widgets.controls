@@ -49,7 +49,7 @@ jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inheri
 #' @param description_width description width
 #' @param handle_color css color for the handle
 #'
-#' @inheritParams Style
+#' @inheritParams jupyter.widgets.base::Style
 #'
 #' @export
 IntSliderStyle <- function(
@@ -188,7 +188,7 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
 #' @param readout the value is displayed next to the slider if TRUE
 #' @param readout_format with this format, e.g. ".2f"
 #'
-#' @inheritParams DOMWidget
+#' @inheritParams jupyter.widgets.base::DOMWidget
 #'
 #' @export
 IntSlider <- function(

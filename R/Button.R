@@ -95,7 +95,7 @@ jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = ju
 #' @param text_color A valid css color for the text of the Button.
 #' @param text_decoration text styling effects, e.g. "underline, "overline", "line-through" or "blink"
 #'
-#' @inheritParams Style
+#' @inheritParams jupyter.widgets.base::Style
 #'
 #' @export
 ButtonStyle <- function(
@@ -232,7 +232,7 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
 #' @param button_style "", "primary", "success", "info", "warning" or "danger"
 #' @param icon name of a font-awesome icon, see [fontawesome::fa()] or "" for no icon (default)
 #'
-#' @inheritParams DOMWidget
+#' @inheritParams jupyter.widgets.base::DOMWidget
 #'
 #' @export
 Button <- function(

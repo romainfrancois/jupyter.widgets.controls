@@ -34,9 +34,9 @@ Box(
 
 \item{disabled}{TRUE if the Button is disabled}
 
-\item{layout}{a \code{\link[=Layout]{Layout()}}}
+\item{layout}{a \code{\link[jupyter.widgets.base:Layout]{Layout()}}}
 
-\item{style}{a \code{\link[=Style]{Style()}}}
+\item{style}{a \code{\link[jupyter.widgets.base:Style]{Style()}}}
 
 \item{tabbable}{is the widget tabbable}
 
