@@ -56,7 +56,7 @@ jupyter.widget.Widget <- R6Class("jupyter.widget.Widget",
 
       data <- list(state = private$state_, buffer_paths = list())
       if (isTRUE(getOption("comm.verbose"))) {
-        print(jsonlite::toJSON(data))
+        print(jsonlite::prettify(jsonlite::toJSON(data)))
       }
       comm$open(
         data = data,
