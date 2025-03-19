@@ -212,20 +212,6 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
       )
     },
 
-    mime_bundle = function() {
-      data <- list(
-        "text/plain" = unbox(
-          glue("<Button id = {self$comm$id} >")
-        ),
-        "application/vnd.jupyter.widget-view+json" = list(
-          "version_major" = unbox(2L),
-          "version_minor" = unbox(0L),
-          "model_id"      = unbox(self$comm$id)
-        )
-      )
-      list(data = data, metadata = namedlist())
-    },
-
     on_click = function(handler = NULL) {
       private$handlers_[["custom/click"]] <- handler
     }

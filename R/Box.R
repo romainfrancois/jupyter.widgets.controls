@@ -33,7 +33,7 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
       private$state_ <- update_list(private$state_,
         children     = map_chr(children, \(kid) {
           assert_that(inherits(kid, "jupyter.widget.DOMWidget"), msg = "All children must be DOM widgets")
-          kid$comm$id
+          glue("IPY_MODEL_{kid$comm$id}")
         }),
         box_style    = unbox(arg_match_or_empty(box_style, values = accepted_box_style, error_call = error_call)),
         description  = unbox(ensure(description, is.string)),
@@ -49,31 +49,17 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
         `_dom_classes` = `_dom_classes`,
 
         # Widget
-        `_model_module` = unbox(`_model_module`),
-        `_model_module_version` = unbox(`_model_module_version`),
-        `_model_name` = unbox(`_model_name`),
-        `_view_module` = unbox(`_view_module`),
+        `_model_module` = `_model_module`,
+        `_model_module_version` = `_model_module_version`,
+        `_model_name` = `_model_name`,
+        `_view_module` = `_view_module`,
         `_view_count` = `_view_count`,
-        `_view_module_version` = unbox(`_view_module_version`),
-        `_view_name` = unbox(`_view_name`),
+        `_view_module_version` = `_view_module_version`,
+        `_view_name` = `_view_name`,
 
         ...,
         error_call = error_call
       )
-    },
-
-    mime_bundle = function() {
-      data <- list(
-        "text/plain" = unbox(
-          glue("<Box id = {self$comm$id} >{length(private$children_)} children</Box>")
-        ),
-        "application/vnd.jupyter.widget-view+json" = list(
-          "version_major" = unbox(2L),
-          "version_minor" = unbox(0L),
-          "model_id"      = unbox(self$comm$id)
-        )
-      )
-      list(data = data, metadata = namedlist())
     }
   ),
 

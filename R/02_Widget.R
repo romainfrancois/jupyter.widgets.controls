@@ -74,7 +74,7 @@ jupyter.widget.Widget <- R6Class("jupyter.widget.Widget",
 
       # special case for children
       if ("children" %in% names(state)) {
-        state$children <- map_chr(children, \(kid) kid$comm$id)
+        state$children <- map_chr(children, \(kid) glue("IPY_MODEL_{kid$comm$id}"))
       }
 
       private$comm_$send(

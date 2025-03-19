@@ -49,6 +49,17 @@ jupyter.widget.DOMWidget <- R6Class("jupyter.widget.DOMWidget",
         ...,
         error_call = error_call
       )
+    },
+
+    mime_bundle = function() {
+      data <- list(
+        "application/vnd.jupyter.widget-view+json" = list(
+          "version_major" = unbox(2L),
+          "version_minor" = unbox(0L),
+          "model_id"      = unbox(self$comm$id)
+        )
+      )
+      list(data = data, metadata = namedlist())
     }
   ),
 

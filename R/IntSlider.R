@@ -124,9 +124,6 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
 
       allowed_orientation <- c("horizontal", "vertical")
       private$state_ <- update_list(private$state_,
-        `_view_name`  = unbox("IntSliderView"),
-        `_model_name` = unbox("IntSliderModel"),
-
         min = unbox(min),
         max = unbox(max),
         value = unbox(value),
@@ -149,31 +146,17 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
         `_dom_classes` = `_dom_classes`,
 
         # Widget
-        `_model_module` = unbox(`_model_module`),
-        `_model_module_version` = unbox(`_model_module_version`),
-        `_model_name` = unbox(`_model_name`),
-        `_view_module` = unbox(`_view_module`),
+        `_model_module` = `_model_module`,
+        `_model_module_version` = `_model_module_version`,
+        `_model_name` = `_model_name`,
+        `_view_module` = `_view_module`,
         `_view_count` = `_view_count`,
-        `_view_module_version` = unbox(`_view_module_version`),
-        `_view_name` = unbox(`_view_name`),
+        `_view_module_version` = `_view_module_version`,
+        `_view_name` = `_view_name`,
 
         ...,
         error_call = error_call
       )
-    },
-
-    mime_bundle = function() {
-      data <- list(
-        "text/plain" = unbox(
-          glue("<IntSlider id = {self$comm$id} value={self$value})>")
-        ),
-        "application/vnd.jupyter.widget-view+json" = list(
-          "version_major" = unbox(2L),
-          "version_minor" = unbox(0L),
-          "model_id" = unbox(self$comm$id)
-        )
-      )
-      list(data = data, metadata = namedlist())
     }
   ),
 
