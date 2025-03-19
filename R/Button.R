@@ -21,15 +21,6 @@ Button <- function(
     tabbable = FALSE,
     tooltip = "",
 
-    # Widget
-    `_model_module` = '@jupyter-widgets/controls',
-    `_model_module_version` = "2.0.0",
-    `_model_name` = "ButtonModel",
-    `_view_module` = '@jupyter-widgets/controls',
-    `_view_count` = NULL,
-    `_view_module_version` = "2.0.0",
-    `_view_name` = "ButtonView",
-
     ...,
     error_call = current_env()
   ) {
@@ -46,15 +37,6 @@ Button <- function(
     style = style,
     tabbable = tabbable,
     tooltip = tooltip,
-
-    # Widget
-    `_model_module` = `_model_module`,
-    `_model_module_version` = `_model_module_version`,
-    `_model_name` = `_model_name`,
-    `_view_module` = `_view_module`,
-    `_view_count` = `_view_count`,
-    `_view_module_version` = `_view_module_version`,
-    `_view_name` = `_view_name`,
 
     ...,
     error_call   = error_call
@@ -75,15 +57,6 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
       tabbable = FALSE,
       tooltip = "",
       `_dom_classes` = character(),
-
-      # Widget
-      `_model_module` = '@jupyter-widgets/controls',
-      `_model_module_version` = "2.0.0",
-      `_model_name` = "ButtonModel",
-      `_view_module` = '@jupyter-widgets/controls',
-      `_view_count` = NULL,
-      `_view_module_version` = "2.0.0",
-      `_view_name` = "ButtonView",
 
       ...,
       error_call = caller_env()
@@ -107,13 +80,13 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
         `_dom_classes` = `_dom_classes`,
 
         # Widget
-        `_model_module` = unbox(`_model_module`),
-        `_model_module_version` = unbox(`_model_module_version`),
-        `_model_name` = unbox(`_model_name`),
-        `_view_module` = unbox(`_view_module`),
-        `_view_count` = `_view_count`,
-        `_view_module_version` = unbox(`_view_module_version`),
-        `_view_name` = unbox(`_view_name`),
+       `_model_module` = '@jupyter-widgets/controls',
+       `_model_module_version` = "2.0.0",
+       `_model_name` = "ButtonModel",
+       `_view_module` = '@jupyter-widgets/controls',
+       `_view_count` = NULL,
+       `_view_module_version` = "2.0.0",
+       `_view_name` = "ButtonView",
 
         ...,
         error_call = error_call
