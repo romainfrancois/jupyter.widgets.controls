@@ -13,6 +13,13 @@ ButtonStyle(
   font_weight = NULL,
   text_color = NULL,
   text_decoration = NULL,
+  `_model_module` = "@jupyter-widgets/controls",
+  `_model_module_version` = "2.0.0",
+  `_model_name` = "ButtonStyleModel",
+  `_view_module` = "@jupyter-widgets/base",
+  `_view_count` = NULL,
+  `_view_module_version` = "2.0.0",
+  `_view_name` = "StyleView",
   ...,
   error_call = current_env()
 )
@@ -33,6 +40,20 @@ ButtonStyle(
 \item{text_color}{A valid css color for the text of the Button.}
 
 \item{text_decoration}{text styling effects, e.g. "underline, "overline", "line-through" or "blink"}
+
+\item{_model_module}{The namespace of the model.}
+
+\item{_model_module_version}{A semver requirement for namespace version containing the model.}
+
+\item{_model_name}{model name}
+
+\item{_view_module}{view mmodule}
+
+\item{_view_count}{view count}
+
+\item{_view_module_version}{view module version}
+
+\item{_view_name}{view name}
 
 \item{...}{These dots are for future extensions and must be empty.}
 

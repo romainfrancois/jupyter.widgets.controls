@@ -5,36 +5,38 @@
 \title{Int slider}
 \usage{
 IntSlider(
-  layout = Layout(),
-  style = IntSliderStyle(),
   min = 0,
   max = 100,
   step = 1,
   value = 0,
-  behavior = c("drag-tap", "drag", "release", "throttle"),
   continuous_update = TRUE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  orientation = c("horizontal", "vertical"),
+  orientation = "horizontal",
   readout = TRUE,
   readout_format = "d",
+  layout = Layout(),
+  style = IntSliderStyle(),
+  tabbable = FALSE,
+  tooltip = "",
+  `_model_module` = "@jupyter-widgets/controls",
+  `_model_module_version` = "2.0.0",
+  `_model_name` = "IntSliderModel",
+  `_view_module` = "@jupyter-widgets/controls",
+  `_view_count` = NULL,
+  `_view_module_version` = "2.0.0",
+  `_view_name` = "IntSliderView",
   ...,
   error_call = current_env()
 )
 }
 \arguments{
-\item{layout}{See \code{\link[=Layout]{Layout()}}}
-
-\item{style}{See \code{\link[=IntSliderStyle]{IntSliderStyle()}}}
-
 \item{min, max}{minimum and maximum value for the slider}
 
 \item{step}{step}
 
 \item{value}{initial value}
-
-\item{behavior}{determines how the slider interacts with changes in its value}
 
 \item{continuous_update}{if TRUE (default) the value updates as the slider is dragged, otherwise only when released}
 
@@ -49,6 +51,28 @@ IntSlider(
 \item{readout}{the value is displayed next to the slider if TRUE}
 
 \item{readout_format}{with this format, e.g. ".2f"}
+
+\item{layout}{a \code{\link[=Layout]{Layout()}}}
+
+\item{style}{a \code{\link[=Style]{Style()}}}
+
+\item{tabbable}{is the widget tabbable}
+
+\item{tooltip}{tooltip}
+
+\item{_model_module}{The namespace of the model.}
+
+\item{_model_module_version}{A semver requirement for namespace version containing the model.}
+
+\item{_model_name}{model name}
+
+\item{_view_module}{view mmodule}
+
+\item{_view_count}{view count}
+
+\item{_view_module_version}{view module version}
+
+\item{_view_name}{view name}
 
 \item{...}{These dots are for future extensions and must be empty.}
 
