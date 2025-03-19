@@ -1,3 +1,68 @@
+#' Box
+#'
+#' @param children children widgets
+#' @param box_style box style. empty (default) or one of 'success', 'info', 'warning', 'danger', 'primary'.
+#' @param description text description of the button
+#' @param disabled TRUE if the Button is disabled
+#'
+#' @inheritParams jupyter.widgets.base::DOMWidget
+#'
+#' @export
+Box <- function(
+    # Box
+    children = list(),
+    box_style = "",
+    description = "Click Me",
+    disabled = FALSE,
+
+    # DOMWidget
+    layout = Layout(),
+    style = NULL,
+    tabbable = FALSE,
+    tooltip = "",
+    `_dom_classes` = character(),
+
+    # Widget
+    `_model_module` = '@jupyter-widgets/controls',
+    `_model_module_version` = "2.0.0",
+    `_model_name` = "BoxModel",
+    `_view_module` = '@jupyter-widgets/controls',
+    `_view_count` = NULL,
+    `_view_module_version` = "2.0.0",
+    `_view_name` = "BoxView",
+
+    ...,
+    error_call = current_env()
+  ) {
+
+  jupyter.widget.Box$new(
+    # Box
+    children = children,
+    box_style = box_style,
+    description = description,
+    disabled = disabled,
+
+    # DOMWidget
+    layout = layout,
+    style = style,
+    tabbable = tabbable,
+    tooltip = tooltip,
+    `_dom_classes` = `_dom_classes`,
+
+    # Widget
+    `_model_module` = unbox(`_model_module`),
+    `_model_module_version` = unbox(`_model_module_version`),
+    `_model_name` = unbox(`_model_name`),
+    `_view_module` = unbox(`_view_module`),
+    `_view_count` = `_view_count`,
+    `_view_module_version` = unbox(`_view_module_version`),
+    `_view_name` = unbox(`_view_name`),
+
+    ...,
+    error_call   = error_call
+  )
+}
+
 jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOMWidget,
   public = list(
     initialize = function(
@@ -77,69 +142,3 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
     children_ = list()
   )
 )
-
-
-#' Box
-#'
-#' @param children children widgets
-#' @param box_style box style. empty (default) or one of 'success', 'info', 'warning', 'danger', 'primary'.
-#' @param description text description of the button
-#' @param disabled TRUE if the Button is disabled
-#'
-#' @inheritParams jupyter.widgets.base::DOMWidget
-#'
-#' @export
-Box <- function(
-    # Box
-    children = list(),
-    box_style = "",
-    description = "Click Me",
-    disabled = FALSE,
-
-    # DOMWidget
-    layout = Layout(),
-    style = NULL,
-    tabbable = FALSE,
-    tooltip = "",
-    `_dom_classes` = character(),
-
-    # Widget
-    `_model_module` = '@jupyter-widgets/controls',
-    `_model_module_version` = "2.0.0",
-    `_model_name` = "BoxModel",
-    `_view_module` = '@jupyter-widgets/controls',
-    `_view_count` = NULL,
-    `_view_module_version` = "2.0.0",
-    `_view_name` = "BoxView",
-
-    ...,
-    error_call = current_env()
-  ) {
-
-  jupyter.widget.Box$new(
-    # Box
-    children = children,
-    box_style = box_style,
-    description = description,
-    disabled = disabled,
-
-    # DOMWidget
-    layout = layout,
-    style = style,
-    tabbable = tabbable,
-    tooltip = tooltip,
-    `_dom_classes` = `_dom_classes`,
-
-    # Widget
-    `_model_module` = unbox(`_model_module`),
-    `_model_module_version` = unbox(`_model_module_version`),
-    `_model_name` = unbox(`_model_name`),
-    `_view_module` = unbox(`_view_module`),
-    `_view_count` = `_view_count`,
-    `_view_module_version` = unbox(`_view_module_version`),
-    `_view_name` = unbox(`_view_name`),
-
-    ...,
-    error_call   = error_call
-  )
-}
