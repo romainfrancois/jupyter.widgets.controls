@@ -15,7 +15,7 @@ jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = ju
       `_model_module` = '@jupyter-widgets/controls',
       `_model_module_version` = "2.0.0",
       `_model_name` = "ButtonStyleModel",
-      `_view_module` = '@jupyter-widgets/controls',
+      `_view_module` = '@jupyter-widgets/base',
       `_view_count` = NULL,
       `_view_module_version` = "2.0.0",
       `_view_name` = "StyleView",
@@ -53,19 +53,17 @@ jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = ju
         },
         text_color = unbox(ensure(text_color, null_or(is.string))),
         text_decoration = if (is.null(text_decoration)) NULL else unbox(rlang::arg_match(text_decoration, values = accepted_text_decoration, error_call = error_call)),
-
-        `_model_name` = "ButtonStyleModel"
       )
 
       super$initialize(
         # Widget
-        `_model_module` = unbox(`_model_module`),
-        `_model_module_version` = unbox(`_model_module_version`),
-        `_model_name` = unbox(`_model_name`),
-        `_view_module` = unbox(`_view_module`),
+        `_model_module` = `_model_module`,
+        `_model_module_version` = `_model_module_version`,
+        `_model_name` = `_model_name`,
+        `_view_module` = `_view_module`,
         `_view_count` = `_view_count`,
-        `_view_module_version` = unbox(`_view_module_version`),
-        `_view_name` = unbox(`_view_name`),
+        `_view_module_version` = `_view_module_version`,
+        `_view_name` = `_view_name`,
 
         ...,
         error_call = error_call
@@ -114,7 +112,7 @@ ButtonStyle <- function(
     `_model_module` = '@jupyter-widgets/controls',
     `_model_module_version` = "2.0.0",
     `_model_name` = "ButtonStyleModel",
-    `_view_module` = '@jupyter-widgets/controls',
+    `_view_module` = '@jupyter-widgets/base',
     `_view_count` = NULL,
     `_view_module_version` = "2.0.0",
     `_view_name` = "StyleView",
