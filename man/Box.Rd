@@ -14,13 +14,6 @@ Box(
   tabbable = FALSE,
   tooltip = "",
   `_dom_classes` = character(),
-  `_model_module` = "@jupyter-widgets/controls",
-  `_model_module_version` = "2.0.0",
-  `_model_name` = "BoxModel",
-  `_view_module` = "@jupyter-widgets/controls",
-  `_view_count` = NULL,
-  `_view_module_version` = "2.0.0",
-  `_view_name` = "BoxView",
   ...,
   error_call = current_env()
 )
@@ -43,20 +36,6 @@ Box(
 \item{tooltip}{tooltip}
 
 \item{_dom_classes}{CSS classes applied to widget DOM element}
-
-\item{_model_module}{The namespace of the model.}
-
-\item{_model_module_version}{A semver requirement for namespace version containing the model.}
-
-\item{_model_name}{model name}
-
-\item{_view_module}{view mmodule}
-
-\item{_view_count}{view count}
-
-\item{_view_module_version}{view module version}
-
-\item{_view_name}{view name}
 
 \item{...}{These dots are for future extensions and must be empty.}
 

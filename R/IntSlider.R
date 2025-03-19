@@ -33,15 +33,6 @@ IntSlider <- function(
     tabbable = FALSE,
     tooltip = "",
 
-    # Widget
-    `_model_module` = '@jupyter-widgets/controls',
-    `_model_module_version` = "2.0.0",
-    `_model_name` = "IntSliderModel",
-    `_view_module` = '@jupyter-widgets/controls',
-    `_view_count` = NULL,
-    `_view_module_version` = "2.0.0",
-    `_view_name` = "IntSliderView",
-
     ...,
     error_call = current_env()
 ) {
@@ -63,15 +54,6 @@ IntSlider <- function(
     style = style,
     tabbable = tabbable,
     tooltip = tooltip,
-
-    # Widget
-    `_model_module` = `_model_module`,
-    `_model_module_version` = `_model_module_version`,
-    `_model_name` = `_model_name`,
-    `_view_module` = `_view_module`,
-    `_view_count` = `_view_count`,
-    `_view_module_version` = `_view_module_version`,
-    `_view_name` = `_view_name`,
 
     ...,
     error_call = current_env()
@@ -99,15 +81,6 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
       tabbable = FALSE,
       tooltip = "",
       `_dom_classes` = character(),
-
-      # Widget
-      `_model_module` = '@jupyter-widgets/controls',
-      `_model_module_version` = "2.0.0",
-      `_model_name` = "IntSliderModel",
-      `_view_module` = '@jupyter-widgets/controls',
-      `_view_count` = NULL,
-      `_view_module_version` = "2.0.0",
-      `_view_name` = "IntSliderView",
 
       ...,
       error_call = caller_env()
@@ -137,13 +110,13 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
         `_dom_classes` = `_dom_classes`,
 
         # Widget
-        `_model_module` = `_model_module`,
-        `_model_module_version` = `_model_module_version`,
-        `_model_name` = `_model_name`,
-        `_view_module` = `_view_module`,
-        `_view_count` = `_view_count`,
-        `_view_module_version` = `_view_module_version`,
-        `_view_name` = `_view_name`,
+        `_model_module` = '@jupyter-widgets/controls',
+        `_model_module_version` = "2.0.0",
+        `_model_name` = "IntSliderModel",
+        `_view_module` = '@jupyter-widgets/controls',
+        `_view_count` = NULL,
+        `_view_module_version` = "2.0.0",
+        `_view_name` = "IntSliderView",
 
         ...,
         error_call = error_call

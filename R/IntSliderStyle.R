@@ -7,18 +7,8 @@
 #'
 #' @export
 IntSliderStyle <- function(
-  # IntSliderStyle
   description_width = "",
   handle_color = NULL,
-
-  # Widget
-  `_model_module` = '@jupyter-widgets/controls',
-  `_model_module_version` = "2.0.0",
-  `_model_name` = "IntSliderModel",
-  `_view_module` = '@jupyter-widgets/base',
-  `_view_count` = NULL,
-  `_view_module_version` = "2.0.0",
-  `_view_name` = "IntSliderView",
 
   ...,
   error_call = current_env()
@@ -26,15 +16,6 @@ IntSliderStyle <- function(
   jupyter.widget.IntSliderStyle$new(
     description_width = description_width,
     handle_color = handle_color,
-
-    # Widget
-    `_model_module` = `_model_module`,
-    `_model_module_version` = `_model_module_version`,
-    `_model_name` = `_model_name`,
-    `_view_module` = `_view_module`,
-    `_view_count` = `_view_count`,
-    `_view_module_version` = `_view_module_version`,
-    `_view_name` = `_view_name`,
 
     ...,
     error_call = error_call
@@ -48,15 +29,6 @@ jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inheri
       description_width = "",
       handle_color = NULL,
 
-      # Widget
-      `_model_module` = '@jupyter-widgets/controls',
-      `_model_module_version` = "2.0.0",
-      `_model_name` = "IntSliderModel",
-      `_view_module` = '@jupyter-widgets/base',
-      `_view_count` = NULL,
-      `_view_module_version` = "2.0.0",
-      `_view_name` = "IntSliderView",
-
       ...,
       error_call = caller_env()
     ) {
@@ -68,13 +40,14 @@ jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inheri
 
       super$initialize(
         # Widget
-        `_model_module` = unbox(`_model_module`),
-        `_model_module_version` = unbox(`_model_module_version`),
-        `_model_name` = unbox(`_model_name`),
-        `_view_module` = unbox(`_view_module`),
-        `_view_count` = `_view_count`,
-        `_view_module_version` = unbox(`_view_module_version`),
-        `_view_name` = unbox(`_view_name`),
+        `_model_module` = '@jupyter-widgets/controls',
+        `_model_module_version` = "2.0.0",
+        `_model_name` = "IntSliderModel",
+        `_view_module` = '@jupyter-widgets/base',
+        `_view_count` = NULL,
+        `_view_module_version` = "2.0.0",
+        `_view_name` = "IntSliderView",
+
         ...,
         error_call = error_call
       )
