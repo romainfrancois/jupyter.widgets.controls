@@ -6,7 +6,7 @@ jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inheri
       handle_color = NULL,
 
       # Widget
-      `_model_module` = '@jupyter-widgets/base',
+      `_model_module` = '@jupyter-widgets/controls',
       `_model_module_version` = "2.0.0",
       `_model_name` = "IntSliderModel",
       `_view_module` = '@jupyter-widgets/base',
@@ -61,7 +61,7 @@ IntSliderStyle <- function(
   `_model_module` = '@jupyter-widgets/controls',
   `_model_module_version` = "2.0.0",
   `_model_name` = "IntSliderModel",
-  `_view_module` = '@jupyter-widgets/controls',
+  `_view_module` = '@jupyter-widgets/base',
   `_view_count` = NULL,
   `_view_module_version` = "2.0.0",
   `_view_name` = "IntSliderView",
