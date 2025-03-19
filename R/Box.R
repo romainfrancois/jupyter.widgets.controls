@@ -102,12 +102,12 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
   ),
 
   active = list(
-    box_style   = function(x) if (missing(x)) private$state_[["box_style"]] else self$update(box_style = x),
-    description = function(x) if (missing(x)) private$state_[["description"]] else self$update(description = x),
-    disabled    = function(x) if (missing(x)) private$state_[["disabled"]] else self$update(disabled = x),
+    box_style   = function(x) if (missing(x)) private$state_[["box_style"]] else self$update(box_style = unbox(x)),
+    description = function(x) if (missing(x)) private$state_[["description"]] else self$update(description = unbox(x)),
+    disabled    = function(x) if (missing(x)) private$state_[["disabled"]] else self$update(disabled = unbox(x)),
     children    = function(x) if (missing(x)) private$children_ else {
       private$children_ <- x
-      self$update(children = x)
+      self$update(children = map_chr(children, \(kid) glue("IPY_MODEL_{kid$comm$id}")))
     }
   ),
 
