@@ -1,77 +1,68 @@
-jupyter.widget.IntSliderStyle <- R6Class("jupyter.widget.IntSliderStyle", inherit = jupyter.widget.Style,
-  public = list(
-    initialize = function(
-      # IntSliderStyle
-      description_width = "",
-      handle_color = NULL,
-
-      # Widget
-      `_model_module` = '@jupyter-widgets/controls',
-      `_model_module_version` = "2.0.0",
-      `_model_name` = "IntSliderModel",
-      `_view_module` = '@jupyter-widgets/base',
-      `_view_count` = NULL,
-      `_view_module_version` = "2.0.0",
-      `_view_name` = "IntSliderView",
-
-      ...,
-      error_call = caller_env()
-    ) {
-
-      private$state_ <- update_list(private$state_,
-        description_width = unbox(ensure(description_width, is.string)),
-        handle_color      = unbox(ensure(handle_color, null_or(is.string)))
-      )
-
-      super$initialize(
-        # Widget
-        `_model_module` = unbox(`_model_module`),
-        `_model_module_version` = unbox(`_model_module_version`),
-        `_model_name` = unbox(`_model_name`),
-        `_view_module` = unbox(`_view_module`),
-        `_view_count` = `_view_count`,
-        `_view_module_version` = unbox(`_view_module_version`),
-        `_view_name` = unbox(`_view_name`),
-        ...,
-        error_call = error_call
-      )
-    }
-  ),
-
-  active = list(
-    description_width = function(x) if (missing(x)) private$state_[["description_width"]] else self$update(description_width = unbox(x)),
-    handle_color      = function(x) if (missing(x)) private$state_[["handle_color"]] else self$update(handle_color = unbox(x))
-  )
-)
-
-#' Style for the IntSlider widget
+#' Int slider
 #'
-#' @param description_width description width
-#' @param handle_color css color for the handle
+#' @param min,max minimum and maximum value for the slider
+#' @param step step
+#' @param value initial value
+#' @param continuous_update if TRUE (default) the value updates as the slider is dragged, otherwise only when released
+#' @param description descrption
+#' @param description_allow_html whether the description allows html
+#' @param disabled TRUE if the slider is disabled
+#' @param orientation "horizontal" (default) or "vertical"
+#' @param readout the value is displayed next to the slider if TRUE
+#' @param readout_format with this format, e.g. ".2f"
 #'
-#' @inheritParams Style
+#' @inheritParams jupyter.widgets.base::DOMWidget
 #'
 #' @export
-IntSliderStyle <- function(
-  # IntSliderStyle
-  description_width = "",
-  handle_color = NULL,
+IntSlider <- function(
+    min = 0,
+    max = 100,
+    step = 1,
+    value = 0,
+    continuous_update = TRUE,
+    description = "",
+    description_allow_html = FALSE,
+    disabled = FALSE,
+    orientation = "horizontal",
+    readout = TRUE,
+    readout_format = "d",
 
-  # Widget
-  `_model_module` = '@jupyter-widgets/controls',
-  `_model_module_version` = "2.0.0",
-  `_model_name` = "IntSliderModel",
-  `_view_module` = '@jupyter-widgets/base',
-  `_view_count` = NULL,
-  `_view_module_version` = "2.0.0",
-  `_view_name` = "IntSliderView",
+    # DOMWidget
+    layout = Layout(),
+    style = IntSliderStyle(),
+    tabbable = FALSE,
+    tooltip = "",
 
-  ...,
-  error_call = current_env()
+    # Widget
+    `_model_module` = '@jupyter-widgets/controls',
+    `_model_module_version` = "2.0.0",
+    `_model_name` = "IntSliderModel",
+    `_view_module` = '@jupyter-widgets/controls',
+    `_view_count` = NULL,
+    `_view_module_version` = "2.0.0",
+    `_view_name` = "IntSliderView",
+
+    ...,
+    error_call = current_env()
 ) {
-  jupyter.widget.IntSliderStyle$new(
-    description_width = description_width,
-    handle_color = handle_color,
+  jupyter.widget.IntSlider$new(
+    # IntSlider
+    min = min,
+    max = max,
+    step = step,
+    continuous_update = continuous_update,
+    description = description,
+    description_allow_html = description_allow_html,
+    disabled = disabled,
+    orientation = orientation,
+    readout = readout,
+    readout_format = readout_format,
+
+    # DOMWidget
+    layout = layout,
+    style = style,
+    tabbable = tabbable,
+    tooltip = tooltip,
 
     # Widget
     `_model_module` = `_model_module`,
@@ -83,7 +74,7 @@ IntSliderStyle <- function(
     `_view_name` = `_view_name`,
 
     ...,
-    error_call = error_call
+    error_call = current_env()
   )
 }
 
@@ -174,83 +165,3 @@ jupyter.widget.IntSlider <- R6Class("jupyter.widget.IntSlider", inherit = jupyte
     readout_format         = function(x) if (missing(x)) private$state_[["readout_format"]] else self$update(readout_format = x)
   )
 )
-
-#' Int slider
-#'
-#' @param min,max minimum and maximum value for the slider
-#' @param step step
-#' @param value initial value
-#' @param continuous_update if TRUE (default) the value updates as the slider is dragged, otherwise only when released
-#' @param description descrption
-#' @param description_allow_html whether the description allows html
-#' @param disabled TRUE if the slider is disabled
-#' @param orientation "horizontal" (default) or "vertical"
-#' @param readout the value is displayed next to the slider if TRUE
-#' @param readout_format with this format, e.g. ".2f"
-#'
-#' @inheritParams DOMWidget
-#'
-#' @export
-IntSlider <- function(
-    min = 0,
-    max = 100,
-    step = 1,
-    value = 0,
-    continuous_update = TRUE,
-    description = "",
-    description_allow_html = FALSE,
-    disabled = FALSE,
-    orientation = "horizontal",
-    readout = TRUE,
-    readout_format = "d",
-
-    # DOMWidget
-    layout = Layout(),
-    style = IntSliderStyle(),
-    tabbable = FALSE,
-    tooltip = "",
-
-    # Widget
-    `_model_module` = '@jupyter-widgets/controls',
-    `_model_module_version` = "2.0.0",
-    `_model_name` = "IntSliderModel",
-    `_view_module` = '@jupyter-widgets/controls',
-    `_view_count` = NULL,
-    `_view_module_version` = "2.0.0",
-    `_view_name` = "IntSliderView",
-
-    ...,
-    error_call = current_env()
-) {
-  jupyter.widget.IntSlider$new(
-    # IntSlider
-    min = min,
-    max = max,
-    step = step,
-    continuous_update = continuous_update,
-    description = description,
-    description_allow_html = description_allow_html,
-    disabled = disabled,
-    orientation = orientation,
-    readout = readout,
-    readout_format = readout_format,
-
-    # DOMWidget
-    layout = layout,
-    style = style,
-    tabbable = tabbable,
-    tooltip = tooltip,
-
-    # Widget
-    `_model_module` = `_model_module`,
-    `_model_module_version` = `_model_module_version`,
-    `_model_name` = `_model_name`,
-    `_view_module` = `_view_module`,
-    `_view_count` = `_view_count`,
-    `_view_module_version` = `_view_module_version`,
-    `_view_name` = `_view_name`,
-
-    ...,
-    error_call = current_env()
-)
-}
