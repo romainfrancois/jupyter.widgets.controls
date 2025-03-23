@@ -1,4 +1,5 @@
-accepted_button_style <- c("primary", "success", "info", "warning", "danger")
+#' @include accepted.R
+NULL
 
 #' Button widget
 #'

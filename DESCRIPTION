@@ -17,9 +17,17 @@ Imports:
     fontawesome,
     glue,
     jsonlite,
-    jupyter.widgets.base (>= 0.0.0.9003),
+    jupyter.widgets.base (>= 0.0.0.9004),
     purrr,
     R6,
     rlang
 Remotes:
     romainfrancois/jupyter.widgets.base
+Collate: 
+    'Box.R'
+    'accepted.R'
+    'Button.R'
+    'ButtonStyle.R'
+    'IntSlider.R'
+    'IntSliderStyle.R'
+    'zzz.R'
