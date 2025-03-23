@@ -1,64 +1,24 @@
-#' Box
+#' Box widget
 #'
-#' @param children children widgets
-#' @param box_style box style. empty (default) or one of 'success', 'info', 'warning', 'danger', 'primary'.
-#' @param description text description of the button
-#' @param disabled TRUE if the Button is disabled
-#'
-#' @inheritParams jupyter.widgets.base::DOMWidget
-#'
+#' @rdname Box
 #' @export
-Box <- function(
-    # Box
-    children = list(),
-    box_style = "",
-    description = "Click Me",
-    disabled = FALSE,
-
-    # DOMWidget
-    layout = Layout(),
-    style = NULL,
-    tabbable = FALSE,
-    tooltip = "",
-    `_dom_classes` = character(),
-
-    ...,
-    error_call = current_env()
-  ) {
-
-  jupyter.widget.Box$new(
-    # Box
-    children = children,
-    box_style = box_style,
-    description = description,
-    disabled = disabled,
-
-    # DOMWidget
-    layout = layout,
-    style = style,
-    tabbable = tabbable,
-    tooltip = tooltip,
-    `_dom_classes` = `_dom_classes`,
-
-    ...,
-    error_call   = error_call
-  )
-}
-
 jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOMWidget,
   public = list(
+
+    #' @param children list of children widget objects
+    #' @param box_style box style
+    #' @param description description
+    #' @param disabled is the Box disabled
+    #'
+    #' @param ... See [jupyter.widgets.base::DOMWidget]
+    #' @param error_call see [rlang::args_error_context()]
+    #'
+    #' @return a new `jupyter.widget.Widget` object
     initialize = function(
       children = list(),
       box_style = "",
       description = "",
       disabled = FALSE,
-
-      # DOM Widget
-      layout = Layout(),
-      style = NULL,
-      tabbable = FALSE,
-      tooltip = "",
-      `_dom_classes` = character(),
 
       ...,
       error_call = caller_env()
@@ -79,21 +39,11 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
       )
 
       super$initialize(
-        # DOMWidget
-        layout  = layout,
-        style   = style,
-        tabbable = tabbable,
-        tooltip = tooltip,
-        `_dom_classes` = `_dom_classes`,
-
         # Widget
-        `_model_module` = unbox('@jupyter-widgets/controls'),
-        `_model_module_version` = unbox("2.0.0"),
-        `_model_name` = unbox("BoxModel"),
-        `_view_module` = unbox('@jupyter-widgets/controls'),
-        `_view_count` = NULL,
-        `_view_module_version` = unbox("2.0.0"),
-        `_view_name` = unbox("BoxView"),
+        `_model_module` = '@jupyter-widgets/controls',
+        `_model_name` = "BoxModel",
+        `_view_module` = '@jupyter-widgets/controls',
+        `_view_name` = "BoxView",
 
         ...,
         error_call = error_call
@@ -102,9 +52,21 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
   ),
 
   active = list(
+
+    #' @field box_style
+    #' box style
     box_style   = function(x) if (missing(x)) private$state_[["box_style"]] else self$update(box_style = unbox(x)),
+
+    #' @field description
+    #' description
     description = function(x) if (missing(x)) private$state_[["description"]] else self$update(description = unbox(x)),
+
+    #' @field disabled
+    #' disabled
     disabled    = function(x) if (missing(x)) private$state_[["disabled"]] else self$update(disabled = unbox(x)),
+
+    #' @field children
+    #' children dom widgets
     children    = function(x) if (missing(x)) private$children_ else {
       private$children_ <- x
       self$update(children = map_chr(children, \(kid) glue("IPY_MODEL_{kid$comm$id}")))
@@ -115,3 +77,13 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
     children_ = list()
   )
 )
+
+#' Box widget
+#'
+#' @param ... See constructor for `jupyter.widgets.Box`
+#' @inheritParams rlang::args_error_context
+#'
+#' @return a [jupyter.widget.Box] object
+#'
+#' @export
+Box <- factory(jupyter.widgets.Box)

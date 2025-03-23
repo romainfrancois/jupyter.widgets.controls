@@ -1,62 +1,32 @@
-#' Button
+#' @include accepted.R
+NULL
+
+#' Button widget
 #'
-#' @param description text description of the button
-#' @param disabled TRUE if the Button is disabled
-#' @param button_style "", "primary", "success", "info", "warning" or "danger"
-#' @param icon name of a font-awesome icon, see [fontawesome::fa()] or "" for no icon (default)
-#'
-#' @inheritParams jupyter.widgets.base::DOMWidget
-#'
+#' @rdname Button
 #' @export
-Button <- function(
-    # Button
-    description = "Click Me",
-    disabled = FALSE,
-    button_style = "",
-    icon = "",
-
-    # DOMWidget
-    layout = Layout(),
-    style = ButtonStyle(),
-    tabbable = FALSE,
-    tooltip = "",
-
-    ...,
-    error_call = current_env()
-  ) {
-
-  jupyter.widget.Button$new(
-    # Button
-    description  = description,
-    disabled     = disabled,
-    button_style = button_style,
-    icon         = icon,
-
-    # DOMWidget
-    layout = layout,
-    style = style,
-    tabbable = tabbable,
-    tooltip = tooltip,
-
-    ...,
-    error_call   = error_call
-  )
-}
-
 jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widget.DOMWidget,
   public = list(
+
+    #' @param description description
+    #' @param disabled is the Box disabled
+    #' @param button_style "", "primary", "success", "info", "warning" or "danger"
+    #' @param icon name of a font-awesome icon, see [fontawesome::fa()] or "" for no icon (default)
+    #'
+    #' @param style inherited from [jupyter.widgets.base::DOMWidget]. Must inherit from [jupyter.widget.ButtonStyle]
+    #' @param ... See [jupyter.widgets.base::DOMWidget]
+    #' @param error_call see [rlang::args_error_context()]
+    #'
+    #' @return a new `jupyter.widget.Widget` object
     initialize = function(
+      # Button
       description = "Click Me",
       disabled = FALSE,
       button_style = "",
       icon = "",
 
       # DOM Widget
-      layout = Layout(),
       style = ButtonStyle(),
-      tabbable = FALSE,
-      tooltip = "",
-      `_dom_classes` = character(),
 
       ...,
       error_call = caller_env()
@@ -65,27 +35,18 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
       private$state_ <- update_list(private$state_,
         description  = unbox(ensure(description, is.string)),
         disabled     = unbox(ensure(disabled, rlang::is_scalar_logical)),
-        button_style = unbox(rlang::arg_match(button_style, error_call = error_call)),
-        icon         = if (identical(icon, "")) "" else {
-          unbox(arg_match(icon, values = fa_metadata()$icon_names, error_call = error_call))
-        }
+        button_style = unbox(arg_match_or_empty(button_style, values = accepted_button_style, error_call = error_call)),
+        icon         = unbox(arg_match_or_empty(icon, values = fa_metadata()$icon_names, error_call = error_call))
       )
 
       super$initialize(
         # DOMWidget
-        layout  = layout,
         style   = ensure(style, inherits, "jupyter.widget.ButtonStyle"),
-        tabbable = tabbable,
-        tooltip = tooltip,
-        `_dom_classes` = `_dom_classes`,
 
         # Widget
        `_model_module` = '@jupyter-widgets/controls',
-       `_model_module_version` = "2.0.0",
        `_model_name` = "ButtonModel",
        `_view_module` = '@jupyter-widgets/controls',
-       `_view_count` = NULL,
-       `_view_module_version` = "2.0.0",
        `_view_name` = "ButtonView",
 
         ...,
@@ -101,15 +62,43 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
       )
     },
 
+    #' @title setup a handler for when the button is clicked
+    #'
+    #' @param handler handler function to call when the button is clicked
     on_click = function(handler = NULL) {
       private$handlers_[["custom/click"]] <- handler
     }
   ),
 
   active = list(
+    #' @field description
+    #' description
     description            = function(x) if (missing(x)) private$state_[["description"]] else self$update(description = unbox(x)),
+
+    #' @field disabled
+    #' disabled
     disabled               = function(x) if (missing(x)) private$state_[["disabled"]] else self$update(disabled = unbox(x)),
-    button_style           = function(x) if (missing(x)) private$state_[["button_style"]] else self$update(button_style = unbox(x)),
-    icon                   = function(x) if (missing(x)) private$state_[["icon"]] else self$update(icon = unbox(x))
+
+    #' @field button_style
+    #' button style. "", "primary", "success", "info", "warning" or "danger"
+    button_style           = function(x) if (missing(x)) private$state_[["button_style"]] else {
+      self$update(button_style = unbox(arg_match_or_empty(x, values = accepted_button_style)))
+    },
+
+    #' @field icon
+    #' name of a font-awesome icon, see [fontawesome::fa()] or "" for no icon (default)
+    icon                   = function(x) if (missing(x)) private$state_[["icon"]] else {
+      self$update(icon = unbox(arg_match_or_empty(x, fa_metadata()$icon_names)))
+    }
   )
 )
+
+#' Button widget
+#'
+#' @param ... See constructor for `jupyter.widgets.Button`
+#' @inheritParams rlang::args_error_context
+#'
+#' @return a [jupyter.widget.Button] object
+#'
+#' @export
+Button <- factory(jupyter.widget.Button)

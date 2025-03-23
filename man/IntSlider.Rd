@@ -2,64 +2,21 @@
 % Please edit documentation in R/IntSlider.R
 \name{IntSlider}
 \alias{IntSlider}
-\title{Int slider}
+\title{IntSlider widget}
 \usage{
-IntSlider(
-  min = 0,
-  max = 100,
-  step = 1,
-  value = 0,
-  continuous_update = TRUE,
-  description = "",
-  description_allow_html = FALSE,
-  disabled = FALSE,
-  orientation = "horizontal",
-  readout = TRUE,
-  readout_format = "d",
-  layout = Layout(),
-  style = IntSliderStyle(),
-  tabbable = FALSE,
-  tooltip = "",
-  ...,
-  error_call = current_env()
-)
+IntSlider(..., error_call = current_env())
 }
 \arguments{
-\item{min, max}{minimum and maximum value for the slider}
-
-\item{step}{step}
-
-\item{value}{initial value}
-
-\item{continuous_update}{if TRUE (default) the value updates as the slider is dragged, otherwise only when released}
-
-\item{description}{descrption}
-
-\item{description_allow_html}{whether the description allows html}
-
-\item{disabled}{TRUE if the slider is disabled}
-
-\item{orientation}{"horizontal" (default) or "vertical"}
-
-\item{readout}{the value is displayed next to the slider if TRUE}
-
-\item{readout_format}{with this format, e.g. ".2f"}
-
-\item{layout}{a \code{\link[jupyter.widgets.base:Layout]{Layout()}}}
-
-\item{style}{a \code{\link[jupyter.widgets.base:Style]{Style()}}}
-
-\item{tabbable}{is the widget tabbable}
-
-\item{tooltip}{tooltip}
-
-\item{...}{These dots are for future extensions and must be empty.}
+\item{...}{See constructor for \code{jupyter.widgets.IntSlider}}
 
 \item{error_call}{The execution environment of a currently
 running function, e.g. \code{caller_env()}. The function will be
 mentioned in error messages as the source of the error. See the
 \code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
 }
+\value{
+a \link{jupyter.widget.IntSlider} object
+}
 \description{
-Int slider
+IntSlider widget
 }
