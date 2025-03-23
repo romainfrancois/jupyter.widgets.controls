@@ -9,13 +9,8 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
     #' @param box_style box style
     #' @param description description
     #' @param disabled is the Box disabled
-    #' @param layout [jupyter.widgets.base::Layout] object
-    #' @param style style
-    #' @param tabbable is it tabbable
-    #' @param tooltip tooltip
-    #' @param _dom_classes CSS dom classes
     #'
-    #' @param ... unused
+    #' @param ... See [jupyter.widgets.base::DOMWidget]
     #' @param error_call see [rlang::args_error_context()]
     #'
     #' @return a new `jupyter.widget.Widget` object
@@ -24,13 +19,6 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
       box_style = "",
       description = "",
       disabled = FALSE,
-
-      # DOM Widget
-      layout = Layout(),
-      style = NULL,
-      tabbable = FALSE,
-      tooltip = "",
-      `_dom_classes` = character(),
 
       ...,
       error_call = caller_env()
@@ -51,20 +39,10 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
       )
 
       super$initialize(
-        # DOMWidget
-        layout  = layout,
-        style   = style,
-        tabbable = tabbable,
-        tooltip = tooltip,
-        `_dom_classes` = `_dom_classes`,
-
         # Widget
         `_model_module` = '@jupyter-widgets/controls',
-        `_model_module_version` = "2.0.0",
         `_model_name` = "BoxModel",
         `_view_module` = '@jupyter-widgets/controls',
-        `_view_count` = NULL,
-        `_view_module_version` = "2.0.0",
         `_view_name` = "BoxView",
 
         ...,

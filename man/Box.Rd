@@ -69,11 +69,6 @@ Box widget
   box_style = "",
   description = "",
   disabled = FALSE,
-  layout = Layout(),
-  style = NULL,
-  tabbable = FALSE,
-  tooltip = "",
-  `_dom_classes` = character(),
   ...,
   error_call = caller_env()
 )}\if{html}{\out{</div>}}
@@ -90,17 +85,7 @@ Box widget
 
 \item{\code{disabled}}{is the Box disabled}
 
-\item{\code{layout}}{\link[jupyter.widgets.base:Layout]{jupyter.widgets.base::Layout} object}
-
-\item{\code{style}}{style}
-
-\item{\code{tabbable}}{is it tabbable}
-
-\item{\code{tooltip}}{tooltip}
-
-\item{\code{_dom_classes}}{CSS dom classes}
-
-\item{\code{...}}{unused}
+\item{\code{...}}{See \link[jupyter.widgets.base:DOMWidget]{jupyter.widgets.base::DOMWidget}}
 
 \item{\code{error_call}}{see \code{\link[rlang:args_error_context]{rlang::args_error_context()}}}
 }
