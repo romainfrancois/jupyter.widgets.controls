@@ -102,4 +102,3 @@ jupyter.widget.Button <- R6Class("jupyter.widget.Button", inherit = jupyter.widg
 #'
 #' @export
 Button <- factory(jupyter.widget.Button)
-
