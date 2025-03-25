@@ -17,7 +17,7 @@ IntSlider(
   readout_format = "d",
   step = 1L,
   value = 0L,
-  style = IntSliderStyle(),
+  style = SliderStyle(),
   ...,
   error_call = current_env()
 )
@@ -47,7 +47,7 @@ IntSlider(
 
 \item{value}{Int value}
 
-\item{style}{Must inherit from \link{jupyter.widget.IntSliderStyle}.}
+\item{style}{Must inherit from \link{jupyter.widget.SliderStyle}.}
 
 \item{...}{forwarded to \link[jupyter.widgets.base:DOMWidget]{jupyter.widgets.base::jupyter.widget.DOMWidget} constructor}
 
