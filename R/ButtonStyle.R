@@ -38,8 +38,8 @@ jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = ju
         button_color = unbox(ensure(button_color, null_or(is.string))),
         font_family  = unbox(ensure(font_family, null_or(is.string))),
         font_size    = unbox(ensure(font_size, null_or(is.string))),
-        font_style   = unbox(rlang::arg_match_or_null(font_style, values = accepted_font_style, error_call = error_call)),
-        font_variant = unbox(rlang::arg_match_or_null(font_variant, values = accepted_font_variant, error_call = error_call)),
+        font_style   = unbox(arg_match_or_null(font_style, values = accepted_font_style, error_call = error_call)),
+        font_variant = unbox(arg_match_or_null(font_variant, values = accepted_font_variant, error_call = error_call)),
         font_weight  = {
           # TODO: extract into a function for clarity
           if (is.null(font_weight)) {
@@ -57,7 +57,7 @@ jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = ju
           }
         },
         text_color = unbox(ensure(text_color, null_or(is.string))),
-        text_decoration = unbox(rlang::arg_match_or_null(text_decoration, values = accepted_text_decoration, error_call = error_call)),
+        text_decoration = unbox(arg_match_or_null(text_decoration, values = accepted_text_decoration, error_call = error_call)),
       )
 
       super$initialize(
@@ -89,13 +89,13 @@ jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = ju
     #' @field font_style
     #' CSS `font-style` property
     font_style       = function(x) if (missing(x)) private$state_[["font_style"]] else {
-      self$update(font_style = unbox(rlang::arg_match_or_null(font_style, values = accepted_font_style)))
+      self$update(font_style = unbox(arg_match_or_null(font_style, values = accepted_font_style)))
     },
 
     #' @field font_variant
     #' CSS `font-variant` property
     font_variant     = function(x) if (missing(x)) private$state_[["font_variant"]] else {
-      self$update(font_variant = unbox(rlang::arg_match_or_null(font_variant, values = accepted_font_variant)))
+      self$update(font_variant = unbox(arg_match_or_null(font_variant, values = accepted_font_variant)))
     },
 
     #' @field text_color
@@ -105,7 +105,7 @@ jupyter.widget.ButtonStyle <- R6Class("jupyter.widget.ButtonStyle", inherit = ju
     #' @field text_decoration
     #' CSS `text-decoration` property
     text_decoration  = function(x) if (missing(x)) private$state_[["text_decoration"]] else {
-      self$update(text_decoration = unbox(rlang::arg_match_or_null(text_decoration, values = accepted_text_decoration)))
+      self$update(text_decoration = unbox(arg_match_or_null(text_decoration, values = accepted_text_decoration)))
     }
   )
 )

@@ -86,4 +86,4 @@ jupyter.widget.Box <- R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOM
 #' @return a [jupyter.widget.Box] object
 #'
 #' @export
-Box <- factory(jupyter.widgets.Box)
+Box <- factory(jupyter.widget.Box)

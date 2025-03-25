@@ -17,7 +17,7 @@ Imports:
     fontawesome,
     glue,
     jsonlite,
-    jupyter.widgets.base (>= 0.0.0.9004),
+    jupyter.widgets.base (>= 0.0.0.9005),
     purrr,
     R6,
     rlang
@@ -25,6 +25,7 @@ Remotes:
     romainfrancois/jupyter.widgets.base
 Collate: 
     'Box.R'
+    'Button-generated.R'
     'accepted.R'
     'Button.R'
     'ButtonStyle.R'
