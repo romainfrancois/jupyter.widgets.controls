@@ -15,5 +15,5 @@ set_widget_state_check(jupyter.widget.Button, "button_style", function(value) {
 })
 
 set_widget_state_check(jupyter.widget.Button, "icon", function(value) {
-  unbox(arg_match_or_empty(x, fa_metadata()$icon_names))
+  unbox(arg_match_or_empty(x, values = fa_metadata()$icon_names))
 })
