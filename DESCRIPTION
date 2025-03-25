@@ -32,5 +32,6 @@ Collate:
     'ButtonStyle.R'
     'IntSlider-generated.R'
     'IntSlider.R'
-    'IntSliderStyle.R'
+    'SliderStyle-generated.R'
+    'SliderStyle.R'
     'zzz.R'
