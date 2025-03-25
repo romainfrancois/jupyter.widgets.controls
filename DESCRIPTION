@@ -28,6 +28,7 @@ Collate:
     'Button-generated.R'
     'accepted.R'
     'Button.R'
+    'ButtonStyle-generated.R'
     'ButtonStyle.R'
     'IntSlider-generated.R'
     'IntSlider.R'
