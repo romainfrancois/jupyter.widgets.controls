@@ -22,7 +22,7 @@ jupyter.widget.IntSlider <- R6::R6Class("jupyter.widget.IntSlider", inherit = ju
     #' @param readout_format Format for the readout
     #' @param step Minimum step to increment the value
     #' @param value Int value
-    #' @param style Must inherit from [jupyter.widget.IntSliderStyle].
+    #' @param style Must inherit from [jupyter.widget.SliderStyle].
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
     #' @param error_call see [rlang::args_error_context()]
@@ -41,7 +41,7 @@ jupyter.widget.IntSlider <- R6::R6Class("jupyter.widget.IntSlider", inherit = ju
       readout_format = "d",
       step = 1L,
       value = 0L,
-      style = IntSliderStyle(),
+      style = SliderStyle(),
 
       ...,
       error_call = caller_env()
@@ -144,7 +144,7 @@ jupyter.widget.IntSlider <- R6::R6Class("jupyter.widget.IntSlider", inherit = ju
 #' @param step Minimum step to increment the value
 #' @param value Int value
 #' 
-#' @param style Must inherit from [jupyter.widget.IntSliderStyle].
+#' @param style Must inherit from [jupyter.widget.SliderStyle].
 #' 
 #' @param ... forwarded to [jupyter.widgets.base::jupyter.widget.DOMWidget] constructor
 #' @inheritParams rlang::args_error_context
@@ -163,7 +163,7 @@ IntSlider <- function(
   readout_format = "d",
   step = 1L,
   value = 0L,
-  style = IntSliderStyle(),
+  style = SliderStyle(),
   ...,
   error_call = current_env()
 ){

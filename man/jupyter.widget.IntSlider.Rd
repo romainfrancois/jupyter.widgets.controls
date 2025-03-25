@@ -76,7 +76,7 @@ IntSlider widget
   readout_format = "d",
   step = 1L,
   value = 0L,
-  style = IntSliderStyle(),
+  style = SliderStyle(),
   ...,
   error_call = caller_env()
 )}\if{html}{\out{</div>}}
@@ -109,7 +109,7 @@ IntSlider widget
 
 \item{\code{value}}{Int value}
 
-\item{\code{style}}{Must inherit from \link{jupyter.widget.IntSliderStyle}.}
+\item{\code{style}}{Must inherit from \link{jupyter.widget.SliderStyle}.}
 
 \item{\code{...}}{See \link[jupyter.widgets.base:DOMWidget]{jupyter.widgets.base::DOMWidget}}
 
