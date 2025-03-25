@@ -63,13 +63,11 @@ jupyter.widget.IntSlider <- R6::R6Class("jupyter.widget.IntSlider", inherit = ju
       )
 
       super$initialize(
-        style           = style,
-
         `_model_module` = "@jupyter-widgets/controls",
         `_model_name`   = "IntSliderModel",
         `_view_module`  = "@jupyter-widgets/controls",
         `_view_name`    = "IntSliderView",
-
+        style = style, 
         ...,
         error_call = error_call
       )

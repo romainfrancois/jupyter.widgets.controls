@@ -39,13 +39,11 @@ jupyter.widget.Button <- R6::R6Class("jupyter.widget.Button", inherit = jupyter.
       )
 
       super$initialize(
-        style           = style,
-
         `_model_module` = "@jupyter-widgets/controls",
         `_model_name`   = "ButtonModel",
         `_view_module`  = "@jupyter-widgets/controls",
         `_view_name`    = "ButtonView",
-
+        style = style, 
         ...,
         error_call = error_call
       )
