@@ -5,19 +5,27 @@
 \title{BoundedFloatText widget}
 \usage{
 BoundedFloatText(
+  min = 0,
+  max = 100,
+  value = 0,
+  step = NULL,
   continuous_update = FALSE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  max = 100,
-  min = 0,
-  step = NULL,
-  value = 0,
   ...,
   error_call = current_env()
 )
 }
 \arguments{
+\item{min}{Min value}
+
+\item{max}{Max value}
+
+\item{value}{Float value}
+
+\item{step}{Minimum step to increment the value}
+
 \item{continuous_update}{Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.}
 
 \item{description}{Description of the control.}
@@ -25,14 +33,6 @@ BoundedFloatText(
 \item{description_allow_html}{Accept HTML in the description.}
 
 \item{disabled}{Enable or disable user changes}
-
-\item{max}{Max value}
-
-\item{min}{Min value}
-
-\item{step}{Minimum step to increment the value}
-
-\item{value}{Float value}
 
 \item{...}{forwarded to \link[jupyter.widgets.base:DOMWidget]{jupyter.widgets.base::jupyter.widget.DOMWidget} constructor}
 
