@@ -3,18 +3,25 @@
 #' @import glue
 #' @import assertthat
 #' @importFrom purrr map_chr walk
-#' @importFrom rlang current_env caller_env arg_match
+#' @importFrom rlang current_env caller_env arg_match pairlist2
 #' @importFrom fontawesome fa_metadata
 #' @importFrom cli cli_abort
 #' @importFrom jsonlite unbox
 NULL
 
-.onLoad <- function(libname, pkgname) {
-  set_widget_state_check("jupyter.widget.Button", "button_style", jupyter.widgets.base::unbox_one_of(accepted_button_style, allow_empty = TRUE))
-  set_widget_state_check("jupyter.widget.Button", "icon"        , jupyter.widgets.base::unbox_one_of(fa_metadata()$icon_names, allow_empty = TRUE))
+accepted_button_style <- c("primary", "success", "info", "warning", "danger")
+accepted_font_style <- c("normal", "italic", "oblique")
+accepted_font_variant <- c("normal", "small-caps", "all-small-caps", "petite-caps", "all-petite-caps", "unicase", "titling-caps")
+accepted_font_weight <- c("normal", "bold", "lighter", "bolder")
+accepted_text_decoration <- c("none", "underline", "overline", "line-through", "blink")
+accepted_orientation <- c("horizontal", "vertical")
 
-  set_widget_state_check("jupyter.widget.ButtonStyle", "font_style", jupyter.widgets.base::unbox_one_of(accepted_font_style, allow_null = TRUE))
-  set_widget_state_check("jupyter.widget.ButtonStyle", "font_variant", jupyter.widgets.base::unbox_one_of(accepted_font_variant, allow_null = TRUE))
+.onLoad <- function(libname, pkgname) {
+  set_widget_state_check("jupyter.widget.Button", "button_style", unbox_one_of(accepted_button_style, allow_empty = TRUE))
+  set_widget_state_check("jupyter.widget.Button", "icon"        , unbox_one_of(fa_metadata()$icon_names, allow_empty = TRUE))
+
+  set_widget_state_check("jupyter.widget.ButtonStyle", "font_style", unbox_one_of(accepted_font_style, allow_null = TRUE))
+  set_widget_state_check("jupyter.widget.ButtonStyle", "font_variant", unbox_one_of(accepted_font_variant, allow_null = TRUE))
   set_widget_state_check("jupyter.widget.ButtonStyle", "font_weight", function(value) {
     if (is.null(value)) {
       NULL
@@ -30,9 +37,9 @@ NULL
       ))
     }
   })
-  set_widget_state_check("jupyter.widget.ButtonStyle", "text_decoration", jupyter.widgets.base::unbox_one_of(accepted_text_decoration, allow_null = TRUE))
+  set_widget_state_check("jupyter.widget.ButtonStyle", "text_decoration", unbox_one_of(accepted_text_decoration, allow_null = TRUE))
 
-  set_widget_state_check("jupyter.widget.IntSlider", "orientation", jupyter.widgets.base::unbox_one_of(accepted_orientation))
+  set_widget_state_check("jupyter.widget.IntSlider", "orientation", unbox_one_of(accepted_orientation))
 
   set_widget_state_check("jupyter.widget.Box", "children", function(value, widget) {
     walk(value, \(kid){

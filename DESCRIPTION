@@ -25,14 +25,10 @@ Remotes:
     romainfrancois/jupyter.widgets.base
 Collate: 
     'Box-generated.R'
-    'Box.R'
     'Button-generated.R'
-    'accepted.R'
-    'Button.R'
     'ButtonStyle-generated.R'
-    'ButtonStyle.R'
     'IntSlider-generated.R'
-    'IntSlider.R'
     'SliderStyle-generated.R'
-    'SliderStyle.R'
+    'tools.R'
+    'wiipoc.R'
     'zzz.R'
