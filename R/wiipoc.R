@@ -17,6 +17,7 @@ jupyter.widget.Accordion$set("private", "children_", list())
 
 Box <- reformals(Box, "children")
 Accordion <- reformals(Accordion, "children")
+BoundedFloatText <- reformals(BoundedFloatText, c("min", "max", "value", "step"))
 
 #' @export
 #' @rdname SliderStyle

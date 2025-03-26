@@ -25,6 +25,7 @@ Remotes:
     romainfrancois/jupyter.widgets.base
 Collate: 
     'generated-Accordion.R'
+    'generated-BoundedFloatText.R'
     'generated-Box.R'
     'generated-Button.R'
     'generated-ButtonStyle.R'
