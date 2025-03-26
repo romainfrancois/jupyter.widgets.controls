@@ -26,6 +26,7 @@ Remotes:
 Collate: 
     'generated-Accordion.R'
     'generated-BoundedFloatText.R'
+    'generated-BoundedIntText.R'
     'generated-Box.R'
     'generated-Button.R'
     'generated-ButtonStyle.R'
