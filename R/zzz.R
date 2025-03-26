@@ -16,6 +16,16 @@ accepted_font_weight <- c("normal", "bold", "lighter", "bolder")
 accepted_text_decoration <- c("none", "underline", "overline", "line-through", "blink")
 accepted_orientation <- c("horizontal", "vertical")
 
+check_state_children <- function(value, widget) {
+  walk(value, \(kid){
+    assert_that(inherits(kid, "jupyter.widget.DOMWidget"), msg = "All children must be DOM widgets")
+  })
+  widget$.__enclos_env__$private$children_ <- value
+  map_chr(value, \(kid){
+    glue("IPY_MODEL_{kid$comm$id}")
+  })
+}
+
 .onLoad <- function(libname, pkgname) {
   set_widget_state_check("jupyter.widget.Button", "button_style", unbox_one_of(accepted_button_style, allow_empty = TRUE))
   set_widget_state_check("jupyter.widget.Button", "icon"        , unbox_one_of(fa_metadata()$icon_names, allow_empty = TRUE))
@@ -41,13 +51,12 @@ accepted_orientation <- c("horizontal", "vertical")
 
   set_widget_state_check("jupyter.widget.IntSlider", "orientation", unbox_one_of(accepted_orientation))
 
-  set_widget_state_check("jupyter.widget.Box", "children", function(value, widget) {
-    walk(value, \(kid){
-      assert_that(inherits(kid, "jupyter.widget.DOMWidget"), msg = "All children must be DOM widgets")
-    })
-    widget$.__enclos_env__$private$children_ <- value
-    map_chr(value, \(kid){
-      glue("IPY_MODEL_{kid$comm$id}")
-    })
+  set_widget_state_check("jupyter.widget.Box", "children", check_state_children)
+
+  set_widget_state_check("jupyter.widget.Accordion", "children", check_state_children)
+
+  set_widget_state_check("jupyter.widget.Accordion", "titles", function(value, widget) {
+    # TODO: check length consistency with children
+    value
   })
 }

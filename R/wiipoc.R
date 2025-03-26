@@ -13,8 +13,10 @@ jupyter.widget.Button$set("private", "before_comm_open", function() {
 })
 
 jupyter.widget.Box$set("private", "children_", list())
+jupyter.widget.Accordion$set("private", "children_", list())
 
 Box <- reformals(Box, "children")
+Accordion <- reformals(Accordion, "children")
 
 #' @export
 #' @rdname SliderStyle
