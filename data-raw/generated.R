@@ -10,6 +10,7 @@ writeLines(generate_dom_widget("Accordion", style = NULL), "R/generated-Accordio
 writeLines(generate_dom_widget("BoundedFloatText", style = NULL), "R/generated-BoundedFloatText.R")
 writeLines(generate_dom_widget("BoundedIntText", style = NULL), "R/generated-BoundedIntText.R")
 writeLines(generate_dom_widget("Checkbox", style = "CheckboxStyle"), "R/generated-Checkbox.R")
+writeLines(generate_dom_widget("ColorPicker", style = NULL), "R/generated-ColorPicker.R")
 
 writeLines(generate_dom_widget("Box", style = NULL), "R/generated-Box.R")
 writeLines(generate_dom_widget("Button", style = "ButtonStyle"), "R/generated-Button.R")
