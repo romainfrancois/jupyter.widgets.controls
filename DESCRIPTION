@@ -30,6 +30,8 @@ Collate:
     'generated-Box.R'
     'generated-Button.R'
     'generated-ButtonStyle.R'
+    'generated-Checkbox.R'
+    'generated-CheckboxStyle.R'
     'generated-IntSlider.R'
     'generated-SliderStyle.R'
     'tools.R'
