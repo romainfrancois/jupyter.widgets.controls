@@ -6,6 +6,7 @@
 #' @include generated-ButtonStyle.R
 #' @include generated-Checkbox.R
 #' @include generated-CheckboxStyle.R
+#' @include generated-ColorPicker.R
 #' @include generated-IntSlider.R
 #' @include generated-SliderStyle.R
 #' @include tools.R
@@ -23,6 +24,7 @@ jupyter.widget.Box$set("private", "children_", list())
 jupyter.widget.Accordion$set("private", "children_", list())
 
 Checkbox <- reformals(Checkbox, "value")
+ColorPicker <- reformals(ColorPicker, "value")
 Box <- reformals(Box, "children")
 Accordion <- reformals(Accordion, "children")
 BoundedFloatText <- reformals(BoundedFloatText, c("min", "max", "value", "step"))
