@@ -1,5 +1,12 @@
-#' @include generated-Button.R
+#' @include generated-Accordion.R
+#' @include generated-BoundedFloatText.R
+#' @include generated-BoundedIntText.R
 #' @include generated-Box.R
+#' @include generated-Button.R
+#' @include generated-ButtonStyle.R
+#' @include generated-Checkbox.R
+#' @include generated-CheckboxStyle.R
+#' @include generated-IntSlider.R
 #' @include generated-SliderStyle.R
 #' @include tools.R
 NULL
@@ -15,6 +22,7 @@ jupyter.widget.Button$set("private", "before_comm_open", function() {
 jupyter.widget.Box$set("private", "children_", list())
 jupyter.widget.Accordion$set("private", "children_", list())
 
+Checkbox <- reformals(Checkbox, "value")
 Box <- reformals(Box, "children")
 Accordion <- reformals(Accordion, "children")
 BoundedFloatText <- reformals(BoundedFloatText, c("min", "max", "value", "step"))
