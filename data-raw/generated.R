@@ -13,6 +13,7 @@ writeLines(generate_dom_widget("Checkbox", style = "CheckboxStyle"), "R/generate
 writeLines(generate_dom_widget("ColorPicker", style = NULL), "R/generated-ColorPicker.R")
 writeLines(generate_dom_widget("ColorsInput", style = NULL), "R/generated-ColorsInput.R")
 writeLines(generate_dom_widget("Combobox", style = NULL), "R/generated-Combobox.R")
+writeLines(generate_dom_widget("DatePicker", style = NULL), "R/generated-DatePicker.R")
 
 writeLines(generate_dom_widget("Box", style = NULL), "R/generated-Box.R")
 writeLines(generate_dom_widget("Button", style = "ButtonStyle"), "R/generated-Button.R")
