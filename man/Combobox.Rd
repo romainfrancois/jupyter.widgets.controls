@@ -5,6 +5,7 @@
 \title{Combobox widget}
 \usage{
 Combobox(
+  value = "",
   continuous_update = TRUE,
   description = "",
   description_allow_html = FALSE,
@@ -12,12 +13,13 @@ Combobox(
   ensure_option = FALSE,
   options = list(),
   placeholder = "​",
-  value = "",
   ...,
   error_call = current_env()
 )
 }
 \arguments{
+\item{value}{String value}
+
 \item{continuous_update}{Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.}
 
 \item{description}{Description of the control.}
@@ -31,8 +33,6 @@ Combobox(
 \item{options}{Dropdown options for the combobox}
 
 \item{placeholder}{Placeholder text to display when nothing has been typed}
-
-\item{value}{String value}
 
 \item{...}{forwarded to \link[jupyter.widgets.base:DOMWidget]{jupyter.widgets.base::jupyter.widget.DOMWidget} constructor}
 
