@@ -42,6 +42,11 @@ DatePicker <- reformals(DatePicker, c("value", "min", "max", "step"))
 Datetime <- reformals(Datetime, c("value", "min", "max"))
 NaiveDatetime <- reformals(NaiveDatetime, c("value", "min", "max"))
 
+IntSlider        <- reformals(IntSlider, c("value", "min", "max", "step"))
+FloatLogSlider   <- reformals(FloatLogSlider, c("value", "min", "max", "step"))
+FloatRangeSlider <- reformals(FloatRangeSlider, c("value", "min", "max", "step"))
+IntRangeSlider   <- reformals(IntRangeSlider, c("value", "min", "max", "step"))
+
 #' @export
 #' @rdname SliderStyle
 IntSliderStyle <- SliderStyle
