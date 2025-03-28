@@ -3,16 +3,20 @@
 #' @include generated-BoundedIntText.R
 #' @include generated-Box.R
 #' @include generated-Button.R
-#' @include generated-ButtonStyle.R
 #' @include generated-Checkbox.R
 #' @include generated-CheckboxStyle.R
 #' @include generated-ColorsInput.R
 #' @include generated-Combobox.R
 #' @include generated-DatePicker.R
-#' @include generated-CheckboxStyle.R
+#' @include generated-Datetime.R
+#' @include generated-NaiveDatetime.R
 #' @include generated-IntSlider.R
-#' @include generated-SliderStyle.R
 #' @include tools.R
+NULL
+
+#' @include generated-ButtonStyle.R
+#' @include generated-CheckboxStyle.R
+#' @include generated-SliderStyle.R
 NULL
 
 jupyter.widget.Button$set("private", "before_comm_open", function() {
@@ -35,6 +39,8 @@ BoundedFloatText <- reformals(BoundedFloatText, c("min", "max", "value", "step")
 BoundedIntText <- reformals(BoundedIntText, c("min", "max", "value", "step"))
 Combobox <- reformals(Combobox, c("value"))
 DatePicker <- reformals(DatePicker, c("value", "min", "max", "step"))
+Datetime <- reformals(Datetime, c("value", "min", "max"))
+NaiveDatetime <- reformals(NaiveDatetime, c("value", "min", "max"))
 
 #' @export
 #' @rdname SliderStyle
