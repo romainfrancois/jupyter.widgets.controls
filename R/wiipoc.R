@@ -11,6 +11,9 @@
 #' @include generated-Datetime.R
 #' @include generated-NaiveDatetime.R
 #' @include generated-IntSlider.R
+#' @include generated-FloatLogSlider.R
+#' @include generated-FloatRangeSlider.R
+#' @include generated-FloatRangeSlider.R
 #' @include tools.R
 NULL
 
