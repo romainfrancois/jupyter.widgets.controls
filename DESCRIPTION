@@ -33,6 +33,7 @@ Collate:
     'generated-Checkbox.R'
     'generated-CheckboxStyle.R'
     'generated-ColorPicker.R'
+    'generated-ColorsInput.R'
     'generated-IntSlider.R'
     'generated-SliderStyle.R'
     'tools.R'
