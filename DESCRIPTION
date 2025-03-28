@@ -35,6 +35,7 @@ Collate:
     'generated-ColorPicker.R'
     'generated-ColorsInput.R'
     'generated-Combobox.R'
+    'generated-DatePicker.R'
     'generated-IntSlider.R'
     'generated-SliderStyle.R'
     'tools.R'

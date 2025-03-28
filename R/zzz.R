@@ -3,7 +3,7 @@
 #' @import glue
 #' @import assertthat
 #' @importFrom purrr map_chr walk
-#' @importFrom rlang current_env caller_env arg_match pairlist2
+#' @importFrom rlang current_env caller_env arg_match pairlist2 is_scalar_integer
 #' @importFrom fontawesome fa_metadata
 #' @importFrom cli cli_abort
 #' @importFrom jsonlite unbox
@@ -62,5 +62,15 @@ check_state_children <- function(value, widget) {
 
   set_widget_state_check("jupyter.widget.ColorsInput", "value", identity)
   set_widget_state_check("jupyter.widget.ColorsInput", "allowed_tags", identity)
+
+  set_widget_state_check("jupyter.widget.DatePicker", "step", function(value) {
+    if (identical(value, "any")) {
+      unbox("any")
+    } else if (is_scalar_integer(value)) {
+      unbox(value)
+    } else {
+      cli::cli_abort('{.arg value} must be a scalar integer or "any"')
+    }
+  })
 
 }

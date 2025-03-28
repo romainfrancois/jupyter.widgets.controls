@@ -8,6 +8,7 @@
 #' @include generated-CheckboxStyle.R
 #' @include generated-ColorsInput.R
 #' @include generated-Combobox.R
+#' @include generated-DatePicker.R
 #' @include generated-CheckboxStyle.R
 #' @include generated-IntSlider.R
 #' @include generated-SliderStyle.R
@@ -33,6 +34,7 @@ Accordion <- reformals(Accordion, "children")
 BoundedFloatText <- reformals(BoundedFloatText, c("min", "max", "value", "step"))
 BoundedIntText <- reformals(BoundedIntText, c("min", "max", "value", "step"))
 Combobox <- reformals(Combobox, c("value"))
+DatePicker <- reformals(DatePicker, c("value", "min", "max", "step"))
 
 #' @export
 #' @rdname SliderStyle
