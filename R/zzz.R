@@ -59,4 +59,8 @@ check_state_children <- function(value, widget) {
     # TODO: check length consistency with children
     value
   })
+
+  set_widget_state_check("jupyter.widget.ColorsInput", "value", identity)
+  set_widget_state_check("jupyter.widget.ColorsInput", "allowed_tags", identity)
+
 }

@@ -1,4 +1,4 @@
-library(jupyter.widgets.generate) # >= 0.0.0.9003
+library(jupyter.widgets.generate) # >= 0.0.0.9004
 
 # Style widgets
 writeLines(generate_style_widget("SliderStyle"), "R/generated-SliderStyle.R")
@@ -11,6 +11,7 @@ writeLines(generate_dom_widget("BoundedFloatText", style = NULL), "R/generated-B
 writeLines(generate_dom_widget("BoundedIntText", style = NULL), "R/generated-BoundedIntText.R")
 writeLines(generate_dom_widget("Checkbox", style = "CheckboxStyle"), "R/generated-Checkbox.R")
 writeLines(generate_dom_widget("ColorPicker", style = NULL), "R/generated-ColorPicker.R")
+writeLines(generate_dom_widget("ColorsInput", style = NULL), "R/generated-ColorsInput.R")
 
 writeLines(generate_dom_widget("Box", style = NULL), "R/generated-Box.R")
 writeLines(generate_dom_widget("Button", style = "ButtonStyle"), "R/generated-Button.R")
