@@ -6,7 +6,9 @@
 #' @include generated-ButtonStyle.R
 #' @include generated-Checkbox.R
 #' @include generated-CheckboxStyle.R
-#' @include generated-ColorPicker.R
+#' @include generated-ColorsInput.R
+#' @include generated-Combobox.R
+#' @include generated-CheckboxStyle.R
 #' @include generated-IntSlider.R
 #' @include generated-SliderStyle.R
 #' @include tools.R
@@ -30,6 +32,7 @@ Box <- reformals(Box, "children")
 Accordion <- reformals(Accordion, "children")
 BoundedFloatText <- reformals(BoundedFloatText, c("min", "max", "value", "step"))
 BoundedIntText <- reformals(BoundedIntText, c("min", "max", "value", "step"))
+Combobox <- reformals(Combobox, c("value"))
 
 #' @export
 #' @rdname SliderStyle
