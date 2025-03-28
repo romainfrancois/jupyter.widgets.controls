@@ -11,6 +11,9 @@
 #' @include generated-Datetime.R
 #' @include generated-NaiveDatetime.R
 #' @include generated-IntSlider.R
+#' @include generated-FloatLogSlider.R
+#' @include generated-FloatRangeSlider.R
+#' @include generated-FloatRangeSlider.R
 #' @include tools.R
 NULL
 
@@ -41,6 +44,11 @@ Combobox <- reformals(Combobox, c("value"))
 DatePicker <- reformals(DatePicker, c("value", "min", "max", "step"))
 Datetime <- reformals(Datetime, c("value", "min", "max"))
 NaiveDatetime <- reformals(NaiveDatetime, c("value", "min", "max"))
+
+IntSlider        <- reformals(IntSlider, c("value", "min", "max", "step"))
+FloatLogSlider   <- reformals(FloatLogSlider, c("value", "min", "max", "step"))
+FloatRangeSlider <- reformals(FloatRangeSlider, c("value", "min", "max", "step"))
+IntRangeSlider   <- reformals(IntRangeSlider, c("value", "min", "max", "step"))
 
 #' @export
 #' @rdname SliderStyle

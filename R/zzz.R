@@ -73,4 +73,12 @@ check_state_children <- function(value, widget) {
     }
   })
 
+  set_widget_state_check("jupyter.widget.FloatRangeSlider", "value", function(value) {
+    c(value[[1]], value[[2]])
+  })
+
+  set_widget_state_check("jupyter.widget.IntRangeSlider", "value", function(value) {
+    c(value[[1]], value[[2]])
+  })
+
 }
