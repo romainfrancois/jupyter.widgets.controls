@@ -41,6 +41,7 @@ Collate:
     'generated-FloatProgress.R'
     'generated-FloatRangeSlider.R'
     'generated-FloatText.R'
+    'generated-GridBox.R'
     'generated-HBox.R'
     'generated-HTML.R'
     'generated-HTMLMath.R'
