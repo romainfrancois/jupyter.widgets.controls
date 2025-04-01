@@ -47,6 +47,10 @@ writeLines(generate_dom_widget("ToggleButton", style = "ToggleButtonStyle"), "R/
 # writeLines(generate_style_widget("ToggleButtonsStyle"), "R/generated-ToggleButtonsStyle.R")
 # writeLines(generate_dom_widget("ToggleButtons", style = "ToggleButtonsStyle"), "R/generated-ToggleButtons.R")
 
+# Label
+writeLines(generate_style_widget("LabelStyle"), "R/generated-LabelStyle.R")
+writeLines(generate_dom_widget("Label", style = "LabelStyle"), "R/generated-Label.R")
+
 # *Box
 writeLines(generate_dom_widget("Box", style = NULL) , "R/generated-Box.R")
 writeLines(generate_dom_widget("HBox", style = NULL), "R/generated-HBox.R")
