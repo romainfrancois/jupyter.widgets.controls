@@ -53,6 +53,7 @@ Collate:
     'generated-Label.R'
     'generated-LabelStyle.R'
     'generated-NaiveDatetime.R'
+    'generated-Password.R'
     'generated-ProgressStyle.R'
     'generated-SliderStyle.R'
     'generated-Text.R'
