@@ -61,6 +61,7 @@ Collate:
     'generated-Tab.R'
     'generated-Text.R'
     'generated-TextStyle.R'
+    'generated-Textarea.R'
     'generated-ToggleButton.R'
     'generated-ToggleButtonStyle.R'
     'generated-VBox.R'

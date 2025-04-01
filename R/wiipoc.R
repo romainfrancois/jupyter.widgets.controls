@@ -95,6 +95,7 @@ IntProgress        <- reformals(IntProgress, c("value", "min", "max"))
 FloatProgress      <- reformals(FloatProgress, c("value", "min", "max"))
 
 Password           <- reformals(Password, c("value"))
+Textarea           <- reformals(Textarea, c("value", "rows", "placeholder"))
 
 #' @export
 #' @rdname SliderStyle

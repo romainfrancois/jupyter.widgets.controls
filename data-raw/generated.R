@@ -68,6 +68,7 @@ writeLines(generate_dom_widget("GridBox", style = NULL), "R/generated-GridBox.R"
 writeLines(generate_dom_widget("Tab", style = NULL), "R/generated-Tab.R")
 writeLines(generate_dom_widget("Stack", style = NULL), "R/generated-Stack.R")
 
-
-
 writeLines(generate_dom_widget("Button", style = "ButtonStyle"), "R/generated-Button.R")
+
+writeLines(generate_dom_widget("Textarea", style = NULL), "R/generated-Textarea.R")
+
