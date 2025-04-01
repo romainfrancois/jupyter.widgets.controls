@@ -17,7 +17,7 @@ Imports:
     fontawesome,
     glue,
     jsonlite,
-    jupyter.widgets.base (>= 0.0.0.9007),
+    jupyter.widgets.base (>= 0.0.0.9008),
     purrr,
     R6,
     rlang
