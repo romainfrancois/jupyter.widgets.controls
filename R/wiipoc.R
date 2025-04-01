@@ -24,6 +24,7 @@
 #' @include generated-ToggleButton.R
 #' @include generated-IntProgress.R
 #' @include generated-FloatProgress.R
+#' @include generated-Password.R
 #' @include tools.R
 NULL
 
@@ -80,6 +81,8 @@ Label              <- reformals(Label, c("value", "placeholder"))
 
 IntProgress        <- reformals(IntProgress, c("value", "min", "max"))
 FloatProgress      <- reformals(FloatProgress, c("value", "min", "max"))
+
+Password           <- reformals(Password, c("value"))
 
 #' @export
 #' @rdname SliderStyle

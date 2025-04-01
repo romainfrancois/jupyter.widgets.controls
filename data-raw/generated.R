@@ -56,6 +56,9 @@ writeLines(generate_style_widget("ProgressStyle"), "R/generated-ProgressStyle.R"
 writeLines(generate_dom_widget("IntProgress", style = "ProgressStyle"), "R/generated-IntProgress.R")
 writeLines(generate_dom_widget("FloatProgress", style = "ProgressStyle"), "R/generated-FloatProgress.R")
 
+writeLines(generate_dom_widget("Password", style = NULL), "R/generated-Password.R")
+
+
 # *Box
 writeLines(generate_dom_widget("Box", style = NULL) , "R/generated-Box.R")
 writeLines(generate_dom_widget("HBox", style = NULL), "R/generated-HBox.R")
