@@ -57,6 +57,7 @@ Collate:
     'generated-Password.R'
     'generated-ProgressStyle.R'
     'generated-SliderStyle.R'
+    'generated-Stack.R'
     'generated-Tab.R'
     'generated-Text.R'
     'generated-TextStyle.R'
