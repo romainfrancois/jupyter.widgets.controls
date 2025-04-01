@@ -22,6 +22,8 @@
 #' @include generated-HTML.R
 #' @include generated-HTMLMath.R
 #' @include generated-ToggleButton.R
+#' @include generated-IntProgress.R
+#' @include generated-FloatProgress.R
 #' @include tools.R
 NULL
 
