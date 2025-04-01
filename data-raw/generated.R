@@ -71,4 +71,5 @@ writeLines(generate_dom_widget("Stack", style = NULL), "R/generated-Stack.R")
 writeLines(generate_dom_widget("Button", style = "ButtonStyle"), "R/generated-Button.R")
 
 writeLines(generate_dom_widget("Textarea", style = NULL), "R/generated-Textarea.R")
+writeLines(generate_dom_widget("Time", style = NULL), "R/generated-Time.R")
 

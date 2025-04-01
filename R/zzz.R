@@ -26,6 +26,16 @@ check_state_children <- function(value, widget) {
   })
 }
 
+check_any_or_number <- function(value, widget) {
+  if (identical(value, "any")) {
+    unbox("any")
+  } else if (is_scalar_integer(value)) {
+    unbox(value)
+  } else {
+    cli::cli_abort('{.arg value} must be a scalar integer or "any"')
+  }
+}
+
 .onLoad <- function(libname, pkgname) {
   set_widget_state_check("jupyter.widget.Button", "button_style", unbox_one_of(accepted_button_style, allow_empty = TRUE))
   set_widget_state_check("jupyter.widget.Button", "icon"        , unbox_one_of(fa_metadata()$icon_names, allow_empty = TRUE))
@@ -68,15 +78,8 @@ check_state_children <- function(value, widget) {
   set_widget_state_check("jupyter.widget.ColorsInput", "value", identity)
   set_widget_state_check("jupyter.widget.ColorsInput", "allowed_tags", identity)
 
-  set_widget_state_check("jupyter.widget.DatePicker", "step", function(value) {
-    if (identical(value, "any")) {
-      unbox("any")
-    } else if (is_scalar_integer(value)) {
-      unbox(value)
-    } else {
-      cli::cli_abort('{.arg value} must be a scalar integer or "any"')
-    }
-  })
+  set_widget_state_check("jupyter.widget.DatePicker", "step", check_any_or_number)
+  set_widget_state_check("jupyter.widget.Time", "step", check_any_or_number)
 
   set_widget_state_check("jupyter.widget.FloatRangeSlider", "value", function(value) {
     c(value[[1]], value[[2]])

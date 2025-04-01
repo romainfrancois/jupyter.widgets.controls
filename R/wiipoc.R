@@ -30,6 +30,8 @@
 #' @include generated-IntProgress.R
 #' @include generated-FloatProgress.R
 #' @include generated-Password.R
+#' @include generated-Textarea.R
+#' @include generated-Time.R
 #' @include tools.R
 NULL
 
@@ -96,6 +98,7 @@ FloatProgress      <- reformals(FloatProgress, c("value", "min", "max"))
 
 Password           <- reformals(Password, c("value"))
 Textarea           <- reformals(Textarea, c("value", "rows", "placeholder"))
+Time               <- reformals(Time, c("value", "min", "max", "step"))
 
 #' @export
 #' @rdname SliderStyle
