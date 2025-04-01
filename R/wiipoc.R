@@ -53,6 +53,7 @@ ColorsInput        <- reformals(ColorsInput, c("value", "description", "descript
 Box                <- reformals(Box, "children")
 HBox               <- reformals(HBox, "children")
 VBox               <- reformals(VBox, "children")
+
 Accordion          <- reformals(Accordion, "children")
 BoundedFloatText   <- reformals(BoundedFloatText, c("min", "max", "value", "step"))
 BoundedIntText     <- reformals(BoundedIntText, c("min", "max", "value", "step"))
