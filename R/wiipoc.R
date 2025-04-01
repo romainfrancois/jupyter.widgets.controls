@@ -22,6 +22,8 @@
 #' @include generated-HTML.R
 #' @include generated-HTMLMath.R
 #' @include generated-ToggleButton.R
+#' @include generated-IntProgress.R
+#' @include generated-FloatProgress.R
 #' @include tools.R
 NULL
 
@@ -76,6 +78,8 @@ ToggleButton       <- reformals(ToggleButton, c("value"))
 
 Label              <- reformals(Label, c("value", "placeholder"))
 
+IntProgress        <- reformals(IntProgress, c("value", "min", "max"))
+FloatProgress      <- reformals(FloatProgress, c("value", "min", "max"))
 
 #' @export
 #' @rdname SliderStyle
