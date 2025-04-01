@@ -33,5 +33,9 @@ writeLines(generate_dom_widget("FloatText", style = "TextStyle"), "R/generated-F
 writeLines(generate_dom_widget("BoundedIntText", style = "TextStyle"), "R/generated-BoundedIntText.R")
 writeLines(generate_dom_widget("BoundedFloatText", style = "TextStyle"), "R/generated-BoundedFloatText.R")
 
-writeLines(generate_dom_widget("Box", style = NULL), "R/generated-Box.R")
+# *Box
+writeLines(generate_dom_widget("Box", style = NULL) , "R/generated-Box.R")
+writeLines(generate_dom_widget("HBox", style = NULL), "R/generated-HBox.R")
+writeLines(generate_dom_widget("VBox", style = NULL), "R/generated-VBox.R")
+
 writeLines(generate_dom_widget("Button", style = "ButtonStyle"), "R/generated-Button.R")
