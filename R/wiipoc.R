@@ -19,6 +19,8 @@
 #' @include generated-FloatText.R
 #' @include generated-BoundedIntText.R
 #' @include generated-BoundedFloatText.R
+#' @include generated-HTML.R
+#' @include generated-HTMLMath.R
 #' @include tools.R
 NULL
 
@@ -65,6 +67,9 @@ IntText            <- reformals(IntText, c("value", "step"))
 FloatText          <- reformals(FloatText, c("value", "step"))
 BoundedIntText     <- reformals(BoundedIntText, c("value", "min", "max", "step"))
 BoundedFloatText   <- reformals(BoundedFloatText, c("value", "min", "max", "step"))
+
+HTML               <- reformals(HTML    , c("value", "placeholder"))
+HTMLMath           <- reformals(HTMLMath, c("value", "placeholder"))
 
 #' @export
 #' @rdname SliderStyle
