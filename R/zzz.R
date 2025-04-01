@@ -52,6 +52,8 @@ check_state_children <- function(value, widget) {
   set_widget_state_check("jupyter.widget.IntSlider", "orientation", unbox_one_of(accepted_orientation))
 
   set_widget_state_check("jupyter.widget.Box", "children", check_state_children)
+  set_widget_state_check("jupyter.widget.HBox", "children", check_state_children)
+  set_widget_state_check("jupyter.widget.VBox", "children", check_state_children)
 
   set_widget_state_check("jupyter.widget.Accordion", "children", check_state_children)
 
