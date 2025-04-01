@@ -5,11 +5,13 @@
 \title{ToggleButton widget}
 \usage{
 ToggleButton(
-  value = "",
-  placeholder = "​",
+  value = FALSE,
+  button_style = "",
   description = "",
   description_allow_html = FALSE,
-  style = HTMLStyle(),
+  disabled = FALSE,
+  icon = "",
+  style = ToggleButtonStyle(),
   ...,
   error_call = current_env()
 )
@@ -17,9 +19,15 @@ ToggleButton(
 \arguments{
 \item{value}{Bool value}
 
+\item{button_style}{Use a predefined styling for the button.}
+
 \item{description}{Description of the control.}
 
 \item{description_allow_html}{Accept HTML in the description.}
+
+\item{disabled}{Enable or disable user changes.}
+
+\item{icon}{Font-awesome icon.}
 
 \item{style}{Must inherit from \link{jupyter.widget.ToggleButtonStyle}.}
 
@@ -29,12 +37,6 @@ ToggleButton(
 running function, e.g. \code{caller_env()}. The function will be
 mentioned in error messages as the source of the error. See the
 \code{call} argument of \code{\link[rlang:abort]{abort()}} for more information.}
-
-\item{button_style}{Use a predefined styling for the button.}
-
-\item{disabled}{Enable or disable user changes.}
-
-\item{icon}{Font-awesome icon.}
 }
 \description{
 ToggleButton widget
