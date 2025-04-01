@@ -33,6 +33,12 @@ writeLines(generate_dom_widget("FloatText", style = "TextStyle"), "R/generated-F
 writeLines(generate_dom_widget("BoundedIntText", style = "TextStyle"), "R/generated-BoundedIntText.R")
 writeLines(generate_dom_widget("BoundedFloatText", style = "TextStyle"), "R/generated-BoundedFloatText.R")
 
+# *HTML
+writeLines(generate_style_widget("HTMLStyle"), "R/generated-HTMLStyle.R")
+writeLines(generate_style_widget("HTMLMathStyle"), "R/generated-HTMLMathStyle.R")
+writeLines(generate_dom_widget("HTML", style = "HTMLStyle"), "R/generated-HTML.R")
+writeLines(generate_dom_widget("HTMLMath", style = "HTMLMathStyle"), "R/generated-HTMLMath.R")
+
 # *Box
 writeLines(generate_dom_widget("Box", style = NULL) , "R/generated-Box.R")
 writeLines(generate_dom_widget("HBox", style = NULL), "R/generated-HBox.R")
