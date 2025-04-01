@@ -14,6 +14,7 @@ jupyter.widget.BoundedFloatText <- R6::R6Class("jupyter.widget.BoundedFloatText"
     #' @param min Min value
     #' @param step Minimum step to increment the value
     #' @param value Float value
+    #' @param style Must inherit from [jupyter.widget.TextStyle].
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
     #' @param error_call see [rlang::args_error_context()]
@@ -28,6 +29,7 @@ jupyter.widget.BoundedFloatText <- R6::R6Class("jupyter.widget.BoundedFloatText"
       min = 0,
       step = NULL,
       value = 0,
+      style = TextStyle(),
 
       ...,
       error_call = caller_env()
@@ -49,7 +51,7 @@ jupyter.widget.BoundedFloatText <- R6::R6Class("jupyter.widget.BoundedFloatText"
         `_model_name`   = "BoundedFloatTextModel",
         `_view_module`  = "@jupyter-widgets/controls",
         `_view_name`    = "FloatTextView",
-        
+        style = style, 
         ...,
         error_call = error_call
       )
@@ -104,6 +106,7 @@ jupyter.widget.BoundedFloatText <- R6::R6Class("jupyter.widget.BoundedFloatText"
 #' @param step Minimum step to increment the value
 #' @param value Float value
 #' 
+#' @param style Must inherit from [jupyter.widget.TextStyle].
 #' 
 #' @param ... forwarded to [jupyter.widgets.base::jupyter.widget.DOMWidget] constructor
 #' @inheritParams rlang::args_error_context
@@ -118,6 +121,7 @@ BoundedFloatText <- function(
   min = 0,
   step = NULL,
   value = 0,
+  style = TextStyle(),
   ...,
   error_call = current_env()
 ){
@@ -130,6 +134,7 @@ BoundedFloatText <- function(
     min = min,
     step = step,
     value = value,
+    style = style,
     ...,
     error_call = error_call
   )

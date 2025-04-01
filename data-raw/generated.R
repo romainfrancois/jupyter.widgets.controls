@@ -25,5 +25,13 @@ writeLines(generate_dom_widget("FloatLogSlider", style = "SliderStyle"), "R/gene
 writeLines(generate_dom_widget("FloatRangeSlider", style = "SliderStyle"), "R/generated-FloatRangeSlider.R")
 writeLines(generate_dom_widget("IntRangeSlider", style = "SliderStyle"), "R/generated-IntRangeSlider.R")
 
+# *Text
+writeLines(generate_style_widget("TextStyle"), "R/generated-TextStyle.R")
+writeLines(generate_dom_widget("Text", style = "TextStyle"), "R/generated-Text.R")
+writeLines(generate_dom_widget("IntText", style = "TextStyle"), "R/generated-IntText.R")
+writeLines(generate_dom_widget("FloatText", style = "TextStyle"), "R/generated-FloatText.R")
+writeLines(generate_dom_widget("BoundedIntText", style = "TextStyle"), "R/generated-BoundedIntText.R")
+writeLines(generate_dom_widget("BoundedFloatText", style = "TextStyle"), "R/generated-BoundedFloatText.R")
+
 writeLines(generate_dom_widget("Box", style = NULL), "R/generated-Box.R")
 writeLines(generate_dom_widget("Button", style = "ButtonStyle"), "R/generated-Button.R")

@@ -14,12 +14,18 @@
 #' @include generated-FloatLogSlider.R
 #' @include generated-FloatRangeSlider.R
 #' @include generated-FloatRangeSlider.R
+#' @include generated-Text.R
+#' @include generated-IntText.R
+#' @include generated-FloatText.R
+#' @include generated-BoundedIntText.R
+#' @include generated-BoundedFloatText.R
 #' @include tools.R
 NULL
 
 #' @include generated-ButtonStyle.R
 #' @include generated-CheckboxStyle.R
 #' @include generated-SliderStyle.R
+#' @include generated-TextStyle.R
 NULL
 
 jupyter.widget.Button$set("private", "before_comm_open", function() {
@@ -49,6 +55,12 @@ IntSlider        <- reformals(IntSlider, c("value", "min", "max", "step"))
 FloatLogSlider   <- reformals(FloatLogSlider, c("value", "min", "max", "step"))
 FloatRangeSlider <- reformals(FloatRangeSlider, c("value", "min", "max", "step"))
 IntRangeSlider   <- reformals(IntRangeSlider, c("value", "min", "max", "step"))
+
+Text               <- reformals(Text, c("value", "placeholder"))
+IntText            <- reformals(IntText, c("value", "step"))
+FloatText          <- reformals(FloatText, c("value", "step"))
+BoundedIntText     <- reformals(BoundedIntText, c("value", "min", "max", "step"))
+BoundedFloatText   <- reformals(BoundedFloatText, c("value", "min", "max", "step"))
 
 #' @export
 #' @rdname SliderStyle

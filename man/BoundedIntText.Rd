@@ -5,24 +5,25 @@
 \title{BoundedIntText widget}
 \usage{
 BoundedIntText(
+  value = 0L,
   min = 0L,
   max = 100L,
-  value = 0L,
   step = 1L,
   continuous_update = FALSE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
+  style = TextStyle(),
   ...,
   error_call = current_env()
 )
 }
 \arguments{
+\item{value}{Int value}
+
 \item{min}{Min value}
 
 \item{max}{Max value}
-
-\item{value}{Int value}
 
 \item{step}{Minimum step to increment the value}
 
@@ -33,6 +34,8 @@ BoundedIntText(
 \item{description_allow_html}{Accept HTML in the description.}
 
 \item{disabled}{Enable or disable user changes}
+
+\item{style}{Must inherit from \link{jupyter.widget.TextStyle}.}
 
 \item{...}{forwarded to \link[jupyter.widgets.base:DOMWidget]{jupyter.widgets.base::jupyter.widget.DOMWidget} constructor}
 
