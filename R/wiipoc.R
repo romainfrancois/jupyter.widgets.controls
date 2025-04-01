@@ -45,6 +45,7 @@ jupyter.widget.Button$set("private", "before_comm_open", function() {
 jupyter.widget.Box$set("private", "children_", list())
 jupyter.widget.HBox$set("private", "children_", list())
 jupyter.widget.VBox$set("private", "children_", list())
+jupyter.widget.GridBox$set("private", "children_", list())
 jupyter.widget.Accordion$set("private", "children_", list())
 
 Checkbox           <- reformals(Checkbox, "value")
