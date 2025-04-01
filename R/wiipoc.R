@@ -21,6 +21,7 @@
 #' @include generated-BoundedFloatText.R
 #' @include generated-HTML.R
 #' @include generated-HTMLMath.R
+#' @include generated-ToggleButton.R
 #' @include tools.R
 NULL
 
@@ -70,6 +71,8 @@ BoundedFloatText   <- reformals(BoundedFloatText, c("value", "min", "max", "step
 
 HTML               <- reformals(HTML    , c("value", "placeholder"))
 HTMLMath           <- reformals(HTMLMath, c("value", "placeholder"))
+
+ToggleButton       <- reformals(HTML    , c("value"))
 
 #' @export
 #' @rdname SliderStyle

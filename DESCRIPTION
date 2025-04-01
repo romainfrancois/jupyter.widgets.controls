@@ -52,6 +52,8 @@ Collate:
     'generated-SliderStyle.R'
     'generated-Text.R'
     'generated-TextStyle.R'
+    'generated-ToggleButton.R'
+    'generated-ToggleButtonStyle.R'
     'generated-VBox.R'
     'tools.R'
     'wiipoc.R'
