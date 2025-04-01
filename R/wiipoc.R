@@ -2,6 +2,10 @@
 #' @include generated-BoundedFloatText.R
 #' @include generated-BoundedIntText.R
 #' @include generated-Box.R
+#' @include generated-VBox.R
+#' @include generated-HBox.R
+#' @include generated-GridBox.R
+#' @include generated-Tab.R
 #' @include generated-Button.R
 #' @include generated-Checkbox.R
 #' @include generated-CheckboxStyle.R
@@ -25,6 +29,7 @@
 #' @include generated-IntProgress.R
 #' @include generated-FloatProgress.R
 #' @include generated-Password.R
+#' @include generated-Tab.R
 #' @include tools.R
 NULL
 
@@ -47,6 +52,7 @@ jupyter.widget.HBox$set("private", "children_", list())
 jupyter.widget.VBox$set("private", "children_", list())
 jupyter.widget.GridBox$set("private", "children_", list())
 jupyter.widget.Accordion$set("private", "children_", list())
+jupyter.widget.Tab$set("private", "children_", list())
 
 Checkbox           <- reformals(Checkbox, "value")
 ColorPicker        <- reformals(ColorPicker, "value")
@@ -54,6 +60,8 @@ ColorsInput        <- reformals(ColorsInput, c("value", "description", "descript
 Box                <- reformals(Box, "children")
 HBox               <- reformals(HBox, "children")
 VBox               <- reformals(VBox, "children")
+GridBox            <- reformals(GridBox, "children")
+Tab                <- reformals(Tab, "children")
 
 Accordion          <- reformals(Accordion, "children")
 BoundedFloatText   <- reformals(BoundedFloatText, c("min", "max", "value", "step"))

@@ -65,4 +65,7 @@ writeLines(generate_dom_widget("HBox", style = NULL)   , "R/generated-HBox.R")
 writeLines(generate_dom_widget("VBox", style = NULL)   , "R/generated-VBox.R")
 writeLines(generate_dom_widget("GridBox", style = NULL), "R/generated-GridBox.R")
 
+writeLines(generate_dom_widget("Tab", style = NULL), "R/generated-Tab.R")
+
+
 writeLines(generate_dom_widget("Button", style = "ButtonStyle"), "R/generated-Button.R")
