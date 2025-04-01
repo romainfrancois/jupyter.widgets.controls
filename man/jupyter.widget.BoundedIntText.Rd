@@ -64,6 +64,7 @@ BoundedIntText widget
   min = 0L,
   step = 1L,
   value = 0L,
+  style = TextStyle(),
   ...,
   error_call = caller_env()
 )}\if{html}{\out{</div>}}
@@ -87,6 +88,8 @@ BoundedIntText widget
 \item{\code{step}}{Minimum step to increment the value}
 
 \item{\code{value}}{Int value}
+
+\item{\code{style}}{Must inherit from \link{jupyter.widget.TextStyle}.}
 
 \item{\code{...}}{See \link[jupyter.widgets.base:DOMWidget]{jupyter.widgets.base::DOMWidget}}
 
