@@ -48,6 +48,8 @@ Collate:
     'generated-IntRangeSlider.R'
     'generated-IntSlider.R'
     'generated-IntText.R'
+    'generated-Label.R'
+    'generated-LabelStyle.R'
     'generated-NaiveDatetime.R'
     'generated-SliderStyle.R'
     'generated-Text.R'

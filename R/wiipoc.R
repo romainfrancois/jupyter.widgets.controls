@@ -74,6 +74,9 @@ HTMLMath           <- reformals(HTMLMath, c("value", "placeholder"))
 
 ToggleButton       <- reformals(ToggleButton, c("value"))
 
+Label              <- reformals(Label, c("value", "placeholder"))
+
+
 #' @export
 #' @rdname SliderStyle
 IntSliderStyle <- SliderStyle
