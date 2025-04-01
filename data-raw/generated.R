@@ -39,6 +39,14 @@ writeLines(generate_style_widget("HTMLMathStyle"), "R/generated-HTMLMathStyle.R"
 writeLines(generate_dom_widget("HTML", style = "HTMLStyle"), "R/generated-HTML.R")
 writeLines(generate_dom_widget("HTMLMath", style = "HTMLMathStyle"), "R/generated-HTMLMath.R")
 
+# *ToggleButton
+writeLines(generate_style_widget("ToggleButtonStyle"), "R/generated-ToggleButtonStyle.R")
+writeLines(generate_dom_widget("ToggleButton", style = "ToggleButtonStyle"), "R/generated-ToggleButton.R")
+# TODO: update jupyter.widgets.generate to handle _options_label
+#       https://github.com/romainfrancois/jupyter.widgets.generate/issues/7
+# writeLines(generate_style_widget("ToggleButtonsStyle"), "R/generated-ToggleButtonsStyle.R")
+# writeLines(generate_dom_widget("ToggleButtons", style = "ToggleButtonsStyle"), "R/generated-ToggleButtons.R")
+
 # *Box
 writeLines(generate_dom_widget("Box", style = NULL) , "R/generated-Box.R")
 writeLines(generate_dom_widget("HBox", style = NULL), "R/generated-HBox.R")
