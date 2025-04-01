@@ -51,6 +51,11 @@ writeLines(generate_dom_widget("ToggleButton", style = "ToggleButtonStyle"), "R/
 writeLines(generate_style_widget("LabelStyle"), "R/generated-LabelStyle.R")
 writeLines(generate_dom_widget("Label", style = "LabelStyle"), "R/generated-Label.R")
 
+# Progress
+writeLines(generate_style_widget("ProgressStyle"), "R/generated-ProgressStyle.R")
+writeLines(generate_dom_widget("IntProgress", style = "ProgressStyle"), "R/generated-IntProgress.R")
+writeLines(generate_dom_widget("FloatProgress", style = "ProgressStyle"), "R/generated-FloatProgress.R")
+
 # *Box
 writeLines(generate_dom_widget("Box", style = NULL) , "R/generated-Box.R")
 writeLines(generate_dom_widget("HBox", style = NULL), "R/generated-HBox.R")

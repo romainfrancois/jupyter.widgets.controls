@@ -76,6 +76,8 @@ ToggleButton       <- reformals(ToggleButton, c("value"))
 
 Label              <- reformals(Label, c("value", "placeholder"))
 
+IntProgress        <- reformals(IntProgress, c("value", "min", "max"))
+FloatProgress      <- reformals(FloatProgress, c("value", "min", "max"))
 
 #' @export
 #' @rdname SliderStyle
