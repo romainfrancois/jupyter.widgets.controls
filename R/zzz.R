@@ -14,7 +14,6 @@ accepted_font_style <- c("normal", "italic", "oblique")
 accepted_font_variant <- c("normal", "small-caps", "all-small-caps", "petite-caps", "all-petite-caps", "unicase", "titling-caps")
 accepted_font_weight <- c("normal", "bold", "lighter", "bolder")
 accepted_text_decoration <- c("none", "underline", "overline", "line-through", "blink")
-accepted_orientation <- c("horizontal", "vertical")
 
 check_state_children <- function(value, widget) {
   walk(value, \(kid){
@@ -71,12 +70,6 @@ check_state_titles <- function(value, widget) {
   set_widget_state_check("jupyter.widget.ButtonStyle", "font_variant", unbox_one_of(accepted_font_variant, allow_null = TRUE))
   set_widget_state_check("jupyter.widget.ButtonStyle", "font_weight", check_state_font_weight)
   set_widget_state_check("jupyter.widget.ButtonStyle", "text_decoration", unbox_one_of(accepted_text_decoration, allow_null = TRUE))
-
-  set_widget_state_check("jupyter.widget.IntSlider"       , "orientation", unbox_one_of(accepted_orientation))
-  set_widget_state_check("jupyter.widget.FloatSlider"     , "orientation", unbox_one_of(accepted_orientation))
-  set_widget_state_check("jupyter.widget.FloatLogSlider"  , "orientation", unbox_one_of(accepted_orientation))
-  set_widget_state_check("jupyter.widget.FloatRangeSlider", "orientation", unbox_one_of(accepted_orientation))
-  set_widget_state_check("jupyter.widget.IntRangeSlider"  , "orientation", unbox_one_of(accepted_orientation))
 
   set_widget_state_check("jupyter.widget.FloatRangeSlider", "value", check_state_range_slider_value)
   set_widget_state_check("jupyter.widget.IntRangeSlider"  , "value", check_state_range_slider_value)
