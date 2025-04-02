@@ -100,8 +100,8 @@ Accordion <- function(
 }
 
 rlang::on_load({
-  set_widget_state_check("jupyter.widget.Accordion", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
   set_widget_state_check("jupyter.widget.Accordion", "children", check_state_children)
+  set_widget_state_check("jupyter.widget.Accordion", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
 })
 
 #' Checkbox widget
@@ -3500,8 +3500,8 @@ Box <- function(
 }
 
 rlang::on_load({
-  set_widget_state_check("jupyter.widget.Box", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
   set_widget_state_check("jupyter.widget.Box", "children", check_state_children)
+  set_widget_state_check("jupyter.widget.Box", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
 })
 
 #' HBox widget
@@ -3584,8 +3584,8 @@ HBox <- function(
 }
 
 rlang::on_load({
-  set_widget_state_check("jupyter.widget.HBox", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
   set_widget_state_check("jupyter.widget.HBox", "children", check_state_children)
+  set_widget_state_check("jupyter.widget.HBox", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
 })
 
 #' VBox widget
@@ -3668,8 +3668,8 @@ VBox <- function(
 }
 
 rlang::on_load({
-  set_widget_state_check("jupyter.widget.VBox", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
   set_widget_state_check("jupyter.widget.VBox", "children", check_state_children)
+  set_widget_state_check("jupyter.widget.VBox", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
 })
 
 #' GridBox widget
@@ -3752,8 +3752,8 @@ GridBox <- function(
 }
 
 rlang::on_load({
-  set_widget_state_check("jupyter.widget.GridBox", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
   set_widget_state_check("jupyter.widget.GridBox", "children", check_state_children)
+  set_widget_state_check("jupyter.widget.GridBox", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
 })
 
 #' Tab widget
@@ -3856,8 +3856,8 @@ Tab <- function(
 }
 
 rlang::on_load({
-  set_widget_state_check("jupyter.widget.Tab", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
   set_widget_state_check("jupyter.widget.Tab", "children", check_state_children)
+  set_widget_state_check("jupyter.widget.Tab", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
 })
 
 #' Stack widget
@@ -3960,8 +3960,8 @@ Stack <- function(
 }
 
 rlang::on_load({
-  set_widget_state_check("jupyter.widget.Stack", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
   set_widget_state_check("jupyter.widget.Stack", "children", check_state_children)
+  set_widget_state_check("jupyter.widget.Stack", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
 })
 
 #' Button widget
@@ -4331,4 +4331,127 @@ Time <- function(
   )
 }
 
+
+#' Select widget
+#'
+#' @export
+jupyter.widget.Select <- R6::R6Class("jupyter.widget.Select", inherit = jupyter.widget.DOMWidget,
+  public = list(
+
+    #' @param options The labels for the options.
+    #' @param index Selected index
+    #' @param description Description of the control.
+    #' @param description_allow_html Accept HTML in the description.
+    #' @param disabled Enable or disable user changes
+    #' @param rows The number of rows to display.
+    #'
+    #' @param ... See [jupyter.widgets.base::DOMWidget]
+    #' @param error_call see [rlang::args_error_context()]
+    #'
+    #' @return a new 'jupyter.widget.Select' widget
+    initialize = function(
+      options = list(),
+      index = NULL,
+      description = "",
+      description_allow_html = FALSE,
+      disabled = FALSE,
+      rows = 5L,
+
+      ...,
+      error_call = caller_env()
+    )
+    {
+      private$state_ <- update_list(private$state_,
+        `_options_labels` = self$check_state('options', options),
+        index = self$check_state('index', index),
+        description = self$check_state('description', description),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html),
+        disabled = self$check_state('disabled', disabled),
+        rows = self$check_state('rows', rows)
+      )
+
+      super$initialize(
+        `_model_module` = "@jupyter-widgets/controls",
+        `_model_name`   = "SelectModel",
+        `_view_module`  = "@jupyter-widgets/controls",
+        `_view_name`    = "SelectView",
+        
+        ...,
+        error_call = error_call
+      )
+
+    }
+  ),
+
+  active = list(
+    
+    #' @field options
+    #' set options
+    options = function(x) if (missing(x)) private$state_[['_options_labels']] else self$update(`_options_labels` = self$check_state('options', x)),
+    
+    #' @field index
+    #' Selected index
+    index = function(x) if(missing(x)) private$state_[['index']] else self$update(index = self$check_state('index', x)),
+    
+    #' @field description
+    #' Description of the control.
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    
+    #' @field description_allow_html
+    #' Accept HTML in the description.
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    
+    #' @field disabled
+    #' Enable or disable user changes
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
+    
+    #' @field rows
+    #' The number of rows to display.
+    rows = function(x) if(missing(x)) private$state_[['rows']] else self$update(rows = self$check_state('rows', x))
+  ),
+
+  private = list(
+
+  )
+)
+
+#' Select widget
+#'
+#' @param options The labels for the options.
+#' @param index Selected index
+#' @param description Description of the control.
+#' @param description_allow_html Accept HTML in the description.
+#' @param disabled Enable or disable user changes
+#' @param rows The number of rows to display.
+#' 
+#' 
+#' @param ... forwarded to [jupyter.widgets.base::jupyter.widget.DOMWidget] constructor
+#' @inheritParams rlang::args_error_context
+#'
+#' @export
+Select <- function(
+  options = list(),
+  index = NULL,
+  description = "",
+  description_allow_html = FALSE,
+  disabled = FALSE,
+  rows = 5L,
+  ...,
+  error_call = current_env()
+){
+  jupyter.widget.Select$new(
+    options = options,
+    index = index,
+    description = description,
+    description_allow_html = description_allow_html,
+    disabled = disabled,
+    rows = rows,
+    ...,
+    error_call = error_call
+  )
+}
+
+rlang::on_load({
+  set_widget_state_check("jupyter.widget.Select", "options", check_state_options)
+})
 
