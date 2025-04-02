@@ -129,3 +129,8 @@ IntProgress <- function(
     error_call = error_call
   )
 }
+
+rlang::on_load({
+  set_widget_state_check("jupyter.widget.IntProgress", "bar_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = FALSE, allow_empty = TRUE))
+  set_widget_state_check("jupyter.widget.IntProgress", "orientation", unbox_one_of(c("horizontal", "vertical"), allow_null = FALSE, allow_empty = FALSE))
+})
