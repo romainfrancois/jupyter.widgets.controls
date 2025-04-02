@@ -26,6 +26,6 @@ Remotes:
 Collate: 
     'check.R'
     'generated-DOM.R'
+    'events.R'
     'generated-Style.R'
-    'wiipoc.R'
     'zzz.R'
