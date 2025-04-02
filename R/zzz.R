@@ -9,7 +9,6 @@
 #' @importFrom jsonlite unbox
 NULL
 
-accepted_button_style <- c("primary", "success", "info", "warning", "danger")
 accepted_font_style <- c("normal", "italic", "oblique")
 accepted_font_variant <- c("normal", "small-caps", "all-small-caps", "petite-caps", "all-petite-caps", "unicase", "titling-caps")
 accepted_font_weight <- c("normal", "bold", "lighter", "bolder")
@@ -63,7 +62,6 @@ check_state_titles <- function(value, widget) {
 .onLoad <- function(libname, pkgname) {
   rlang::run_on_load()
 
-  set_widget_state_check("jupyter.widget.Button", "button_style", unbox_one_of(accepted_button_style, allow_empty = TRUE))
   set_widget_state_check("jupyter.widget.Button", "icon"        , unbox_one_of(fa_metadata()$icon_names, allow_empty = TRUE))
 
   set_widget_state_check("jupyter.widget.ButtonStyle", "font_style", unbox_one_of(accepted_font_style, allow_null = TRUE))
