@@ -1,4 +1,4 @@
-library(jupyter.widgets.generate) # >= 0.0.0.9012
+library(jupyter.widgets.generate) # >= 0.0.0.9013
 library(purrr)
 library(tibble)
 
@@ -59,7 +59,8 @@ dom <- tribble(
   "Stack"            , NULL               , c("children"),
   "Button"           , "ButtonStyle"      , c("description"),
   "Textarea"         , NULL               , c("value", "rows", "placeholder"),
-  "Time"             , NULL               , c("value", "min", "max", "step")
+  "Time"             , NULL               , c("value", "min", "max", "step"),
+  "Select"           , NULL               , c("options", "index")
 )
 
 generated_dom_file <- file("R/generated-DOM.R", open = "w")
@@ -94,7 +95,6 @@ close(generated_dom_file)
 # IntsInput
 # Play
 # RadioButton
-# Select
 # SelectMultiple
 # SelectionRangeSlider
 # SelectionSlider

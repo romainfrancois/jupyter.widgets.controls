@@ -8,6 +8,20 @@ check_state_children <- function(value, widget) {
   })
 }
 
+check_state_options <- function(value, widget) {
+  if (is.character(value) && is.null(names(value))) {
+    names <- value
+    value <- seq_along(names)
+  } else if (is.numeric(value) && !is.null(names(value))) {
+    value <- as.integer(value)
+    names <- names(value)
+  } else {
+    cli::cli_abort('{.arg value} must either an unnamed character vector or a named numeric vector')
+  }
+
+  names
+}
+
 check_any_or_number <- function(value, widget) {
   if (identical(value, "any")) {
     unbox("any")
