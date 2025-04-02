@@ -1,4 +1,4 @@
-library(jupyter.widgets.generate) # >= 0.0.0.9010
+library(jupyter.widgets.generate) # >= 0.0.0.9011
 library(purrr)
 library(tibble)
 

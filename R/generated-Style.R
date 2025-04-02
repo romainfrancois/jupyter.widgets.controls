@@ -74,6 +74,7 @@ SliderStyle <- function(
     error_call = error_call
   )
 }
+
 #' ButtonStyle widget
 #'
 #' @export
@@ -208,6 +209,10 @@ ButtonStyle <- function(
     error_call = error_call
   )
 }
+
+rlang::on_load({
+  set_widget_state_check("jupyter.widget.ButtonStyle", "font_variant", unbox_one_of(c("normal", "small-caps", "all-small-caps", "petite-caps", "all-petite-caps", "unicase", "titling-caps"), allow_null = TRUE, allow_empty = FALSE))
+})
 #' CheckboxStyle widget
 #'
 #' @export
@@ -282,6 +287,7 @@ CheckboxStyle <- function(
     error_call = error_call
   )
 }
+
 #' TextStyle widget
 #'
 #' @export
@@ -376,6 +382,7 @@ TextStyle <- function(
     error_call = error_call
   )
 }
+
 #' HTMLStyle widget
 #'
 #' @export
@@ -470,6 +477,7 @@ HTMLStyle <- function(
     error_call = error_call
   )
 }
+
 #' HTMLMathStyle widget
 #'
 #' @export
@@ -564,6 +572,7 @@ HTMLMathStyle <- function(
     error_call = error_call
   )
 }
+
 #' LabelStyle widget
 #'
 #' @export
@@ -708,6 +717,10 @@ LabelStyle <- function(
     error_call = error_call
   )
 }
+
+rlang::on_load({
+  set_widget_state_check("jupyter.widget.LabelStyle", "font_variant", unbox_one_of(c("normal", "small-caps", "all-small-caps", "petite-caps", "all-petite-caps", "unicase", "titling-caps"), allow_null = TRUE, allow_empty = FALSE))
+})
 #' ProgressStyle widget
 #'
 #' @export
@@ -782,6 +795,7 @@ ProgressStyle <- function(
     error_call = error_call
   )
 }
+
 #' ToggleButtonStyle widget
 #'
 #' @export
@@ -916,3 +930,7 @@ ToggleButtonStyle <- function(
     error_call = error_call
   )
 }
+
+rlang::on_load({
+  set_widget_state_check("jupyter.widget.ToggleButtonStyle", "font_variant", unbox_one_of(c("normal", "small-caps", "all-small-caps", "petite-caps", "all-petite-caps", "unicase", "titling-caps"), allow_null = TRUE, allow_empty = FALSE))
+})
