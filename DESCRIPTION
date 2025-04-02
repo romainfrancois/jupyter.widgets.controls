@@ -40,6 +40,7 @@ Collate:
     'generated-FloatLogSlider.R'
     'generated-FloatProgress.R'
     'generated-FloatRangeSlider.R'
+    'generated-FloatSlider.R'
     'generated-FloatText.R'
     'generated-GridBox.R'
     'generated-HBox.R'

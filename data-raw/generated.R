@@ -16,11 +16,10 @@ writeLines(generate_dom_widget("Combobox", style = NULL), "R/generated-Combobox.
 writeLines(generate_dom_widget("DatePicker", style = NULL), "R/generated-DatePicker.R")
 writeLines(generate_dom_widget("Datetime", style = NULL), "R/generated-Datetime.R")
 writeLines(generate_dom_widget("NaiveDatetime", style = NULL), "R/generated-NaiveDatetime.R")
-# Dropdown
-# FileUpload
 
 # Sliders
 writeLines(generate_dom_widget("IntSlider", style = "SliderStyle"), "R/generated-IntSlider.R")
+writeLines(generate_dom_widget("FloatSlider", style = "SliderStyle"), "R/generated-FloatSlider.R")
 writeLines(generate_dom_widget("FloatLogSlider", style = "SliderStyle"), "R/generated-FloatLogSlider.R")
 writeLines(generate_dom_widget("FloatRangeSlider", style = "SliderStyle"), "R/generated-FloatRangeSlider.R")
 writeLines(generate_dom_widget("IntRangeSlider", style = "SliderStyle"), "R/generated-IntRangeSlider.R")
@@ -62,7 +61,7 @@ writeLines(generate_dom_widget("Password", style = NULL), "R/generated-Password.
 # *Box
 writeLines(generate_dom_widget("Box", style = NULL)    , "R/generated-Box.R")
 writeLines(generate_dom_widget("HBox", style = NULL)   , "R/generated-HBox.R")
-writeLines(generate_dom_widget("VBox", style = NULL)   , "R/generated-VBox.R")
+writeLines(g$enerate_dom_widget("VBox", style = NULL)   , "R/generated-VBox.R")
 writeLines(generate_dom_widget("GridBox", style = NULL), "R/generated-GridBox.R")
 
 writeLines(generate_dom_widget("Tab", style = NULL), "R/generated-Tab.R")
@@ -72,4 +71,31 @@ writeLines(generate_dom_widget("Button", style = "ButtonStyle"), "R/generated-Bu
 
 writeLines(generate_dom_widget("Textarea", style = NULL), "R/generated-Textarea.R")
 writeLines(generate_dom_widget("Time", style = NULL), "R/generated-Time.R")
+
+# TODO:
+# Link
+# DirectionalLink
+
+# Audio
+# Dropdown
+# ControllerAxis
+# ControllerButton
+# Controller
+# FileUpload
+# FloatsInput
+# Image
+# IntsInput
+# Play
+# RadioButton
+# Select
+# SelectMultiple
+# SelectionRangeSlider
+# SelectionSlider
+# TagsInput
+# ToggleButtons
+# Valid
+# Video
+# Output
+
+# ToggleButtonsStyle
 
