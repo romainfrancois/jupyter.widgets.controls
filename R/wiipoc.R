@@ -16,6 +16,7 @@
 #' @include generated-Datetime.R
 #' @include generated-NaiveDatetime.R
 #' @include generated-IntSlider.R
+#' @include generated-FloatSlider.R
 #' @include generated-FloatLogSlider.R
 #' @include generated-FloatRangeSlider.R
 #' @include generated-FloatRangeSlider.R
@@ -76,6 +77,7 @@ Datetime           <- reformals(Datetime, c("value", "min", "max"))
 NaiveDatetime      <- reformals(NaiveDatetime, c("value", "min", "max"))
 
 IntSlider          <- reformals(IntSlider, c("value", "min", "max", "step"))
+FloatSlider        <- reformals(FloatSlider, c("value", "min", "max", "step"))
 FloatLogSlider     <- reformals(FloatLogSlider, c("value", "min", "max", "step"))
 FloatRangeSlider   <- reformals(FloatRangeSlider, c("value", "min", "max", "step"))
 IntRangeSlider     <- reformals(IntRangeSlider, c("value", "min", "max", "step"))
@@ -99,7 +101,3 @@ FloatProgress      <- reformals(FloatProgress, c("value", "min", "max"))
 Password           <- reformals(Password, c("value"))
 Textarea           <- reformals(Textarea, c("value", "rows", "placeholder"))
 Time               <- reformals(Time, c("value", "min", "max", "step"))
-
-#' @export
-#' @rdname SliderStyle
-IntSliderStyle <- SliderStyle
