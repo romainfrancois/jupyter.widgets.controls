@@ -101,6 +101,7 @@ Accordion <- function(
 
 rlang::on_load({
   set_widget_state_check("jupyter.widget.Accordion", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
+  set_widget_state_check("jupyter.widget.Accordion", "children", check_state_children)
 })
 
 #' Checkbox widget
@@ -3500,6 +3501,7 @@ Box <- function(
 
 rlang::on_load({
   set_widget_state_check("jupyter.widget.Box", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
+  set_widget_state_check("jupyter.widget.Box", "children", check_state_children)
 })
 
 #' HBox widget
@@ -3583,6 +3585,7 @@ HBox <- function(
 
 rlang::on_load({
   set_widget_state_check("jupyter.widget.HBox", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
+  set_widget_state_check("jupyter.widget.HBox", "children", check_state_children)
 })
 
 #' VBox widget
@@ -3666,6 +3669,7 @@ VBox <- function(
 
 rlang::on_load({
   set_widget_state_check("jupyter.widget.VBox", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
+  set_widget_state_check("jupyter.widget.VBox", "children", check_state_children)
 })
 
 #' GridBox widget
@@ -3749,6 +3753,7 @@ GridBox <- function(
 
 rlang::on_load({
   set_widget_state_check("jupyter.widget.GridBox", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
+  set_widget_state_check("jupyter.widget.GridBox", "children", check_state_children)
 })
 
 #' Tab widget
@@ -3852,6 +3857,7 @@ Tab <- function(
 
 rlang::on_load({
   set_widget_state_check("jupyter.widget.Tab", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
+  set_widget_state_check("jupyter.widget.Tab", "children", check_state_children)
 })
 
 #' Stack widget
@@ -3955,6 +3961,7 @@ Stack <- function(
 
 rlang::on_load({
   set_widget_state_check("jupyter.widget.Stack", "box_style", unbox_one_of(c("success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
+  set_widget_state_check("jupyter.widget.Stack", "children", check_state_children)
 })
 
 #' Button widget

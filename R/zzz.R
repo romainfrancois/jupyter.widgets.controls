@@ -72,14 +72,6 @@ check_state_titles <- function(value, widget) {
   set_widget_state_check("jupyter.widget.FloatRangeSlider", "value", check_state_range_slider_value)
   set_widget_state_check("jupyter.widget.IntRangeSlider"  , "value", check_state_range_slider_value)
 
-  set_widget_state_check("jupyter.widget.Box"    , "children", check_state_children)
-  set_widget_state_check("jupyter.widget.HBox"   , "children", check_state_children)
-  set_widget_state_check("jupyter.widget.VBox"   , "children", check_state_children)
-  set_widget_state_check("jupyter.widget.GridBox", "children", check_state_children)
-  set_widget_state_check("jupyter.widget.Tab"    , "children", check_state_children)
-  set_widget_state_check("jupyter.widget.Stack"  , "children", check_state_children)
-
-  set_widget_state_check("jupyter.widget.Accordion", "children", check_state_children)
   set_widget_state_check("jupyter.widget.Accordion", "titles", check_state_titles)
 
   set_widget_state_check("jupyter.widget.ColorsInput", "value"       , identity)
