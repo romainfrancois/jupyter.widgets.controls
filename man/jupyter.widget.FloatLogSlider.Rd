@@ -14,6 +14,14 @@ FloatLogSlider widget
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
+\item{\code{value}}{Float value}
+
+\item{\code{min}}{Min value for the exponent}
+
+\item{\code{max}}{Max value for the exponent}
+
+\item{\code{step}}{Minimum step in the exponent to increment the value}
+
 \item{\code{base}}{Base for the logarithm}
 
 \item{\code{behavior}}{Slider dragging behavior.}
@@ -26,19 +34,11 @@ FloatLogSlider widget
 
 \item{\code{disabled}}{Enable or disable user changes}
 
-\item{\code{max}}{Max value for the exponent}
-
-\item{\code{min}}{Min value for the exponent}
-
 \item{\code{orientation}}{Vertical or horizontal.}
 
 \item{\code{readout}}{Display the current value of the slider next to it.}
 
 \item{\code{readout_format}}{Format for the readout}
-
-\item{\code{step}}{Minimum step in the exponent to increment the value}
-
-\item{\code{value}}{Float value}
 }
 \if{html}{\out{</div>}}
 }
@@ -67,19 +67,19 @@ FloatLogSlider widget
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{jupyter.widget.FloatLogSlider$new(
+  value = 1,
+  min = 0,
+  max = 4,
+  step = 0.1,
   base = 10,
   behavior = "drag-tap",
   continuous_update = TRUE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  max = 4,
-  min = 0,
   orientation = "horizontal",
   readout = TRUE,
   readout_format = ".3g",
-  step = 0.1,
-  value = 1,
   style = SliderStyle(),
   ...,
   error_call = caller_env()
@@ -89,6 +89,14 @@ FloatLogSlider widget
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{value}}{Float value}
+
+\item{\code{min}}{Min value for the exponent}
+
+\item{\code{max}}{Max value for the exponent}
+
+\item{\code{step}}{Minimum step in the exponent to increment the value}
+
 \item{\code{base}}{Base for the logarithm}
 
 \item{\code{behavior}}{Slider dragging behavior.}
@@ -101,19 +109,11 @@ FloatLogSlider widget
 
 \item{\code{disabled}}{Enable or disable user changes}
 
-\item{\code{max}}{Max value for the exponent}
-
-\item{\code{min}}{Min value for the exponent}
-
 \item{\code{orientation}}{Vertical or horizontal.}
 
 \item{\code{readout}}{Display the current value of the slider next to it.}
 
 \item{\code{readout_format}}{Format for the readout}
-
-\item{\code{step}}{Minimum step in the exponent to increment the value}
-
-\item{\code{value}}{Float value}
 
 \item{\code{style}}{Must inherit from \link{jupyter.widget.SliderStyle}.}
 

@@ -14,19 +14,19 @@ IntProgress widget
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
+\item{\code{value}}{Int value}
+
+\item{\code{min}}{Min value}
+
+\item{\code{max}}{Max value}
+
 \item{\code{bar_style}}{Use a predefined styling for the progress bar.}
 
 \item{\code{description}}{Description of the control.}
 
 \item{\code{description_allow_html}}{Accept HTML in the description.}
 
-\item{\code{max}}{Max value}
-
-\item{\code{min}}{Min value}
-
 \item{\code{orientation}}{Vertical or horizontal.}
-
-\item{\code{value}}{Int value}
 }
 \if{html}{\out{</div>}}
 }
@@ -55,13 +55,13 @@ IntProgress widget
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{jupyter.widget.IntProgress$new(
+  value = 0L,
+  min = 0L,
+  max = 100L,
   bar_style = "",
   description = "",
   description_allow_html = FALSE,
-  max = 100L,
-  min = 0L,
   orientation = "horizontal",
-  value = 0L,
   style = ProgressStyle(),
   ...,
   error_call = caller_env()
@@ -71,19 +71,19 @@ IntProgress widget
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{value}}{Int value}
+
+\item{\code{min}}{Min value}
+
+\item{\code{max}}{Max value}
+
 \item{\code{bar_style}}{Use a predefined styling for the progress bar.}
 
 \item{\code{description}}{Description of the control.}
 
 \item{\code{description_allow_html}}{Accept HTML in the description.}
 
-\item{\code{max}}{Max value}
-
-\item{\code{min}}{Min value}
-
 \item{\code{orientation}}{Vertical or horizontal.}
-
-\item{\code{value}}{Int value}
 
 \item{\code{style}}{Must inherit from \link{jupyter.widget.ProgressStyle}.}
 

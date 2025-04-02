@@ -14,6 +14,14 @@ BoundedFloatText widget
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
+\item{\code{value}}{Float value}
+
+\item{\code{min}}{Min value}
+
+\item{\code{max}}{Max value}
+
+\item{\code{step}}{Minimum step to increment the value}
+
 \item{\code{continuous_update}}{Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.}
 
 \item{\code{description}}{Description of the control.}
@@ -21,14 +29,6 @@ BoundedFloatText widget
 \item{\code{description_allow_html}}{Accept HTML in the description.}
 
 \item{\code{disabled}}{Enable or disable user changes}
-
-\item{\code{max}}{Max value}
-
-\item{\code{min}}{Min value}
-
-\item{\code{step}}{Minimum step to increment the value}
-
-\item{\code{value}}{Float value}
 }
 \if{html}{\out{</div>}}
 }
@@ -57,14 +57,14 @@ BoundedFloatText widget
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{jupyter.widget.BoundedFloatText$new(
+  value = 0,
+  min = 0,
+  max = 100,
+  step = NULL,
   continuous_update = FALSE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  max = 100,
-  min = 0,
-  step = NULL,
-  value = 0,
   style = TextStyle(),
   ...,
   error_call = caller_env()
@@ -74,6 +74,14 @@ BoundedFloatText widget
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{value}}{Float value}
+
+\item{\code{min}}{Min value}
+
+\item{\code{max}}{Max value}
+
+\item{\code{step}}{Minimum step to increment the value}
+
 \item{\code{continuous_update}}{Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.}
 
 \item{\code{description}}{Description of the control.}
@@ -81,14 +89,6 @@ BoundedFloatText widget
 \item{\code{description_allow_html}}{Accept HTML in the description.}
 
 \item{\code{disabled}}{Enable or disable user changes}
-
-\item{\code{max}}{Max value}
-
-\item{\code{min}}{Min value}
-
-\item{\code{step}}{Minimum step to increment the value}
-
-\item{\code{value}}{Float value}
 
 \item{\code{style}}{Must inherit from \link{jupyter.widget.TextStyle}.}
 

@@ -5,8 +5,8 @@
 \title{Button widget}
 \usage{
 Button(
-  button_style = "",
   description = "",
+  button_style = "",
   disabled = FALSE,
   icon = "",
   style = ButtonStyle(),
@@ -15,9 +15,9 @@ Button(
 )
 }
 \arguments{
-\item{button_style}{Use a predefined styling for the button.}
-
 \item{description}{Button label.}
+
+\item{button_style}{Use a predefined styling for the button.}
 
 \item{disabled}{Enable or disable user changes.}
 

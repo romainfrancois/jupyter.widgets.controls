@@ -14,9 +14,7 @@ ColorsInput widget
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
-\item{\code{allow_duplicates}}{}
-
-\item{\code{allowed_tags}}{}
+\item{\code{value}}{List of string tags}
 
 \item{\code{description}}{Description of the control.}
 
@@ -24,7 +22,9 @@ ColorsInput widget
 
 \item{\code{placeholder}}{}
 
-\item{\code{value}}{List of string tags}
+\item{\code{allow_duplicates}}{}
+
+\item{\code{allowed_tags}}{}
 }
 \if{html}{\out{</div>}}
 }
@@ -53,12 +53,12 @@ ColorsInput widget
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{jupyter.widget.ColorsInput$new(
-  allow_duplicates = TRUE,
-  allowed_tags = list(),
+  value = list(),
   description = "",
   description_allow_html = FALSE,
   placeholder = "​",
-  value = list(),
+  allow_duplicates = TRUE,
+  allowed_tags = list(),
   ...,
   error_call = caller_env()
 )}\if{html}{\out{</div>}}
@@ -67,9 +67,7 @@ ColorsInput widget
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{allow_duplicates}}{(undocumented)}
-
-\item{\code{allowed_tags}}{(undocumented)}
+\item{\code{value}}{List of string tags}
 
 \item{\code{description}}{Description of the control.}
 
@@ -77,7 +75,9 @@ ColorsInput widget
 
 \item{\code{placeholder}}{(undocumented)}
 
-\item{\code{value}}{List of string tags}
+\item{\code{allow_duplicates}}{(undocumented)}
+
+\item{\code{allowed_tags}}{(undocumented)}
 
 \item{\code{...}}{See \link[jupyter.widgets.base:DOMWidget]{jupyter.widgets.base::DOMWidget}}
 

@@ -14,6 +14,8 @@ ColorPicker widget
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
+\item{\code{value}}{The color value.}
+
 \item{\code{concise}}{Display short version with just a color selector.}
 
 \item{\code{description}}{Description of the control.}
@@ -21,8 +23,6 @@ ColorPicker widget
 \item{\code{description_allow_html}}{Accept HTML in the description.}
 
 \item{\code{disabled}}{Enable or disable user changes.}
-
-\item{\code{value}}{The color value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -51,11 +51,11 @@ ColorPicker widget
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{jupyter.widget.ColorPicker$new(
+  value = "black",
   concise = FALSE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  value = "black",
   ...,
   error_call = caller_env()
 )}\if{html}{\out{</div>}}
@@ -64,6 +64,8 @@ ColorPicker widget
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{value}}{The color value.}
+
 \item{\code{concise}}{Display short version with just a color selector.}
 
 \item{\code{description}}{Description of the control.}
@@ -71,8 +73,6 @@ ColorPicker widget
 \item{\code{description_allow_html}}{Accept HTML in the description.}
 
 \item{\code{disabled}}{Enable or disable user changes.}
-
-\item{\code{value}}{The color value.}
 
 \item{\code{...}}{See \link[jupyter.widgets.base:DOMWidget]{jupyter.widgets.base::DOMWidget}}
 

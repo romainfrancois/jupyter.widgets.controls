@@ -14,9 +14,9 @@ Button widget
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
-\item{\code{button_style}}{Use a predefined styling for the button.}
-
 \item{\code{description}}{Button label.}
+
+\item{\code{button_style}}{Use a predefined styling for the button.}
 
 \item{\code{disabled}}{Enable or disable user changes.}
 
@@ -49,8 +49,8 @@ Button widget
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{jupyter.widget.Button$new(
-  button_style = "",
   description = "",
+  button_style = "",
   disabled = FALSE,
   icon = "",
   style = ButtonStyle(),
@@ -62,9 +62,9 @@ Button widget
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{button_style}}{Use a predefined styling for the button.}
-
 \item{\code{description}}{Button label.}
+
+\item{\code{button_style}}{Use a predefined styling for the button.}
 
 \item{\code{disabled}}{Enable or disable user changes.}
 

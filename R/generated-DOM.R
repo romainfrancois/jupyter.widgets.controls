@@ -6,8 +6,8 @@
 jupyter.widget.Accordion <- R6::R6Class("jupyter.widget.Accordion", inherit = jupyter.widget.DOMWidget,
   public = list(
 
-    #' @param box_style Use a predefined styling for the box.
     #' @param children List of widget children
+    #' @param box_style Use a predefined styling for the box.
     #' @param selected_index The index of the selected page. This is either an integer selecting a particular sub-widget, or None to have no widgets selected.
     #' @param titles Titles of the pages
     #'
@@ -16,8 +16,8 @@ jupyter.widget.Accordion <- R6::R6Class("jupyter.widget.Accordion", inherit = ju
     #'
     #' @return a new 'jupyter.widget.Accordion' widget
     initialize = function(
-      box_style = "",
       children = list(),
+      box_style = "",
       selected_index = NULL,
       titles = list(),
 
@@ -26,8 +26,8 @@ jupyter.widget.Accordion <- R6::R6Class("jupyter.widget.Accordion", inherit = ju
     )
     {
       private$state_ <- update_list(private$state_,
-        box_style = self$check_state('box_style', box_style),
         children = self$check_state('children', children),
+        box_style = self$check_state('box_style', box_style),
         selected_index = self$check_state('selected_index', selected_index),
         titles = self$check_state('titles', titles)
       )
@@ -47,13 +47,13 @@ jupyter.widget.Accordion <- R6::R6Class("jupyter.widget.Accordion", inherit = ju
 
   active = list(
     
-    #' @field box_style
-    #' Use a predefined styling for the box.
-    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x)),
-    
     #' @field children
     #' List of widget children
     children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x)),
+    
+    #' @field box_style
+    #' Use a predefined styling for the box.
+    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x)),
     
     #' @field selected_index
     #' The index of the selected page. This is either an integer selecting a particular sub-widget, or None to have no widgets selected.
@@ -71,8 +71,8 @@ jupyter.widget.Accordion <- R6::R6Class("jupyter.widget.Accordion", inherit = ju
 
 #' Accordion widget
 #'
-#' @param box_style Use a predefined styling for the box.
 #' @param children List of widget children
+#' @param box_style Use a predefined styling for the box.
 #' @param selected_index The index of the selected page. This is either an integer selecting a particular sub-widget, or None to have no widgets selected.
 #' @param titles Titles of the pages
 #' 
@@ -82,16 +82,16 @@ jupyter.widget.Accordion <- R6::R6Class("jupyter.widget.Accordion", inherit = ju
 #'
 #' @export
 Accordion <- function(
-  box_style = "",
   children = list(),
+  box_style = "",
   selected_index = NULL,
   titles = list(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.Accordion$new(
-    box_style = box_style,
     children = children,
+    box_style = box_style,
     selected_index = selected_index,
     titles = titles,
     ...,
@@ -110,11 +110,11 @@ rlang::on_load({
 jupyter.widget.Checkbox <- R6::R6Class("jupyter.widget.Checkbox", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value Bool value
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param disabled Enable or disable user changes.
     #' @param indent Indent the control to align with other controls with a description.
-    #' @param value Bool value
     #' @param style Must inherit from [jupyter.widget.CheckboxStyle].
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
@@ -122,11 +122,11 @@ jupyter.widget.Checkbox <- R6::R6Class("jupyter.widget.Checkbox", inherit = jupy
     #'
     #' @return a new 'jupyter.widget.Checkbox' widget
     initialize = function(
+      value = FALSE,
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
       indent = TRUE,
-      value = FALSE,
       style = CheckboxStyle(),
 
       ...,
@@ -134,11 +134,11 @@ jupyter.widget.Checkbox <- R6::R6Class("jupyter.widget.Checkbox", inherit = jupy
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
         disabled = self$check_state('disabled', disabled),
-        indent = self$check_state('indent', indent),
-        value = self$check_state('value', value)
+        indent = self$check_state('indent', indent)
       )
 
       super$initialize(
@@ -156,6 +156,10 @@ jupyter.widget.Checkbox <- R6::R6Class("jupyter.widget.Checkbox", inherit = jupy
 
   active = list(
     
+    #' @field value
+    #' Bool value
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
     #' @field description
     #' Description of the control.
     description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
@@ -170,11 +174,7 @@ jupyter.widget.Checkbox <- R6::R6Class("jupyter.widget.Checkbox", inherit = jupy
     
     #' @field indent
     #' Indent the control to align with other controls with a description.
-    indent = function(x) if(missing(x)) private$state_[['indent']] else self$update(indent = self$check_state('indent', x)),
-    
-    #' @field value
-    #' Bool value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    indent = function(x) if(missing(x)) private$state_[['indent']] else self$update(indent = self$check_state('indent', x))
   ),
 
   private = list(
@@ -184,11 +184,11 @@ jupyter.widget.Checkbox <- R6::R6Class("jupyter.widget.Checkbox", inherit = jupy
 
 #' Checkbox widget
 #'
+#' @param value Bool value
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param disabled Enable or disable user changes.
 #' @param indent Indent the control to align with other controls with a description.
-#' @param value Bool value
 #' 
 #' @param style Must inherit from [jupyter.widget.CheckboxStyle].
 #' 
@@ -197,21 +197,21 @@ jupyter.widget.Checkbox <- R6::R6Class("jupyter.widget.Checkbox", inherit = jupy
 #'
 #' @export
 Checkbox <- function(
+  value = FALSE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
   indent = TRUE,
-  value = FALSE,
   style = CheckboxStyle(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.Checkbox$new(
+    value = value,
     description = description,
     description_allow_html = description_allow_html,
     disabled = disabled,
     indent = indent,
-    value = value,
     style = style,
     ...,
     error_call = error_call
@@ -225,33 +225,33 @@ Checkbox <- function(
 jupyter.widget.ColorPicker <- R6::R6Class("jupyter.widget.ColorPicker", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value The color value.
     #' @param concise Display short version with just a color selector.
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param disabled Enable or disable user changes.
-    #' @param value The color value.
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
     #' @param error_call see [rlang::args_error_context()]
     #'
     #' @return a new 'jupyter.widget.ColorPicker' widget
     initialize = function(
+      value = "black",
       concise = FALSE,
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
-      value = "black",
 
       ...,
       error_call = caller_env()
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
         concise = self$check_state('concise', concise),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        value = self$check_state('value', value)
+        disabled = self$check_state('disabled', disabled)
       )
 
       super$initialize(
@@ -269,6 +269,10 @@ jupyter.widget.ColorPicker <- R6::R6Class("jupyter.widget.ColorPicker", inherit 
 
   active = list(
     
+    #' @field value
+    #' The color value.
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
     #' @field concise
     #' Display short version with just a color selector.
     concise = function(x) if(missing(x)) private$state_[['concise']] else self$update(concise = self$check_state('concise', x)),
@@ -283,11 +287,7 @@ jupyter.widget.ColorPicker <- R6::R6Class("jupyter.widget.ColorPicker", inherit 
     
     #' @field disabled
     #' Enable or disable user changes.
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
-    
-    #' @field value
-    #' The color value.
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
   ),
 
   private = list(
@@ -297,11 +297,11 @@ jupyter.widget.ColorPicker <- R6::R6Class("jupyter.widget.ColorPicker", inherit 
 
 #' ColorPicker widget
 #'
+#' @param value The color value.
 #' @param concise Display short version with just a color selector.
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param disabled Enable or disable user changes.
-#' @param value The color value.
 #' 
 #' 
 #' @param ... forwarded to [jupyter.widgets.base::jupyter.widget.DOMWidget] constructor
@@ -309,20 +309,20 @@ jupyter.widget.ColorPicker <- R6::R6Class("jupyter.widget.ColorPicker", inherit 
 #'
 #' @export
 ColorPicker <- function(
+  value = "black",
   concise = FALSE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  value = "black",
   ...,
   error_call = current_env()
 ){
   jupyter.widget.ColorPicker$new(
+    value = value,
     concise = concise,
     description = description,
     description_allow_html = description_allow_html,
     disabled = disabled,
-    value = value,
     ...,
     error_call = error_call
   )
@@ -335,36 +335,36 @@ ColorPicker <- function(
 jupyter.widget.ColorsInput <- R6::R6Class("jupyter.widget.ColorsInput", inherit = jupyter.widget.DOMWidget,
   public = list(
 
-    #' @param allow_duplicates (undocumented)
-    #' @param allowed_tags (undocumented)
+    #' @param value List of string tags
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param placeholder (undocumented)
-    #' @param value List of string tags
+    #' @param allow_duplicates (undocumented)
+    #' @param allowed_tags (undocumented)
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
     #' @param error_call see [rlang::args_error_context()]
     #'
     #' @return a new 'jupyter.widget.ColorsInput' widget
     initialize = function(
-      allow_duplicates = TRUE,
-      allowed_tags = list(),
+      value = list(),
       description = "",
       description_allow_html = FALSE,
       placeholder = "\U{200B}",
-      value = list(),
+      allow_duplicates = TRUE,
+      allowed_tags = list(),
 
       ...,
       error_call = caller_env()
     )
     {
       private$state_ <- update_list(private$state_,
-        allow_duplicates = self$check_state('allow_duplicates', allow_duplicates),
-        allowed_tags = self$check_state('allowed_tags', allowed_tags),
+        value = self$check_state('value', value),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
         placeholder = self$check_state('placeholder', placeholder),
-        value = self$check_state('value', value)
+        allow_duplicates = self$check_state('allow_duplicates', allow_duplicates),
+        allowed_tags = self$check_state('allowed_tags', allowed_tags)
       )
 
       super$initialize(
@@ -382,13 +382,9 @@ jupyter.widget.ColorsInput <- R6::R6Class("jupyter.widget.ColorsInput", inherit 
 
   active = list(
     
-    #' @field allow_duplicates
-    #' 
-    allow_duplicates = function(x) if(missing(x)) private$state_[['allow_duplicates']] else self$update(allow_duplicates = self$check_state('allow_duplicates', x)),
-    
-    #' @field allowed_tags
-    #' 
-    allowed_tags = function(x) if(missing(x)) private$state_[['allowed_tags']] else self$update(allowed_tags = self$check_state('allowed_tags', x)),
+    #' @field value
+    #' List of string tags
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
     
     #' @field description
     #' Description of the control.
@@ -402,9 +398,13 @@ jupyter.widget.ColorsInput <- R6::R6Class("jupyter.widget.ColorsInput", inherit 
     #' 
     placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x)),
     
-    #' @field value
-    #' List of string tags
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    #' @field allow_duplicates
+    #' 
+    allow_duplicates = function(x) if(missing(x)) private$state_[['allow_duplicates']] else self$update(allow_duplicates = self$check_state('allow_duplicates', x)),
+    
+    #' @field allowed_tags
+    #' 
+    allowed_tags = function(x) if(missing(x)) private$state_[['allowed_tags']] else self$update(allowed_tags = self$check_state('allowed_tags', x))
   ),
 
   private = list(
@@ -414,12 +414,12 @@ jupyter.widget.ColorsInput <- R6::R6Class("jupyter.widget.ColorsInput", inherit 
 
 #' ColorsInput widget
 #'
-#' @param allow_duplicates (undocumented)
-#' @param allowed_tags (undocumented)
+#' @param value List of string tags
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param placeholder (undocumented)
-#' @param value List of string tags
+#' @param allow_duplicates (undocumented)
+#' @param allowed_tags (undocumented)
 #' 
 #' 
 #' @param ... forwarded to [jupyter.widgets.base::jupyter.widget.DOMWidget] constructor
@@ -427,22 +427,22 @@ jupyter.widget.ColorsInput <- R6::R6Class("jupyter.widget.ColorsInput", inherit 
 #'
 #' @export
 ColorsInput <- function(
-  allow_duplicates = TRUE,
-  allowed_tags = list(),
+  value = list(),
   description = "",
   description_allow_html = FALSE,
   placeholder = "\U{200B}",
-  value = list(),
+  allow_duplicates = TRUE,
+  allowed_tags = list(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.ColorsInput$new(
-    allow_duplicates = allow_duplicates,
-    allowed_tags = allowed_tags,
+    value = value,
     description = description,
     description_allow_html = description_allow_html,
     placeholder = placeholder,
-    value = value,
+    allow_duplicates = allow_duplicates,
+    allowed_tags = allowed_tags,
     ...,
     error_call = error_call
   )
@@ -455,6 +455,7 @@ ColorsInput <- function(
 jupyter.widget.Combobox <- R6::R6Class("jupyter.widget.Combobox", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value String value
     #' @param continuous_update Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
@@ -462,13 +463,13 @@ jupyter.widget.Combobox <- R6::R6Class("jupyter.widget.Combobox", inherit = jupy
     #' @param ensure_option If set, ensure value is in options. Implies continuous_update=False.
     #' @param options Dropdown options for the combobox
     #' @param placeholder Placeholder text to display when nothing has been typed
-    #' @param value String value
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
     #' @param error_call see [rlang::args_error_context()]
     #'
     #' @return a new 'jupyter.widget.Combobox' widget
     initialize = function(
+      value = "",
       continuous_update = TRUE,
       description = "",
       description_allow_html = FALSE,
@@ -476,21 +477,20 @@ jupyter.widget.Combobox <- R6::R6Class("jupyter.widget.Combobox", inherit = jupy
       ensure_option = FALSE,
       options = list(),
       placeholder = "\U{200B}",
-      value = "",
 
       ...,
       error_call = caller_env()
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
         continuous_update = self$check_state('continuous_update', continuous_update),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
         disabled = self$check_state('disabled', disabled),
         ensure_option = self$check_state('ensure_option', ensure_option),
         options = self$check_state('options', options),
-        placeholder = self$check_state('placeholder', placeholder),
-        value = self$check_state('value', value)
+        placeholder = self$check_state('placeholder', placeholder)
       )
 
       super$initialize(
@@ -507,6 +507,10 @@ jupyter.widget.Combobox <- R6::R6Class("jupyter.widget.Combobox", inherit = jupy
   ),
 
   active = list(
+    
+    #' @field value
+    #' String value
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
     
     #' @field continuous_update
     #' Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
@@ -534,11 +538,7 @@ jupyter.widget.Combobox <- R6::R6Class("jupyter.widget.Combobox", inherit = jupy
     
     #' @field placeholder
     #' Placeholder text to display when nothing has been typed
-    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x)),
-    
-    #' @field value
-    #' String value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x))
   ),
 
   private = list(
@@ -548,6 +548,7 @@ jupyter.widget.Combobox <- R6::R6Class("jupyter.widget.Combobox", inherit = jupy
 
 #' Combobox widget
 #'
+#' @param value String value
 #' @param continuous_update Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
@@ -555,7 +556,6 @@ jupyter.widget.Combobox <- R6::R6Class("jupyter.widget.Combobox", inherit = jupy
 #' @param ensure_option If set, ensure value is in options. Implies continuous_update=False.
 #' @param options Dropdown options for the combobox
 #' @param placeholder Placeholder text to display when nothing has been typed
-#' @param value String value
 #' 
 #' 
 #' @param ... forwarded to [jupyter.widgets.base::jupyter.widget.DOMWidget] constructor
@@ -563,6 +563,7 @@ jupyter.widget.Combobox <- R6::R6Class("jupyter.widget.Combobox", inherit = jupy
 #'
 #' @export
 Combobox <- function(
+  value = "",
   continuous_update = TRUE,
   description = "",
   description_allow_html = FALSE,
@@ -570,11 +571,11 @@ Combobox <- function(
   ensure_option = FALSE,
   options = list(),
   placeholder = "\U{200B}",
-  value = "",
   ...,
   error_call = current_env()
 ){
   jupyter.widget.Combobox$new(
+    value = value,
     continuous_update = continuous_update,
     description = description,
     description_allow_html = description_allow_html,
@@ -582,7 +583,6 @@ Combobox <- function(
     ensure_option = ensure_option,
     options = options,
     placeholder = placeholder,
-    value = value,
     ...,
     error_call = error_call
   )
@@ -595,39 +595,39 @@ Combobox <- function(
 jupyter.widget.DatePicker <- R6::R6Class("jupyter.widget.DatePicker", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value (undocumented)
+    #' @param min (undocumented)
+    #' @param max (undocumented)
+    #' @param step The date step to use for the picker, in days, or "any".
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param disabled Enable or disable user changes.
-    #' @param max (undocumented)
-    #' @param min (undocumented)
-    #' @param step The date step to use for the picker, in days, or "any".
-    #' @param value (undocumented)
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
     #' @param error_call see [rlang::args_error_context()]
     #'
     #' @return a new 'jupyter.widget.DatePicker' widget
     initialize = function(
+      value = NULL,
+      min = NULL,
+      max = NULL,
+      step = 1L,
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
-      max = NULL,
-      min = NULL,
-      step = 1L,
-      value = NULL,
 
       ...,
       error_call = caller_env()
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
+        min = self$check_state('min', min),
+        max = self$check_state('max', max),
+        step = self$check_state('step', step),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        max = self$check_state('max', max),
-        min = self$check_state('min', min),
-        step = self$check_state('step', step),
-        value = self$check_state('value', value)
+        disabled = self$check_state('disabled', disabled)
       )
 
       super$initialize(
@@ -645,6 +645,22 @@ jupyter.widget.DatePicker <- R6::R6Class("jupyter.widget.DatePicker", inherit = 
 
   active = list(
     
+    #' @field value
+    #' 
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field min
+    #' 
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    
+    #' @field max
+    #' 
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    
+    #' @field step
+    #' The date step to use for the picker, in days, or "any".
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
+    
     #' @field description
     #' Description of the control.
     description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
@@ -655,23 +671,7 @@ jupyter.widget.DatePicker <- R6::R6Class("jupyter.widget.DatePicker", inherit = 
     
     #' @field disabled
     #' Enable or disable user changes.
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
-    
-    #' @field max
-    #' 
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
-    
-    #' @field min
-    #' 
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
-    
-    #' @field step
-    #' The date step to use for the picker, in days, or "any".
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
-    
-    #' @field value
-    #' 
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
   ),
 
   private = list(
@@ -681,13 +681,13 @@ jupyter.widget.DatePicker <- R6::R6Class("jupyter.widget.DatePicker", inherit = 
 
 #' DatePicker widget
 #'
+#' @param value (undocumented)
+#' @param min (undocumented)
+#' @param max (undocumented)
+#' @param step The date step to use for the picker, in days, or "any".
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param disabled Enable or disable user changes.
-#' @param max (undocumented)
-#' @param min (undocumented)
-#' @param step The date step to use for the picker, in days, or "any".
-#' @param value (undocumented)
 #' 
 #' 
 #' @param ... forwarded to [jupyter.widgets.base::jupyter.widget.DOMWidget] constructor
@@ -695,24 +695,24 @@ jupyter.widget.DatePicker <- R6::R6Class("jupyter.widget.DatePicker", inherit = 
 #'
 #' @export
 DatePicker <- function(
+  value = NULL,
+  min = NULL,
+  max = NULL,
+  step = 1L,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  max = NULL,
-  min = NULL,
-  step = 1L,
-  value = NULL,
   ...,
   error_call = current_env()
 ){
   jupyter.widget.DatePicker$new(
+    value = value,
+    min = min,
+    max = max,
+    step = step,
     description = description,
     description_allow_html = description_allow_html,
     disabled = disabled,
-    max = max,
-    min = min,
-    step = step,
-    value = value,
     ...,
     error_call = error_call
   )
@@ -725,36 +725,36 @@ DatePicker <- function(
 jupyter.widget.Datetime <- R6::R6Class("jupyter.widget.Datetime", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value (undocumented)
+    #' @param min (undocumented)
+    #' @param max (undocumented)
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param disabled Enable or disable user changes.
-    #' @param max (undocumented)
-    #' @param min (undocumented)
-    #' @param value (undocumented)
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
     #' @param error_call see [rlang::args_error_context()]
     #'
     #' @return a new 'jupyter.widget.Datetime' widget
     initialize = function(
+      value = NULL,
+      min = NULL,
+      max = NULL,
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
-      max = NULL,
-      min = NULL,
-      value = NULL,
 
       ...,
       error_call = caller_env()
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
+        min = self$check_state('min', min),
+        max = self$check_state('max', max),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        max = self$check_state('max', max),
-        min = self$check_state('min', min),
-        value = self$check_state('value', value)
+        disabled = self$check_state('disabled', disabled)
       )
 
       super$initialize(
@@ -772,6 +772,18 @@ jupyter.widget.Datetime <- R6::R6Class("jupyter.widget.Datetime", inherit = jupy
 
   active = list(
     
+    #' @field value
+    #' 
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field min
+    #' 
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    
+    #' @field max
+    #' 
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    
     #' @field description
     #' Description of the control.
     description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
@@ -782,19 +794,7 @@ jupyter.widget.Datetime <- R6::R6Class("jupyter.widget.Datetime", inherit = jupy
     
     #' @field disabled
     #' Enable or disable user changes.
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
-    
-    #' @field max
-    #' 
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
-    
-    #' @field min
-    #' 
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
-    
-    #' @field value
-    #' 
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
   ),
 
   private = list(
@@ -804,12 +804,12 @@ jupyter.widget.Datetime <- R6::R6Class("jupyter.widget.Datetime", inherit = jupy
 
 #' Datetime widget
 #'
+#' @param value (undocumented)
+#' @param min (undocumented)
+#' @param max (undocumented)
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param disabled Enable or disable user changes.
-#' @param max (undocumented)
-#' @param min (undocumented)
-#' @param value (undocumented)
 #' 
 #' 
 #' @param ... forwarded to [jupyter.widgets.base::jupyter.widget.DOMWidget] constructor
@@ -817,22 +817,22 @@ jupyter.widget.Datetime <- R6::R6Class("jupyter.widget.Datetime", inherit = jupy
 #'
 #' @export
 Datetime <- function(
+  value = NULL,
+  min = NULL,
+  max = NULL,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  max = NULL,
-  min = NULL,
-  value = NULL,
   ...,
   error_call = current_env()
 ){
   jupyter.widget.Datetime$new(
+    value = value,
+    min = min,
+    max = max,
     description = description,
     description_allow_html = description_allow_html,
     disabled = disabled,
-    max = max,
-    min = min,
-    value = value,
     ...,
     error_call = error_call
   )
@@ -845,36 +845,36 @@ Datetime <- function(
 jupyter.widget.NaiveDatetime <- R6::R6Class("jupyter.widget.NaiveDatetime", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value (undocumented)
+    #' @param min (undocumented)
+    #' @param max (undocumented)
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param disabled Enable or disable user changes.
-    #' @param max (undocumented)
-    #' @param min (undocumented)
-    #' @param value (undocumented)
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
     #' @param error_call see [rlang::args_error_context()]
     #'
     #' @return a new 'jupyter.widget.NaiveDatetime' widget
     initialize = function(
+      value = NULL,
+      min = NULL,
+      max = NULL,
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
-      max = NULL,
-      min = NULL,
-      value = NULL,
 
       ...,
       error_call = caller_env()
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
+        min = self$check_state('min', min),
+        max = self$check_state('max', max),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        max = self$check_state('max', max),
-        min = self$check_state('min', min),
-        value = self$check_state('value', value)
+        disabled = self$check_state('disabled', disabled)
       )
 
       super$initialize(
@@ -892,6 +892,18 @@ jupyter.widget.NaiveDatetime <- R6::R6Class("jupyter.widget.NaiveDatetime", inhe
 
   active = list(
     
+    #' @field value
+    #' 
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field min
+    #' 
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    
+    #' @field max
+    #' 
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    
     #' @field description
     #' Description of the control.
     description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
@@ -902,19 +914,7 @@ jupyter.widget.NaiveDatetime <- R6::R6Class("jupyter.widget.NaiveDatetime", inhe
     
     #' @field disabled
     #' Enable or disable user changes.
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
-    
-    #' @field max
-    #' 
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
-    
-    #' @field min
-    #' 
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
-    
-    #' @field value
-    #' 
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
   ),
 
   private = list(
@@ -924,12 +924,12 @@ jupyter.widget.NaiveDatetime <- R6::R6Class("jupyter.widget.NaiveDatetime", inhe
 
 #' NaiveDatetime widget
 #'
+#' @param value (undocumented)
+#' @param min (undocumented)
+#' @param max (undocumented)
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param disabled Enable or disable user changes.
-#' @param max (undocumented)
-#' @param min (undocumented)
-#' @param value (undocumented)
 #' 
 #' 
 #' @param ... forwarded to [jupyter.widgets.base::jupyter.widget.DOMWidget] constructor
@@ -937,22 +937,22 @@ jupyter.widget.NaiveDatetime <- R6::R6Class("jupyter.widget.NaiveDatetime", inhe
 #'
 #' @export
 NaiveDatetime <- function(
+  value = NULL,
+  min = NULL,
+  max = NULL,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  max = NULL,
-  min = NULL,
-  value = NULL,
   ...,
   error_call = current_env()
 ){
   jupyter.widget.NaiveDatetime$new(
+    value = value,
+    min = min,
+    max = max,
     description = description,
     description_allow_html = description_allow_html,
     disabled = disabled,
-    max = max,
-    min = min,
-    value = value,
     ...,
     error_call = error_call
   )
@@ -965,18 +965,18 @@ NaiveDatetime <- function(
 jupyter.widget.IntSlider <- R6::R6Class("jupyter.widget.IntSlider", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value Int value
+    #' @param min Min value
+    #' @param max Max value
+    #' @param step Minimum step to increment the value
     #' @param behavior Slider dragging behavior.
     #' @param continuous_update Update the value of the widget as the user is holding the slider.
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param disabled Enable or disable user changes
-    #' @param max Max value
-    #' @param min Min value
     #' @param orientation Vertical or horizontal.
     #' @param readout Display the current value of the slider next to it.
     #' @param readout_format Format for the readout
-    #' @param step Minimum step to increment the value
-    #' @param value Int value
     #' @param style Must inherit from [jupyter.widget.SliderStyle].
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
@@ -984,18 +984,18 @@ jupyter.widget.IntSlider <- R6::R6Class("jupyter.widget.IntSlider", inherit = ju
     #'
     #' @return a new 'jupyter.widget.IntSlider' widget
     initialize = function(
+      value = 0L,
+      min = 0L,
+      max = 100L,
+      step = 1L,
       behavior = "drag-tap",
       continuous_update = TRUE,
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
-      max = 100L,
-      min = 0L,
       orientation = "horizontal",
       readout = TRUE,
       readout_format = "d",
-      step = 1L,
-      value = 0L,
       style = SliderStyle(),
 
       ...,
@@ -1003,18 +1003,18 @@ jupyter.widget.IntSlider <- R6::R6Class("jupyter.widget.IntSlider", inherit = ju
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
+        min = self$check_state('min', min),
+        max = self$check_state('max', max),
+        step = self$check_state('step', step),
         behavior = self$check_state('behavior', behavior),
         continuous_update = self$check_state('continuous_update', continuous_update),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
         disabled = self$check_state('disabled', disabled),
-        max = self$check_state('max', max),
-        min = self$check_state('min', min),
         orientation = self$check_state('orientation', orientation),
         readout = self$check_state('readout', readout),
-        readout_format = self$check_state('readout_format', readout_format),
-        step = self$check_state('step', step),
-        value = self$check_state('value', value)
+        readout_format = self$check_state('readout_format', readout_format)
       )
 
       super$initialize(
@@ -1032,6 +1032,22 @@ jupyter.widget.IntSlider <- R6::R6Class("jupyter.widget.IntSlider", inherit = ju
 
   active = list(
     
+    #' @field value
+    #' Int value
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field min
+    #' Min value
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    
+    #' @field max
+    #' Max value
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    
+    #' @field step
+    #' Minimum step to increment the value
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
+    
     #' @field behavior
     #' Slider dragging behavior.
     behavior = function(x) if(missing(x)) private$state_[['behavior']] else self$update(behavior = self$check_state('behavior', x)),
@@ -1052,14 +1068,6 @@ jupyter.widget.IntSlider <- R6::R6Class("jupyter.widget.IntSlider", inherit = ju
     #' Enable or disable user changes
     disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
     
-    #' @field max
-    #' Max value
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
-    
-    #' @field min
-    #' Min value
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
-    
     #' @field orientation
     #' Vertical or horizontal.
     orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x)),
@@ -1070,15 +1078,7 @@ jupyter.widget.IntSlider <- R6::R6Class("jupyter.widget.IntSlider", inherit = ju
     
     #' @field readout_format
     #' Format for the readout
-    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x)),
-    
-    #' @field step
-    #' Minimum step to increment the value
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
-    
-    #' @field value
-    #' Int value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x))
   ),
 
   private = list(
@@ -1088,18 +1088,18 @@ jupyter.widget.IntSlider <- R6::R6Class("jupyter.widget.IntSlider", inherit = ju
 
 #' IntSlider widget
 #'
+#' @param value Int value
+#' @param min Min value
+#' @param max Max value
+#' @param step Minimum step to increment the value
 #' @param behavior Slider dragging behavior.
 #' @param continuous_update Update the value of the widget as the user is holding the slider.
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param disabled Enable or disable user changes
-#' @param max Max value
-#' @param min Min value
 #' @param orientation Vertical or horizontal.
 #' @param readout Display the current value of the slider next to it.
 #' @param readout_format Format for the readout
-#' @param step Minimum step to increment the value
-#' @param value Int value
 #' 
 #' @param style Must inherit from [jupyter.widget.SliderStyle].
 #' 
@@ -1108,35 +1108,35 @@ jupyter.widget.IntSlider <- R6::R6Class("jupyter.widget.IntSlider", inherit = ju
 #'
 #' @export
 IntSlider <- function(
+  value = 0L,
+  min = 0L,
+  max = 100L,
+  step = 1L,
   behavior = "drag-tap",
   continuous_update = TRUE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  max = 100L,
-  min = 0L,
   orientation = "horizontal",
   readout = TRUE,
   readout_format = "d",
-  step = 1L,
-  value = 0L,
   style = SliderStyle(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.IntSlider$new(
+    value = value,
+    min = min,
+    max = max,
+    step = step,
     behavior = behavior,
     continuous_update = continuous_update,
     description = description,
     description_allow_html = description_allow_html,
     disabled = disabled,
-    max = max,
-    min = min,
     orientation = orientation,
     readout = readout,
     readout_format = readout_format,
-    step = step,
-    value = value,
     style = style,
     ...,
     error_call = error_call
@@ -1154,18 +1154,18 @@ rlang::on_load({
 jupyter.widget.FloatSlider <- R6::R6Class("jupyter.widget.FloatSlider", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value Float value
+    #' @param min Min value
+    #' @param max Max value
+    #' @param step Minimum step to increment the value
     #' @param behavior Slider dragging behavior.
     #' @param continuous_update Update the value of the widget as the user is holding the slider.
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param disabled Enable or disable user changes
-    #' @param max Max value
-    #' @param min Min value
     #' @param orientation Vertical or horizontal.
     #' @param readout Display the current value of the slider next to it.
     #' @param readout_format Format for the readout
-    #' @param step Minimum step to increment the value
-    #' @param value Float value
     #' @param style Must inherit from [jupyter.widget.SliderStyle].
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
@@ -1173,18 +1173,18 @@ jupyter.widget.FloatSlider <- R6::R6Class("jupyter.widget.FloatSlider", inherit 
     #'
     #' @return a new 'jupyter.widget.FloatSlider' widget
     initialize = function(
+      value = 0,
+      min = 0,
+      max = 100,
+      step = 0.1,
       behavior = "drag-tap",
       continuous_update = TRUE,
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
-      max = 100,
-      min = 0,
       orientation = "horizontal",
       readout = TRUE,
       readout_format = ".2f",
-      step = 0.1,
-      value = 0,
       style = SliderStyle(),
 
       ...,
@@ -1192,18 +1192,18 @@ jupyter.widget.FloatSlider <- R6::R6Class("jupyter.widget.FloatSlider", inherit 
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
+        min = self$check_state('min', min),
+        max = self$check_state('max', max),
+        step = self$check_state('step', step),
         behavior = self$check_state('behavior', behavior),
         continuous_update = self$check_state('continuous_update', continuous_update),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
         disabled = self$check_state('disabled', disabled),
-        max = self$check_state('max', max),
-        min = self$check_state('min', min),
         orientation = self$check_state('orientation', orientation),
         readout = self$check_state('readout', readout),
-        readout_format = self$check_state('readout_format', readout_format),
-        step = self$check_state('step', step),
-        value = self$check_state('value', value)
+        readout_format = self$check_state('readout_format', readout_format)
       )
 
       super$initialize(
@@ -1220,6 +1220,22 @@ jupyter.widget.FloatSlider <- R6::R6Class("jupyter.widget.FloatSlider", inherit 
   ),
 
   active = list(
+    
+    #' @field value
+    #' Float value
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field min
+    #' Min value
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    
+    #' @field max
+    #' Max value
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    
+    #' @field step
+    #' Minimum step to increment the value
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
     
     #' @field behavior
     #' Slider dragging behavior.
@@ -1241,14 +1257,6 @@ jupyter.widget.FloatSlider <- R6::R6Class("jupyter.widget.FloatSlider", inherit 
     #' Enable or disable user changes
     disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
     
-    #' @field max
-    #' Max value
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
-    
-    #' @field min
-    #' Min value
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
-    
     #' @field orientation
     #' Vertical or horizontal.
     orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x)),
@@ -1259,15 +1267,7 @@ jupyter.widget.FloatSlider <- R6::R6Class("jupyter.widget.FloatSlider", inherit 
     
     #' @field readout_format
     #' Format for the readout
-    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x)),
-    
-    #' @field step
-    #' Minimum step to increment the value
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
-    
-    #' @field value
-    #' Float value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x))
   ),
 
   private = list(
@@ -1277,18 +1277,18 @@ jupyter.widget.FloatSlider <- R6::R6Class("jupyter.widget.FloatSlider", inherit 
 
 #' FloatSlider widget
 #'
+#' @param value Float value
+#' @param min Min value
+#' @param max Max value
+#' @param step Minimum step to increment the value
 #' @param behavior Slider dragging behavior.
 #' @param continuous_update Update the value of the widget as the user is holding the slider.
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param disabled Enable or disable user changes
-#' @param max Max value
-#' @param min Min value
 #' @param orientation Vertical or horizontal.
 #' @param readout Display the current value of the slider next to it.
 #' @param readout_format Format for the readout
-#' @param step Minimum step to increment the value
-#' @param value Float value
 #' 
 #' @param style Must inherit from [jupyter.widget.SliderStyle].
 #' 
@@ -1297,35 +1297,35 @@ jupyter.widget.FloatSlider <- R6::R6Class("jupyter.widget.FloatSlider", inherit 
 #'
 #' @export
 FloatSlider <- function(
+  value = 0,
+  min = 0,
+  max = 100,
+  step = 0.1,
   behavior = "drag-tap",
   continuous_update = TRUE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  max = 100,
-  min = 0,
   orientation = "horizontal",
   readout = TRUE,
   readout_format = ".2f",
-  step = 0.1,
-  value = 0,
   style = SliderStyle(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.FloatSlider$new(
+    value = value,
+    min = min,
+    max = max,
+    step = step,
     behavior = behavior,
     continuous_update = continuous_update,
     description = description,
     description_allow_html = description_allow_html,
     disabled = disabled,
-    max = max,
-    min = min,
     orientation = orientation,
     readout = readout,
     readout_format = readout_format,
-    step = step,
-    value = value,
     style = style,
     ...,
     error_call = error_call
@@ -1343,19 +1343,19 @@ rlang::on_load({
 jupyter.widget.FloatLogSlider <- R6::R6Class("jupyter.widget.FloatLogSlider", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value Float value
+    #' @param min Min value for the exponent
+    #' @param max Max value for the exponent
+    #' @param step Minimum step in the exponent to increment the value
     #' @param base Base for the logarithm
     #' @param behavior Slider dragging behavior.
     #' @param continuous_update Update the value of the widget as the user is holding the slider.
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param disabled Enable or disable user changes
-    #' @param max Max value for the exponent
-    #' @param min Min value for the exponent
     #' @param orientation Vertical or horizontal.
     #' @param readout Display the current value of the slider next to it.
     #' @param readout_format Format for the readout
-    #' @param step Minimum step in the exponent to increment the value
-    #' @param value Float value
     #' @param style Must inherit from [jupyter.widget.SliderStyle].
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
@@ -1363,19 +1363,19 @@ jupyter.widget.FloatLogSlider <- R6::R6Class("jupyter.widget.FloatLogSlider", in
     #'
     #' @return a new 'jupyter.widget.FloatLogSlider' widget
     initialize = function(
+      value = 1,
+      min = 0,
+      max = 4,
+      step = 0.1,
       base = 10,
       behavior = "drag-tap",
       continuous_update = TRUE,
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
-      max = 4,
-      min = 0,
       orientation = "horizontal",
       readout = TRUE,
       readout_format = ".3g",
-      step = 0.1,
-      value = 1,
       style = SliderStyle(),
 
       ...,
@@ -1383,19 +1383,19 @@ jupyter.widget.FloatLogSlider <- R6::R6Class("jupyter.widget.FloatLogSlider", in
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
+        min = self$check_state('min', min),
+        max = self$check_state('max', max),
+        step = self$check_state('step', step),
         base = self$check_state('base', base),
         behavior = self$check_state('behavior', behavior),
         continuous_update = self$check_state('continuous_update', continuous_update),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
         disabled = self$check_state('disabled', disabled),
-        max = self$check_state('max', max),
-        min = self$check_state('min', min),
         orientation = self$check_state('orientation', orientation),
         readout = self$check_state('readout', readout),
-        readout_format = self$check_state('readout_format', readout_format),
-        step = self$check_state('step', step),
-        value = self$check_state('value', value)
+        readout_format = self$check_state('readout_format', readout_format)
       )
 
       super$initialize(
@@ -1412,6 +1412,22 @@ jupyter.widget.FloatLogSlider <- R6::R6Class("jupyter.widget.FloatLogSlider", in
   ),
 
   active = list(
+    
+    #' @field value
+    #' Float value
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field min
+    #' Min value for the exponent
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    
+    #' @field max
+    #' Max value for the exponent
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    
+    #' @field step
+    #' Minimum step in the exponent to increment the value
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
     
     #' @field base
     #' Base for the logarithm
@@ -1437,14 +1453,6 @@ jupyter.widget.FloatLogSlider <- R6::R6Class("jupyter.widget.FloatLogSlider", in
     #' Enable or disable user changes
     disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
     
-    #' @field max
-    #' Max value for the exponent
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
-    
-    #' @field min
-    #' Min value for the exponent
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
-    
     #' @field orientation
     #' Vertical or horizontal.
     orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x)),
@@ -1455,15 +1463,7 @@ jupyter.widget.FloatLogSlider <- R6::R6Class("jupyter.widget.FloatLogSlider", in
     
     #' @field readout_format
     #' Format for the readout
-    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x)),
-    
-    #' @field step
-    #' Minimum step in the exponent to increment the value
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
-    
-    #' @field value
-    #' Float value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x))
   ),
 
   private = list(
@@ -1473,19 +1473,19 @@ jupyter.widget.FloatLogSlider <- R6::R6Class("jupyter.widget.FloatLogSlider", in
 
 #' FloatLogSlider widget
 #'
+#' @param value Float value
+#' @param min Min value for the exponent
+#' @param max Max value for the exponent
+#' @param step Minimum step in the exponent to increment the value
 #' @param base Base for the logarithm
 #' @param behavior Slider dragging behavior.
 #' @param continuous_update Update the value of the widget as the user is holding the slider.
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param disabled Enable or disable user changes
-#' @param max Max value for the exponent
-#' @param min Min value for the exponent
 #' @param orientation Vertical or horizontal.
 #' @param readout Display the current value of the slider next to it.
 #' @param readout_format Format for the readout
-#' @param step Minimum step in the exponent to increment the value
-#' @param value Float value
 #' 
 #' @param style Must inherit from [jupyter.widget.SliderStyle].
 #' 
@@ -1494,37 +1494,37 @@ jupyter.widget.FloatLogSlider <- R6::R6Class("jupyter.widget.FloatLogSlider", in
 #'
 #' @export
 FloatLogSlider <- function(
+  value = 1,
+  min = 0,
+  max = 4,
+  step = 0.1,
   base = 10,
   behavior = "drag-tap",
   continuous_update = TRUE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  max = 4,
-  min = 0,
   orientation = "horizontal",
   readout = TRUE,
   readout_format = ".3g",
-  step = 0.1,
-  value = 1,
   style = SliderStyle(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.FloatLogSlider$new(
+    value = value,
+    min = min,
+    max = max,
+    step = step,
     base = base,
     behavior = behavior,
     continuous_update = continuous_update,
     description = description,
     description_allow_html = description_allow_html,
     disabled = disabled,
-    max = max,
-    min = min,
     orientation = orientation,
     readout = readout,
     readout_format = readout_format,
-    step = step,
-    value = value,
     style = style,
     ...,
     error_call = error_call
@@ -1542,18 +1542,18 @@ rlang::on_load({
 jupyter.widget.FloatRangeSlider <- R6::R6Class("jupyter.widget.FloatRangeSlider", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value Tuple of (lower, upper) bounds
+    #' @param min Min value
+    #' @param max Max value
+    #' @param step Minimum step to increment the value
     #' @param behavior Slider dragging behavior.
     #' @param continuous_update Update the value of the widget as the user is sliding the slider.
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param disabled Enable or disable user changes
-    #' @param max Max value
-    #' @param min Min value
     #' @param orientation Vertical or horizontal.
     #' @param readout Display the current value of the slider next to it.
     #' @param readout_format Format for the readout
-    #' @param step Minimum step to increment the value
-    #' @param value Tuple of (lower, upper) bounds
     #' @param style Must inherit from [jupyter.widget.SliderStyle].
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
@@ -1561,18 +1561,18 @@ jupyter.widget.FloatRangeSlider <- R6::R6Class("jupyter.widget.FloatRangeSlider"
     #'
     #' @return a new 'jupyter.widget.FloatRangeSlider' widget
     initialize = function(
+      value = list(0, 1),
+      min = 0,
+      max = 100,
+      step = 0.1,
       behavior = "drag-tap",
       continuous_update = TRUE,
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
-      max = 100,
-      min = 0,
       orientation = "horizontal",
       readout = TRUE,
       readout_format = ".2f",
-      step = 0.1,
-      value = list(0, 1),
       style = SliderStyle(),
 
       ...,
@@ -1580,18 +1580,18 @@ jupyter.widget.FloatRangeSlider <- R6::R6Class("jupyter.widget.FloatRangeSlider"
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
+        min = self$check_state('min', min),
+        max = self$check_state('max', max),
+        step = self$check_state('step', step),
         behavior = self$check_state('behavior', behavior),
         continuous_update = self$check_state('continuous_update', continuous_update),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
         disabled = self$check_state('disabled', disabled),
-        max = self$check_state('max', max),
-        min = self$check_state('min', min),
         orientation = self$check_state('orientation', orientation),
         readout = self$check_state('readout', readout),
-        readout_format = self$check_state('readout_format', readout_format),
-        step = self$check_state('step', step),
-        value = self$check_state('value', value)
+        readout_format = self$check_state('readout_format', readout_format)
       )
 
       super$initialize(
@@ -1609,6 +1609,22 @@ jupyter.widget.FloatRangeSlider <- R6::R6Class("jupyter.widget.FloatRangeSlider"
 
   active = list(
     
+    #' @field value
+    #' Tuple of (lower, upper) bounds
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field min
+    #' Min value
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    
+    #' @field max
+    #' Max value
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    
+    #' @field step
+    #' Minimum step to increment the value
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
+    
     #' @field behavior
     #' Slider dragging behavior.
     behavior = function(x) if(missing(x)) private$state_[['behavior']] else self$update(behavior = self$check_state('behavior', x)),
@@ -1629,14 +1645,6 @@ jupyter.widget.FloatRangeSlider <- R6::R6Class("jupyter.widget.FloatRangeSlider"
     #' Enable or disable user changes
     disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
     
-    #' @field max
-    #' Max value
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
-    
-    #' @field min
-    #' Min value
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
-    
     #' @field orientation
     #' Vertical or horizontal.
     orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x)),
@@ -1647,15 +1655,7 @@ jupyter.widget.FloatRangeSlider <- R6::R6Class("jupyter.widget.FloatRangeSlider"
     
     #' @field readout_format
     #' Format for the readout
-    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x)),
-    
-    #' @field step
-    #' Minimum step to increment the value
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
-    
-    #' @field value
-    #' Tuple of (lower, upper) bounds
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x))
   ),
 
   private = list(
@@ -1665,18 +1665,18 @@ jupyter.widget.FloatRangeSlider <- R6::R6Class("jupyter.widget.FloatRangeSlider"
 
 #' FloatRangeSlider widget
 #'
+#' @param value Tuple of (lower, upper) bounds
+#' @param min Min value
+#' @param max Max value
+#' @param step Minimum step to increment the value
 #' @param behavior Slider dragging behavior.
 #' @param continuous_update Update the value of the widget as the user is sliding the slider.
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param disabled Enable or disable user changes
-#' @param max Max value
-#' @param min Min value
 #' @param orientation Vertical or horizontal.
 #' @param readout Display the current value of the slider next to it.
 #' @param readout_format Format for the readout
-#' @param step Minimum step to increment the value
-#' @param value Tuple of (lower, upper) bounds
 #' 
 #' @param style Must inherit from [jupyter.widget.SliderStyle].
 #' 
@@ -1685,35 +1685,35 @@ jupyter.widget.FloatRangeSlider <- R6::R6Class("jupyter.widget.FloatRangeSlider"
 #'
 #' @export
 FloatRangeSlider <- function(
+  value = list(0, 1),
+  min = 0,
+  max = 100,
+  step = 0.1,
   behavior = "drag-tap",
   continuous_update = TRUE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  max = 100,
-  min = 0,
   orientation = "horizontal",
   readout = TRUE,
   readout_format = ".2f",
-  step = 0.1,
-  value = list(0, 1),
   style = SliderStyle(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.FloatRangeSlider$new(
+    value = value,
+    min = min,
+    max = max,
+    step = step,
     behavior = behavior,
     continuous_update = continuous_update,
     description = description,
     description_allow_html = description_allow_html,
     disabled = disabled,
-    max = max,
-    min = min,
     orientation = orientation,
     readout = readout,
     readout_format = readout_format,
-    step = step,
-    value = value,
     style = style,
     ...,
     error_call = error_call
@@ -1731,18 +1731,18 @@ rlang::on_load({
 jupyter.widget.IntRangeSlider <- R6::R6Class("jupyter.widget.IntRangeSlider", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value Tuple of (lower, upper) bounds
+    #' @param min Min value
+    #' @param max Max value
+    #' @param step Minimum step that the value can take
     #' @param behavior Slider dragging behavior.
     #' @param continuous_update Update the value of the widget as the user is sliding the slider.
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param disabled Enable or disable user changes
-    #' @param max Max value
-    #' @param min Min value
     #' @param orientation Vertical or horizontal.
     #' @param readout Display the current value of the slider next to it.
     #' @param readout_format Format for the readout
-    #' @param step Minimum step that the value can take
-    #' @param value Tuple of (lower, upper) bounds
     #' @param style Must inherit from [jupyter.widget.SliderStyle].
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
@@ -1750,18 +1750,18 @@ jupyter.widget.IntRangeSlider <- R6::R6Class("jupyter.widget.IntRangeSlider", in
     #'
     #' @return a new 'jupyter.widget.IntRangeSlider' widget
     initialize = function(
+      value = list(0L, 1L),
+      min = 0L,
+      max = 100L,
+      step = 1L,
       behavior = "drag-tap",
       continuous_update = TRUE,
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
-      max = 100L,
-      min = 0L,
       orientation = "horizontal",
       readout = TRUE,
       readout_format = "d",
-      step = 1L,
-      value = list(0L, 1L),
       style = SliderStyle(),
 
       ...,
@@ -1769,18 +1769,18 @@ jupyter.widget.IntRangeSlider <- R6::R6Class("jupyter.widget.IntRangeSlider", in
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
+        min = self$check_state('min', min),
+        max = self$check_state('max', max),
+        step = self$check_state('step', step),
         behavior = self$check_state('behavior', behavior),
         continuous_update = self$check_state('continuous_update', continuous_update),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
         disabled = self$check_state('disabled', disabled),
-        max = self$check_state('max', max),
-        min = self$check_state('min', min),
         orientation = self$check_state('orientation', orientation),
         readout = self$check_state('readout', readout),
-        readout_format = self$check_state('readout_format', readout_format),
-        step = self$check_state('step', step),
-        value = self$check_state('value', value)
+        readout_format = self$check_state('readout_format', readout_format)
       )
 
       super$initialize(
@@ -1797,6 +1797,22 @@ jupyter.widget.IntRangeSlider <- R6::R6Class("jupyter.widget.IntRangeSlider", in
   ),
 
   active = list(
+    
+    #' @field value
+    #' Tuple of (lower, upper) bounds
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field min
+    #' Min value
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    
+    #' @field max
+    #' Max value
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    
+    #' @field step
+    #' Minimum step that the value can take
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
     
     #' @field behavior
     #' Slider dragging behavior.
@@ -1818,14 +1834,6 @@ jupyter.widget.IntRangeSlider <- R6::R6Class("jupyter.widget.IntRangeSlider", in
     #' Enable or disable user changes
     disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
     
-    #' @field max
-    #' Max value
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
-    
-    #' @field min
-    #' Min value
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
-    
     #' @field orientation
     #' Vertical or horizontal.
     orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x)),
@@ -1836,15 +1844,7 @@ jupyter.widget.IntRangeSlider <- R6::R6Class("jupyter.widget.IntRangeSlider", in
     
     #' @field readout_format
     #' Format for the readout
-    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x)),
-    
-    #' @field step
-    #' Minimum step that the value can take
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
-    
-    #' @field value
-    #' Tuple of (lower, upper) bounds
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x))
   ),
 
   private = list(
@@ -1854,18 +1854,18 @@ jupyter.widget.IntRangeSlider <- R6::R6Class("jupyter.widget.IntRangeSlider", in
 
 #' IntRangeSlider widget
 #'
+#' @param value Tuple of (lower, upper) bounds
+#' @param min Min value
+#' @param max Max value
+#' @param step Minimum step that the value can take
 #' @param behavior Slider dragging behavior.
 #' @param continuous_update Update the value of the widget as the user is sliding the slider.
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param disabled Enable or disable user changes
-#' @param max Max value
-#' @param min Min value
 #' @param orientation Vertical or horizontal.
 #' @param readout Display the current value of the slider next to it.
 #' @param readout_format Format for the readout
-#' @param step Minimum step that the value can take
-#' @param value Tuple of (lower, upper) bounds
 #' 
 #' @param style Must inherit from [jupyter.widget.SliderStyle].
 #' 
@@ -1874,35 +1874,35 @@ jupyter.widget.IntRangeSlider <- R6::R6Class("jupyter.widget.IntRangeSlider", in
 #'
 #' @export
 IntRangeSlider <- function(
+  value = list(0L, 1L),
+  min = 0L,
+  max = 100L,
+  step = 1L,
   behavior = "drag-tap",
   continuous_update = TRUE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  max = 100L,
-  min = 0L,
   orientation = "horizontal",
   readout = TRUE,
   readout_format = "d",
-  step = 1L,
-  value = list(0L, 1L),
   style = SliderStyle(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.IntRangeSlider$new(
+    value = value,
+    min = min,
+    max = max,
+    step = step,
     behavior = behavior,
     continuous_update = continuous_update,
     description = description,
     description_allow_html = description_allow_html,
     disabled = disabled,
-    max = max,
-    min = min,
     orientation = orientation,
     readout = readout,
     readout_format = readout_format,
-    step = step,
-    value = value,
     style = style,
     ...,
     error_call = error_call
@@ -1920,12 +1920,12 @@ rlang::on_load({
 jupyter.widget.Text <- R6::R6Class("jupyter.widget.Text", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value String value
+    #' @param placeholder Placeholder text to display when nothing has been typed
     #' @param continuous_update Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param disabled Enable or disable user changes
-    #' @param placeholder Placeholder text to display when nothing has been typed
-    #' @param value String value
     #' @param style Must inherit from [jupyter.widget.TextStyle].
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
@@ -1933,12 +1933,12 @@ jupyter.widget.Text <- R6::R6Class("jupyter.widget.Text", inherit = jupyter.widg
     #'
     #' @return a new 'jupyter.widget.Text' widget
     initialize = function(
+      value = "",
+      placeholder = "\U{200B}",
       continuous_update = TRUE,
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
-      placeholder = "\U{200B}",
-      value = "",
       style = TextStyle(),
 
       ...,
@@ -1946,12 +1946,12 @@ jupyter.widget.Text <- R6::R6Class("jupyter.widget.Text", inherit = jupyter.widg
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
+        placeholder = self$check_state('placeholder', placeholder),
         continuous_update = self$check_state('continuous_update', continuous_update),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        placeholder = self$check_state('placeholder', placeholder),
-        value = self$check_state('value', value)
+        disabled = self$check_state('disabled', disabled)
       )
 
       super$initialize(
@@ -1969,6 +1969,14 @@ jupyter.widget.Text <- R6::R6Class("jupyter.widget.Text", inherit = jupyter.widg
 
   active = list(
     
+    #' @field value
+    #' String value
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field placeholder
+    #' Placeholder text to display when nothing has been typed
+    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x)),
+    
     #' @field continuous_update
     #' Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
     continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
@@ -1983,15 +1991,7 @@ jupyter.widget.Text <- R6::R6Class("jupyter.widget.Text", inherit = jupyter.widg
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
-    
-    #' @field placeholder
-    #' Placeholder text to display when nothing has been typed
-    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x)),
-    
-    #' @field value
-    #' String value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
   ),
 
   private = list(
@@ -2001,12 +2001,12 @@ jupyter.widget.Text <- R6::R6Class("jupyter.widget.Text", inherit = jupyter.widg
 
 #' Text widget
 #'
+#' @param value String value
+#' @param placeholder Placeholder text to display when nothing has been typed
 #' @param continuous_update Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param disabled Enable or disable user changes
-#' @param placeholder Placeholder text to display when nothing has been typed
-#' @param value String value
 #' 
 #' @param style Must inherit from [jupyter.widget.TextStyle].
 #' 
@@ -2015,23 +2015,23 @@ jupyter.widget.Text <- R6::R6Class("jupyter.widget.Text", inherit = jupyter.widg
 #'
 #' @export
 Text <- function(
+  value = "",
+  placeholder = "\U{200B}",
   continuous_update = TRUE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  placeholder = "\U{200B}",
-  value = "",
   style = TextStyle(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.Text$new(
+    value = value,
+    placeholder = placeholder,
     continuous_update = continuous_update,
     description = description,
     description_allow_html = description_allow_html,
     disabled = disabled,
-    placeholder = placeholder,
-    value = value,
     style = style,
     ...,
     error_call = error_call
@@ -2045,12 +2045,12 @@ Text <- function(
 jupyter.widget.IntText <- R6::R6Class("jupyter.widget.IntText", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value Int value
+    #' @param step Minimum step to increment the value
     #' @param continuous_update Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param disabled Enable or disable user changes
-    #' @param step Minimum step to increment the value
-    #' @param value Int value
     #' @param style Must inherit from [jupyter.widget.TextStyle].
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
@@ -2058,12 +2058,12 @@ jupyter.widget.IntText <- R6::R6Class("jupyter.widget.IntText", inherit = jupyte
     #'
     #' @return a new 'jupyter.widget.IntText' widget
     initialize = function(
+      value = 0L,
+      step = 1L,
       continuous_update = FALSE,
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
-      step = 1L,
-      value = 0L,
       style = TextStyle(),
 
       ...,
@@ -2071,12 +2071,12 @@ jupyter.widget.IntText <- R6::R6Class("jupyter.widget.IntText", inherit = jupyte
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
+        step = self$check_state('step', step),
         continuous_update = self$check_state('continuous_update', continuous_update),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        step = self$check_state('step', step),
-        value = self$check_state('value', value)
+        disabled = self$check_state('disabled', disabled)
       )
 
       super$initialize(
@@ -2094,6 +2094,14 @@ jupyter.widget.IntText <- R6::R6Class("jupyter.widget.IntText", inherit = jupyte
 
   active = list(
     
+    #' @field value
+    #' Int value
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field step
+    #' Minimum step to increment the value
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
+    
     #' @field continuous_update
     #' Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
     continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
@@ -2108,15 +2116,7 @@ jupyter.widget.IntText <- R6::R6Class("jupyter.widget.IntText", inherit = jupyte
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
-    
-    #' @field step
-    #' Minimum step to increment the value
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
-    
-    #' @field value
-    #' Int value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
   ),
 
   private = list(
@@ -2126,12 +2126,12 @@ jupyter.widget.IntText <- R6::R6Class("jupyter.widget.IntText", inherit = jupyte
 
 #' IntText widget
 #'
+#' @param value Int value
+#' @param step Minimum step to increment the value
 #' @param continuous_update Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param disabled Enable or disable user changes
-#' @param step Minimum step to increment the value
-#' @param value Int value
 #' 
 #' @param style Must inherit from [jupyter.widget.TextStyle].
 #' 
@@ -2140,23 +2140,23 @@ jupyter.widget.IntText <- R6::R6Class("jupyter.widget.IntText", inherit = jupyte
 #'
 #' @export
 IntText <- function(
+  value = 0L,
+  step = 1L,
   continuous_update = FALSE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  step = 1L,
-  value = 0L,
   style = TextStyle(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.IntText$new(
+    value = value,
+    step = step,
     continuous_update = continuous_update,
     description = description,
     description_allow_html = description_allow_html,
     disabled = disabled,
-    step = step,
-    value = value,
     style = style,
     ...,
     error_call = error_call
@@ -2170,12 +2170,12 @@ IntText <- function(
 jupyter.widget.FloatText <- R6::R6Class("jupyter.widget.FloatText", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value Float value
+    #' @param step Minimum step to increment the value
     #' @param continuous_update Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param disabled Enable or disable user changes
-    #' @param step Minimum step to increment the value
-    #' @param value Float value
     #' @param style Must inherit from [jupyter.widget.TextStyle].
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
@@ -2183,12 +2183,12 @@ jupyter.widget.FloatText <- R6::R6Class("jupyter.widget.FloatText", inherit = ju
     #'
     #' @return a new 'jupyter.widget.FloatText' widget
     initialize = function(
+      value = 0,
+      step = NULL,
       continuous_update = FALSE,
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
-      step = NULL,
-      value = 0,
       style = TextStyle(),
 
       ...,
@@ -2196,12 +2196,12 @@ jupyter.widget.FloatText <- R6::R6Class("jupyter.widget.FloatText", inherit = ju
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
+        step = self$check_state('step', step),
         continuous_update = self$check_state('continuous_update', continuous_update),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        step = self$check_state('step', step),
-        value = self$check_state('value', value)
+        disabled = self$check_state('disabled', disabled)
       )
 
       super$initialize(
@@ -2219,6 +2219,14 @@ jupyter.widget.FloatText <- R6::R6Class("jupyter.widget.FloatText", inherit = ju
 
   active = list(
     
+    #' @field value
+    #' Float value
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field step
+    #' Minimum step to increment the value
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
+    
     #' @field continuous_update
     #' Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
     continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
@@ -2233,15 +2241,7 @@ jupyter.widget.FloatText <- R6::R6Class("jupyter.widget.FloatText", inherit = ju
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
-    
-    #' @field step
-    #' Minimum step to increment the value
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
-    
-    #' @field value
-    #' Float value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
   ),
 
   private = list(
@@ -2251,12 +2251,12 @@ jupyter.widget.FloatText <- R6::R6Class("jupyter.widget.FloatText", inherit = ju
 
 #' FloatText widget
 #'
+#' @param value Float value
+#' @param step Minimum step to increment the value
 #' @param continuous_update Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param disabled Enable or disable user changes
-#' @param step Minimum step to increment the value
-#' @param value Float value
 #' 
 #' @param style Must inherit from [jupyter.widget.TextStyle].
 #' 
@@ -2265,23 +2265,23 @@ jupyter.widget.FloatText <- R6::R6Class("jupyter.widget.FloatText", inherit = ju
 #'
 #' @export
 FloatText <- function(
+  value = 0,
+  step = NULL,
   continuous_update = FALSE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  step = NULL,
-  value = 0,
   style = TextStyle(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.FloatText$new(
+    value = value,
+    step = step,
     continuous_update = continuous_update,
     description = description,
     description_allow_html = description_allow_html,
     disabled = disabled,
-    step = step,
-    value = value,
     style = style,
     ...,
     error_call = error_call
@@ -2295,14 +2295,14 @@ FloatText <- function(
 jupyter.widget.BoundedIntText <- R6::R6Class("jupyter.widget.BoundedIntText", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value Int value
+    #' @param min Min value
+    #' @param max Max value
+    #' @param step Minimum step to increment the value
     #' @param continuous_update Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param disabled Enable or disable user changes
-    #' @param max Max value
-    #' @param min Min value
-    #' @param step Minimum step to increment the value
-    #' @param value Int value
     #' @param style Must inherit from [jupyter.widget.TextStyle].
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
@@ -2310,14 +2310,14 @@ jupyter.widget.BoundedIntText <- R6::R6Class("jupyter.widget.BoundedIntText", in
     #'
     #' @return a new 'jupyter.widget.BoundedIntText' widget
     initialize = function(
+      value = 0L,
+      min = 0L,
+      max = 100L,
+      step = 1L,
       continuous_update = FALSE,
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
-      max = 100L,
-      min = 0L,
-      step = 1L,
-      value = 0L,
       style = TextStyle(),
 
       ...,
@@ -2325,14 +2325,14 @@ jupyter.widget.BoundedIntText <- R6::R6Class("jupyter.widget.BoundedIntText", in
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
+        min = self$check_state('min', min),
+        max = self$check_state('max', max),
+        step = self$check_state('step', step),
         continuous_update = self$check_state('continuous_update', continuous_update),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        max = self$check_state('max', max),
-        min = self$check_state('min', min),
-        step = self$check_state('step', step),
-        value = self$check_state('value', value)
+        disabled = self$check_state('disabled', disabled)
       )
 
       super$initialize(
@@ -2350,6 +2350,22 @@ jupyter.widget.BoundedIntText <- R6::R6Class("jupyter.widget.BoundedIntText", in
 
   active = list(
     
+    #' @field value
+    #' Int value
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field min
+    #' Min value
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    
+    #' @field max
+    #' Max value
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    
+    #' @field step
+    #' Minimum step to increment the value
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
+    
     #' @field continuous_update
     #' Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
     continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
@@ -2364,23 +2380,7 @@ jupyter.widget.BoundedIntText <- R6::R6Class("jupyter.widget.BoundedIntText", in
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
-    
-    #' @field max
-    #' Max value
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
-    
-    #' @field min
-    #' Min value
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
-    
-    #' @field step
-    #' Minimum step to increment the value
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
-    
-    #' @field value
-    #' Int value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
   ),
 
   private = list(
@@ -2390,14 +2390,14 @@ jupyter.widget.BoundedIntText <- R6::R6Class("jupyter.widget.BoundedIntText", in
 
 #' BoundedIntText widget
 #'
+#' @param value Int value
+#' @param min Min value
+#' @param max Max value
+#' @param step Minimum step to increment the value
 #' @param continuous_update Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param disabled Enable or disable user changes
-#' @param max Max value
-#' @param min Min value
-#' @param step Minimum step to increment the value
-#' @param value Int value
 #' 
 #' @param style Must inherit from [jupyter.widget.TextStyle].
 #' 
@@ -2406,27 +2406,27 @@ jupyter.widget.BoundedIntText <- R6::R6Class("jupyter.widget.BoundedIntText", in
 #'
 #' @export
 BoundedIntText <- function(
+  value = 0L,
+  min = 0L,
+  max = 100L,
+  step = 1L,
   continuous_update = FALSE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  max = 100L,
-  min = 0L,
-  step = 1L,
-  value = 0L,
   style = TextStyle(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.BoundedIntText$new(
+    value = value,
+    min = min,
+    max = max,
+    step = step,
     continuous_update = continuous_update,
     description = description,
     description_allow_html = description_allow_html,
     disabled = disabled,
-    max = max,
-    min = min,
-    step = step,
-    value = value,
     style = style,
     ...,
     error_call = error_call
@@ -2440,14 +2440,14 @@ BoundedIntText <- function(
 jupyter.widget.BoundedFloatText <- R6::R6Class("jupyter.widget.BoundedFloatText", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value Float value
+    #' @param min Min value
+    #' @param max Max value
+    #' @param step Minimum step to increment the value
     #' @param continuous_update Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param disabled Enable or disable user changes
-    #' @param max Max value
-    #' @param min Min value
-    #' @param step Minimum step to increment the value
-    #' @param value Float value
     #' @param style Must inherit from [jupyter.widget.TextStyle].
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
@@ -2455,14 +2455,14 @@ jupyter.widget.BoundedFloatText <- R6::R6Class("jupyter.widget.BoundedFloatText"
     #'
     #' @return a new 'jupyter.widget.BoundedFloatText' widget
     initialize = function(
+      value = 0,
+      min = 0,
+      max = 100,
+      step = NULL,
       continuous_update = FALSE,
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
-      max = 100,
-      min = 0,
-      step = NULL,
-      value = 0,
       style = TextStyle(),
 
       ...,
@@ -2470,14 +2470,14 @@ jupyter.widget.BoundedFloatText <- R6::R6Class("jupyter.widget.BoundedFloatText"
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
+        min = self$check_state('min', min),
+        max = self$check_state('max', max),
+        step = self$check_state('step', step),
         continuous_update = self$check_state('continuous_update', continuous_update),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        max = self$check_state('max', max),
-        min = self$check_state('min', min),
-        step = self$check_state('step', step),
-        value = self$check_state('value', value)
+        disabled = self$check_state('disabled', disabled)
       )
 
       super$initialize(
@@ -2495,6 +2495,22 @@ jupyter.widget.BoundedFloatText <- R6::R6Class("jupyter.widget.BoundedFloatText"
 
   active = list(
     
+    #' @field value
+    #' Float value
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field min
+    #' Min value
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    
+    #' @field max
+    #' Max value
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    
+    #' @field step
+    #' Minimum step to increment the value
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
+    
     #' @field continuous_update
     #' Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
     continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
@@ -2509,23 +2525,7 @@ jupyter.widget.BoundedFloatText <- R6::R6Class("jupyter.widget.BoundedFloatText"
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
-    
-    #' @field max
-    #' Max value
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
-    
-    #' @field min
-    #' Min value
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
-    
-    #' @field step
-    #' Minimum step to increment the value
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
-    
-    #' @field value
-    #' Float value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
   ),
 
   private = list(
@@ -2535,14 +2535,14 @@ jupyter.widget.BoundedFloatText <- R6::R6Class("jupyter.widget.BoundedFloatText"
 
 #' BoundedFloatText widget
 #'
+#' @param value Float value
+#' @param min Min value
+#' @param max Max value
+#' @param step Minimum step to increment the value
 #' @param continuous_update Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param disabled Enable or disable user changes
-#' @param max Max value
-#' @param min Min value
-#' @param step Minimum step to increment the value
-#' @param value Float value
 #' 
 #' @param style Must inherit from [jupyter.widget.TextStyle].
 #' 
@@ -2551,27 +2551,27 @@ jupyter.widget.BoundedFloatText <- R6::R6Class("jupyter.widget.BoundedFloatText"
 #'
 #' @export
 BoundedFloatText <- function(
+  value = 0,
+  min = 0,
+  max = 100,
+  step = NULL,
   continuous_update = FALSE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  max = 100,
-  min = 0,
-  step = NULL,
-  value = 0,
   style = TextStyle(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.BoundedFloatText$new(
+    value = value,
+    min = min,
+    max = max,
+    step = step,
     continuous_update = continuous_update,
     description = description,
     description_allow_html = description_allow_html,
     disabled = disabled,
-    max = max,
-    min = min,
-    step = step,
-    value = value,
     style = style,
     ...,
     error_call = error_call
@@ -2585,10 +2585,10 @@ BoundedFloatText <- function(
 jupyter.widget.HTML <- R6::R6Class("jupyter.widget.HTML", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value String value
+    #' @param placeholder Placeholder text to display when nothing has been typed
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
-    #' @param placeholder Placeholder text to display when nothing has been typed
-    #' @param value String value
     #' @param style Must inherit from [jupyter.widget.HTMLStyle].
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
@@ -2596,10 +2596,10 @@ jupyter.widget.HTML <- R6::R6Class("jupyter.widget.HTML", inherit = jupyter.widg
     #'
     #' @return a new 'jupyter.widget.HTML' widget
     initialize = function(
+      value = "",
+      placeholder = "\U{200B}",
       description = "",
       description_allow_html = FALSE,
-      placeholder = "\U{200B}",
-      value = "",
       style = HTMLStyle(),
 
       ...,
@@ -2607,10 +2607,10 @@ jupyter.widget.HTML <- R6::R6Class("jupyter.widget.HTML", inherit = jupyter.widg
     )
     {
       private$state_ <- update_list(private$state_,
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
+        value = self$check_state('value', value),
         placeholder = self$check_state('placeholder', placeholder),
-        value = self$check_state('value', value)
+        description = self$check_state('description', description),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html)
       )
 
       super$initialize(
@@ -2628,21 +2628,21 @@ jupyter.widget.HTML <- R6::R6Class("jupyter.widget.HTML", inherit = jupyter.widg
 
   active = list(
     
+    #' @field value
+    #' String value
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field placeholder
+    #' Placeholder text to display when nothing has been typed
+    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x)),
+    
     #' @field description
     #' Description of the control.
     description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
-    
-    #' @field placeholder
-    #' Placeholder text to display when nothing has been typed
-    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x)),
-    
-    #' @field value
-    #' String value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x))
   ),
 
   private = list(
@@ -2652,10 +2652,10 @@ jupyter.widget.HTML <- R6::R6Class("jupyter.widget.HTML", inherit = jupyter.widg
 
 #' HTML widget
 #'
+#' @param value String value
+#' @param placeholder Placeholder text to display when nothing has been typed
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
-#' @param placeholder Placeholder text to display when nothing has been typed
-#' @param value String value
 #' 
 #' @param style Must inherit from [jupyter.widget.HTMLStyle].
 #' 
@@ -2664,19 +2664,19 @@ jupyter.widget.HTML <- R6::R6Class("jupyter.widget.HTML", inherit = jupyter.widg
 #'
 #' @export
 HTML <- function(
+  value = "",
+  placeholder = "\U{200B}",
   description = "",
   description_allow_html = FALSE,
-  placeholder = "\U{200B}",
-  value = "",
   style = HTMLStyle(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.HTML$new(
+    value = value,
+    placeholder = placeholder,
     description = description,
     description_allow_html = description_allow_html,
-    placeholder = placeholder,
-    value = value,
     style = style,
     ...,
     error_call = error_call
@@ -2690,10 +2690,10 @@ HTML <- function(
 jupyter.widget.HTMLMath <- R6::R6Class("jupyter.widget.HTMLMath", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value String value
+    #' @param placeholder Placeholder text to display when nothing has been typed
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
-    #' @param placeholder Placeholder text to display when nothing has been typed
-    #' @param value String value
     #' @param style Must inherit from [jupyter.widget.HTMLMathStyle].
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
@@ -2701,10 +2701,10 @@ jupyter.widget.HTMLMath <- R6::R6Class("jupyter.widget.HTMLMath", inherit = jupy
     #'
     #' @return a new 'jupyter.widget.HTMLMath' widget
     initialize = function(
+      value = "",
+      placeholder = "\U{200B}",
       description = "",
       description_allow_html = FALSE,
-      placeholder = "\U{200B}",
-      value = "",
       style = HTMLMathStyle(),
 
       ...,
@@ -2712,10 +2712,10 @@ jupyter.widget.HTMLMath <- R6::R6Class("jupyter.widget.HTMLMath", inherit = jupy
     )
     {
       private$state_ <- update_list(private$state_,
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
+        value = self$check_state('value', value),
         placeholder = self$check_state('placeholder', placeholder),
-        value = self$check_state('value', value)
+        description = self$check_state('description', description),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html)
       )
 
       super$initialize(
@@ -2733,21 +2733,21 @@ jupyter.widget.HTMLMath <- R6::R6Class("jupyter.widget.HTMLMath", inherit = jupy
 
   active = list(
     
+    #' @field value
+    #' String value
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field placeholder
+    #' Placeholder text to display when nothing has been typed
+    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x)),
+    
     #' @field description
     #' Description of the control.
     description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
-    
-    #' @field placeholder
-    #' Placeholder text to display when nothing has been typed
-    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x)),
-    
-    #' @field value
-    #' String value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x))
   ),
 
   private = list(
@@ -2757,10 +2757,10 @@ jupyter.widget.HTMLMath <- R6::R6Class("jupyter.widget.HTMLMath", inherit = jupy
 
 #' HTMLMath widget
 #'
+#' @param value String value
+#' @param placeholder Placeholder text to display when nothing has been typed
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
-#' @param placeholder Placeholder text to display when nothing has been typed
-#' @param value String value
 #' 
 #' @param style Must inherit from [jupyter.widget.HTMLMathStyle].
 #' 
@@ -2769,19 +2769,19 @@ jupyter.widget.HTMLMath <- R6::R6Class("jupyter.widget.HTMLMath", inherit = jupy
 #'
 #' @export
 HTMLMath <- function(
+  value = "",
+  placeholder = "\U{200B}",
   description = "",
   description_allow_html = FALSE,
-  placeholder = "\U{200B}",
-  value = "",
   style = HTMLMathStyle(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.HTMLMath$new(
+    value = value,
+    placeholder = placeholder,
     description = description,
     description_allow_html = description_allow_html,
-    placeholder = placeholder,
-    value = value,
     style = style,
     ...,
     error_call = error_call
@@ -2795,12 +2795,12 @@ HTMLMath <- function(
 jupyter.widget.ToggleButton <- R6::R6Class("jupyter.widget.ToggleButton", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value Bool value
     #' @param button_style Use a predefined styling for the button.
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param disabled Enable or disable user changes.
     #' @param icon Font-awesome icon.
-    #' @param value Bool value
     #' @param style Must inherit from [jupyter.widget.ToggleButtonStyle].
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
@@ -2808,12 +2808,12 @@ jupyter.widget.ToggleButton <- R6::R6Class("jupyter.widget.ToggleButton", inheri
     #'
     #' @return a new 'jupyter.widget.ToggleButton' widget
     initialize = function(
+      value = FALSE,
       button_style = "",
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
       icon = "",
-      value = FALSE,
       style = ToggleButtonStyle(),
 
       ...,
@@ -2821,12 +2821,12 @@ jupyter.widget.ToggleButton <- R6::R6Class("jupyter.widget.ToggleButton", inheri
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
         button_style = self$check_state('button_style', button_style),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
         disabled = self$check_state('disabled', disabled),
-        icon = self$check_state('icon', icon),
-        value = self$check_state('value', value)
+        icon = self$check_state('icon', icon)
       )
 
       super$initialize(
@@ -2843,6 +2843,10 @@ jupyter.widget.ToggleButton <- R6::R6Class("jupyter.widget.ToggleButton", inheri
   ),
 
   active = list(
+    
+    #' @field value
+    #' Bool value
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
     
     #' @field button_style
     #' Use a predefined styling for the button.
@@ -2862,11 +2866,7 @@ jupyter.widget.ToggleButton <- R6::R6Class("jupyter.widget.ToggleButton", inheri
     
     #' @field icon
     #' Font-awesome icon.
-    icon = function(x) if(missing(x)) private$state_[['icon']] else self$update(icon = self$check_state('icon', x)),
-    
-    #' @field value
-    #' Bool value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    icon = function(x) if(missing(x)) private$state_[['icon']] else self$update(icon = self$check_state('icon', x))
   ),
 
   private = list(
@@ -2876,12 +2876,12 @@ jupyter.widget.ToggleButton <- R6::R6Class("jupyter.widget.ToggleButton", inheri
 
 #' ToggleButton widget
 #'
+#' @param value Bool value
 #' @param button_style Use a predefined styling for the button.
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param disabled Enable or disable user changes.
 #' @param icon Font-awesome icon.
-#' @param value Bool value
 #' 
 #' @param style Must inherit from [jupyter.widget.ToggleButtonStyle].
 #' 
@@ -2890,23 +2890,23 @@ jupyter.widget.ToggleButton <- R6::R6Class("jupyter.widget.ToggleButton", inheri
 #'
 #' @export
 ToggleButton <- function(
+  value = FALSE,
   button_style = "",
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
   icon = "",
-  value = FALSE,
   style = ToggleButtonStyle(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.ToggleButton$new(
+    value = value,
     button_style = button_style,
     description = description,
     description_allow_html = description_allow_html,
     disabled = disabled,
     icon = icon,
-    value = value,
     style = style,
     ...,
     error_call = error_call
@@ -2923,10 +2923,10 @@ rlang::on_load({
 jupyter.widget.Label <- R6::R6Class("jupyter.widget.Label", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value String value
+    #' @param placeholder Placeholder text to display when nothing has been typed
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
-    #' @param placeholder Placeholder text to display when nothing has been typed
-    #' @param value String value
     #' @param style Must inherit from [jupyter.widget.LabelStyle].
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
@@ -2934,10 +2934,10 @@ jupyter.widget.Label <- R6::R6Class("jupyter.widget.Label", inherit = jupyter.wi
     #'
     #' @return a new 'jupyter.widget.Label' widget
     initialize = function(
+      value = "",
+      placeholder = "\U{200B}",
       description = "",
       description_allow_html = FALSE,
-      placeholder = "\U{200B}",
-      value = "",
       style = LabelStyle(),
 
       ...,
@@ -2945,10 +2945,10 @@ jupyter.widget.Label <- R6::R6Class("jupyter.widget.Label", inherit = jupyter.wi
     )
     {
       private$state_ <- update_list(private$state_,
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
+        value = self$check_state('value', value),
         placeholder = self$check_state('placeholder', placeholder),
-        value = self$check_state('value', value)
+        description = self$check_state('description', description),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html)
       )
 
       super$initialize(
@@ -2966,21 +2966,21 @@ jupyter.widget.Label <- R6::R6Class("jupyter.widget.Label", inherit = jupyter.wi
 
   active = list(
     
+    #' @field value
+    #' String value
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field placeholder
+    #' Placeholder text to display when nothing has been typed
+    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x)),
+    
     #' @field description
     #' Description of the control.
     description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
-    
-    #' @field placeholder
-    #' Placeholder text to display when nothing has been typed
-    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x)),
-    
-    #' @field value
-    #' String value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x))
   ),
 
   private = list(
@@ -2990,10 +2990,10 @@ jupyter.widget.Label <- R6::R6Class("jupyter.widget.Label", inherit = jupyter.wi
 
 #' Label widget
 #'
+#' @param value String value
+#' @param placeholder Placeholder text to display when nothing has been typed
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
-#' @param placeholder Placeholder text to display when nothing has been typed
-#' @param value String value
 #' 
 #' @param style Must inherit from [jupyter.widget.LabelStyle].
 #' 
@@ -3002,19 +3002,19 @@ jupyter.widget.Label <- R6::R6Class("jupyter.widget.Label", inherit = jupyter.wi
 #'
 #' @export
 Label <- function(
+  value = "",
+  placeholder = "\U{200B}",
   description = "",
   description_allow_html = FALSE,
-  placeholder = "\U{200B}",
-  value = "",
   style = LabelStyle(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.Label$new(
+    value = value,
+    placeholder = placeholder,
     description = description,
     description_allow_html = description_allow_html,
-    placeholder = placeholder,
-    value = value,
     style = style,
     ...,
     error_call = error_call
@@ -3028,13 +3028,13 @@ Label <- function(
 jupyter.widget.IntProgress <- R6::R6Class("jupyter.widget.IntProgress", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value Int value
+    #' @param min Min value
+    #' @param max Max value
     #' @param bar_style Use a predefined styling for the progress bar.
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
-    #' @param max Max value
-    #' @param min Min value
     #' @param orientation Vertical or horizontal.
-    #' @param value Int value
     #' @param style Must inherit from [jupyter.widget.ProgressStyle].
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
@@ -3042,13 +3042,13 @@ jupyter.widget.IntProgress <- R6::R6Class("jupyter.widget.IntProgress", inherit 
     #'
     #' @return a new 'jupyter.widget.IntProgress' widget
     initialize = function(
+      value = 0L,
+      min = 0L,
+      max = 100L,
       bar_style = "",
       description = "",
       description_allow_html = FALSE,
-      max = 100L,
-      min = 0L,
       orientation = "horizontal",
-      value = 0L,
       style = ProgressStyle(),
 
       ...,
@@ -3056,13 +3056,13 @@ jupyter.widget.IntProgress <- R6::R6Class("jupyter.widget.IntProgress", inherit 
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
+        min = self$check_state('min', min),
+        max = self$check_state('max', max),
         bar_style = self$check_state('bar_style', bar_style),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        max = self$check_state('max', max),
-        min = self$check_state('min', min),
-        orientation = self$check_state('orientation', orientation),
-        value = self$check_state('value', value)
+        orientation = self$check_state('orientation', orientation)
       )
 
       super$initialize(
@@ -3080,6 +3080,18 @@ jupyter.widget.IntProgress <- R6::R6Class("jupyter.widget.IntProgress", inherit 
 
   active = list(
     
+    #' @field value
+    #' Int value
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field min
+    #' Min value
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    
+    #' @field max
+    #' Max value
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    
     #' @field bar_style
     #' Use a predefined styling for the progress bar.
     bar_style = function(x) if(missing(x)) private$state_[['bar_style']] else self$update(bar_style = self$check_state('bar_style', x)),
@@ -3092,21 +3104,9 @@ jupyter.widget.IntProgress <- R6::R6Class("jupyter.widget.IntProgress", inherit 
     #' Accept HTML in the description.
     description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
     
-    #' @field max
-    #' Max value
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
-    
-    #' @field min
-    #' Min value
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
-    
     #' @field orientation
     #' Vertical or horizontal.
-    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x)),
-    
-    #' @field value
-    #' Int value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x))
   ),
 
   private = list(
@@ -3116,13 +3116,13 @@ jupyter.widget.IntProgress <- R6::R6Class("jupyter.widget.IntProgress", inherit 
 
 #' IntProgress widget
 #'
+#' @param value Int value
+#' @param min Min value
+#' @param max Max value
 #' @param bar_style Use a predefined styling for the progress bar.
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
-#' @param max Max value
-#' @param min Min value
 #' @param orientation Vertical or horizontal.
-#' @param value Int value
 #' 
 #' @param style Must inherit from [jupyter.widget.ProgressStyle].
 #' 
@@ -3131,25 +3131,25 @@ jupyter.widget.IntProgress <- R6::R6Class("jupyter.widget.IntProgress", inherit 
 #'
 #' @export
 IntProgress <- function(
+  value = 0L,
+  min = 0L,
+  max = 100L,
   bar_style = "",
   description = "",
   description_allow_html = FALSE,
-  max = 100L,
-  min = 0L,
   orientation = "horizontal",
-  value = 0L,
   style = ProgressStyle(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.IntProgress$new(
+    value = value,
+    min = min,
+    max = max,
     bar_style = bar_style,
     description = description,
     description_allow_html = description_allow_html,
-    max = max,
-    min = min,
     orientation = orientation,
-    value = value,
     style = style,
     ...,
     error_call = error_call
@@ -3167,13 +3167,13 @@ rlang::on_load({
 jupyter.widget.FloatProgress <- R6::R6Class("jupyter.widget.FloatProgress", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value Float value
+    #' @param min Min value
+    #' @param max Max value
     #' @param bar_style Use a predefined styling for the progress bar.
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
-    #' @param max Max value
-    #' @param min Min value
     #' @param orientation Vertical or horizontal.
-    #' @param value Float value
     #' @param style Must inherit from [jupyter.widget.ProgressStyle].
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
@@ -3181,13 +3181,13 @@ jupyter.widget.FloatProgress <- R6::R6Class("jupyter.widget.FloatProgress", inhe
     #'
     #' @return a new 'jupyter.widget.FloatProgress' widget
     initialize = function(
+      value = 0,
+      min = 0,
+      max = 100,
       bar_style = "",
       description = "",
       description_allow_html = FALSE,
-      max = 100,
-      min = 0,
       orientation = "horizontal",
-      value = 0,
       style = ProgressStyle(),
 
       ...,
@@ -3195,13 +3195,13 @@ jupyter.widget.FloatProgress <- R6::R6Class("jupyter.widget.FloatProgress", inhe
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
+        min = self$check_state('min', min),
+        max = self$check_state('max', max),
         bar_style = self$check_state('bar_style', bar_style),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        max = self$check_state('max', max),
-        min = self$check_state('min', min),
-        orientation = self$check_state('orientation', orientation),
-        value = self$check_state('value', value)
+        orientation = self$check_state('orientation', orientation)
       )
 
       super$initialize(
@@ -3219,6 +3219,18 @@ jupyter.widget.FloatProgress <- R6::R6Class("jupyter.widget.FloatProgress", inhe
 
   active = list(
     
+    #' @field value
+    #' Float value
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field min
+    #' Min value
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    
+    #' @field max
+    #' Max value
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    
     #' @field bar_style
     #' Use a predefined styling for the progress bar.
     bar_style = function(x) if(missing(x)) private$state_[['bar_style']] else self$update(bar_style = self$check_state('bar_style', x)),
@@ -3231,21 +3243,9 @@ jupyter.widget.FloatProgress <- R6::R6Class("jupyter.widget.FloatProgress", inhe
     #' Accept HTML in the description.
     description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
     
-    #' @field max
-    #' Max value
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
-    
-    #' @field min
-    #' Min value
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
-    
     #' @field orientation
     #' Vertical or horizontal.
-    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x)),
-    
-    #' @field value
-    #' Float value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x))
   ),
 
   private = list(
@@ -3255,13 +3255,13 @@ jupyter.widget.FloatProgress <- R6::R6Class("jupyter.widget.FloatProgress", inhe
 
 #' FloatProgress widget
 #'
+#' @param value Float value
+#' @param min Min value
+#' @param max Max value
 #' @param bar_style Use a predefined styling for the progress bar.
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
-#' @param max Max value
-#' @param min Min value
 #' @param orientation Vertical or horizontal.
-#' @param value Float value
 #' 
 #' @param style Must inherit from [jupyter.widget.ProgressStyle].
 #' 
@@ -3270,25 +3270,25 @@ jupyter.widget.FloatProgress <- R6::R6Class("jupyter.widget.FloatProgress", inhe
 #'
 #' @export
 FloatProgress <- function(
+  value = 0,
+  min = 0,
+  max = 100,
   bar_style = "",
   description = "",
   description_allow_html = FALSE,
-  max = 100,
-  min = 0,
   orientation = "horizontal",
-  value = 0,
   style = ProgressStyle(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.FloatProgress$new(
+    value = value,
+    min = min,
+    max = max,
     bar_style = bar_style,
     description = description,
     description_allow_html = description_allow_html,
-    max = max,
-    min = min,
     orientation = orientation,
-    value = value,
     style = style,
     ...,
     error_call = error_call
@@ -3306,36 +3306,36 @@ rlang::on_load({
 jupyter.widget.Password <- R6::R6Class("jupyter.widget.Password", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value String value
     #' @param continuous_update Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param disabled Enable or disable user changes
     #' @param placeholder Placeholder text to display when nothing has been typed
-    #' @param value String value
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
     #' @param error_call see [rlang::args_error_context()]
     #'
     #' @return a new 'jupyter.widget.Password' widget
     initialize = function(
+      value = "",
       continuous_update = TRUE,
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
       placeholder = "\U{200B}",
-      value = "",
 
       ...,
       error_call = caller_env()
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
         continuous_update = self$check_state('continuous_update', continuous_update),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
         disabled = self$check_state('disabled', disabled),
-        placeholder = self$check_state('placeholder', placeholder),
-        value = self$check_state('value', value)
+        placeholder = self$check_state('placeholder', placeholder)
       )
 
       super$initialize(
@@ -3352,6 +3352,10 @@ jupyter.widget.Password <- R6::R6Class("jupyter.widget.Password", inherit = jupy
   ),
 
   active = list(
+    
+    #' @field value
+    #' String value
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
     
     #' @field continuous_update
     #' Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
@@ -3371,11 +3375,7 @@ jupyter.widget.Password <- R6::R6Class("jupyter.widget.Password", inherit = jupy
     
     #' @field placeholder
     #' Placeholder text to display when nothing has been typed
-    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x)),
-    
-    #' @field value
-    #' String value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x))
   ),
 
   private = list(
@@ -3385,12 +3385,12 @@ jupyter.widget.Password <- R6::R6Class("jupyter.widget.Password", inherit = jupy
 
 #' Password widget
 #'
+#' @param value String value
 #' @param continuous_update Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param disabled Enable or disable user changes
 #' @param placeholder Placeholder text to display when nothing has been typed
-#' @param value String value
 #' 
 #' 
 #' @param ... forwarded to [jupyter.widgets.base::jupyter.widget.DOMWidget] constructor
@@ -3398,22 +3398,22 @@ jupyter.widget.Password <- R6::R6Class("jupyter.widget.Password", inherit = jupy
 #'
 #' @export
 Password <- function(
+  value = "",
   continuous_update = TRUE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
   placeholder = "\U{200B}",
-  value = "",
   ...,
   error_call = current_env()
 ){
   jupyter.widget.Password$new(
+    value = value,
     continuous_update = continuous_update,
     description = description,
     description_allow_html = description_allow_html,
     disabled = disabled,
     placeholder = placeholder,
-    value = value,
     ...,
     error_call = error_call
   )
@@ -3426,24 +3426,24 @@ Password <- function(
 jupyter.widget.Box <- R6::R6Class("jupyter.widget.Box", inherit = jupyter.widget.DOMWidget,
   public = list(
 
-    #' @param box_style Use a predefined styling for the box.
     #' @param children List of widget children
+    #' @param box_style Use a predefined styling for the box.
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
     #' @param error_call see [rlang::args_error_context()]
     #'
     #' @return a new 'jupyter.widget.Box' widget
     initialize = function(
-      box_style = "",
       children = list(),
+      box_style = "",
 
       ...,
       error_call = caller_env()
     )
     {
       private$state_ <- update_list(private$state_,
-        box_style = self$check_state('box_style', box_style),
-        children = self$check_state('children', children)
+        children = self$check_state('children', children),
+        box_style = self$check_state('box_style', box_style)
       )
 
       super$initialize(
@@ -3461,13 +3461,13 @@ jupyter.widget.Box <- R6::R6Class("jupyter.widget.Box", inherit = jupyter.widget
 
   active = list(
     
-    #' @field box_style
-    #' Use a predefined styling for the box.
-    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x)),
-    
     #' @field children
     #' List of widget children
-    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x))
+    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x)),
+    
+    #' @field box_style
+    #' Use a predefined styling for the box.
+    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x))
   ),
 
   private = list(
@@ -3477,8 +3477,8 @@ jupyter.widget.Box <- R6::R6Class("jupyter.widget.Box", inherit = jupyter.widget
 
 #' Box widget
 #'
-#' @param box_style Use a predefined styling for the box.
 #' @param children List of widget children
+#' @param box_style Use a predefined styling for the box.
 #' 
 #' 
 #' @param ... forwarded to [jupyter.widgets.base::jupyter.widget.DOMWidget] constructor
@@ -3486,14 +3486,14 @@ jupyter.widget.Box <- R6::R6Class("jupyter.widget.Box", inherit = jupyter.widget
 #'
 #' @export
 Box <- function(
-  box_style = "",
   children = list(),
+  box_style = "",
   ...,
   error_call = current_env()
 ){
   jupyter.widget.Box$new(
-    box_style = box_style,
     children = children,
+    box_style = box_style,
     ...,
     error_call = error_call
   )
@@ -3510,24 +3510,24 @@ rlang::on_load({
 jupyter.widget.HBox <- R6::R6Class("jupyter.widget.HBox", inherit = jupyter.widget.DOMWidget,
   public = list(
 
-    #' @param box_style Use a predefined styling for the box.
     #' @param children List of widget children
+    #' @param box_style Use a predefined styling for the box.
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
     #' @param error_call see [rlang::args_error_context()]
     #'
     #' @return a new 'jupyter.widget.HBox' widget
     initialize = function(
-      box_style = "",
       children = list(),
+      box_style = "",
 
       ...,
       error_call = caller_env()
     )
     {
       private$state_ <- update_list(private$state_,
-        box_style = self$check_state('box_style', box_style),
-        children = self$check_state('children', children)
+        children = self$check_state('children', children),
+        box_style = self$check_state('box_style', box_style)
       )
 
       super$initialize(
@@ -3545,13 +3545,13 @@ jupyter.widget.HBox <- R6::R6Class("jupyter.widget.HBox", inherit = jupyter.widg
 
   active = list(
     
-    #' @field box_style
-    #' Use a predefined styling for the box.
-    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x)),
-    
     #' @field children
     #' List of widget children
-    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x))
+    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x)),
+    
+    #' @field box_style
+    #' Use a predefined styling for the box.
+    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x))
   ),
 
   private = list(
@@ -3561,8 +3561,8 @@ jupyter.widget.HBox <- R6::R6Class("jupyter.widget.HBox", inherit = jupyter.widg
 
 #' HBox widget
 #'
-#' @param box_style Use a predefined styling for the box.
 #' @param children List of widget children
+#' @param box_style Use a predefined styling for the box.
 #' 
 #' 
 #' @param ... forwarded to [jupyter.widgets.base::jupyter.widget.DOMWidget] constructor
@@ -3570,14 +3570,14 @@ jupyter.widget.HBox <- R6::R6Class("jupyter.widget.HBox", inherit = jupyter.widg
 #'
 #' @export
 HBox <- function(
-  box_style = "",
   children = list(),
+  box_style = "",
   ...,
   error_call = current_env()
 ){
   jupyter.widget.HBox$new(
-    box_style = box_style,
     children = children,
+    box_style = box_style,
     ...,
     error_call = error_call
   )
@@ -3594,24 +3594,24 @@ rlang::on_load({
 jupyter.widget.VBox <- R6::R6Class("jupyter.widget.VBox", inherit = jupyter.widget.DOMWidget,
   public = list(
 
-    #' @param box_style Use a predefined styling for the box.
     #' @param children List of widget children
+    #' @param box_style Use a predefined styling for the box.
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
     #' @param error_call see [rlang::args_error_context()]
     #'
     #' @return a new 'jupyter.widget.VBox' widget
     initialize = function(
-      box_style = "",
       children = list(),
+      box_style = "",
 
       ...,
       error_call = caller_env()
     )
     {
       private$state_ <- update_list(private$state_,
-        box_style = self$check_state('box_style', box_style),
-        children = self$check_state('children', children)
+        children = self$check_state('children', children),
+        box_style = self$check_state('box_style', box_style)
       )
 
       super$initialize(
@@ -3629,13 +3629,13 @@ jupyter.widget.VBox <- R6::R6Class("jupyter.widget.VBox", inherit = jupyter.widg
 
   active = list(
     
-    #' @field box_style
-    #' Use a predefined styling for the box.
-    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x)),
-    
     #' @field children
     #' List of widget children
-    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x))
+    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x)),
+    
+    #' @field box_style
+    #' Use a predefined styling for the box.
+    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x))
   ),
 
   private = list(
@@ -3645,8 +3645,8 @@ jupyter.widget.VBox <- R6::R6Class("jupyter.widget.VBox", inherit = jupyter.widg
 
 #' VBox widget
 #'
-#' @param box_style Use a predefined styling for the box.
 #' @param children List of widget children
+#' @param box_style Use a predefined styling for the box.
 #' 
 #' 
 #' @param ... forwarded to [jupyter.widgets.base::jupyter.widget.DOMWidget] constructor
@@ -3654,14 +3654,14 @@ jupyter.widget.VBox <- R6::R6Class("jupyter.widget.VBox", inherit = jupyter.widg
 #'
 #' @export
 VBox <- function(
-  box_style = "",
   children = list(),
+  box_style = "",
   ...,
   error_call = current_env()
 ){
   jupyter.widget.VBox$new(
-    box_style = box_style,
     children = children,
+    box_style = box_style,
     ...,
     error_call = error_call
   )
@@ -3678,24 +3678,24 @@ rlang::on_load({
 jupyter.widget.GridBox <- R6::R6Class("jupyter.widget.GridBox", inherit = jupyter.widget.DOMWidget,
   public = list(
 
-    #' @param box_style Use a predefined styling for the box.
     #' @param children List of widget children
+    #' @param box_style Use a predefined styling for the box.
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
     #' @param error_call see [rlang::args_error_context()]
     #'
     #' @return a new 'jupyter.widget.GridBox' widget
     initialize = function(
-      box_style = "",
       children = list(),
+      box_style = "",
 
       ...,
       error_call = caller_env()
     )
     {
       private$state_ <- update_list(private$state_,
-        box_style = self$check_state('box_style', box_style),
-        children = self$check_state('children', children)
+        children = self$check_state('children', children),
+        box_style = self$check_state('box_style', box_style)
       )
 
       super$initialize(
@@ -3713,13 +3713,13 @@ jupyter.widget.GridBox <- R6::R6Class("jupyter.widget.GridBox", inherit = jupyte
 
   active = list(
     
-    #' @field box_style
-    #' Use a predefined styling for the box.
-    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x)),
-    
     #' @field children
     #' List of widget children
-    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x))
+    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x)),
+    
+    #' @field box_style
+    #' Use a predefined styling for the box.
+    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x))
   ),
 
   private = list(
@@ -3729,8 +3729,8 @@ jupyter.widget.GridBox <- R6::R6Class("jupyter.widget.GridBox", inherit = jupyte
 
 #' GridBox widget
 #'
-#' @param box_style Use a predefined styling for the box.
 #' @param children List of widget children
+#' @param box_style Use a predefined styling for the box.
 #' 
 #' 
 #' @param ... forwarded to [jupyter.widgets.base::jupyter.widget.DOMWidget] constructor
@@ -3738,14 +3738,14 @@ jupyter.widget.GridBox <- R6::R6Class("jupyter.widget.GridBox", inherit = jupyte
 #'
 #' @export
 GridBox <- function(
-  box_style = "",
   children = list(),
+  box_style = "",
   ...,
   error_call = current_env()
 ){
   jupyter.widget.GridBox$new(
-    box_style = box_style,
     children = children,
+    box_style = box_style,
     ...,
     error_call = error_call
   )
@@ -3762,8 +3762,8 @@ rlang::on_load({
 jupyter.widget.Tab <- R6::R6Class("jupyter.widget.Tab", inherit = jupyter.widget.DOMWidget,
   public = list(
 
-    #' @param box_style Use a predefined styling for the box.
     #' @param children List of widget children
+    #' @param box_style Use a predefined styling for the box.
     #' @param selected_index The index of the selected page. This is either an integer selecting a particular sub-widget, or None to have no widgets selected.
     #' @param titles Titles of the pages
     #'
@@ -3772,8 +3772,8 @@ jupyter.widget.Tab <- R6::R6Class("jupyter.widget.Tab", inherit = jupyter.widget
     #'
     #' @return a new 'jupyter.widget.Tab' widget
     initialize = function(
-      box_style = "",
       children = list(),
+      box_style = "",
       selected_index = NULL,
       titles = list(),
 
@@ -3782,8 +3782,8 @@ jupyter.widget.Tab <- R6::R6Class("jupyter.widget.Tab", inherit = jupyter.widget
     )
     {
       private$state_ <- update_list(private$state_,
-        box_style = self$check_state('box_style', box_style),
         children = self$check_state('children', children),
+        box_style = self$check_state('box_style', box_style),
         selected_index = self$check_state('selected_index', selected_index),
         titles = self$check_state('titles', titles)
       )
@@ -3803,13 +3803,13 @@ jupyter.widget.Tab <- R6::R6Class("jupyter.widget.Tab", inherit = jupyter.widget
 
   active = list(
     
-    #' @field box_style
-    #' Use a predefined styling for the box.
-    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x)),
-    
     #' @field children
     #' List of widget children
     children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x)),
+    
+    #' @field box_style
+    #' Use a predefined styling for the box.
+    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x)),
     
     #' @field selected_index
     #' The index of the selected page. This is either an integer selecting a particular sub-widget, or None to have no widgets selected.
@@ -3827,8 +3827,8 @@ jupyter.widget.Tab <- R6::R6Class("jupyter.widget.Tab", inherit = jupyter.widget
 
 #' Tab widget
 #'
-#' @param box_style Use a predefined styling for the box.
 #' @param children List of widget children
+#' @param box_style Use a predefined styling for the box.
 #' @param selected_index The index of the selected page. This is either an integer selecting a particular sub-widget, or None to have no widgets selected.
 #' @param titles Titles of the pages
 #' 
@@ -3838,16 +3838,16 @@ jupyter.widget.Tab <- R6::R6Class("jupyter.widget.Tab", inherit = jupyter.widget
 #'
 #' @export
 Tab <- function(
-  box_style = "",
   children = list(),
+  box_style = "",
   selected_index = NULL,
   titles = list(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.Tab$new(
-    box_style = box_style,
     children = children,
+    box_style = box_style,
     selected_index = selected_index,
     titles = titles,
     ...,
@@ -3866,8 +3866,8 @@ rlang::on_load({
 jupyter.widget.Stack <- R6::R6Class("jupyter.widget.Stack", inherit = jupyter.widget.DOMWidget,
   public = list(
 
-    #' @param box_style Use a predefined styling for the box.
     #' @param children List of widget children
+    #' @param box_style Use a predefined styling for the box.
     #' @param selected_index The index of the selected page. This is either an integer selecting a particular sub-widget, or None to have no widgets selected.
     #' @param titles Titles of the pages
     #'
@@ -3876,8 +3876,8 @@ jupyter.widget.Stack <- R6::R6Class("jupyter.widget.Stack", inherit = jupyter.wi
     #'
     #' @return a new 'jupyter.widget.Stack' widget
     initialize = function(
-      box_style = "",
       children = list(),
+      box_style = "",
       selected_index = NULL,
       titles = list(),
 
@@ -3886,8 +3886,8 @@ jupyter.widget.Stack <- R6::R6Class("jupyter.widget.Stack", inherit = jupyter.wi
     )
     {
       private$state_ <- update_list(private$state_,
-        box_style = self$check_state('box_style', box_style),
         children = self$check_state('children', children),
+        box_style = self$check_state('box_style', box_style),
         selected_index = self$check_state('selected_index', selected_index),
         titles = self$check_state('titles', titles)
       )
@@ -3907,13 +3907,13 @@ jupyter.widget.Stack <- R6::R6Class("jupyter.widget.Stack", inherit = jupyter.wi
 
   active = list(
     
-    #' @field box_style
-    #' Use a predefined styling for the box.
-    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x)),
-    
     #' @field children
     #' List of widget children
     children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x)),
+    
+    #' @field box_style
+    #' Use a predefined styling for the box.
+    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x)),
     
     #' @field selected_index
     #' The index of the selected page. This is either an integer selecting a particular sub-widget, or None to have no widgets selected.
@@ -3931,8 +3931,8 @@ jupyter.widget.Stack <- R6::R6Class("jupyter.widget.Stack", inherit = jupyter.wi
 
 #' Stack widget
 #'
-#' @param box_style Use a predefined styling for the box.
 #' @param children List of widget children
+#' @param box_style Use a predefined styling for the box.
 #' @param selected_index The index of the selected page. This is either an integer selecting a particular sub-widget, or None to have no widgets selected.
 #' @param titles Titles of the pages
 #' 
@@ -3942,16 +3942,16 @@ jupyter.widget.Stack <- R6::R6Class("jupyter.widget.Stack", inherit = jupyter.wi
 #'
 #' @export
 Stack <- function(
-  box_style = "",
   children = list(),
+  box_style = "",
   selected_index = NULL,
   titles = list(),
   ...,
   error_call = current_env()
 ){
   jupyter.widget.Stack$new(
-    box_style = box_style,
     children = children,
+    box_style = box_style,
     selected_index = selected_index,
     titles = titles,
     ...,
@@ -3970,8 +3970,8 @@ rlang::on_load({
 jupyter.widget.Button <- R6::R6Class("jupyter.widget.Button", inherit = jupyter.widget.DOMWidget,
   public = list(
 
-    #' @param button_style Use a predefined styling for the button.
     #' @param description Button label.
+    #' @param button_style Use a predefined styling for the button.
     #' @param disabled Enable or disable user changes.
     #' @param icon Font-awesome icon names, without the 'fa-' prefix.
     #' @param style Must inherit from [jupyter.widget.ButtonStyle].
@@ -3981,8 +3981,8 @@ jupyter.widget.Button <- R6::R6Class("jupyter.widget.Button", inherit = jupyter.
     #'
     #' @return a new 'jupyter.widget.Button' widget
     initialize = function(
-      button_style = "",
       description = "",
+      button_style = "",
       disabled = FALSE,
       icon = "",
       style = ButtonStyle(),
@@ -3992,8 +3992,8 @@ jupyter.widget.Button <- R6::R6Class("jupyter.widget.Button", inherit = jupyter.
     )
     {
       private$state_ <- update_list(private$state_,
-        button_style = self$check_state('button_style', button_style),
         description = self$check_state('description', description),
+        button_style = self$check_state('button_style', button_style),
         disabled = self$check_state('disabled', disabled),
         icon = self$check_state('icon', icon)
       )
@@ -4013,13 +4013,13 @@ jupyter.widget.Button <- R6::R6Class("jupyter.widget.Button", inherit = jupyter.
 
   active = list(
     
-    #' @field button_style
-    #' Use a predefined styling for the button.
-    button_style = function(x) if(missing(x)) private$state_[['button_style']] else self$update(button_style = self$check_state('button_style', x)),
-    
     #' @field description
     #' Button label.
     description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    
+    #' @field button_style
+    #' Use a predefined styling for the button.
+    button_style = function(x) if(missing(x)) private$state_[['button_style']] else self$update(button_style = self$check_state('button_style', x)),
     
     #' @field disabled
     #' Enable or disable user changes.
@@ -4037,8 +4037,8 @@ jupyter.widget.Button <- R6::R6Class("jupyter.widget.Button", inherit = jupyter.
 
 #' Button widget
 #'
-#' @param button_style Use a predefined styling for the button.
 #' @param description Button label.
+#' @param button_style Use a predefined styling for the button.
 #' @param disabled Enable or disable user changes.
 #' @param icon Font-awesome icon names, without the 'fa-' prefix.
 #' 
@@ -4049,8 +4049,8 @@ jupyter.widget.Button <- R6::R6Class("jupyter.widget.Button", inherit = jupyter.
 #'
 #' @export
 Button <- function(
-  button_style = "",
   description = "",
+  button_style = "",
   disabled = FALSE,
   icon = "",
   style = ButtonStyle(),
@@ -4058,8 +4058,8 @@ Button <- function(
   error_call = current_env()
 ){
   jupyter.widget.Button$new(
-    button_style = button_style,
     description = description,
+    button_style = button_style,
     disabled = disabled,
     icon = icon,
     style = style,
@@ -4078,39 +4078,39 @@ rlang::on_load({
 jupyter.widget.Textarea <- R6::R6Class("jupyter.widget.Textarea", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value String value
+    #' @param rows The number of rows to display.
+    #' @param placeholder Placeholder text to display when nothing has been typed
     #' @param continuous_update Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param disabled Enable or disable user changes
-    #' @param placeholder Placeholder text to display when nothing has been typed
-    #' @param rows The number of rows to display.
-    #' @param value String value
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
     #' @param error_call see [rlang::args_error_context()]
     #'
     #' @return a new 'jupyter.widget.Textarea' widget
     initialize = function(
+      value = "",
+      rows = NULL,
+      placeholder = "\U{200B}",
       continuous_update = TRUE,
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
-      placeholder = "\U{200B}",
-      rows = NULL,
-      value = "",
 
       ...,
       error_call = caller_env()
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
+        rows = self$check_state('rows', rows),
+        placeholder = self$check_state('placeholder', placeholder),
         continuous_update = self$check_state('continuous_update', continuous_update),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        placeholder = self$check_state('placeholder', placeholder),
-        rows = self$check_state('rows', rows),
-        value = self$check_state('value', value)
+        disabled = self$check_state('disabled', disabled)
       )
 
       super$initialize(
@@ -4128,6 +4128,18 @@ jupyter.widget.Textarea <- R6::R6Class("jupyter.widget.Textarea", inherit = jupy
 
   active = list(
     
+    #' @field value
+    #' String value
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field rows
+    #' The number of rows to display.
+    rows = function(x) if(missing(x)) private$state_[['rows']] else self$update(rows = self$check_state('rows', x)),
+    
+    #' @field placeholder
+    #' Placeholder text to display when nothing has been typed
+    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x)),
+    
     #' @field continuous_update
     #' Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
     continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
@@ -4142,19 +4154,7 @@ jupyter.widget.Textarea <- R6::R6Class("jupyter.widget.Textarea", inherit = jupy
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
-    
-    #' @field placeholder
-    #' Placeholder text to display when nothing has been typed
-    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x)),
-    
-    #' @field rows
-    #' The number of rows to display.
-    rows = function(x) if(missing(x)) private$state_[['rows']] else self$update(rows = self$check_state('rows', x)),
-    
-    #' @field value
-    #' String value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
   ),
 
   private = list(
@@ -4164,13 +4164,13 @@ jupyter.widget.Textarea <- R6::R6Class("jupyter.widget.Textarea", inherit = jupy
 
 #' Textarea widget
 #'
+#' @param value String value
+#' @param rows The number of rows to display.
+#' @param placeholder Placeholder text to display when nothing has been typed
 #' @param continuous_update Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param disabled Enable or disable user changes
-#' @param placeholder Placeholder text to display when nothing has been typed
-#' @param rows The number of rows to display.
-#' @param value String value
 #' 
 #' 
 #' @param ... forwarded to [jupyter.widgets.base::jupyter.widget.DOMWidget] constructor
@@ -4178,24 +4178,24 @@ jupyter.widget.Textarea <- R6::R6Class("jupyter.widget.Textarea", inherit = jupy
 #'
 #' @export
 Textarea <- function(
+  value = "",
+  rows = NULL,
+  placeholder = "\U{200B}",
   continuous_update = TRUE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  placeholder = "\U{200B}",
-  rows = NULL,
-  value = "",
   ...,
   error_call = current_env()
 ){
   jupyter.widget.Textarea$new(
+    value = value,
+    rows = rows,
+    placeholder = placeholder,
     continuous_update = continuous_update,
     description = description,
     description_allow_html = description_allow_html,
     disabled = disabled,
-    placeholder = placeholder,
-    rows = rows,
-    value = value,
     ...,
     error_call = error_call
   )
@@ -4208,39 +4208,39 @@ Textarea <- function(
 jupyter.widget.Time <- R6::R6Class("jupyter.widget.Time", inherit = jupyter.widget.DOMWidget,
   public = list(
 
+    #' @param value (undocumented)
+    #' @param min (undocumented)
+    #' @param max (undocumented)
+    #' @param step The time step to use for the picker, in seconds, or "any".
     #' @param description Description of the control.
     #' @param description_allow_html Accept HTML in the description.
     #' @param disabled Enable or disable user changes.
-    #' @param max (undocumented)
-    #' @param min (undocumented)
-    #' @param step The time step to use for the picker, in seconds, or "any".
-    #' @param value (undocumented)
     #'
     #' @param ... See [jupyter.widgets.base::DOMWidget]
     #' @param error_call see [rlang::args_error_context()]
     #'
     #' @return a new 'jupyter.widget.Time' widget
     initialize = function(
+      value = NULL,
+      min = NULL,
+      max = NULL,
+      step = 60L,
       description = "",
       description_allow_html = FALSE,
       disabled = FALSE,
-      max = NULL,
-      min = NULL,
-      step = 60L,
-      value = NULL,
 
       ...,
       error_call = caller_env()
     )
     {
       private$state_ <- update_list(private$state_,
+        value = self$check_state('value', value),
+        min = self$check_state('min', min),
+        max = self$check_state('max', max),
+        step = self$check_state('step', step),
         description = self$check_state('description', description),
         description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        max = self$check_state('max', max),
-        min = self$check_state('min', min),
-        step = self$check_state('step', step),
-        value = self$check_state('value', value)
+        disabled = self$check_state('disabled', disabled)
       )
 
       super$initialize(
@@ -4258,6 +4258,22 @@ jupyter.widget.Time <- R6::R6Class("jupyter.widget.Time", inherit = jupyter.widg
 
   active = list(
     
+    #' @field value
+    #' 
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    
+    #' @field min
+    #' 
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    
+    #' @field max
+    #' 
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    
+    #' @field step
+    #' The time step to use for the picker, in seconds, or "any".
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
+    
     #' @field description
     #' Description of the control.
     description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
@@ -4268,23 +4284,7 @@ jupyter.widget.Time <- R6::R6Class("jupyter.widget.Time", inherit = jupyter.widg
     
     #' @field disabled
     #' Enable or disable user changes.
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
-    
-    #' @field max
-    #' 
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
-    
-    #' @field min
-    #' 
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
-    
-    #' @field step
-    #' The time step to use for the picker, in seconds, or "any".
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
-    
-    #' @field value
-    #' 
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
   ),
 
   private = list(
@@ -4294,13 +4294,13 @@ jupyter.widget.Time <- R6::R6Class("jupyter.widget.Time", inherit = jupyter.widg
 
 #' Time widget
 #'
+#' @param value (undocumented)
+#' @param min (undocumented)
+#' @param max (undocumented)
+#' @param step The time step to use for the picker, in seconds, or "any".
 #' @param description Description of the control.
 #' @param description_allow_html Accept HTML in the description.
 #' @param disabled Enable or disable user changes.
-#' @param max (undocumented)
-#' @param min (undocumented)
-#' @param step The time step to use for the picker, in seconds, or "any".
-#' @param value (undocumented)
 #' 
 #' 
 #' @param ... forwarded to [jupyter.widgets.base::jupyter.widget.DOMWidget] constructor
@@ -4308,24 +4308,24 @@ jupyter.widget.Time <- R6::R6Class("jupyter.widget.Time", inherit = jupyter.widg
 #'
 #' @export
 Time <- function(
+  value = NULL,
+  min = NULL,
+  max = NULL,
+  step = 60L,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  max = NULL,
-  min = NULL,
-  step = 60L,
-  value = NULL,
   ...,
   error_call = current_env()
 ){
   jupyter.widget.Time$new(
+    value = value,
+    min = min,
+    max = max,
+    step = step,
     description = description,
     description_allow_html = description_allow_html,
     disabled = disabled,
-    max = max,
-    min = min,
-    step = step,
-    value = value,
     ...,
     error_call = error_call
   )

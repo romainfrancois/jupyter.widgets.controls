@@ -14,6 +14,14 @@ IntRangeSlider widget
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
+\item{\code{value}}{Tuple of (lower, upper) bounds}
+
+\item{\code{min}}{Min value}
+
+\item{\code{max}}{Max value}
+
+\item{\code{step}}{Minimum step that the value can take}
+
 \item{\code{behavior}}{Slider dragging behavior.}
 
 \item{\code{continuous_update}}{Update the value of the widget as the user is sliding the slider.}
@@ -24,19 +32,11 @@ IntRangeSlider widget
 
 \item{\code{disabled}}{Enable or disable user changes}
 
-\item{\code{max}}{Max value}
-
-\item{\code{min}}{Min value}
-
 \item{\code{orientation}}{Vertical or horizontal.}
 
 \item{\code{readout}}{Display the current value of the slider next to it.}
 
 \item{\code{readout_format}}{Format for the readout}
-
-\item{\code{step}}{Minimum step that the value can take}
-
-\item{\code{value}}{Tuple of (lower, upper) bounds}
 }
 \if{html}{\out{</div>}}
 }
@@ -65,18 +65,18 @@ IntRangeSlider widget
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{jupyter.widget.IntRangeSlider$new(
+  value = list(0L, 1L),
+  min = 0L,
+  max = 100L,
+  step = 1L,
   behavior = "drag-tap",
   continuous_update = TRUE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  max = 100L,
-  min = 0L,
   orientation = "horizontal",
   readout = TRUE,
   readout_format = "d",
-  step = 1L,
-  value = list(0L, 1L),
   style = SliderStyle(),
   ...,
   error_call = caller_env()
@@ -86,6 +86,14 @@ IntRangeSlider widget
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{value}}{Tuple of (lower, upper) bounds}
+
+\item{\code{min}}{Min value}
+
+\item{\code{max}}{Max value}
+
+\item{\code{step}}{Minimum step that the value can take}
+
 \item{\code{behavior}}{Slider dragging behavior.}
 
 \item{\code{continuous_update}}{Update the value of the widget as the user is sliding the slider.}
@@ -96,19 +104,11 @@ IntRangeSlider widget
 
 \item{\code{disabled}}{Enable or disable user changes}
 
-\item{\code{max}}{Max value}
-
-\item{\code{min}}{Min value}
-
 \item{\code{orientation}}{Vertical or horizontal.}
 
 \item{\code{readout}}{Display the current value of the slider next to it.}
 
 \item{\code{readout_format}}{Format for the readout}
-
-\item{\code{step}}{Minimum step that the value can take}
-
-\item{\code{value}}{Tuple of (lower, upper) bounds}
 
 \item{\code{style}}{Must inherit from \link{jupyter.widget.SliderStyle}.}
 

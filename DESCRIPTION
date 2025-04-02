@@ -24,8 +24,8 @@ Imports:
 Remotes:
     romainfrancois/jupyter.widgets.base
 Collate: 
+    'check.R'
     'generated-DOM.R'
     'generated-Style.R'
-    'tools.R'
     'wiipoc.R'
     'zzz.R'

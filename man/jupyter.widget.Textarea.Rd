@@ -14,6 +14,12 @@ Textarea widget
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
+\item{\code{value}}{String value}
+
+\item{\code{rows}}{The number of rows to display.}
+
+\item{\code{placeholder}}{Placeholder text to display when nothing has been typed}
+
 \item{\code{continuous_update}}{Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.}
 
 \item{\code{description}}{Description of the control.}
@@ -21,12 +27,6 @@ Textarea widget
 \item{\code{description_allow_html}}{Accept HTML in the description.}
 
 \item{\code{disabled}}{Enable or disable user changes}
-
-\item{\code{placeholder}}{Placeholder text to display when nothing has been typed}
-
-\item{\code{rows}}{The number of rows to display.}
-
-\item{\code{value}}{String value}
 }
 \if{html}{\out{</div>}}
 }
@@ -55,13 +55,13 @@ Textarea widget
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{jupyter.widget.Textarea$new(
+  value = "",
+  rows = NULL,
+  placeholder = "​",
   continuous_update = TRUE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  placeholder = "​",
-  rows = NULL,
-  value = "",
   ...,
   error_call = caller_env()
 )}\if{html}{\out{</div>}}
@@ -70,6 +70,12 @@ Textarea widget
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{value}}{String value}
+
+\item{\code{rows}}{The number of rows to display.}
+
+\item{\code{placeholder}}{Placeholder text to display when nothing has been typed}
+
 \item{\code{continuous_update}}{Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.}
 
 \item{\code{description}}{Description of the control.}
@@ -77,12 +83,6 @@ Textarea widget
 \item{\code{description_allow_html}}{Accept HTML in the description.}
 
 \item{\code{disabled}}{Enable or disable user changes}
-
-\item{\code{placeholder}}{Placeholder text to display when nothing has been typed}
-
-\item{\code{rows}}{The number of rows to display.}
-
-\item{\code{value}}{String value}
 
 \item{\code{...}}{See \link[jupyter.widgets.base:DOMWidget]{jupyter.widgets.base::DOMWidget}}
 
