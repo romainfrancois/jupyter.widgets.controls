@@ -9,6 +9,10 @@
 #' @importFrom jsonlite unbox
 NULL
 
+accepted_font_style <- c("normal", "italic", "oblique")
+accepted_font_variant <- c("normal", "small-caps", "all-small-caps", "petite-caps", "all-petite-caps", "unicase", "titling-caps")
+accepted_text_decoration <- c("none", "underline", "overline", "line-through", "blink")
+
 .onLoad <- function(libname, pkgname) {
   rlang::run_on_load()
 

@@ -1,8 +1,3 @@
-accepted_font_style <- c("normal", "italic", "oblique")
-accepted_font_variant <- c("normal", "small-caps", "all-small-caps", "petite-caps", "all-petite-caps", "unicase", "titling-caps")
-accepted_font_weight <- c("normal", "bold", "lighter", "bolder")
-accepted_text_decoration <- c("none", "underline", "overline", "line-through", "blink")
-
 check_state_children <- function(value, widget) {
   walk(value, \(kid){
     assert_that(inherits(kid, "jupyter.widget.DOMWidget"), msg = "All children must be DOM widgets")
@@ -27,6 +22,7 @@ check_state_range_slider_value <- function(value, widget) {
   c(value[[1]], value[[2]])
 }
 
+accepted_font_weight <- c("normal", "bold", "lighter", "bolder")
 check_state_font_weight <- function(value, widget) {
   if (is.null(value)) {
     NULL
