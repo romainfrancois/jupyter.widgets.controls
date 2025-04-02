@@ -14,9 +14,9 @@ HBox widget
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
-\item{\code{box_style}}{Use a predefined styling for the box.}
-
 \item{\code{children}}{List of widget children}
+
+\item{\code{box_style}}{Use a predefined styling for the box.}
 }
 \if{html}{\out{</div>}}
 }
@@ -45,8 +45,8 @@ HBox widget
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{jupyter.widget.HBox$new(
-  box_style = "",
   children = list(),
+  box_style = "",
   ...,
   error_call = caller_env()
 )}\if{html}{\out{</div>}}
@@ -55,9 +55,9 @@ HBox widget
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{box_style}}{Use a predefined styling for the box.}
-
 \item{\code{children}}{List of widget children}
+
+\item{\code{box_style}}{Use a predefined styling for the box.}
 
 \item{\code{...}}{See \link[jupyter.widgets.base:DOMWidget]{jupyter.widgets.base::DOMWidget}}
 

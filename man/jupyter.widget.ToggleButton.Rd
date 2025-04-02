@@ -14,6 +14,8 @@ ToggleButton widget
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
+\item{\code{value}}{Bool value}
+
 \item{\code{button_style}}{Use a predefined styling for the button.}
 
 \item{\code{description}}{Description of the control.}
@@ -23,8 +25,6 @@ ToggleButton widget
 \item{\code{disabled}}{Enable or disable user changes.}
 
 \item{\code{icon}}{Font-awesome icon.}
-
-\item{\code{value}}{Bool value}
 }
 \if{html}{\out{</div>}}
 }
@@ -53,12 +53,12 @@ ToggleButton widget
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{jupyter.widget.ToggleButton$new(
+  value = FALSE,
   button_style = "",
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
   icon = "",
-  value = FALSE,
   style = ToggleButtonStyle(),
   ...,
   error_call = caller_env()
@@ -68,6 +68,8 @@ ToggleButton widget
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{value}}{Bool value}
+
 \item{\code{button_style}}{Use a predefined styling for the button.}
 
 \item{\code{description}}{Description of the control.}
@@ -77,8 +79,6 @@ ToggleButton widget
 \item{\code{disabled}}{Enable or disable user changes.}
 
 \item{\code{icon}}{Font-awesome icon.}
-
-\item{\code{value}}{Bool value}
 
 \item{\code{style}}{Must inherit from \link{jupyter.widget.ToggleButtonStyle}.}
 

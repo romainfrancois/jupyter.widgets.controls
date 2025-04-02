@@ -14,19 +14,19 @@ Time widget
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
+\item{\code{value}}{}
+
+\item{\code{min}}{}
+
+\item{\code{max}}{}
+
+\item{\code{step}}{The time step to use for the picker, in seconds, or "any".}
+
 \item{\code{description}}{Description of the control.}
 
 \item{\code{description_allow_html}}{Accept HTML in the description.}
 
 \item{\code{disabled}}{Enable or disable user changes.}
-
-\item{\code{max}}{}
-
-\item{\code{min}}{}
-
-\item{\code{step}}{The time step to use for the picker, in seconds, or "any".}
-
-\item{\code{value}}{}
 }
 \if{html}{\out{</div>}}
 }
@@ -55,13 +55,13 @@ Time widget
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{jupyter.widget.Time$new(
+  value = NULL,
+  min = NULL,
+  max = NULL,
+  step = 60L,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  max = NULL,
-  min = NULL,
-  step = 60L,
-  value = NULL,
   ...,
   error_call = caller_env()
 )}\if{html}{\out{</div>}}
@@ -70,19 +70,19 @@ Time widget
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{value}}{(undocumented)}
+
+\item{\code{min}}{(undocumented)}
+
+\item{\code{max}}{(undocumented)}
+
+\item{\code{step}}{The time step to use for the picker, in seconds, or "any".}
+
 \item{\code{description}}{Description of the control.}
 
 \item{\code{description_allow_html}}{Accept HTML in the description.}
 
 \item{\code{disabled}}{Enable or disable user changes.}
-
-\item{\code{max}}{(undocumented)}
-
-\item{\code{min}}{(undocumented)}
-
-\item{\code{step}}{The time step to use for the picker, in seconds, or "any".}
-
-\item{\code{value}}{(undocumented)}
 
 \item{\code{...}}{See \link[jupyter.widgets.base:DOMWidget]{jupyter.widgets.base::DOMWidget}}
 

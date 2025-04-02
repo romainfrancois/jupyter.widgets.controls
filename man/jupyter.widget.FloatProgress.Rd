@@ -14,19 +14,19 @@ FloatProgress widget
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
+\item{\code{value}}{Float value}
+
+\item{\code{min}}{Min value}
+
+\item{\code{max}}{Max value}
+
 \item{\code{bar_style}}{Use a predefined styling for the progress bar.}
 
 \item{\code{description}}{Description of the control.}
 
 \item{\code{description_allow_html}}{Accept HTML in the description.}
 
-\item{\code{max}}{Max value}
-
-\item{\code{min}}{Min value}
-
 \item{\code{orientation}}{Vertical or horizontal.}
-
-\item{\code{value}}{Float value}
 }
 \if{html}{\out{</div>}}
 }
@@ -55,13 +55,13 @@ FloatProgress widget
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{jupyter.widget.FloatProgress$new(
+  value = 0,
+  min = 0,
+  max = 100,
   bar_style = "",
   description = "",
   description_allow_html = FALSE,
-  max = 100,
-  min = 0,
   orientation = "horizontal",
-  value = 0,
   style = ProgressStyle(),
   ...,
   error_call = caller_env()
@@ -71,19 +71,19 @@ FloatProgress widget
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{value}}{Float value}
+
+\item{\code{min}}{Min value}
+
+\item{\code{max}}{Max value}
+
 \item{\code{bar_style}}{Use a predefined styling for the progress bar.}
 
 \item{\code{description}}{Description of the control.}
 
 \item{\code{description_allow_html}}{Accept HTML in the description.}
 
-\item{\code{max}}{Max value}
-
-\item{\code{min}}{Min value}
-
 \item{\code{orientation}}{Vertical or horizontal.}
-
-\item{\code{value}}{Float value}
 
 \item{\code{style}}{Must inherit from \link{jupyter.widget.ProgressStyle}.}
 

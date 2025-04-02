@@ -14,6 +14,10 @@ Text widget
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
+\item{\code{value}}{String value}
+
+\item{\code{placeholder}}{Placeholder text to display when nothing has been typed}
+
 \item{\code{continuous_update}}{Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.}
 
 \item{\code{description}}{Description of the control.}
@@ -21,10 +25,6 @@ Text widget
 \item{\code{description_allow_html}}{Accept HTML in the description.}
 
 \item{\code{disabled}}{Enable or disable user changes}
-
-\item{\code{placeholder}}{Placeholder text to display when nothing has been typed}
-
-\item{\code{value}}{String value}
 }
 \if{html}{\out{</div>}}
 }
@@ -53,12 +53,12 @@ Text widget
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{jupyter.widget.Text$new(
+  value = "",
+  placeholder = "​",
   continuous_update = TRUE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  placeholder = "​",
-  value = "",
   style = TextStyle(),
   ...,
   error_call = caller_env()
@@ -68,6 +68,10 @@ Text widget
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{value}}{String value}
+
+\item{\code{placeholder}}{Placeholder text to display when nothing has been typed}
+
 \item{\code{continuous_update}}{Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.}
 
 \item{\code{description}}{Description of the control.}
@@ -75,10 +79,6 @@ Text widget
 \item{\code{description_allow_html}}{Accept HTML in the description.}
 
 \item{\code{disabled}}{Enable or disable user changes}
-
-\item{\code{placeholder}}{Placeholder text to display when nothing has been typed}
-
-\item{\code{value}}{String value}
 
 \item{\code{style}}{Must inherit from \link{jupyter.widget.TextStyle}.}
 

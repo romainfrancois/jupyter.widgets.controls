@@ -14,6 +14,8 @@ Checkbox widget
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
+\item{\code{value}}{Bool value}
+
 \item{\code{description}}{Description of the control.}
 
 \item{\code{description_allow_html}}{Accept HTML in the description.}
@@ -21,8 +23,6 @@ Checkbox widget
 \item{\code{disabled}}{Enable or disable user changes.}
 
 \item{\code{indent}}{Indent the control to align with other controls with a description.}
-
-\item{\code{value}}{Bool value}
 }
 \if{html}{\out{</div>}}
 }
@@ -51,11 +51,11 @@ Checkbox widget
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{jupyter.widget.Checkbox$new(
+  value = FALSE,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
   indent = TRUE,
-  value = FALSE,
   style = CheckboxStyle(),
   ...,
   error_call = caller_env()
@@ -65,6 +65,8 @@ Checkbox widget
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{value}}{Bool value}
+
 \item{\code{description}}{Description of the control.}
 
 \item{\code{description_allow_html}}{Accept HTML in the description.}
@@ -72,8 +74,6 @@ Checkbox widget
 \item{\code{disabled}}{Enable or disable user changes.}
 
 \item{\code{indent}}{Indent the control to align with other controls with a description.}
-
-\item{\code{value}}{Bool value}
 
 \item{\code{style}}{Must inherit from \link{jupyter.widget.CheckboxStyle}.}
 

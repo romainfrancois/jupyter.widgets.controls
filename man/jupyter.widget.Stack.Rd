@@ -14,9 +14,9 @@ Stack widget
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
-\item{\code{box_style}}{Use a predefined styling for the box.}
-
 \item{\code{children}}{List of widget children}
+
+\item{\code{box_style}}{Use a predefined styling for the box.}
 
 \item{\code{selected_index}}{The index of the selected page. This is either an integer selecting a particular sub-widget, or None to have no widgets selected.}
 
@@ -49,8 +49,8 @@ Stack widget
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{jupyter.widget.Stack$new(
-  box_style = "",
   children = list(),
+  box_style = "",
   selected_index = NULL,
   titles = list(),
   ...,
@@ -61,9 +61,9 @@ Stack widget
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{box_style}}{Use a predefined styling for the box.}
-
 \item{\code{children}}{List of widget children}
+
+\item{\code{box_style}}{Use a predefined styling for the box.}
 
 \item{\code{selected_index}}{The index of the selected page. This is either an integer selecting a particular sub-widget, or None to have no widgets selected.}
 

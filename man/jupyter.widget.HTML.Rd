@@ -14,13 +14,13 @@ HTML widget
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
-\item{\code{description}}{Description of the control.}
-
-\item{\code{description_allow_html}}{Accept HTML in the description.}
+\item{\code{value}}{String value}
 
 \item{\code{placeholder}}{Placeholder text to display when nothing has been typed}
 
-\item{\code{value}}{String value}
+\item{\code{description}}{Description of the control.}
+
+\item{\code{description_allow_html}}{Accept HTML in the description.}
 }
 \if{html}{\out{</div>}}
 }
@@ -49,10 +49,10 @@ HTML widget
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{jupyter.widget.HTML$new(
+  value = "",
+  placeholder = "​",
   description = "",
   description_allow_html = FALSE,
-  placeholder = "​",
-  value = "",
   style = HTMLStyle(),
   ...,
   error_call = caller_env()
@@ -62,13 +62,13 @@ HTML widget
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{description}}{Description of the control.}
-
-\item{\code{description_allow_html}}{Accept HTML in the description.}
+\item{\code{value}}{String value}
 
 \item{\code{placeholder}}{Placeholder text to display when nothing has been typed}
 
-\item{\code{value}}{String value}
+\item{\code{description}}{Description of the control.}
+
+\item{\code{description_allow_html}}{Accept HTML in the description.}
 
 \item{\code{style}}{Must inherit from \link{jupyter.widget.HTMLStyle}.}
 

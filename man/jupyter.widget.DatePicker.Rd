@@ -14,19 +14,19 @@ DatePicker widget
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
+\item{\code{value}}{}
+
+\item{\code{min}}{}
+
+\item{\code{max}}{}
+
+\item{\code{step}}{The date step to use for the picker, in days, or "any".}
+
 \item{\code{description}}{Description of the control.}
 
 \item{\code{description_allow_html}}{Accept HTML in the description.}
 
 \item{\code{disabled}}{Enable or disable user changes.}
-
-\item{\code{max}}{}
-
-\item{\code{min}}{}
-
-\item{\code{step}}{The date step to use for the picker, in days, or "any".}
-
-\item{\code{value}}{}
 }
 \if{html}{\out{</div>}}
 }
@@ -55,13 +55,13 @@ DatePicker widget
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{jupyter.widget.DatePicker$new(
+  value = NULL,
+  min = NULL,
+  max = NULL,
+  step = 1L,
   description = "",
   description_allow_html = FALSE,
   disabled = FALSE,
-  max = NULL,
-  min = NULL,
-  step = 1L,
-  value = NULL,
   ...,
   error_call = caller_env()
 )}\if{html}{\out{</div>}}
@@ -70,19 +70,19 @@ DatePicker widget
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{value}}{(undocumented)}
+
+\item{\code{min}}{(undocumented)}
+
+\item{\code{max}}{(undocumented)}
+
+\item{\code{step}}{The date step to use for the picker, in days, or "any".}
+
 \item{\code{description}}{Description of the control.}
 
 \item{\code{description_allow_html}}{Accept HTML in the description.}
 
 \item{\code{disabled}}{Enable or disable user changes.}
-
-\item{\code{max}}{(undocumented)}
-
-\item{\code{min}}{(undocumented)}
-
-\item{\code{step}}{The date step to use for the picker, in days, or "any".}
-
-\item{\code{value}}{(undocumented)}
 
 \item{\code{...}}{See \link[jupyter.widgets.base:DOMWidget]{jupyter.widgets.base::DOMWidget}}
 
