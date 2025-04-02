@@ -3,18 +3,16 @@
 #' @import glue
 #' @import assertthat
 #' @importFrom purrr map_chr walk
-#' @importFrom rlang current_env caller_env arg_match pairlist2 is_scalar_integer
+#' @importFrom rlang current_env caller_env arg_match pairlist2 is_scalar_integer run_on_load on_load
 #' @importFrom fontawesome fa_metadata
 #' @importFrom cli cli_abort
 #' @importFrom jsonlite unbox
 NULL
 
-accepted_button_style <- c("primary", "success", "info", "warning", "danger")
 accepted_font_style <- c("normal", "italic", "oblique")
 accepted_font_variant <- c("normal", "small-caps", "all-small-caps", "petite-caps", "all-petite-caps", "unicase", "titling-caps")
 accepted_font_weight <- c("normal", "bold", "lighter", "bolder")
 accepted_text_decoration <- c("none", "underline", "overline", "line-through", "blink")
-accepted_orientation <- c("horizontal", "vertical")
 
 check_state_children <- function(value, widget) {
   walk(value, \(kid){
@@ -62,19 +60,14 @@ check_state_titles <- function(value, widget) {
 }
 
 .onLoad <- function(libname, pkgname) {
-  set_widget_state_check("jupyter.widget.Button", "button_style", unbox_one_of(accepted_button_style, allow_empty = TRUE))
+  rlang::run_on_load()
+
   set_widget_state_check("jupyter.widget.Button", "icon"        , unbox_one_of(fa_metadata()$icon_names, allow_empty = TRUE))
 
   set_widget_state_check("jupyter.widget.ButtonStyle", "font_style", unbox_one_of(accepted_font_style, allow_null = TRUE))
   set_widget_state_check("jupyter.widget.ButtonStyle", "font_variant", unbox_one_of(accepted_font_variant, allow_null = TRUE))
   set_widget_state_check("jupyter.widget.ButtonStyle", "font_weight", check_state_font_weight)
   set_widget_state_check("jupyter.widget.ButtonStyle", "text_decoration", unbox_one_of(accepted_text_decoration, allow_null = TRUE))
-
-  set_widget_state_check("jupyter.widget.IntSlider"       , "orientation", unbox_one_of(accepted_orientation))
-  set_widget_state_check("jupyter.widget.FloatSlider"     , "orientation", unbox_one_of(accepted_orientation))
-  set_widget_state_check("jupyter.widget.FloatLogSlider"  , "orientation", unbox_one_of(accepted_orientation))
-  set_widget_state_check("jupyter.widget.FloatRangeSlider", "orientation", unbox_one_of(accepted_orientation))
-  set_widget_state_check("jupyter.widget.IntRangeSlider"  , "orientation", unbox_one_of(accepted_orientation))
 
   set_widget_state_check("jupyter.widget.FloatRangeSlider", "value", check_state_range_slider_value)
   set_widget_state_check("jupyter.widget.IntRangeSlider"  , "value", check_state_range_slider_value)

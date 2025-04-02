@@ -104,3 +104,4 @@ ColorPicker <- function(
     error_call = error_call
   )
 }
+

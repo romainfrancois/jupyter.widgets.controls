@@ -189,3 +189,8 @@ FloatLogSlider <- function(
     error_call = error_call
   )
 }
+
+rlang::on_load({
+  set_widget_state_check("jupyter.widget.FloatLogSlider", "behavior", unbox_one_of(c("drag-tap", "drag-snap", "tap", "drag", "snap"), allow_null = FALSE, allow_empty = FALSE))
+  set_widget_state_check("jupyter.widget.FloatLogSlider", "orientation", unbox_one_of(c("horizontal", "vertical"), allow_null = FALSE, allow_empty = FALSE))
+})

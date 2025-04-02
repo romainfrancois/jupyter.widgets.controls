@@ -119,3 +119,7 @@ ToggleButton <- function(
     error_call = error_call
   )
 }
+
+rlang::on_load({
+  set_widget_state_check("jupyter.widget.ToggleButton", "button_style", unbox_one_of(c("primary", "success", "info", "warning", "danger"), allow_null = TRUE, allow_empty = TRUE))
+})
