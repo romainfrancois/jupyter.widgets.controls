@@ -213,6 +213,9 @@ ButtonStyle <- function(
 
 rlang::on_load({
   set_widget_state_check("jupyter.widget.ButtonStyle", "font_variant", unbox_one_of(c("normal", "small-caps", "all-small-caps", "petite-caps", "all-petite-caps", "unicase", "titling-caps"), allow_null = TRUE, allow_empty = FALSE))
+  set_widget_state_check("jupyter.widget.ButtonStyle", "text_decoration", unbox_one_of(c("none", "underline", "overline", "line-through", "blink"), allow_null = TRUE, allow_empty = FALSE))
+  set_widget_state_check("jupyter.widget.ButtonStyle", "font_style", unbox_one_of(c("normal", "italic", "oblique"), allow_null = TRUE, allow_empty = FALSE))
+  set_widget_state_check("jupyter.widget.ButtonStyle", "font_weight", check_state_font_weight)
 })
 
 #' CheckboxStyle widget
@@ -726,6 +729,9 @@ LabelStyle <- function(
 
 rlang::on_load({
   set_widget_state_check("jupyter.widget.LabelStyle", "font_variant", unbox_one_of(c("normal", "small-caps", "all-small-caps", "petite-caps", "all-petite-caps", "unicase", "titling-caps"), allow_null = TRUE, allow_empty = FALSE))
+  set_widget_state_check("jupyter.widget.LabelStyle", "text_decoration", unbox_one_of(c("none", "underline", "overline", "line-through", "blink"), allow_null = TRUE, allow_empty = FALSE))
+  set_widget_state_check("jupyter.widget.LabelStyle", "font_style", unbox_one_of(c("normal", "italic", "oblique"), allow_null = TRUE, allow_empty = FALSE))
+  set_widget_state_check("jupyter.widget.LabelStyle", "font_weight", check_state_font_weight)
 })
 
 #' ProgressStyle widget
@@ -941,5 +947,8 @@ ToggleButtonStyle <- function(
 
 rlang::on_load({
   set_widget_state_check("jupyter.widget.ToggleButtonStyle", "font_variant", unbox_one_of(c("normal", "small-caps", "all-small-caps", "petite-caps", "all-petite-caps", "unicase", "titling-caps"), allow_null = TRUE, allow_empty = FALSE))
+  set_widget_state_check("jupyter.widget.ToggleButtonStyle", "text_decoration", unbox_one_of(c("none", "underline", "overline", "line-through", "blink"), allow_null = TRUE, allow_empty = FALSE))
+  set_widget_state_check("jupyter.widget.ToggleButtonStyle", "font_style", unbox_one_of(c("normal", "italic", "oblique"), allow_null = TRUE, allow_empty = FALSE))
+  set_widget_state_check("jupyter.widget.ToggleButtonStyle", "font_weight", check_state_font_weight)
 })
 
