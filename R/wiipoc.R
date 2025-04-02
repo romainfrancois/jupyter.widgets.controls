@@ -10,14 +10,6 @@ jupyter.widget.Button$set("private", "before_comm_open", function() {
   })
 })
 
-jupyter.widget.Box$set("private", "children_", list())
-jupyter.widget.HBox$set("private", "children_", list())
-jupyter.widget.VBox$set("private", "children_", list())
-jupyter.widget.GridBox$set("private", "children_", list())
-jupyter.widget.Accordion$set("private", "children_", list())
-jupyter.widget.Tab$set("private", "children_", list())
-jupyter.widget.Stack$set("private", "children_", list())
-
 Checkbox           <- reformals(Checkbox, "value")
 ColorPicker        <- reformals(ColorPicker, "value")
 ColorsInput        <- reformals(ColorsInput, c("value", "description", "description_allow_html", "placeholder"))

@@ -62,6 +62,10 @@ jupyter.widget.Accordion <- R6::R6Class("jupyter.widget.Accordion", inherit = ju
     #' @field titles
     #' Titles of the pages
     titles = function(x) if(missing(x)) private$state_[['titles']] else self$update(titles = self$check_state('titles', x))
+  ),
+
+  private = list(
+    children_ = list()
   )
 )
 
@@ -170,6 +174,10 @@ jupyter.widget.Checkbox <- R6::R6Class("jupyter.widget.Checkbox", inherit = jupy
     #' @field value
     #' Bool value
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -279,6 +287,10 @@ jupyter.widget.ColorPicker <- R6::R6Class("jupyter.widget.ColorPicker", inherit 
     #' @field value
     #' The color value.
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -392,6 +404,10 @@ jupyter.widget.ColorsInput <- R6::R6Class("jupyter.widget.ColorsInput", inherit 
     #' @field value
     #' List of string tags
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -522,6 +538,10 @@ jupyter.widget.Combobox <- R6::R6Class("jupyter.widget.Combobox", inherit = jupy
     #' @field value
     #' String value
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -651,6 +671,10 @@ jupyter.widget.DatePicker <- R6::R6Class("jupyter.widget.DatePicker", inherit = 
     #' @field value
     #' 
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -770,6 +794,10 @@ jupyter.widget.Datetime <- R6::R6Class("jupyter.widget.Datetime", inherit = jupy
     #' @field value
     #' 
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -886,6 +914,10 @@ jupyter.widget.NaiveDatetime <- R6::R6Class("jupyter.widget.NaiveDatetime", inhe
     #' @field value
     #' 
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -1046,6 +1078,10 @@ jupyter.widget.IntSlider <- R6::R6Class("jupyter.widget.IntSlider", inherit = ju
     #' @field value
     #' Int value
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -1231,6 +1267,10 @@ jupyter.widget.FloatSlider <- R6::R6Class("jupyter.widget.FloatSlider", inherit 
     #' @field value
     #' Float value
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -1423,6 +1463,10 @@ jupyter.widget.FloatLogSlider <- R6::R6Class("jupyter.widget.FloatLogSlider", in
     #' @field value
     #' Float value
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -1611,6 +1655,10 @@ jupyter.widget.FloatRangeSlider <- R6::R6Class("jupyter.widget.FloatRangeSlider"
     #' @field value
     #' Tuple of (lower, upper) bounds
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -1796,6 +1844,10 @@ jupyter.widget.IntRangeSlider <- R6::R6Class("jupyter.widget.IntRangeSlider", in
     #' @field value
     #' Tuple of (lower, upper) bounds
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -1939,6 +1991,10 @@ jupyter.widget.Text <- R6::R6Class("jupyter.widget.Text", inherit = jupyter.widg
     #' @field value
     #' String value
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -2060,6 +2116,10 @@ jupyter.widget.IntText <- R6::R6Class("jupyter.widget.IntText", inherit = jupyte
     #' @field value
     #' Int value
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -2181,6 +2241,10 @@ jupyter.widget.FloatText <- R6::R6Class("jupyter.widget.FloatText", inherit = ju
     #' @field value
     #' Float value
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -2316,6 +2380,10 @@ jupyter.widget.BoundedIntText <- R6::R6Class("jupyter.widget.BoundedIntText", in
     #' @field value
     #' Int value
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -2457,6 +2525,10 @@ jupyter.widget.BoundedFloatText <- R6::R6Class("jupyter.widget.BoundedFloatText"
     #' @field value
     #' Float value
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -2570,6 +2642,10 @@ jupyter.widget.HTML <- R6::R6Class("jupyter.widget.HTML", inherit = jupyter.widg
     #' @field value
     #' String value
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -2671,6 +2747,10 @@ jupyter.widget.HTMLMath <- R6::R6Class("jupyter.widget.HTMLMath", inherit = jupy
     #' @field value
     #' String value
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -2786,6 +2866,10 @@ jupyter.widget.ToggleButton <- R6::R6Class("jupyter.widget.ToggleButton", inheri
     #' @field value
     #' Bool value
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -2896,6 +2980,10 @@ jupyter.widget.Label <- R6::R6Class("jupyter.widget.Label", inherit = jupyter.wi
     #' @field value
     #' String value
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -3018,6 +3106,10 @@ jupyter.widget.IntProgress <- R6::R6Class("jupyter.widget.IntProgress", inherit 
     #' @field value
     #' Int value
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -3153,6 +3245,10 @@ jupyter.widget.FloatProgress <- R6::R6Class("jupyter.widget.FloatProgress", inhe
     #' @field value
     #' Float value
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -3279,6 +3375,10 @@ jupyter.widget.Password <- R6::R6Class("jupyter.widget.Password", inherit = jupy
     #' @field value
     #' String value
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -3367,6 +3467,10 @@ jupyter.widget.Box <- R6::R6Class("jupyter.widget.Box", inherit = jupyter.widget
     #' @field children
     #' List of widget children
     children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x))
+  ),
+
+  private = list(
+    children_ = list()
   )
 )
 
@@ -3446,6 +3550,10 @@ jupyter.widget.HBox <- R6::R6Class("jupyter.widget.HBox", inherit = jupyter.widg
     #' @field children
     #' List of widget children
     children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x))
+  ),
+
+  private = list(
+    children_ = list()
   )
 )
 
@@ -3525,6 +3633,10 @@ jupyter.widget.VBox <- R6::R6Class("jupyter.widget.VBox", inherit = jupyter.widg
     #' @field children
     #' List of widget children
     children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x))
+  ),
+
+  private = list(
+    children_ = list()
   )
 )
 
@@ -3604,6 +3716,10 @@ jupyter.widget.GridBox <- R6::R6Class("jupyter.widget.GridBox", inherit = jupyte
     #' @field children
     #' List of widget children
     children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x))
+  ),
+
+  private = list(
+    children_ = list()
   )
 )
 
@@ -3697,6 +3813,10 @@ jupyter.widget.Tab <- R6::R6Class("jupyter.widget.Tab", inherit = jupyter.widget
     #' @field titles
     #' Titles of the pages
     titles = function(x) if(missing(x)) private$state_[['titles']] else self$update(titles = self$check_state('titles', x))
+  ),
+
+  private = list(
+    children_ = list()
   )
 )
 
@@ -3796,6 +3916,10 @@ jupyter.widget.Stack <- R6::R6Class("jupyter.widget.Stack", inherit = jupyter.wi
     #' @field titles
     #' Titles of the pages
     titles = function(x) if(missing(x)) private$state_[['titles']] else self$update(titles = self$check_state('titles', x))
+  ),
+
+  private = list(
+    children_ = list()
   )
 )
 
@@ -3897,6 +4021,10 @@ jupyter.widget.Button <- R6::R6Class("jupyter.widget.Button", inherit = jupyter.
     #' @field icon
     #' Font-awesome icon names, without the 'fa-' prefix.
     icon = function(x) if(missing(x)) private$state_[['icon']] else self$update(icon = self$check_state('icon', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -4020,6 +4148,10 @@ jupyter.widget.Textarea <- R6::R6Class("jupyter.widget.Textarea", inherit = jupy
     #' @field value
     #' String value
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
@@ -4146,6 +4278,10 @@ jupyter.widget.Time <- R6::R6Class("jupyter.widget.Time", inherit = jupyter.widg
     #' @field value
     #' 
     value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x))
+  ),
+
+  private = list(
+
   )
 )
 
