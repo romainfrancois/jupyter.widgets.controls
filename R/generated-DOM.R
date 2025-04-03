@@ -4455,3 +4455,126 @@ rlang::on_load({
   set_widget_state_check("jupyter.widget.Select", "options", check_state_options)
 })
 
+#' SelectMultiple widget
+#'
+#' @export
+jupyter.widget.SelectMultiple <- R6::R6Class("jupyter.widget.SelectMultiple", inherit = jupyter.widget.DOMWidget,
+  public = list(
+
+    #' @param options The labels for the options.
+    #' @param index Selected indices
+    #' @param description Description of the control.
+    #' @param description_allow_html Accept HTML in the description.
+    #' @param disabled Enable or disable user changes
+    #' @param rows The number of rows to display.
+    #'
+    #' @param ... See [jupyter.widgets.base::DOMWidget]
+    #' @param error_call see [rlang::args_error_context()]
+    #'
+    #' @return a new 'jupyter.widget.SelectMultiple' widget
+    initialize = function(
+      options = list(),
+      index = list(),
+      description = "",
+      description_allow_html = FALSE,
+      disabled = FALSE,
+      rows = 5L,
+
+      ...,
+      error_call = caller_env()
+    )
+    {
+      private$state_ <- update_list(private$state_,
+        `_options_labels` = self$check_state('options', options),
+        index = self$check_state('index', index),
+        description = self$check_state('description', description),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html),
+        disabled = self$check_state('disabled', disabled),
+        rows = self$check_state('rows', rows)
+      )
+
+      super$initialize(
+        `_model_module` = "@jupyter-widgets/controls",
+        `_model_name`   = "SelectMultipleModel",
+        `_view_module`  = "@jupyter-widgets/controls",
+        `_view_name`    = "SelectMultipleView",
+        
+        ...,
+        error_call = error_call
+      )
+
+    }
+  ),
+
+  active = list(
+    
+    #' @field options
+    #' set options
+    options = function(x) if (missing(x)) private$state_[['_options_labels']] else self$update(`_options_labels` = self$check_state('options', x)),
+    
+    #' @field index
+    #' Selected indices
+    index = function(x) if(missing(x)) private$state_[['index']] else self$update(index = self$check_state('index', x)),
+    
+    #' @field description
+    #' Description of the control.
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    
+    #' @field description_allow_html
+    #' Accept HTML in the description.
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    
+    #' @field disabled
+    #' Enable or disable user changes
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
+    
+    #' @field rows
+    #' The number of rows to display.
+    rows = function(x) if(missing(x)) private$state_[['rows']] else self$update(rows = self$check_state('rows', x))
+  ),
+
+  private = list(
+
+  )
+)
+
+#' SelectMultiple widget
+#'
+#' @param options The labels for the options.
+#' @param index Selected indices
+#' @param description Description of the control.
+#' @param description_allow_html Accept HTML in the description.
+#' @param disabled Enable or disable user changes
+#' @param rows The number of rows to display.
+#' 
+#' 
+#' @param ... forwarded to [jupyter.widgets.base::jupyter.widget.DOMWidget] constructor
+#' @inheritParams rlang::args_error_context
+#'
+#' @export
+SelectMultiple <- function(
+  options = list(),
+  index = list(),
+  description = "",
+  description_allow_html = FALSE,
+  disabled = FALSE,
+  rows = 5L,
+  ...,
+  error_call = current_env()
+){
+  jupyter.widget.SelectMultiple$new(
+    options = options,
+    index = index,
+    description = description,
+    description_allow_html = description_allow_html,
+    disabled = disabled,
+    rows = rows,
+    ...,
+    error_call = error_call
+  )
+}
+
+rlang::on_load({
+  set_widget_state_check("jupyter.widget.SelectMultiple", "options", check_state_options)
+})
+

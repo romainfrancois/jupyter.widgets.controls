@@ -25,5 +25,7 @@ NULL
 
   set_widget_state_check("jupyter.widget.DatePicker", "step", check_any_or_number)
   set_widget_state_check("jupyter.widget.Time"      , "step", check_any_or_number)
+
+  set_widget_state_check("jupyter.widget.SelectMultiple"      , "index", identity)
 }
 

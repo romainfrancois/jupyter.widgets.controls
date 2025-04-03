@@ -60,7 +60,8 @@ dom <- tribble(
   "Button"           , "ButtonStyle"      , c("description"),
   "Textarea"         , NULL               , c("value", "rows", "placeholder"),
   "Time"             , NULL               , c("value", "min", "max", "step"),
-  "Select"           , NULL               , c("options", "index")
+  "Select"           , NULL               , c("options", "index"),
+  "SelectMultiple"   , NULL               , c("options", "index")
 )
 
 generated_dom_file <- file("R/generated-DOM.R", open = "w")
