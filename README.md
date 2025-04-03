@@ -80,3 +80,81 @@ controls=""><a
 href="https://private-user-images.githubusercontent.com/2625526/429974422-061496f6-473b-4428-b61c-76458e0de06e.mov?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDM2ODczMzEsIm5iZiI6MTc0MzY4NzAzMSwicGF0aCI6Ii8yNjI1NTI2LzQyOTk3NDQyMi0wNjE0OTZmNi00NzNiLTQ0MjgtYjYxYy03NjQ1OGUwZGUwNmUubW92P1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI1MDQwMyUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTA0MDNUMTMzMDMxWiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9YzE3YWI4MWQyNGQ1NDdiMzNmNmI5OTA0MTI5ZDgwNzA0OGNmMTMzNzc0MDg1YWIxZWY2NWU0ZDFkODQ2YjRjZCZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ.s2Ks8GuUN7NCxpM89nsvKweYM14nAnTVDnOyXfm7bgU">Demo</a></video>
 <figcaption aria-hidden="true">Demo</figcaption>
 </figure>
+
+Currently the proof of concept includes these widgets and styles:
+
+``` r
+library("jupyter.widgets.controls")
+style_widgets <- ls("package:jupyter.widgets.controls", pattern = "^[^j].*Style")
+style_widgets
+#> [1] "ButtonStyle"       "CheckboxStyle"     "HTMLMathStyle"    
+#> [4] "HTMLStyle"         "LabelStyle"        "ProgressStyle"    
+#> [7] "SliderStyle"       "TextStyle"         "ToggleButtonStyle"
+```
+
+``` r
+
+dom_widgets <- setdiff(ls("package:jupyter.widgets.controls", pattern = "^[^j].*"), style_widgets)
+dom_widgets
+#>  [1] "Accordion"            "BoundedFloatText"     "BoundedIntText"      
+#>  [4] "Box"                  "Button"               "Checkbox"            
+#>  [7] "ColorPicker"          "ColorsInput"          "Combobox"            
+#> [10] "DatePicker"           "Datetime"             "FloatLogSlider"      
+#> [13] "FloatProgress"        "FloatRangeSlider"     "FloatSlider"         
+#> [16] "FloatText"            "GridBox"              "HBox"                
+#> [19] "HTML"                 "HTMLMath"             "IntProgress"         
+#> [22] "IntRangeSlider"       "IntSlider"            "IntText"             
+#> [25] "Label"                "NaiveDatetime"        "Password"            
+#> [28] "Select"               "SelectionRangeSlider" "SelectionSlider"     
+#> [31] "SelectMultiple"       "Stack"                "Tab"                 
+#> [34] "Text"                 "Textarea"             "Time"                
+#> [37] "ToggleButton"         "VBox"
+```
+
+Each factory function, e.g. `Button` corresponds to an R6 class,
+e.g. `jupyter.widget.Button`:
+
+``` r
+Button
+#> function(
+#>   description = "",
+#>   button_style = "",
+#>   disabled = FALSE,
+#>   icon = "",
+#>   style = ButtonStyle(),
+#>   ...,
+#>   error_call = current_env()
+#> ){
+#>   jupyter.widget.Button$new(
+#>     description = description,
+#>     button_style = button_style,
+#>     disabled = disabled,
+#>     icon = icon,
+#>     style = style,
+#>     ...,
+#>     error_call = error_call
+#>   )
+#> }
+#> <bytecode: 0x1578e27a8>
+#> <environment: namespace:jupyter.widgets.controls>
+```
+
+``` r
+jupyter.widget.Button
+#> <jupyter.widget.Button> object generator
+#>   Inherits from: <jupyter.widget.DOMWidget>
+#>   Public:
+#>     initialize: function (description = "", button_style = "", disabled = FALSE, 
+#>     clone: function (deep = FALSE) 
+#>   Active bindings:
+#>     description: function (x) 
+#>     button_style: function (x) 
+#>     disabled: function (x) 
+#>     icon: function (x) 
+#>   Private:
+#>     before_comm_open: function () 
+#>   Parent env: <environment: namespace:jupyter.widgets.controls>
+#>   Locked objects: TRUE
+#>   Locked class: FALSE
+#>   Portable: TRUE
+```
