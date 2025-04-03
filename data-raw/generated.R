@@ -61,7 +61,8 @@ dom <- tribble(
   "Textarea"         , NULL               , c("value", "rows", "placeholder"),
   "Time"             , NULL               , c("value", "min", "max", "step"),
   "Select"           , NULL               , c("options", "index"),
-  "SelectMultiple"   , NULL               , c("options", "index")
+  "SelectMultiple"   , NULL               , c("options", "index"),
+  "SelectionSlider"  , NULL               , c("options", "index")
 )
 
 generated_dom_file <- file("R/generated-DOM.R", open = "w")

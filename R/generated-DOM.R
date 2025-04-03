@@ -4578,3 +4578,158 @@ rlang::on_load({
   set_widget_state_check("jupyter.widget.SelectMultiple", "options", check_state_options)
 })
 
+#' SelectionSlider widget
+#'
+#' @export
+jupyter.widget.SelectionSlider <- R6::R6Class("jupyter.widget.SelectionSlider", inherit = jupyter.widget.DOMWidget,
+  public = list(
+
+    #' @param options The labels for the options.
+    #' @param index Selected index
+    #' @param behavior Slider dragging behavior.
+    #' @param continuous_update Update the value of the widget as the user is holding the slider.
+    #' @param description Description of the control.
+    #' @param description_allow_html Accept HTML in the description.
+    #' @param disabled Enable or disable user changes
+    #' @param orientation Vertical or horizontal.
+    #' @param readout Display the current selected label next to the slider
+    #'
+    #' @param ... See [jupyter.widgets.base::DOMWidget]
+    #' @param error_call see [rlang::args_error_context()]
+    #'
+    #' @return a new 'jupyter.widget.SelectionSlider' widget
+    initialize = function(
+      options = list(),
+      index = 0L,
+      behavior = "drag-tap",
+      continuous_update = TRUE,
+      description = "",
+      description_allow_html = FALSE,
+      disabled = FALSE,
+      orientation = "horizontal",
+      readout = TRUE,
+
+      ...,
+      error_call = caller_env()
+    )
+    {
+      private$state_ <- update_list(private$state_,
+        `_options_labels` = self$check_state('options', options),
+        index = self$check_state('index', index),
+        behavior = self$check_state('behavior', behavior),
+        continuous_update = self$check_state('continuous_update', continuous_update),
+        description = self$check_state('description', description),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html),
+        disabled = self$check_state('disabled', disabled),
+        orientation = self$check_state('orientation', orientation),
+        readout = self$check_state('readout', readout)
+      )
+
+      super$initialize(
+        `_model_module` = "@jupyter-widgets/controls",
+        `_model_name`   = "SelectionSliderModel",
+        `_view_module`  = "@jupyter-widgets/controls",
+        `_view_name`    = "SelectionSliderView",
+        
+        ...,
+        error_call = error_call
+      )
+
+    }
+  ),
+
+  active = list(
+    
+    #' @field options
+    #' set options
+    options = function(x) if (missing(x)) private$state_[['_options_labels']] else self$update(`_options_labels` = self$check_state('options', x)),
+    
+    #' @field index
+    #' Selected index
+    index = function(x) if(missing(x)) private$state_[['index']] else self$update(index = self$check_state('index', x)),
+    
+    #' @field behavior
+    #' Slider dragging behavior.
+    behavior = function(x) if(missing(x)) private$state_[['behavior']] else self$update(behavior = self$check_state('behavior', x)),
+    
+    #' @field continuous_update
+    #' Update the value of the widget as the user is holding the slider.
+    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
+    
+    #' @field description
+    #' Description of the control.
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    
+    #' @field description_allow_html
+    #' Accept HTML in the description.
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    
+    #' @field disabled
+    #' Enable or disable user changes
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
+    
+    #' @field orientation
+    #' Vertical or horizontal.
+    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x)),
+    
+    #' @field readout
+    #' Display the current selected label next to the slider
+    readout = function(x) if(missing(x)) private$state_[['readout']] else self$update(readout = self$check_state('readout', x))
+  ),
+
+  private = list(
+
+  )
+)
+
+#' SelectionSlider widget
+#'
+#' @param options The labels for the options.
+#' @param index Selected index
+#' @param behavior Slider dragging behavior.
+#' @param continuous_update Update the value of the widget as the user is holding the slider.
+#' @param description Description of the control.
+#' @param description_allow_html Accept HTML in the description.
+#' @param disabled Enable or disable user changes
+#' @param orientation Vertical or horizontal.
+#' @param readout Display the current selected label next to the slider
+#' 
+#' 
+#' @param ... forwarded to [jupyter.widgets.base::jupyter.widget.DOMWidget] constructor
+#' @inheritParams rlang::args_error_context
+#'
+#' @export
+SelectionSlider <- function(
+  options = list(),
+  index = 0L,
+  behavior = "drag-tap",
+  continuous_update = TRUE,
+  description = "",
+  description_allow_html = FALSE,
+  disabled = FALSE,
+  orientation = "horizontal",
+  readout = TRUE,
+  ...,
+  error_call = current_env()
+){
+  jupyter.widget.SelectionSlider$new(
+    options = options,
+    index = index,
+    behavior = behavior,
+    continuous_update = continuous_update,
+    description = description,
+    description_allow_html = description_allow_html,
+    disabled = disabled,
+    orientation = orientation,
+    readout = readout,
+    ...,
+    error_call = error_call
+  )
+}
+
+rlang::on_load({
+  set_widget_state_check("jupyter.widget.SelectionSlider", "options", check_state_options)
+  set_widget_state_check("jupyter.widget.SelectionSlider", "behavior", unbox_one_of(c("drag-tap", "drag-snap", "tap", "drag", "snap"), allow_null = FALSE, allow_empty = FALSE))
+  set_widget_state_check("jupyter.widget.SelectionSlider", "orientation", unbox_one_of(c("horizontal", "vertical"), allow_null = FALSE, allow_empty = FALSE))
+})
+
