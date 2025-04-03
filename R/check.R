@@ -14,7 +14,7 @@ check_state_children <- function(value, widget) {
     if (!inherits(kid, "jupyter.widget.DOMWidget")) {
       cli::cli_abort(call = quote(check_state_children()), c(
         "{.arg children} must be a list of DOM Widget.",
-        x = "Element at position {i} is a {.obj_type_friendly {kid}}."
+        x = "Element at position {i} is {.obj_type_friendly {kid}}."
       ))
     }
   }
