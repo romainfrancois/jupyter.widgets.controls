@@ -26,10 +26,10 @@ jupyter.widget.Accordion <- R6::R6Class("jupyter.widget.Accordion", inherit = ju
     )
     {
       private$state_ <- update_list(private$state_,
-        children = self$check_state('children', children),
-        box_style = self$check_state('box_style', box_style),
-        selected_index = self$check_state('selected_index', selected_index),
-        titles = self$check_state('titles', titles)
+        children = self$check_state('children', children, error_call = error_call),
+        box_style = self$check_state('box_style', box_style, error_call = error_call),
+        selected_index = self$check_state('selected_index', selected_index, error_call = error_call),
+        titles = self$check_state('titles', titles, error_call = error_call)
       )
 
       super$initialize(
@@ -49,19 +49,19 @@ jupyter.widget.Accordion <- R6::R6Class("jupyter.widget.Accordion", inherit = ju
     
     #' @field children
     #' List of widget children
-    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x)),
+    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x, error_call = quote(Accordion$children))),
     
     #' @field box_style
     #' Use a predefined styling for the box.
-    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x)),
+    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x, error_call = quote(Accordion$box_style))),
     
     #' @field selected_index
     #' The index of the selected page. This is either an integer selecting a particular sub-widget, or None to have no widgets selected.
-    selected_index = function(x) if(missing(x)) private$state_[['selected_index']] else self$update(selected_index = self$check_state('selected_index', x)),
+    selected_index = function(x) if(missing(x)) private$state_[['selected_index']] else self$update(selected_index = self$check_state('selected_index', x, error_call = quote(Accordion$selected_index))),
     
     #' @field titles
     #' Titles of the pages
-    titles = function(x) if(missing(x)) private$state_[['titles']] else self$update(titles = self$check_state('titles', x))
+    titles = function(x) if(missing(x)) private$state_[['titles']] else self$update(titles = self$check_state('titles', x, error_call = quote(Accordion$titles)))
   ),
 
   private = list(
@@ -134,11 +134,11 @@ jupyter.widget.Checkbox <- R6::R6Class("jupyter.widget.Checkbox", inherit = jupy
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        indent = self$check_state('indent', indent)
+        value = self$check_state('value', value, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call),
+        indent = self$check_state('indent', indent, error_call = error_call)
       )
 
       super$initialize(
@@ -158,23 +158,23 @@ jupyter.widget.Checkbox <- R6::R6Class("jupyter.widget.Checkbox", inherit = jupy
     
     #' @field value
     #' Bool value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(Checkbox$value))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(Checkbox$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(Checkbox$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes.
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(Checkbox$disabled))),
     
     #' @field indent
     #' Indent the control to align with other controls with a description.
-    indent = function(x) if(missing(x)) private$state_[['indent']] else self$update(indent = self$check_state('indent', x))
+    indent = function(x) if(missing(x)) private$state_[['indent']] else self$update(indent = self$check_state('indent', x, error_call = quote(Checkbox$indent)))
   ),
 
   private = list(
@@ -247,11 +247,11 @@ jupyter.widget.ColorPicker <- R6::R6Class("jupyter.widget.ColorPicker", inherit 
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        concise = self$check_state('concise', concise),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled)
+        value = self$check_state('value', value, error_call = error_call),
+        concise = self$check_state('concise', concise, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call)
       )
 
       super$initialize(
@@ -271,23 +271,23 @@ jupyter.widget.ColorPicker <- R6::R6Class("jupyter.widget.ColorPicker", inherit 
     
     #' @field value
     #' The color value.
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(ColorPicker$value))),
     
     #' @field concise
     #' Display short version with just a color selector.
-    concise = function(x) if(missing(x)) private$state_[['concise']] else self$update(concise = self$check_state('concise', x)),
+    concise = function(x) if(missing(x)) private$state_[['concise']] else self$update(concise = self$check_state('concise', x, error_call = quote(ColorPicker$concise))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(ColorPicker$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(ColorPicker$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes.
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(ColorPicker$disabled)))
   ),
 
   private = list(
@@ -359,12 +359,12 @@ jupyter.widget.ColorsInput <- R6::R6Class("jupyter.widget.ColorsInput", inherit 
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        placeholder = self$check_state('placeholder', placeholder),
-        allow_duplicates = self$check_state('allow_duplicates', allow_duplicates),
-        allowed_tags = self$check_state('allowed_tags', allowed_tags)
+        value = self$check_state('value', value, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        placeholder = self$check_state('placeholder', placeholder, error_call = error_call),
+        allow_duplicates = self$check_state('allow_duplicates', allow_duplicates, error_call = error_call),
+        allowed_tags = self$check_state('allowed_tags', allowed_tags, error_call = error_call)
       )
 
       super$initialize(
@@ -384,27 +384,27 @@ jupyter.widget.ColorsInput <- R6::R6Class("jupyter.widget.ColorsInput", inherit 
     
     #' @field value
     #' List of string tags
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(ColorsInput$value))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(ColorsInput$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(ColorsInput$description_allow_html))),
     
     #' @field placeholder
     #' 
-    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x)),
+    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x, error_call = quote(ColorsInput$placeholder))),
     
     #' @field allow_duplicates
     #' 
-    allow_duplicates = function(x) if(missing(x)) private$state_[['allow_duplicates']] else self$update(allow_duplicates = self$check_state('allow_duplicates', x)),
+    allow_duplicates = function(x) if(missing(x)) private$state_[['allow_duplicates']] else self$update(allow_duplicates = self$check_state('allow_duplicates', x, error_call = quote(ColorsInput$allow_duplicates))),
     
     #' @field allowed_tags
     #' 
-    allowed_tags = function(x) if(missing(x)) private$state_[['allowed_tags']] else self$update(allowed_tags = self$check_state('allowed_tags', x))
+    allowed_tags = function(x) if(missing(x)) private$state_[['allowed_tags']] else self$update(allowed_tags = self$check_state('allowed_tags', x, error_call = quote(ColorsInput$allowed_tags)))
   ),
 
   private = list(
@@ -483,14 +483,14 @@ jupyter.widget.Combobox <- R6::R6Class("jupyter.widget.Combobox", inherit = jupy
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        continuous_update = self$check_state('continuous_update', continuous_update),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        ensure_option = self$check_state('ensure_option', ensure_option),
-        options = self$check_state('options', options),
-        placeholder = self$check_state('placeholder', placeholder)
+        value = self$check_state('value', value, error_call = error_call),
+        continuous_update = self$check_state('continuous_update', continuous_update, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call),
+        ensure_option = self$check_state('ensure_option', ensure_option, error_call = error_call),
+        options = self$check_state('options', options, error_call = error_call),
+        placeholder = self$check_state('placeholder', placeholder, error_call = error_call)
       )
 
       super$initialize(
@@ -510,35 +510,35 @@ jupyter.widget.Combobox <- R6::R6Class("jupyter.widget.Combobox", inherit = jupy
     
     #' @field value
     #' String value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(Combobox$value))),
     
     #' @field continuous_update
     #' Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
-    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
+    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x, error_call = quote(Combobox$continuous_update))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(Combobox$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(Combobox$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(Combobox$disabled))),
     
     #' @field ensure_option
     #' If set, ensure value is in options. Implies continuous_update=False.
-    ensure_option = function(x) if(missing(x)) private$state_[['ensure_option']] else self$update(ensure_option = self$check_state('ensure_option', x)),
+    ensure_option = function(x) if(missing(x)) private$state_[['ensure_option']] else self$update(ensure_option = self$check_state('ensure_option', x, error_call = quote(Combobox$ensure_option))),
     
     #' @field options
     #' Dropdown options for the combobox
-    options = function(x) if(missing(x)) private$state_[['options']] else self$update(options = self$check_state('options', x)),
+    options = function(x) if(missing(x)) private$state_[['options']] else self$update(options = self$check_state('options', x, error_call = quote(Combobox$options))),
     
     #' @field placeholder
     #' Placeholder text to display when nothing has been typed
-    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x))
+    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x, error_call = quote(Combobox$placeholder)))
   ),
 
   private = list(
@@ -621,13 +621,13 @@ jupyter.widget.DatePicker <- R6::R6Class("jupyter.widget.DatePicker", inherit = 
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        min = self$check_state('min', min),
-        max = self$check_state('max', max),
-        step = self$check_state('step', step),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled)
+        value = self$check_state('value', value, error_call = error_call),
+        min = self$check_state('min', min, error_call = error_call),
+        max = self$check_state('max', max, error_call = error_call),
+        step = self$check_state('step', step, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call)
       )
 
       super$initialize(
@@ -647,31 +647,31 @@ jupyter.widget.DatePicker <- R6::R6Class("jupyter.widget.DatePicker", inherit = 
     
     #' @field value
     #' 
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(DatePicker$value))),
     
     #' @field min
     #' 
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x, error_call = quote(DatePicker$min))),
     
     #' @field max
     #' 
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x, error_call = quote(DatePicker$max))),
     
     #' @field step
     #' The date step to use for the picker, in days, or "any".
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x, error_call = quote(DatePicker$step))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(DatePicker$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(DatePicker$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes.
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(DatePicker$disabled)))
   ),
 
   private = list(
@@ -749,12 +749,12 @@ jupyter.widget.Datetime <- R6::R6Class("jupyter.widget.Datetime", inherit = jupy
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        min = self$check_state('min', min),
-        max = self$check_state('max', max),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled)
+        value = self$check_state('value', value, error_call = error_call),
+        min = self$check_state('min', min, error_call = error_call),
+        max = self$check_state('max', max, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call)
       )
 
       super$initialize(
@@ -774,27 +774,27 @@ jupyter.widget.Datetime <- R6::R6Class("jupyter.widget.Datetime", inherit = jupy
     
     #' @field value
     #' 
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(Datetime$value))),
     
     #' @field min
     #' 
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x, error_call = quote(Datetime$min))),
     
     #' @field max
     #' 
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x, error_call = quote(Datetime$max))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(Datetime$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(Datetime$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes.
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(Datetime$disabled)))
   ),
 
   private = list(
@@ -869,12 +869,12 @@ jupyter.widget.NaiveDatetime <- R6::R6Class("jupyter.widget.NaiveDatetime", inhe
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        min = self$check_state('min', min),
-        max = self$check_state('max', max),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled)
+        value = self$check_state('value', value, error_call = error_call),
+        min = self$check_state('min', min, error_call = error_call),
+        max = self$check_state('max', max, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call)
       )
 
       super$initialize(
@@ -894,27 +894,27 @@ jupyter.widget.NaiveDatetime <- R6::R6Class("jupyter.widget.NaiveDatetime", inhe
     
     #' @field value
     #' 
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(NaiveDatetime$value))),
     
     #' @field min
     #' 
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x, error_call = quote(NaiveDatetime$min))),
     
     #' @field max
     #' 
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x, error_call = quote(NaiveDatetime$max))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(NaiveDatetime$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(NaiveDatetime$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes.
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(NaiveDatetime$disabled)))
   ),
 
   private = list(
@@ -1003,18 +1003,18 @@ jupyter.widget.IntSlider <- R6::R6Class("jupyter.widget.IntSlider", inherit = ju
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        min = self$check_state('min', min),
-        max = self$check_state('max', max),
-        step = self$check_state('step', step),
-        behavior = self$check_state('behavior', behavior),
-        continuous_update = self$check_state('continuous_update', continuous_update),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        orientation = self$check_state('orientation', orientation),
-        readout = self$check_state('readout', readout),
-        readout_format = self$check_state('readout_format', readout_format)
+        value = self$check_state('value', value, error_call = error_call),
+        min = self$check_state('min', min, error_call = error_call),
+        max = self$check_state('max', max, error_call = error_call),
+        step = self$check_state('step', step, error_call = error_call),
+        behavior = self$check_state('behavior', behavior, error_call = error_call),
+        continuous_update = self$check_state('continuous_update', continuous_update, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call),
+        orientation = self$check_state('orientation', orientation, error_call = error_call),
+        readout = self$check_state('readout', readout, error_call = error_call),
+        readout_format = self$check_state('readout_format', readout_format, error_call = error_call)
       )
 
       super$initialize(
@@ -1034,51 +1034,51 @@ jupyter.widget.IntSlider <- R6::R6Class("jupyter.widget.IntSlider", inherit = ju
     
     #' @field value
     #' Int value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(IntSlider$value))),
     
     #' @field min
     #' Min value
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x, error_call = quote(IntSlider$min))),
     
     #' @field max
     #' Max value
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x, error_call = quote(IntSlider$max))),
     
     #' @field step
     #' Minimum step to increment the value
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x, error_call = quote(IntSlider$step))),
     
     #' @field behavior
     #' Slider dragging behavior.
-    behavior = function(x) if(missing(x)) private$state_[['behavior']] else self$update(behavior = self$check_state('behavior', x)),
+    behavior = function(x) if(missing(x)) private$state_[['behavior']] else self$update(behavior = self$check_state('behavior', x, error_call = quote(IntSlider$behavior))),
     
     #' @field continuous_update
     #' Update the value of the widget as the user is holding the slider.
-    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
+    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x, error_call = quote(IntSlider$continuous_update))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(IntSlider$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(IntSlider$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(IntSlider$disabled))),
     
     #' @field orientation
     #' Vertical or horizontal.
-    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x)),
+    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x, error_call = quote(IntSlider$orientation))),
     
     #' @field readout
     #' Display the current value of the slider next to it.
-    readout = function(x) if(missing(x)) private$state_[['readout']] else self$update(readout = self$check_state('readout', x)),
+    readout = function(x) if(missing(x)) private$state_[['readout']] else self$update(readout = self$check_state('readout', x, error_call = quote(IntSlider$readout))),
     
     #' @field readout_format
     #' Format for the readout
-    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x))
+    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x, error_call = quote(IntSlider$readout_format)))
   ),
 
   private = list(
@@ -1192,18 +1192,18 @@ jupyter.widget.FloatSlider <- R6::R6Class("jupyter.widget.FloatSlider", inherit 
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        min = self$check_state('min', min),
-        max = self$check_state('max', max),
-        step = self$check_state('step', step),
-        behavior = self$check_state('behavior', behavior),
-        continuous_update = self$check_state('continuous_update', continuous_update),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        orientation = self$check_state('orientation', orientation),
-        readout = self$check_state('readout', readout),
-        readout_format = self$check_state('readout_format', readout_format)
+        value = self$check_state('value', value, error_call = error_call),
+        min = self$check_state('min', min, error_call = error_call),
+        max = self$check_state('max', max, error_call = error_call),
+        step = self$check_state('step', step, error_call = error_call),
+        behavior = self$check_state('behavior', behavior, error_call = error_call),
+        continuous_update = self$check_state('continuous_update', continuous_update, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call),
+        orientation = self$check_state('orientation', orientation, error_call = error_call),
+        readout = self$check_state('readout', readout, error_call = error_call),
+        readout_format = self$check_state('readout_format', readout_format, error_call = error_call)
       )
 
       super$initialize(
@@ -1223,51 +1223,51 @@ jupyter.widget.FloatSlider <- R6::R6Class("jupyter.widget.FloatSlider", inherit 
     
     #' @field value
     #' Float value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(FloatSlider$value))),
     
     #' @field min
     #' Min value
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x, error_call = quote(FloatSlider$min))),
     
     #' @field max
     #' Max value
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x, error_call = quote(FloatSlider$max))),
     
     #' @field step
     #' Minimum step to increment the value
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x, error_call = quote(FloatSlider$step))),
     
     #' @field behavior
     #' Slider dragging behavior.
-    behavior = function(x) if(missing(x)) private$state_[['behavior']] else self$update(behavior = self$check_state('behavior', x)),
+    behavior = function(x) if(missing(x)) private$state_[['behavior']] else self$update(behavior = self$check_state('behavior', x, error_call = quote(FloatSlider$behavior))),
     
     #' @field continuous_update
     #' Update the value of the widget as the user is holding the slider.
-    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
+    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x, error_call = quote(FloatSlider$continuous_update))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(FloatSlider$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(FloatSlider$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(FloatSlider$disabled))),
     
     #' @field orientation
     #' Vertical or horizontal.
-    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x)),
+    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x, error_call = quote(FloatSlider$orientation))),
     
     #' @field readout
     #' Display the current value of the slider next to it.
-    readout = function(x) if(missing(x)) private$state_[['readout']] else self$update(readout = self$check_state('readout', x)),
+    readout = function(x) if(missing(x)) private$state_[['readout']] else self$update(readout = self$check_state('readout', x, error_call = quote(FloatSlider$readout))),
     
     #' @field readout_format
     #' Format for the readout
-    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x))
+    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x, error_call = quote(FloatSlider$readout_format)))
   ),
 
   private = list(
@@ -1383,19 +1383,19 @@ jupyter.widget.FloatLogSlider <- R6::R6Class("jupyter.widget.FloatLogSlider", in
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        min = self$check_state('min', min),
-        max = self$check_state('max', max),
-        step = self$check_state('step', step),
-        base = self$check_state('base', base),
-        behavior = self$check_state('behavior', behavior),
-        continuous_update = self$check_state('continuous_update', continuous_update),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        orientation = self$check_state('orientation', orientation),
-        readout = self$check_state('readout', readout),
-        readout_format = self$check_state('readout_format', readout_format)
+        value = self$check_state('value', value, error_call = error_call),
+        min = self$check_state('min', min, error_call = error_call),
+        max = self$check_state('max', max, error_call = error_call),
+        step = self$check_state('step', step, error_call = error_call),
+        base = self$check_state('base', base, error_call = error_call),
+        behavior = self$check_state('behavior', behavior, error_call = error_call),
+        continuous_update = self$check_state('continuous_update', continuous_update, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call),
+        orientation = self$check_state('orientation', orientation, error_call = error_call),
+        readout = self$check_state('readout', readout, error_call = error_call),
+        readout_format = self$check_state('readout_format', readout_format, error_call = error_call)
       )
 
       super$initialize(
@@ -1415,55 +1415,55 @@ jupyter.widget.FloatLogSlider <- R6::R6Class("jupyter.widget.FloatLogSlider", in
     
     #' @field value
     #' Float value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(FloatLogSlider$value))),
     
     #' @field min
     #' Min value for the exponent
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x, error_call = quote(FloatLogSlider$min))),
     
     #' @field max
     #' Max value for the exponent
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x, error_call = quote(FloatLogSlider$max))),
     
     #' @field step
     #' Minimum step in the exponent to increment the value
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x, error_call = quote(FloatLogSlider$step))),
     
     #' @field base
     #' Base for the logarithm
-    base = function(x) if(missing(x)) private$state_[['base']] else self$update(base = self$check_state('base', x)),
+    base = function(x) if(missing(x)) private$state_[['base']] else self$update(base = self$check_state('base', x, error_call = quote(FloatLogSlider$base))),
     
     #' @field behavior
     #' Slider dragging behavior.
-    behavior = function(x) if(missing(x)) private$state_[['behavior']] else self$update(behavior = self$check_state('behavior', x)),
+    behavior = function(x) if(missing(x)) private$state_[['behavior']] else self$update(behavior = self$check_state('behavior', x, error_call = quote(FloatLogSlider$behavior))),
     
     #' @field continuous_update
     #' Update the value of the widget as the user is holding the slider.
-    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
+    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x, error_call = quote(FloatLogSlider$continuous_update))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(FloatLogSlider$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(FloatLogSlider$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(FloatLogSlider$disabled))),
     
     #' @field orientation
     #' Vertical or horizontal.
-    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x)),
+    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x, error_call = quote(FloatLogSlider$orientation))),
     
     #' @field readout
     #' Display the current value of the slider next to it.
-    readout = function(x) if(missing(x)) private$state_[['readout']] else self$update(readout = self$check_state('readout', x)),
+    readout = function(x) if(missing(x)) private$state_[['readout']] else self$update(readout = self$check_state('readout', x, error_call = quote(FloatLogSlider$readout))),
     
     #' @field readout_format
     #' Format for the readout
-    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x))
+    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x, error_call = quote(FloatLogSlider$readout_format)))
   ),
 
   private = list(
@@ -1580,18 +1580,18 @@ jupyter.widget.FloatRangeSlider <- R6::R6Class("jupyter.widget.FloatRangeSlider"
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        min = self$check_state('min', min),
-        max = self$check_state('max', max),
-        step = self$check_state('step', step),
-        behavior = self$check_state('behavior', behavior),
-        continuous_update = self$check_state('continuous_update', continuous_update),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        orientation = self$check_state('orientation', orientation),
-        readout = self$check_state('readout', readout),
-        readout_format = self$check_state('readout_format', readout_format)
+        value = self$check_state('value', value, error_call = error_call),
+        min = self$check_state('min', min, error_call = error_call),
+        max = self$check_state('max', max, error_call = error_call),
+        step = self$check_state('step', step, error_call = error_call),
+        behavior = self$check_state('behavior', behavior, error_call = error_call),
+        continuous_update = self$check_state('continuous_update', continuous_update, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call),
+        orientation = self$check_state('orientation', orientation, error_call = error_call),
+        readout = self$check_state('readout', readout, error_call = error_call),
+        readout_format = self$check_state('readout_format', readout_format, error_call = error_call)
       )
 
       super$initialize(
@@ -1611,51 +1611,51 @@ jupyter.widget.FloatRangeSlider <- R6::R6Class("jupyter.widget.FloatRangeSlider"
     
     #' @field value
     #' Tuple of (lower, upper) bounds
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(FloatRangeSlider$value))),
     
     #' @field min
     #' Min value
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x, error_call = quote(FloatRangeSlider$min))),
     
     #' @field max
     #' Max value
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x, error_call = quote(FloatRangeSlider$max))),
     
     #' @field step
     #' Minimum step to increment the value
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x, error_call = quote(FloatRangeSlider$step))),
     
     #' @field behavior
     #' Slider dragging behavior.
-    behavior = function(x) if(missing(x)) private$state_[['behavior']] else self$update(behavior = self$check_state('behavior', x)),
+    behavior = function(x) if(missing(x)) private$state_[['behavior']] else self$update(behavior = self$check_state('behavior', x, error_call = quote(FloatRangeSlider$behavior))),
     
     #' @field continuous_update
     #' Update the value of the widget as the user is sliding the slider.
-    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
+    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x, error_call = quote(FloatRangeSlider$continuous_update))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(FloatRangeSlider$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(FloatRangeSlider$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(FloatRangeSlider$disabled))),
     
     #' @field orientation
     #' Vertical or horizontal.
-    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x)),
+    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x, error_call = quote(FloatRangeSlider$orientation))),
     
     #' @field readout
     #' Display the current value of the slider next to it.
-    readout = function(x) if(missing(x)) private$state_[['readout']] else self$update(readout = self$check_state('readout', x)),
+    readout = function(x) if(missing(x)) private$state_[['readout']] else self$update(readout = self$check_state('readout', x, error_call = quote(FloatRangeSlider$readout))),
     
     #' @field readout_format
     #' Format for the readout
-    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x))
+    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x, error_call = quote(FloatRangeSlider$readout_format)))
   ),
 
   private = list(
@@ -1769,18 +1769,18 @@ jupyter.widget.IntRangeSlider <- R6::R6Class("jupyter.widget.IntRangeSlider", in
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        min = self$check_state('min', min),
-        max = self$check_state('max', max),
-        step = self$check_state('step', step),
-        behavior = self$check_state('behavior', behavior),
-        continuous_update = self$check_state('continuous_update', continuous_update),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        orientation = self$check_state('orientation', orientation),
-        readout = self$check_state('readout', readout),
-        readout_format = self$check_state('readout_format', readout_format)
+        value = self$check_state('value', value, error_call = error_call),
+        min = self$check_state('min', min, error_call = error_call),
+        max = self$check_state('max', max, error_call = error_call),
+        step = self$check_state('step', step, error_call = error_call),
+        behavior = self$check_state('behavior', behavior, error_call = error_call),
+        continuous_update = self$check_state('continuous_update', continuous_update, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call),
+        orientation = self$check_state('orientation', orientation, error_call = error_call),
+        readout = self$check_state('readout', readout, error_call = error_call),
+        readout_format = self$check_state('readout_format', readout_format, error_call = error_call)
       )
 
       super$initialize(
@@ -1800,51 +1800,51 @@ jupyter.widget.IntRangeSlider <- R6::R6Class("jupyter.widget.IntRangeSlider", in
     
     #' @field value
     #' Tuple of (lower, upper) bounds
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(IntRangeSlider$value))),
     
     #' @field min
     #' Min value
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x, error_call = quote(IntRangeSlider$min))),
     
     #' @field max
     #' Max value
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x, error_call = quote(IntRangeSlider$max))),
     
     #' @field step
     #' Minimum step that the value can take
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x, error_call = quote(IntRangeSlider$step))),
     
     #' @field behavior
     #' Slider dragging behavior.
-    behavior = function(x) if(missing(x)) private$state_[['behavior']] else self$update(behavior = self$check_state('behavior', x)),
+    behavior = function(x) if(missing(x)) private$state_[['behavior']] else self$update(behavior = self$check_state('behavior', x, error_call = quote(IntRangeSlider$behavior))),
     
     #' @field continuous_update
     #' Update the value of the widget as the user is sliding the slider.
-    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
+    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x, error_call = quote(IntRangeSlider$continuous_update))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(IntRangeSlider$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(IntRangeSlider$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(IntRangeSlider$disabled))),
     
     #' @field orientation
     #' Vertical or horizontal.
-    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x)),
+    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x, error_call = quote(IntRangeSlider$orientation))),
     
     #' @field readout
     #' Display the current value of the slider next to it.
-    readout = function(x) if(missing(x)) private$state_[['readout']] else self$update(readout = self$check_state('readout', x)),
+    readout = function(x) if(missing(x)) private$state_[['readout']] else self$update(readout = self$check_state('readout', x, error_call = quote(IntRangeSlider$readout))),
     
     #' @field readout_format
     #' Format for the readout
-    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x))
+    readout_format = function(x) if(missing(x)) private$state_[['readout_format']] else self$update(readout_format = self$check_state('readout_format', x, error_call = quote(IntRangeSlider$readout_format)))
   ),
 
   private = list(
@@ -1946,12 +1946,12 @@ jupyter.widget.Text <- R6::R6Class("jupyter.widget.Text", inherit = jupyter.widg
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        placeholder = self$check_state('placeholder', placeholder),
-        continuous_update = self$check_state('continuous_update', continuous_update),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled)
+        value = self$check_state('value', value, error_call = error_call),
+        placeholder = self$check_state('placeholder', placeholder, error_call = error_call),
+        continuous_update = self$check_state('continuous_update', continuous_update, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call)
       )
 
       super$initialize(
@@ -1971,27 +1971,27 @@ jupyter.widget.Text <- R6::R6Class("jupyter.widget.Text", inherit = jupyter.widg
     
     #' @field value
     #' String value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(Text$value))),
     
     #' @field placeholder
     #' Placeholder text to display when nothing has been typed
-    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x)),
+    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x, error_call = quote(Text$placeholder))),
     
     #' @field continuous_update
     #' Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
-    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
+    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x, error_call = quote(Text$continuous_update))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(Text$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(Text$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(Text$disabled)))
   ),
 
   private = list(
@@ -2071,12 +2071,12 @@ jupyter.widget.IntText <- R6::R6Class("jupyter.widget.IntText", inherit = jupyte
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        step = self$check_state('step', step),
-        continuous_update = self$check_state('continuous_update', continuous_update),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled)
+        value = self$check_state('value', value, error_call = error_call),
+        step = self$check_state('step', step, error_call = error_call),
+        continuous_update = self$check_state('continuous_update', continuous_update, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call)
       )
 
       super$initialize(
@@ -2096,27 +2096,27 @@ jupyter.widget.IntText <- R6::R6Class("jupyter.widget.IntText", inherit = jupyte
     
     #' @field value
     #' Int value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(IntText$value))),
     
     #' @field step
     #' Minimum step to increment the value
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x, error_call = quote(IntText$step))),
     
     #' @field continuous_update
     #' Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
-    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
+    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x, error_call = quote(IntText$continuous_update))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(IntText$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(IntText$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(IntText$disabled)))
   ),
 
   private = list(
@@ -2196,12 +2196,12 @@ jupyter.widget.FloatText <- R6::R6Class("jupyter.widget.FloatText", inherit = ju
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        step = self$check_state('step', step),
-        continuous_update = self$check_state('continuous_update', continuous_update),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled)
+        value = self$check_state('value', value, error_call = error_call),
+        step = self$check_state('step', step, error_call = error_call),
+        continuous_update = self$check_state('continuous_update', continuous_update, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call)
       )
 
       super$initialize(
@@ -2221,27 +2221,27 @@ jupyter.widget.FloatText <- R6::R6Class("jupyter.widget.FloatText", inherit = ju
     
     #' @field value
     #' Float value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(FloatText$value))),
     
     #' @field step
     #' Minimum step to increment the value
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x, error_call = quote(FloatText$step))),
     
     #' @field continuous_update
     #' Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
-    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
+    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x, error_call = quote(FloatText$continuous_update))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(FloatText$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(FloatText$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(FloatText$disabled)))
   ),
 
   private = list(
@@ -2325,14 +2325,14 @@ jupyter.widget.BoundedIntText <- R6::R6Class("jupyter.widget.BoundedIntText", in
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        min = self$check_state('min', min),
-        max = self$check_state('max', max),
-        step = self$check_state('step', step),
-        continuous_update = self$check_state('continuous_update', continuous_update),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled)
+        value = self$check_state('value', value, error_call = error_call),
+        min = self$check_state('min', min, error_call = error_call),
+        max = self$check_state('max', max, error_call = error_call),
+        step = self$check_state('step', step, error_call = error_call),
+        continuous_update = self$check_state('continuous_update', continuous_update, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call)
       )
 
       super$initialize(
@@ -2352,35 +2352,35 @@ jupyter.widget.BoundedIntText <- R6::R6Class("jupyter.widget.BoundedIntText", in
     
     #' @field value
     #' Int value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(BoundedIntText$value))),
     
     #' @field min
     #' Min value
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x, error_call = quote(BoundedIntText$min))),
     
     #' @field max
     #' Max value
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x, error_call = quote(BoundedIntText$max))),
     
     #' @field step
     #' Minimum step to increment the value
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x, error_call = quote(BoundedIntText$step))),
     
     #' @field continuous_update
     #' Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
-    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
+    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x, error_call = quote(BoundedIntText$continuous_update))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(BoundedIntText$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(BoundedIntText$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(BoundedIntText$disabled)))
   ),
 
   private = list(
@@ -2470,14 +2470,14 @@ jupyter.widget.BoundedFloatText <- R6::R6Class("jupyter.widget.BoundedFloatText"
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        min = self$check_state('min', min),
-        max = self$check_state('max', max),
-        step = self$check_state('step', step),
-        continuous_update = self$check_state('continuous_update', continuous_update),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled)
+        value = self$check_state('value', value, error_call = error_call),
+        min = self$check_state('min', min, error_call = error_call),
+        max = self$check_state('max', max, error_call = error_call),
+        step = self$check_state('step', step, error_call = error_call),
+        continuous_update = self$check_state('continuous_update', continuous_update, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call)
       )
 
       super$initialize(
@@ -2497,35 +2497,35 @@ jupyter.widget.BoundedFloatText <- R6::R6Class("jupyter.widget.BoundedFloatText"
     
     #' @field value
     #' Float value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(BoundedFloatText$value))),
     
     #' @field min
     #' Min value
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x, error_call = quote(BoundedFloatText$min))),
     
     #' @field max
     #' Max value
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x, error_call = quote(BoundedFloatText$max))),
     
     #' @field step
     #' Minimum step to increment the value
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x, error_call = quote(BoundedFloatText$step))),
     
     #' @field continuous_update
     #' Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
-    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
+    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x, error_call = quote(BoundedFloatText$continuous_update))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(BoundedFloatText$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(BoundedFloatText$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(BoundedFloatText$disabled)))
   ),
 
   private = list(
@@ -2607,10 +2607,10 @@ jupyter.widget.HTML <- R6::R6Class("jupyter.widget.HTML", inherit = jupyter.widg
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        placeholder = self$check_state('placeholder', placeholder),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html)
+        value = self$check_state('value', value, error_call = error_call),
+        placeholder = self$check_state('placeholder', placeholder, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call)
       )
 
       super$initialize(
@@ -2630,19 +2630,19 @@ jupyter.widget.HTML <- R6::R6Class("jupyter.widget.HTML", inherit = jupyter.widg
     
     #' @field value
     #' String value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(HTML$value))),
     
     #' @field placeholder
     #' Placeholder text to display when nothing has been typed
-    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x)),
+    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x, error_call = quote(HTML$placeholder))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(HTML$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x))
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(HTML$description_allow_html)))
   ),
 
   private = list(
@@ -2712,10 +2712,10 @@ jupyter.widget.HTMLMath <- R6::R6Class("jupyter.widget.HTMLMath", inherit = jupy
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        placeholder = self$check_state('placeholder', placeholder),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html)
+        value = self$check_state('value', value, error_call = error_call),
+        placeholder = self$check_state('placeholder', placeholder, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call)
       )
 
       super$initialize(
@@ -2735,19 +2735,19 @@ jupyter.widget.HTMLMath <- R6::R6Class("jupyter.widget.HTMLMath", inherit = jupy
     
     #' @field value
     #' String value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(HTMLMath$value))),
     
     #' @field placeholder
     #' Placeholder text to display when nothing has been typed
-    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x)),
+    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x, error_call = quote(HTMLMath$placeholder))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(HTMLMath$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x))
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(HTMLMath$description_allow_html)))
   ),
 
   private = list(
@@ -2821,12 +2821,12 @@ jupyter.widget.ToggleButton <- R6::R6Class("jupyter.widget.ToggleButton", inheri
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        button_style = self$check_state('button_style', button_style),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        icon = self$check_state('icon', icon)
+        value = self$check_state('value', value, error_call = error_call),
+        button_style = self$check_state('button_style', button_style, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call),
+        icon = self$check_state('icon', icon, error_call = error_call)
       )
 
       super$initialize(
@@ -2846,27 +2846,27 @@ jupyter.widget.ToggleButton <- R6::R6Class("jupyter.widget.ToggleButton", inheri
     
     #' @field value
     #' Bool value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(ToggleButton$value))),
     
     #' @field button_style
     #' Use a predefined styling for the button.
-    button_style = function(x) if(missing(x)) private$state_[['button_style']] else self$update(button_style = self$check_state('button_style', x)),
+    button_style = function(x) if(missing(x)) private$state_[['button_style']] else self$update(button_style = self$check_state('button_style', x, error_call = quote(ToggleButton$button_style))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(ToggleButton$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(ToggleButton$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes.
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(ToggleButton$disabled))),
     
     #' @field icon
     #' Font-awesome icon.
-    icon = function(x) if(missing(x)) private$state_[['icon']] else self$update(icon = self$check_state('icon', x))
+    icon = function(x) if(missing(x)) private$state_[['icon']] else self$update(icon = self$check_state('icon', x, error_call = quote(ToggleButton$icon)))
   ),
 
   private = list(
@@ -2945,10 +2945,10 @@ jupyter.widget.Label <- R6::R6Class("jupyter.widget.Label", inherit = jupyter.wi
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        placeholder = self$check_state('placeholder', placeholder),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html)
+        value = self$check_state('value', value, error_call = error_call),
+        placeholder = self$check_state('placeholder', placeholder, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call)
       )
 
       super$initialize(
@@ -2968,19 +2968,19 @@ jupyter.widget.Label <- R6::R6Class("jupyter.widget.Label", inherit = jupyter.wi
     
     #' @field value
     #' String value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(Label$value))),
     
     #' @field placeholder
     #' Placeholder text to display when nothing has been typed
-    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x)),
+    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x, error_call = quote(Label$placeholder))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(Label$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x))
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(Label$description_allow_html)))
   ),
 
   private = list(
@@ -3056,13 +3056,13 @@ jupyter.widget.IntProgress <- R6::R6Class("jupyter.widget.IntProgress", inherit 
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        min = self$check_state('min', min),
-        max = self$check_state('max', max),
-        bar_style = self$check_state('bar_style', bar_style),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        orientation = self$check_state('orientation', orientation)
+        value = self$check_state('value', value, error_call = error_call),
+        min = self$check_state('min', min, error_call = error_call),
+        max = self$check_state('max', max, error_call = error_call),
+        bar_style = self$check_state('bar_style', bar_style, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        orientation = self$check_state('orientation', orientation, error_call = error_call)
       )
 
       super$initialize(
@@ -3082,31 +3082,31 @@ jupyter.widget.IntProgress <- R6::R6Class("jupyter.widget.IntProgress", inherit 
     
     #' @field value
     #' Int value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(IntProgress$value))),
     
     #' @field min
     #' Min value
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x, error_call = quote(IntProgress$min))),
     
     #' @field max
     #' Max value
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x, error_call = quote(IntProgress$max))),
     
     #' @field bar_style
     #' Use a predefined styling for the progress bar.
-    bar_style = function(x) if(missing(x)) private$state_[['bar_style']] else self$update(bar_style = self$check_state('bar_style', x)),
+    bar_style = function(x) if(missing(x)) private$state_[['bar_style']] else self$update(bar_style = self$check_state('bar_style', x, error_call = quote(IntProgress$bar_style))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(IntProgress$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(IntProgress$description_allow_html))),
     
     #' @field orientation
     #' Vertical or horizontal.
-    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x))
+    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x, error_call = quote(IntProgress$orientation)))
   ),
 
   private = list(
@@ -3195,13 +3195,13 @@ jupyter.widget.FloatProgress <- R6::R6Class("jupyter.widget.FloatProgress", inhe
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        min = self$check_state('min', min),
-        max = self$check_state('max', max),
-        bar_style = self$check_state('bar_style', bar_style),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        orientation = self$check_state('orientation', orientation)
+        value = self$check_state('value', value, error_call = error_call),
+        min = self$check_state('min', min, error_call = error_call),
+        max = self$check_state('max', max, error_call = error_call),
+        bar_style = self$check_state('bar_style', bar_style, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        orientation = self$check_state('orientation', orientation, error_call = error_call)
       )
 
       super$initialize(
@@ -3221,31 +3221,31 @@ jupyter.widget.FloatProgress <- R6::R6Class("jupyter.widget.FloatProgress", inhe
     
     #' @field value
     #' Float value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(FloatProgress$value))),
     
     #' @field min
     #' Min value
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x, error_call = quote(FloatProgress$min))),
     
     #' @field max
     #' Max value
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x, error_call = quote(FloatProgress$max))),
     
     #' @field bar_style
     #' Use a predefined styling for the progress bar.
-    bar_style = function(x) if(missing(x)) private$state_[['bar_style']] else self$update(bar_style = self$check_state('bar_style', x)),
+    bar_style = function(x) if(missing(x)) private$state_[['bar_style']] else self$update(bar_style = self$check_state('bar_style', x, error_call = quote(FloatProgress$bar_style))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(FloatProgress$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(FloatProgress$description_allow_html))),
     
     #' @field orientation
     #' Vertical or horizontal.
-    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x))
+    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x, error_call = quote(FloatProgress$orientation)))
   ),
 
   private = list(
@@ -3330,12 +3330,12 @@ jupyter.widget.Password <- R6::R6Class("jupyter.widget.Password", inherit = jupy
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        continuous_update = self$check_state('continuous_update', continuous_update),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        placeholder = self$check_state('placeholder', placeholder)
+        value = self$check_state('value', value, error_call = error_call),
+        continuous_update = self$check_state('continuous_update', continuous_update, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call),
+        placeholder = self$check_state('placeholder', placeholder, error_call = error_call)
       )
 
       super$initialize(
@@ -3355,27 +3355,27 @@ jupyter.widget.Password <- R6::R6Class("jupyter.widget.Password", inherit = jupy
     
     #' @field value
     #' String value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(Password$value))),
     
     #' @field continuous_update
     #' Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
-    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
+    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x, error_call = quote(Password$continuous_update))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(Password$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(Password$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(Password$disabled))),
     
     #' @field placeholder
     #' Placeholder text to display when nothing has been typed
-    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x))
+    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x, error_call = quote(Password$placeholder)))
   ),
 
   private = list(
@@ -3442,8 +3442,8 @@ jupyter.widget.Box <- R6::R6Class("jupyter.widget.Box", inherit = jupyter.widget
     )
     {
       private$state_ <- update_list(private$state_,
-        children = self$check_state('children', children),
-        box_style = self$check_state('box_style', box_style)
+        children = self$check_state('children', children, error_call = error_call),
+        box_style = self$check_state('box_style', box_style, error_call = error_call)
       )
 
       super$initialize(
@@ -3463,11 +3463,11 @@ jupyter.widget.Box <- R6::R6Class("jupyter.widget.Box", inherit = jupyter.widget
     
     #' @field children
     #' List of widget children
-    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x)),
+    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x, error_call = quote(Box$children))),
     
     #' @field box_style
     #' Use a predefined styling for the box.
-    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x))
+    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x, error_call = quote(Box$box_style)))
   ),
 
   private = list(
@@ -3526,8 +3526,8 @@ jupyter.widget.HBox <- R6::R6Class("jupyter.widget.HBox", inherit = jupyter.widg
     )
     {
       private$state_ <- update_list(private$state_,
-        children = self$check_state('children', children),
-        box_style = self$check_state('box_style', box_style)
+        children = self$check_state('children', children, error_call = error_call),
+        box_style = self$check_state('box_style', box_style, error_call = error_call)
       )
 
       super$initialize(
@@ -3547,11 +3547,11 @@ jupyter.widget.HBox <- R6::R6Class("jupyter.widget.HBox", inherit = jupyter.widg
     
     #' @field children
     #' List of widget children
-    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x)),
+    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x, error_call = quote(HBox$children))),
     
     #' @field box_style
     #' Use a predefined styling for the box.
-    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x))
+    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x, error_call = quote(HBox$box_style)))
   ),
 
   private = list(
@@ -3610,8 +3610,8 @@ jupyter.widget.VBox <- R6::R6Class("jupyter.widget.VBox", inherit = jupyter.widg
     )
     {
       private$state_ <- update_list(private$state_,
-        children = self$check_state('children', children),
-        box_style = self$check_state('box_style', box_style)
+        children = self$check_state('children', children, error_call = error_call),
+        box_style = self$check_state('box_style', box_style, error_call = error_call)
       )
 
       super$initialize(
@@ -3631,11 +3631,11 @@ jupyter.widget.VBox <- R6::R6Class("jupyter.widget.VBox", inherit = jupyter.widg
     
     #' @field children
     #' List of widget children
-    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x)),
+    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x, error_call = quote(VBox$children))),
     
     #' @field box_style
     #' Use a predefined styling for the box.
-    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x))
+    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x, error_call = quote(VBox$box_style)))
   ),
 
   private = list(
@@ -3694,8 +3694,8 @@ jupyter.widget.GridBox <- R6::R6Class("jupyter.widget.GridBox", inherit = jupyte
     )
     {
       private$state_ <- update_list(private$state_,
-        children = self$check_state('children', children),
-        box_style = self$check_state('box_style', box_style)
+        children = self$check_state('children', children, error_call = error_call),
+        box_style = self$check_state('box_style', box_style, error_call = error_call)
       )
 
       super$initialize(
@@ -3715,11 +3715,11 @@ jupyter.widget.GridBox <- R6::R6Class("jupyter.widget.GridBox", inherit = jupyte
     
     #' @field children
     #' List of widget children
-    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x)),
+    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x, error_call = quote(GridBox$children))),
     
     #' @field box_style
     #' Use a predefined styling for the box.
-    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x))
+    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x, error_call = quote(GridBox$box_style)))
   ),
 
   private = list(
@@ -3782,10 +3782,10 @@ jupyter.widget.Tab <- R6::R6Class("jupyter.widget.Tab", inherit = jupyter.widget
     )
     {
       private$state_ <- update_list(private$state_,
-        children = self$check_state('children', children),
-        box_style = self$check_state('box_style', box_style),
-        selected_index = self$check_state('selected_index', selected_index),
-        titles = self$check_state('titles', titles)
+        children = self$check_state('children', children, error_call = error_call),
+        box_style = self$check_state('box_style', box_style, error_call = error_call),
+        selected_index = self$check_state('selected_index', selected_index, error_call = error_call),
+        titles = self$check_state('titles', titles, error_call = error_call)
       )
 
       super$initialize(
@@ -3805,19 +3805,19 @@ jupyter.widget.Tab <- R6::R6Class("jupyter.widget.Tab", inherit = jupyter.widget
     
     #' @field children
     #' List of widget children
-    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x)),
+    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x, error_call = quote(Tab$children))),
     
     #' @field box_style
     #' Use a predefined styling for the box.
-    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x)),
+    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x, error_call = quote(Tab$box_style))),
     
     #' @field selected_index
     #' The index of the selected page. This is either an integer selecting a particular sub-widget, or None to have no widgets selected.
-    selected_index = function(x) if(missing(x)) private$state_[['selected_index']] else self$update(selected_index = self$check_state('selected_index', x)),
+    selected_index = function(x) if(missing(x)) private$state_[['selected_index']] else self$update(selected_index = self$check_state('selected_index', x, error_call = quote(Tab$selected_index))),
     
     #' @field titles
     #' Titles of the pages
-    titles = function(x) if(missing(x)) private$state_[['titles']] else self$update(titles = self$check_state('titles', x))
+    titles = function(x) if(missing(x)) private$state_[['titles']] else self$update(titles = self$check_state('titles', x, error_call = quote(Tab$titles)))
   ),
 
   private = list(
@@ -3886,10 +3886,10 @@ jupyter.widget.Stack <- R6::R6Class("jupyter.widget.Stack", inherit = jupyter.wi
     )
     {
       private$state_ <- update_list(private$state_,
-        children = self$check_state('children', children),
-        box_style = self$check_state('box_style', box_style),
-        selected_index = self$check_state('selected_index', selected_index),
-        titles = self$check_state('titles', titles)
+        children = self$check_state('children', children, error_call = error_call),
+        box_style = self$check_state('box_style', box_style, error_call = error_call),
+        selected_index = self$check_state('selected_index', selected_index, error_call = error_call),
+        titles = self$check_state('titles', titles, error_call = error_call)
       )
 
       super$initialize(
@@ -3909,19 +3909,19 @@ jupyter.widget.Stack <- R6::R6Class("jupyter.widget.Stack", inherit = jupyter.wi
     
     #' @field children
     #' List of widget children
-    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x)),
+    children = function(x) if(missing(x)) private$state_[['children']] else self$update(children = self$check_state('children', x, error_call = quote(Stack$children))),
     
     #' @field box_style
     #' Use a predefined styling for the box.
-    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x)),
+    box_style = function(x) if(missing(x)) private$state_[['box_style']] else self$update(box_style = self$check_state('box_style', x, error_call = quote(Stack$box_style))),
     
     #' @field selected_index
     #' The index of the selected page. This is either an integer selecting a particular sub-widget, or None to have no widgets selected.
-    selected_index = function(x) if(missing(x)) private$state_[['selected_index']] else self$update(selected_index = self$check_state('selected_index', x)),
+    selected_index = function(x) if(missing(x)) private$state_[['selected_index']] else self$update(selected_index = self$check_state('selected_index', x, error_call = quote(Stack$selected_index))),
     
     #' @field titles
     #' Titles of the pages
-    titles = function(x) if(missing(x)) private$state_[['titles']] else self$update(titles = self$check_state('titles', x))
+    titles = function(x) if(missing(x)) private$state_[['titles']] else self$update(titles = self$check_state('titles', x, error_call = quote(Stack$titles)))
   ),
 
   private = list(
@@ -3992,10 +3992,10 @@ jupyter.widget.Button <- R6::R6Class("jupyter.widget.Button", inherit = jupyter.
     )
     {
       private$state_ <- update_list(private$state_,
-        description = self$check_state('description', description),
-        button_style = self$check_state('button_style', button_style),
-        disabled = self$check_state('disabled', disabled),
-        icon = self$check_state('icon', icon)
+        description = self$check_state('description', description, error_call = error_call),
+        button_style = self$check_state('button_style', button_style, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call),
+        icon = self$check_state('icon', icon, error_call = error_call)
       )
 
       super$initialize(
@@ -4015,19 +4015,19 @@ jupyter.widget.Button <- R6::R6Class("jupyter.widget.Button", inherit = jupyter.
     
     #' @field description
     #' Button label.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(Button$description))),
     
     #' @field button_style
     #' Use a predefined styling for the button.
-    button_style = function(x) if(missing(x)) private$state_[['button_style']] else self$update(button_style = self$check_state('button_style', x)),
+    button_style = function(x) if(missing(x)) private$state_[['button_style']] else self$update(button_style = self$check_state('button_style', x, error_call = quote(Button$button_style))),
     
     #' @field disabled
     #' Enable or disable user changes.
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(Button$disabled))),
     
     #' @field icon
     #' Font-awesome icon names, without the 'fa-' prefix.
-    icon = function(x) if(missing(x)) private$state_[['icon']] else self$update(icon = self$check_state('icon', x))
+    icon = function(x) if(missing(x)) private$state_[['icon']] else self$update(icon = self$check_state('icon', x, error_call = quote(Button$icon)))
   ),
 
   private = list(
@@ -4104,13 +4104,13 @@ jupyter.widget.Textarea <- R6::R6Class("jupyter.widget.Textarea", inherit = jupy
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        rows = self$check_state('rows', rows),
-        placeholder = self$check_state('placeholder', placeholder),
-        continuous_update = self$check_state('continuous_update', continuous_update),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled)
+        value = self$check_state('value', value, error_call = error_call),
+        rows = self$check_state('rows', rows, error_call = error_call),
+        placeholder = self$check_state('placeholder', placeholder, error_call = error_call),
+        continuous_update = self$check_state('continuous_update', continuous_update, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call)
       )
 
       super$initialize(
@@ -4130,31 +4130,31 @@ jupyter.widget.Textarea <- R6::R6Class("jupyter.widget.Textarea", inherit = jupy
     
     #' @field value
     #' String value
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(Textarea$value))),
     
     #' @field rows
     #' The number of rows to display.
-    rows = function(x) if(missing(x)) private$state_[['rows']] else self$update(rows = self$check_state('rows', x)),
+    rows = function(x) if(missing(x)) private$state_[['rows']] else self$update(rows = self$check_state('rows', x, error_call = quote(Textarea$rows))),
     
     #' @field placeholder
     #' Placeholder text to display when nothing has been typed
-    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x)),
+    placeholder = function(x) if(missing(x)) private$state_[['placeholder']] else self$update(placeholder = self$check_state('placeholder', x, error_call = quote(Textarea$placeholder))),
     
     #' @field continuous_update
     #' Update the value as the user types. If False, update on submission, e.g., pressing Enter or navigating away.
-    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
+    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x, error_call = quote(Textarea$continuous_update))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(Textarea$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(Textarea$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(Textarea$disabled)))
   ),
 
   private = list(
@@ -4234,13 +4234,13 @@ jupyter.widget.Time <- R6::R6Class("jupyter.widget.Time", inherit = jupyter.widg
     )
     {
       private$state_ <- update_list(private$state_,
-        value = self$check_state('value', value),
-        min = self$check_state('min', min),
-        max = self$check_state('max', max),
-        step = self$check_state('step', step),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled)
+        value = self$check_state('value', value, error_call = error_call),
+        min = self$check_state('min', min, error_call = error_call),
+        max = self$check_state('max', max, error_call = error_call),
+        step = self$check_state('step', step, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call)
       )
 
       super$initialize(
@@ -4260,31 +4260,31 @@ jupyter.widget.Time <- R6::R6Class("jupyter.widget.Time", inherit = jupyter.widg
     
     #' @field value
     #' 
-    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x)),
+    value = function(x) if(missing(x)) private$state_[['value']] else self$update(value = self$check_state('value', x, error_call = quote(Time$value))),
     
     #' @field min
     #' 
-    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x)),
+    min = function(x) if(missing(x)) private$state_[['min']] else self$update(min = self$check_state('min', x, error_call = quote(Time$min))),
     
     #' @field max
     #' 
-    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x)),
+    max = function(x) if(missing(x)) private$state_[['max']] else self$update(max = self$check_state('max', x, error_call = quote(Time$max))),
     
     #' @field step
     #' The time step to use for the picker, in seconds, or "any".
-    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x)),
+    step = function(x) if(missing(x)) private$state_[['step']] else self$update(step = self$check_state('step', x, error_call = quote(Time$step))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(Time$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(Time$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes.
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x))
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(Time$disabled)))
   ),
 
   private = list(
@@ -4362,12 +4362,12 @@ jupyter.widget.Select <- R6::R6Class("jupyter.widget.Select", inherit = jupyter.
     )
     {
       private$state_ <- update_list(private$state_,
-        `_options_labels` = self$check_state('options', options),
-        index = self$check_state('index', index),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        rows = self$check_state('rows', rows)
+        `_options_labels` = self$check_state('options', options, error_call = error_call),
+        index = self$check_state('index', index, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call),
+        rows = self$check_state('rows', rows, error_call = error_call)
       )
 
       super$initialize(
@@ -4387,27 +4387,27 @@ jupyter.widget.Select <- R6::R6Class("jupyter.widget.Select", inherit = jupyter.
     
     #' @field options
     #' set options
-    options = function(x) if (missing(x)) private$state_[['_options_labels']] else self$update(`_options_labels` = self$check_state('options', x)),
+    options = function(x) if (missing(x)) private$state_[['_options_labels']] else self$update(`_options_labels` = self$check_state('options', x, error_call = quote(Select$options))),
     
     #' @field index
     #' Selected index
-    index = function(x) if(missing(x)) private$state_[['index']] else self$update(index = self$check_state('index', x)),
+    index = function(x) if(missing(x)) private$state_[['index']] else self$update(index = self$check_state('index', x, error_call = quote(Select$index))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(Select$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(Select$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(Select$disabled))),
     
     #' @field rows
     #' The number of rows to display.
-    rows = function(x) if(missing(x)) private$state_[['rows']] else self$update(rows = self$check_state('rows', x))
+    rows = function(x) if(missing(x)) private$state_[['rows']] else self$update(rows = self$check_state('rows', x, error_call = quote(Select$rows)))
   ),
 
   private = list(
@@ -4485,12 +4485,12 @@ jupyter.widget.SelectMultiple <- R6::R6Class("jupyter.widget.SelectMultiple", in
     )
     {
       private$state_ <- update_list(private$state_,
-        `_options_labels` = self$check_state('options', options),
-        index = self$check_state('index', index),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        rows = self$check_state('rows', rows)
+        `_options_labels` = self$check_state('options', options, error_call = error_call),
+        index = self$check_state('index', index, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call),
+        rows = self$check_state('rows', rows, error_call = error_call)
       )
 
       super$initialize(
@@ -4510,27 +4510,27 @@ jupyter.widget.SelectMultiple <- R6::R6Class("jupyter.widget.SelectMultiple", in
     
     #' @field options
     #' set options
-    options = function(x) if (missing(x)) private$state_[['_options_labels']] else self$update(`_options_labels` = self$check_state('options', x)),
+    options = function(x) if (missing(x)) private$state_[['_options_labels']] else self$update(`_options_labels` = self$check_state('options', x, error_call = quote(SelectMultiple$options))),
     
     #' @field index
     #' Selected indices
-    index = function(x) if(missing(x)) private$state_[['index']] else self$update(index = self$check_state('index', x)),
+    index = function(x) if(missing(x)) private$state_[['index']] else self$update(index = self$check_state('index', x, error_call = quote(SelectMultiple$index))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(SelectMultiple$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(SelectMultiple$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(SelectMultiple$disabled))),
     
     #' @field rows
     #' The number of rows to display.
-    rows = function(x) if(missing(x)) private$state_[['rows']] else self$update(rows = self$check_state('rows', x))
+    rows = function(x) if(missing(x)) private$state_[['rows']] else self$update(rows = self$check_state('rows', x, error_call = quote(SelectMultiple$rows)))
   ),
 
   private = list(
@@ -4614,15 +4614,15 @@ jupyter.widget.SelectionSlider <- R6::R6Class("jupyter.widget.SelectionSlider", 
     )
     {
       private$state_ <- update_list(private$state_,
-        `_options_labels` = self$check_state('options', options),
-        index = self$check_state('index', index),
-        behavior = self$check_state('behavior', behavior),
-        continuous_update = self$check_state('continuous_update', continuous_update),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        orientation = self$check_state('orientation', orientation),
-        readout = self$check_state('readout', readout)
+        `_options_labels` = self$check_state('options', options, error_call = error_call),
+        index = self$check_state('index', index, error_call = error_call),
+        behavior = self$check_state('behavior', behavior, error_call = error_call),
+        continuous_update = self$check_state('continuous_update', continuous_update, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call),
+        orientation = self$check_state('orientation', orientation, error_call = error_call),
+        readout = self$check_state('readout', readout, error_call = error_call)
       )
 
       super$initialize(
@@ -4642,39 +4642,39 @@ jupyter.widget.SelectionSlider <- R6::R6Class("jupyter.widget.SelectionSlider", 
     
     #' @field options
     #' set options
-    options = function(x) if (missing(x)) private$state_[['_options_labels']] else self$update(`_options_labels` = self$check_state('options', x)),
+    options = function(x) if (missing(x)) private$state_[['_options_labels']] else self$update(`_options_labels` = self$check_state('options', x, error_call = quote(SelectionSlider$options))),
     
     #' @field index
     #' Selected index
-    index = function(x) if(missing(x)) private$state_[['index']] else self$update(index = self$check_state('index', x)),
+    index = function(x) if(missing(x)) private$state_[['index']] else self$update(index = self$check_state('index', x, error_call = quote(SelectionSlider$index))),
     
     #' @field behavior
     #' Slider dragging behavior.
-    behavior = function(x) if(missing(x)) private$state_[['behavior']] else self$update(behavior = self$check_state('behavior', x)),
+    behavior = function(x) if(missing(x)) private$state_[['behavior']] else self$update(behavior = self$check_state('behavior', x, error_call = quote(SelectionSlider$behavior))),
     
     #' @field continuous_update
     #' Update the value of the widget as the user is holding the slider.
-    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
+    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x, error_call = quote(SelectionSlider$continuous_update))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(SelectionSlider$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(SelectionSlider$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(SelectionSlider$disabled))),
     
     #' @field orientation
     #' Vertical or horizontal.
-    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x)),
+    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x, error_call = quote(SelectionSlider$orientation))),
     
     #' @field readout
     #' Display the current selected label next to the slider
-    readout = function(x) if(missing(x)) private$state_[['readout']] else self$update(readout = self$check_state('readout', x))
+    readout = function(x) if(missing(x)) private$state_[['readout']] else self$update(readout = self$check_state('readout', x, error_call = quote(SelectionSlider$readout)))
   ),
 
   private = list(
@@ -4769,15 +4769,15 @@ jupyter.widget.SelectionRangeSlider <- R6::R6Class("jupyter.widget.SelectionRang
     )
     {
       private$state_ <- update_list(private$state_,
-        `_options_labels` = self$check_state('options', options),
-        index = self$check_state('index', index),
-        behavior = self$check_state('behavior', behavior),
-        continuous_update = self$check_state('continuous_update', continuous_update),
-        description = self$check_state('description', description),
-        description_allow_html = self$check_state('description_allow_html', description_allow_html),
-        disabled = self$check_state('disabled', disabled),
-        orientation = self$check_state('orientation', orientation),
-        readout = self$check_state('readout', readout)
+        `_options_labels` = self$check_state('options', options, error_call = error_call),
+        index = self$check_state('index', index, error_call = error_call),
+        behavior = self$check_state('behavior', behavior, error_call = error_call),
+        continuous_update = self$check_state('continuous_update', continuous_update, error_call = error_call),
+        description = self$check_state('description', description, error_call = error_call),
+        description_allow_html = self$check_state('description_allow_html', description_allow_html, error_call = error_call),
+        disabled = self$check_state('disabled', disabled, error_call = error_call),
+        orientation = self$check_state('orientation', orientation, error_call = error_call),
+        readout = self$check_state('readout', readout, error_call = error_call)
       )
 
       super$initialize(
@@ -4797,39 +4797,39 @@ jupyter.widget.SelectionRangeSlider <- R6::R6Class("jupyter.widget.SelectionRang
     
     #' @field options
     #' set options
-    options = function(x) if (missing(x)) private$state_[['_options_labels']] else self$update(`_options_labels` = self$check_state('options', x)),
+    options = function(x) if (missing(x)) private$state_[['_options_labels']] else self$update(`_options_labels` = self$check_state('options', x, error_call = quote(SelectionRangeSlider$options))),
     
     #' @field index
     #' Min and max selected indices
-    index = function(x) if(missing(x)) private$state_[['index']] else self$update(index = self$check_state('index', x)),
+    index = function(x) if(missing(x)) private$state_[['index']] else self$update(index = self$check_state('index', x, error_call = quote(SelectionRangeSlider$index))),
     
     #' @field behavior
     #' Slider dragging behavior.
-    behavior = function(x) if(missing(x)) private$state_[['behavior']] else self$update(behavior = self$check_state('behavior', x)),
+    behavior = function(x) if(missing(x)) private$state_[['behavior']] else self$update(behavior = self$check_state('behavior', x, error_call = quote(SelectionRangeSlider$behavior))),
     
     #' @field continuous_update
     #' Update the value of the widget as the user is holding the slider.
-    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x)),
+    continuous_update = function(x) if(missing(x)) private$state_[['continuous_update']] else self$update(continuous_update = self$check_state('continuous_update', x, error_call = quote(SelectionRangeSlider$continuous_update))),
     
     #' @field description
     #' Description of the control.
-    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x)),
+    description = function(x) if(missing(x)) private$state_[['description']] else self$update(description = self$check_state('description', x, error_call = quote(SelectionRangeSlider$description))),
     
     #' @field description_allow_html
     #' Accept HTML in the description.
-    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x)),
+    description_allow_html = function(x) if(missing(x)) private$state_[['description_allow_html']] else self$update(description_allow_html = self$check_state('description_allow_html', x, error_call = quote(SelectionRangeSlider$description_allow_html))),
     
     #' @field disabled
     #' Enable or disable user changes
-    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x)),
+    disabled = function(x) if(missing(x)) private$state_[['disabled']] else self$update(disabled = self$check_state('disabled', x, error_call = quote(SelectionRangeSlider$disabled))),
     
     #' @field orientation
     #' Vertical or horizontal.
-    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x)),
+    orientation = function(x) if(missing(x)) private$state_[['orientation']] else self$update(orientation = self$check_state('orientation', x, error_call = quote(SelectionRangeSlider$orientation))),
     
     #' @field readout
     #' Display the current selected label next to the slider
-    readout = function(x) if(missing(x)) private$state_[['readout']] else self$update(readout = self$check_state('readout', x))
+    readout = function(x) if(missing(x)) private$state_[['readout']] else self$update(readout = self$check_state('readout', x, error_call = quote(SelectionRangeSlider$readout)))
   ),
 
   private = list(

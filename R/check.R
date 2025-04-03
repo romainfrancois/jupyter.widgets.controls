@@ -1,7 +1,22 @@
 check_state_children <- function(value, widget) {
-  walk(value, \(kid){
-    assert_that(inherits(kid, "jupyter.widget.DOMWidget"), msg = "All children must be DOM widgets")
-  })
+  class_name <- sub("^.*[.]", "", class(widget)[[1]])
+
+  if (!is.list(value)) {
+    cli::cli_abort(call = quote(check_state_children()), c(
+      "{.arg children} must be a list of DOM Widgets.",
+      i = "This often means you used {class_name}(x, y, z) instead of {class_name}(list(x,y,z))."
+    ))
+  }
+
+  for (kid in value) {
+    if (!inherits(kid, "jupyter.widget.DOMWidget")) {
+      cli::cli_abort(call = quote(check_state_children()), c(
+        "{.arg children} must be a list of DOM Widget.",
+        x = "Element at position {i} is a {.obj_type_friendly {kid}}."
+      ))
+    }
+  }
+
   widget$.__enclos_env__$private$children_ <- value
   map_chr(value, \(kid){
     glue("IPY_MODEL_{kid$comm$id}")
