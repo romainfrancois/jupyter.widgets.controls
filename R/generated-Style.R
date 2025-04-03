@@ -22,8 +22,8 @@ jupyter.widget.SliderStyle <- R6::R6Class("jupyter.widget.SliderStyle", inherit 
     )
     {
       private$state_ <- update_list(private$state_,
-        description_width = self$check_state('description_width', description_width),
-        handle_color = self$check_state('handle_color', handle_color)
+        description_width = self$check_state('description_width', description_width, error_call = error_call),
+        handle_color = self$check_state('handle_color', handle_color, error_call = error_call)
       )
 
       super$initialize(
@@ -43,11 +43,11 @@ jupyter.widget.SliderStyle <- R6::R6Class("jupyter.widget.SliderStyle", inherit 
     
     #' @field description_width
     #' Width of the description to the side of the control.
-    description_width = function(x) if(missing(x)) private$state_[['description_width']] else self$update(description_width = self$check_state('description_width', x)),
+    description_width = function(x) if(missing(x)) private$state_[['description_width']] else self$update(description_width = self$check_state('description_width', x, error_call = quote(SliderStyle$description_width))),
     
     #' @field handle_color
     #' Color of the slider handle.
-    handle_color = function(x) if(missing(x)) private$state_[['handle_color']] else self$update(handle_color = self$check_state('handle_color', x))
+    handle_color = function(x) if(missing(x)) private$state_[['handle_color']] else self$update(handle_color = self$check_state('handle_color', x, error_call = quote(SliderStyle$handle_color)))
   )
 )
 
@@ -110,14 +110,14 @@ jupyter.widget.ButtonStyle <- R6::R6Class("jupyter.widget.ButtonStyle", inherit 
     )
     {
       private$state_ <- update_list(private$state_,
-        button_color = self$check_state('button_color', button_color),
-        font_family = self$check_state('font_family', font_family),
-        font_size = self$check_state('font_size', font_size),
-        font_style = self$check_state('font_style', font_style),
-        font_variant = self$check_state('font_variant', font_variant),
-        font_weight = self$check_state('font_weight', font_weight),
-        text_color = self$check_state('text_color', text_color),
-        text_decoration = self$check_state('text_decoration', text_decoration)
+        button_color = self$check_state('button_color', button_color, error_call = error_call),
+        font_family = self$check_state('font_family', font_family, error_call = error_call),
+        font_size = self$check_state('font_size', font_size, error_call = error_call),
+        font_style = self$check_state('font_style', font_style, error_call = error_call),
+        font_variant = self$check_state('font_variant', font_variant, error_call = error_call),
+        font_weight = self$check_state('font_weight', font_weight, error_call = error_call),
+        text_color = self$check_state('text_color', text_color, error_call = error_call),
+        text_decoration = self$check_state('text_decoration', text_decoration, error_call = error_call)
       )
 
       super$initialize(
@@ -137,35 +137,35 @@ jupyter.widget.ButtonStyle <- R6::R6Class("jupyter.widget.ButtonStyle", inherit 
     
     #' @field button_color
     #' Color of the button
-    button_color = function(x) if(missing(x)) private$state_[['button_color']] else self$update(button_color = self$check_state('button_color', x)),
+    button_color = function(x) if(missing(x)) private$state_[['button_color']] else self$update(button_color = self$check_state('button_color', x, error_call = quote(ButtonStyle$button_color))),
     
     #' @field font_family
     #' Button text font family.
-    font_family = function(x) if(missing(x)) private$state_[['font_family']] else self$update(font_family = self$check_state('font_family', x)),
+    font_family = function(x) if(missing(x)) private$state_[['font_family']] else self$update(font_family = self$check_state('font_family', x, error_call = quote(ButtonStyle$font_family))),
     
     #' @field font_size
     #' Button text font size.
-    font_size = function(x) if(missing(x)) private$state_[['font_size']] else self$update(font_size = self$check_state('font_size', x)),
+    font_size = function(x) if(missing(x)) private$state_[['font_size']] else self$update(font_size = self$check_state('font_size', x, error_call = quote(ButtonStyle$font_size))),
     
     #' @field font_style
     #' Button text font style.
-    font_style = function(x) if(missing(x)) private$state_[['font_style']] else self$update(font_style = self$check_state('font_style', x)),
+    font_style = function(x) if(missing(x)) private$state_[['font_style']] else self$update(font_style = self$check_state('font_style', x, error_call = quote(ButtonStyle$font_style))),
     
     #' @field font_variant
     #' Button text font variant.
-    font_variant = function(x) if(missing(x)) private$state_[['font_variant']] else self$update(font_variant = self$check_state('font_variant', x)),
+    font_variant = function(x) if(missing(x)) private$state_[['font_variant']] else self$update(font_variant = self$check_state('font_variant', x, error_call = quote(ButtonStyle$font_variant))),
     
     #' @field font_weight
     #' Button text font weight.
-    font_weight = function(x) if(missing(x)) private$state_[['font_weight']] else self$update(font_weight = self$check_state('font_weight', x)),
+    font_weight = function(x) if(missing(x)) private$state_[['font_weight']] else self$update(font_weight = self$check_state('font_weight', x, error_call = quote(ButtonStyle$font_weight))),
     
     #' @field text_color
     #' Button text color.
-    text_color = function(x) if(missing(x)) private$state_[['text_color']] else self$update(text_color = self$check_state('text_color', x)),
+    text_color = function(x) if(missing(x)) private$state_[['text_color']] else self$update(text_color = self$check_state('text_color', x, error_call = quote(ButtonStyle$text_color))),
     
     #' @field text_decoration
     #' Button text decoration.
-    text_decoration = function(x) if(missing(x)) private$state_[['text_decoration']] else self$update(text_decoration = self$check_state('text_decoration', x))
+    text_decoration = function(x) if(missing(x)) private$state_[['text_decoration']] else self$update(text_decoration = self$check_state('text_decoration', x, error_call = quote(ButtonStyle$text_decoration)))
   )
 )
 
@@ -240,8 +240,8 @@ jupyter.widget.CheckboxStyle <- R6::R6Class("jupyter.widget.CheckboxStyle", inhe
     )
     {
       private$state_ <- update_list(private$state_,
-        background = self$check_state('background', background),
-        description_width = self$check_state('description_width', description_width)
+        background = self$check_state('background', background, error_call = error_call),
+        description_width = self$check_state('description_width', description_width, error_call = error_call)
       )
 
       super$initialize(
@@ -261,11 +261,11 @@ jupyter.widget.CheckboxStyle <- R6::R6Class("jupyter.widget.CheckboxStyle", inhe
     
     #' @field background
     #' Background specifications.
-    background = function(x) if(missing(x)) private$state_[['background']] else self$update(background = self$check_state('background', x)),
+    background = function(x) if(missing(x)) private$state_[['background']] else self$update(background = self$check_state('background', x, error_call = quote(CheckboxStyle$background))),
     
     #' @field description_width
     #' Width of the description to the side of the control.
-    description_width = function(x) if(missing(x)) private$state_[['description_width']] else self$update(description_width = self$check_state('description_width', x))
+    description_width = function(x) if(missing(x)) private$state_[['description_width']] else self$update(description_width = self$check_state('description_width', x, error_call = quote(CheckboxStyle$description_width)))
   )
 )
 
@@ -320,10 +320,10 @@ jupyter.widget.TextStyle <- R6::R6Class("jupyter.widget.TextStyle", inherit = ju
     )
     {
       private$state_ <- update_list(private$state_,
-        background = self$check_state('background', background),
-        description_width = self$check_state('description_width', description_width),
-        font_size = self$check_state('font_size', font_size),
-        text_color = self$check_state('text_color', text_color)
+        background = self$check_state('background', background, error_call = error_call),
+        description_width = self$check_state('description_width', description_width, error_call = error_call),
+        font_size = self$check_state('font_size', font_size, error_call = error_call),
+        text_color = self$check_state('text_color', text_color, error_call = error_call)
       )
 
       super$initialize(
@@ -343,19 +343,19 @@ jupyter.widget.TextStyle <- R6::R6Class("jupyter.widget.TextStyle", inherit = ju
     
     #' @field background
     #' Background specifications.
-    background = function(x) if(missing(x)) private$state_[['background']] else self$update(background = self$check_state('background', x)),
+    background = function(x) if(missing(x)) private$state_[['background']] else self$update(background = self$check_state('background', x, error_call = quote(TextStyle$background))),
     
     #' @field description_width
     #' Width of the description to the side of the control.
-    description_width = function(x) if(missing(x)) private$state_[['description_width']] else self$update(description_width = self$check_state('description_width', x)),
+    description_width = function(x) if(missing(x)) private$state_[['description_width']] else self$update(description_width = self$check_state('description_width', x, error_call = quote(TextStyle$description_width))),
     
     #' @field font_size
     #' Text font size.
-    font_size = function(x) if(missing(x)) private$state_[['font_size']] else self$update(font_size = self$check_state('font_size', x)),
+    font_size = function(x) if(missing(x)) private$state_[['font_size']] else self$update(font_size = self$check_state('font_size', x, error_call = quote(TextStyle$font_size))),
     
     #' @field text_color
     #' Text color
-    text_color = function(x) if(missing(x)) private$state_[['text_color']] else self$update(text_color = self$check_state('text_color', x))
+    text_color = function(x) if(missing(x)) private$state_[['text_color']] else self$update(text_color = self$check_state('text_color', x, error_call = quote(TextStyle$text_color)))
   )
 )
 
@@ -416,10 +416,10 @@ jupyter.widget.HTMLStyle <- R6::R6Class("jupyter.widget.HTMLStyle", inherit = ju
     )
     {
       private$state_ <- update_list(private$state_,
-        background = self$check_state('background', background),
-        description_width = self$check_state('description_width', description_width),
-        font_size = self$check_state('font_size', font_size),
-        text_color = self$check_state('text_color', text_color)
+        background = self$check_state('background', background, error_call = error_call),
+        description_width = self$check_state('description_width', description_width, error_call = error_call),
+        font_size = self$check_state('font_size', font_size, error_call = error_call),
+        text_color = self$check_state('text_color', text_color, error_call = error_call)
       )
 
       super$initialize(
@@ -439,19 +439,19 @@ jupyter.widget.HTMLStyle <- R6::R6Class("jupyter.widget.HTMLStyle", inherit = ju
     
     #' @field background
     #' Background specifications.
-    background = function(x) if(missing(x)) private$state_[['background']] else self$update(background = self$check_state('background', x)),
+    background = function(x) if(missing(x)) private$state_[['background']] else self$update(background = self$check_state('background', x, error_call = quote(HTMLStyle$background))),
     
     #' @field description_width
     #' Width of the description to the side of the control.
-    description_width = function(x) if(missing(x)) private$state_[['description_width']] else self$update(description_width = self$check_state('description_width', x)),
+    description_width = function(x) if(missing(x)) private$state_[['description_width']] else self$update(description_width = self$check_state('description_width', x, error_call = quote(HTMLStyle$description_width))),
     
     #' @field font_size
     #' Text font size.
-    font_size = function(x) if(missing(x)) private$state_[['font_size']] else self$update(font_size = self$check_state('font_size', x)),
+    font_size = function(x) if(missing(x)) private$state_[['font_size']] else self$update(font_size = self$check_state('font_size', x, error_call = quote(HTMLStyle$font_size))),
     
     #' @field text_color
     #' Text color
-    text_color = function(x) if(missing(x)) private$state_[['text_color']] else self$update(text_color = self$check_state('text_color', x))
+    text_color = function(x) if(missing(x)) private$state_[['text_color']] else self$update(text_color = self$check_state('text_color', x, error_call = quote(HTMLStyle$text_color)))
   )
 )
 
@@ -512,10 +512,10 @@ jupyter.widget.HTMLMathStyle <- R6::R6Class("jupyter.widget.HTMLMathStyle", inhe
     )
     {
       private$state_ <- update_list(private$state_,
-        background = self$check_state('background', background),
-        description_width = self$check_state('description_width', description_width),
-        font_size = self$check_state('font_size', font_size),
-        text_color = self$check_state('text_color', text_color)
+        background = self$check_state('background', background, error_call = error_call),
+        description_width = self$check_state('description_width', description_width, error_call = error_call),
+        font_size = self$check_state('font_size', font_size, error_call = error_call),
+        text_color = self$check_state('text_color', text_color, error_call = error_call)
       )
 
       super$initialize(
@@ -535,19 +535,19 @@ jupyter.widget.HTMLMathStyle <- R6::R6Class("jupyter.widget.HTMLMathStyle", inhe
     
     #' @field background
     #' Background specifications.
-    background = function(x) if(missing(x)) private$state_[['background']] else self$update(background = self$check_state('background', x)),
+    background = function(x) if(missing(x)) private$state_[['background']] else self$update(background = self$check_state('background', x, error_call = quote(HTMLMathStyle$background))),
     
     #' @field description_width
     #' Width of the description to the side of the control.
-    description_width = function(x) if(missing(x)) private$state_[['description_width']] else self$update(description_width = self$check_state('description_width', x)),
+    description_width = function(x) if(missing(x)) private$state_[['description_width']] else self$update(description_width = self$check_state('description_width', x, error_call = quote(HTMLMathStyle$description_width))),
     
     #' @field font_size
     #' Text font size.
-    font_size = function(x) if(missing(x)) private$state_[['font_size']] else self$update(font_size = self$check_state('font_size', x)),
+    font_size = function(x) if(missing(x)) private$state_[['font_size']] else self$update(font_size = self$check_state('font_size', x, error_call = quote(HTMLMathStyle$font_size))),
     
     #' @field text_color
     #' Text color
-    text_color = function(x) if(missing(x)) private$state_[['text_color']] else self$update(text_color = self$check_state('text_color', x))
+    text_color = function(x) if(missing(x)) private$state_[['text_color']] else self$update(text_color = self$check_state('text_color', x, error_call = quote(HTMLMathStyle$text_color)))
   )
 )
 
@@ -618,15 +618,15 @@ jupyter.widget.LabelStyle <- R6::R6Class("jupyter.widget.LabelStyle", inherit = 
     )
     {
       private$state_ <- update_list(private$state_,
-        background = self$check_state('background', background),
-        description_width = self$check_state('description_width', description_width),
-        font_family = self$check_state('font_family', font_family),
-        font_size = self$check_state('font_size', font_size),
-        font_style = self$check_state('font_style', font_style),
-        font_variant = self$check_state('font_variant', font_variant),
-        font_weight = self$check_state('font_weight', font_weight),
-        text_color = self$check_state('text_color', text_color),
-        text_decoration = self$check_state('text_decoration', text_decoration)
+        background = self$check_state('background', background, error_call = error_call),
+        description_width = self$check_state('description_width', description_width, error_call = error_call),
+        font_family = self$check_state('font_family', font_family, error_call = error_call),
+        font_size = self$check_state('font_size', font_size, error_call = error_call),
+        font_style = self$check_state('font_style', font_style, error_call = error_call),
+        font_variant = self$check_state('font_variant', font_variant, error_call = error_call),
+        font_weight = self$check_state('font_weight', font_weight, error_call = error_call),
+        text_color = self$check_state('text_color', text_color, error_call = error_call),
+        text_decoration = self$check_state('text_decoration', text_decoration, error_call = error_call)
       )
 
       super$initialize(
@@ -646,39 +646,39 @@ jupyter.widget.LabelStyle <- R6::R6Class("jupyter.widget.LabelStyle", inherit = 
     
     #' @field background
     #' Background specifications.
-    background = function(x) if(missing(x)) private$state_[['background']] else self$update(background = self$check_state('background', x)),
+    background = function(x) if(missing(x)) private$state_[['background']] else self$update(background = self$check_state('background', x, error_call = quote(LabelStyle$background))),
     
     #' @field description_width
     #' Width of the description to the side of the control.
-    description_width = function(x) if(missing(x)) private$state_[['description_width']] else self$update(description_width = self$check_state('description_width', x)),
+    description_width = function(x) if(missing(x)) private$state_[['description_width']] else self$update(description_width = self$check_state('description_width', x, error_call = quote(LabelStyle$description_width))),
     
     #' @field font_family
     #' Label text font family.
-    font_family = function(x) if(missing(x)) private$state_[['font_family']] else self$update(font_family = self$check_state('font_family', x)),
+    font_family = function(x) if(missing(x)) private$state_[['font_family']] else self$update(font_family = self$check_state('font_family', x, error_call = quote(LabelStyle$font_family))),
     
     #' @field font_size
     #' Text font size.
-    font_size = function(x) if(missing(x)) private$state_[['font_size']] else self$update(font_size = self$check_state('font_size', x)),
+    font_size = function(x) if(missing(x)) private$state_[['font_size']] else self$update(font_size = self$check_state('font_size', x, error_call = quote(LabelStyle$font_size))),
     
     #' @field font_style
     #' Label text font style.
-    font_style = function(x) if(missing(x)) private$state_[['font_style']] else self$update(font_style = self$check_state('font_style', x)),
+    font_style = function(x) if(missing(x)) private$state_[['font_style']] else self$update(font_style = self$check_state('font_style', x, error_call = quote(LabelStyle$font_style))),
     
     #' @field font_variant
     #' Label text font variant.
-    font_variant = function(x) if(missing(x)) private$state_[['font_variant']] else self$update(font_variant = self$check_state('font_variant', x)),
+    font_variant = function(x) if(missing(x)) private$state_[['font_variant']] else self$update(font_variant = self$check_state('font_variant', x, error_call = quote(LabelStyle$font_variant))),
     
     #' @field font_weight
     #' Label text font weight.
-    font_weight = function(x) if(missing(x)) private$state_[['font_weight']] else self$update(font_weight = self$check_state('font_weight', x)),
+    font_weight = function(x) if(missing(x)) private$state_[['font_weight']] else self$update(font_weight = self$check_state('font_weight', x, error_call = quote(LabelStyle$font_weight))),
     
     #' @field text_color
     #' Text color
-    text_color = function(x) if(missing(x)) private$state_[['text_color']] else self$update(text_color = self$check_state('text_color', x)),
+    text_color = function(x) if(missing(x)) private$state_[['text_color']] else self$update(text_color = self$check_state('text_color', x, error_call = quote(LabelStyle$text_color))),
     
     #' @field text_decoration
     #' Label text decoration.
-    text_decoration = function(x) if(missing(x)) private$state_[['text_decoration']] else self$update(text_decoration = self$check_state('text_decoration', x))
+    text_decoration = function(x) if(missing(x)) private$state_[['text_decoration']] else self$update(text_decoration = self$check_state('text_decoration', x, error_call = quote(LabelStyle$text_decoration)))
   )
 )
 
@@ -756,8 +756,8 @@ jupyter.widget.ProgressStyle <- R6::R6Class("jupyter.widget.ProgressStyle", inhe
     )
     {
       private$state_ <- update_list(private$state_,
-        bar_color = self$check_state('bar_color', bar_color),
-        description_width = self$check_state('description_width', description_width)
+        bar_color = self$check_state('bar_color', bar_color, error_call = error_call),
+        description_width = self$check_state('description_width', description_width, error_call = error_call)
       )
 
       super$initialize(
@@ -777,11 +777,11 @@ jupyter.widget.ProgressStyle <- R6::R6Class("jupyter.widget.ProgressStyle", inhe
     
     #' @field bar_color
     #' Color of the progress bar.
-    bar_color = function(x) if(missing(x)) private$state_[['bar_color']] else self$update(bar_color = self$check_state('bar_color', x)),
+    bar_color = function(x) if(missing(x)) private$state_[['bar_color']] else self$update(bar_color = self$check_state('bar_color', x, error_call = quote(ProgressStyle$bar_color))),
     
     #' @field description_width
     #' Width of the description to the side of the control.
-    description_width = function(x) if(missing(x)) private$state_[['description_width']] else self$update(description_width = self$check_state('description_width', x))
+    description_width = function(x) if(missing(x)) private$state_[['description_width']] else self$update(description_width = self$check_state('description_width', x, error_call = quote(ProgressStyle$description_width)))
   )
 )
 
@@ -844,14 +844,14 @@ jupyter.widget.ToggleButtonStyle <- R6::R6Class("jupyter.widget.ToggleButtonStyl
     )
     {
       private$state_ <- update_list(private$state_,
-        description_width = self$check_state('description_width', description_width),
-        font_family = self$check_state('font_family', font_family),
-        font_size = self$check_state('font_size', font_size),
-        font_style = self$check_state('font_style', font_style),
-        font_variant = self$check_state('font_variant', font_variant),
-        font_weight = self$check_state('font_weight', font_weight),
-        text_color = self$check_state('text_color', text_color),
-        text_decoration = self$check_state('text_decoration', text_decoration)
+        description_width = self$check_state('description_width', description_width, error_call = error_call),
+        font_family = self$check_state('font_family', font_family, error_call = error_call),
+        font_size = self$check_state('font_size', font_size, error_call = error_call),
+        font_style = self$check_state('font_style', font_style, error_call = error_call),
+        font_variant = self$check_state('font_variant', font_variant, error_call = error_call),
+        font_weight = self$check_state('font_weight', font_weight, error_call = error_call),
+        text_color = self$check_state('text_color', text_color, error_call = error_call),
+        text_decoration = self$check_state('text_decoration', text_decoration, error_call = error_call)
       )
 
       super$initialize(
@@ -871,35 +871,35 @@ jupyter.widget.ToggleButtonStyle <- R6::R6Class("jupyter.widget.ToggleButtonStyl
     
     #' @field description_width
     #' Width of the description to the side of the control.
-    description_width = function(x) if(missing(x)) private$state_[['description_width']] else self$update(description_width = self$check_state('description_width', x)),
+    description_width = function(x) if(missing(x)) private$state_[['description_width']] else self$update(description_width = self$check_state('description_width', x, error_call = quote(ToggleButtonStyle$description_width))),
     
     #' @field font_family
     #' Toggle button text font family.
-    font_family = function(x) if(missing(x)) private$state_[['font_family']] else self$update(font_family = self$check_state('font_family', x)),
+    font_family = function(x) if(missing(x)) private$state_[['font_family']] else self$update(font_family = self$check_state('font_family', x, error_call = quote(ToggleButtonStyle$font_family))),
     
     #' @field font_size
     #' Toggle button text font size.
-    font_size = function(x) if(missing(x)) private$state_[['font_size']] else self$update(font_size = self$check_state('font_size', x)),
+    font_size = function(x) if(missing(x)) private$state_[['font_size']] else self$update(font_size = self$check_state('font_size', x, error_call = quote(ToggleButtonStyle$font_size))),
     
     #' @field font_style
     #' Toggle button text font style.
-    font_style = function(x) if(missing(x)) private$state_[['font_style']] else self$update(font_style = self$check_state('font_style', x)),
+    font_style = function(x) if(missing(x)) private$state_[['font_style']] else self$update(font_style = self$check_state('font_style', x, error_call = quote(ToggleButtonStyle$font_style))),
     
     #' @field font_variant
     #' Toggle button text font variant.
-    font_variant = function(x) if(missing(x)) private$state_[['font_variant']] else self$update(font_variant = self$check_state('font_variant', x)),
+    font_variant = function(x) if(missing(x)) private$state_[['font_variant']] else self$update(font_variant = self$check_state('font_variant', x, error_call = quote(ToggleButtonStyle$font_variant))),
     
     #' @field font_weight
     #' Toggle button text font weight.
-    font_weight = function(x) if(missing(x)) private$state_[['font_weight']] else self$update(font_weight = self$check_state('font_weight', x)),
+    font_weight = function(x) if(missing(x)) private$state_[['font_weight']] else self$update(font_weight = self$check_state('font_weight', x, error_call = quote(ToggleButtonStyle$font_weight))),
     
     #' @field text_color
     #' Toggle button text color
-    text_color = function(x) if(missing(x)) private$state_[['text_color']] else self$update(text_color = self$check_state('text_color', x)),
+    text_color = function(x) if(missing(x)) private$state_[['text_color']] else self$update(text_color = self$check_state('text_color', x, error_call = quote(ToggleButtonStyle$text_color))),
     
     #' @field text_decoration
     #' Toggle button text decoration.
-    text_decoration = function(x) if(missing(x)) private$state_[['text_decoration']] else self$update(text_decoration = self$check_state('text_decoration', x))
+    text_decoration = function(x) if(missing(x)) private$state_[['text_decoration']] else self$update(text_decoration = self$check_state('text_decoration', x, error_call = quote(ToggleButtonStyle$text_decoration)))
   )
 )
 
