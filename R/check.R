@@ -8,7 +8,9 @@ check_state_children <- function(value, widget) {
     ))
   }
 
-  for (kid in value) {
+  for (i in seq_along(value)) {
+    kid <- value[[i]]
+
     if (!inherits(kid, "jupyter.widget.DOMWidget")) {
       cli::cli_abort(call = quote(check_state_children()), c(
         "{.arg children} must be a list of DOM Widget.",
