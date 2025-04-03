@@ -24,43 +24,46 @@ close(generated_style_file)
 
 # DOM Widgets -------------------------------------------------------------
 dom <- tribble(
-  ~names             , ~styles            , ~formals ,
+  ~names                 , ~styles            , ~formals ,
 
-  "Accordion"        , NULL               , c("children"),
-  "Checkbox"         , "CheckboxStyle"    , c("value"),
-  "ColorPicker"      , NULL               , c("value"),
-  "ColorsInput"      , NULL               , c("value", "description", "description_allow_html", "placeholder"),
-  "Combobox"         , NULL               , c("value"),
-  "DatePicker"       , NULL               , c("value", "min", "max", "step"),
-  "Datetime"         , NULL               , c("value", "min", "max"),
-  "NaiveDatetime"    , NULL               , c("value", "min", "max"),
-  "IntSlider"        , "SliderStyle"      , c("value", "min", "max", "step"),
-  "FloatSlider"      , "SliderStyle"      , c("value", "min", "max", "step"),
-  "FloatLogSlider"   , "SliderStyle"      , c("value", "min", "max", "step"),
-  "FloatRangeSlider" , "SliderStyle"      , c("value", "min", "max", "step"),
-  "IntRangeSlider"   , "SliderStyle"      , c("value", "min", "max", "step"),
-  "Text"             , "TextStyle"        , c("value", "placeholder"),
-  "IntText"          , "TextStyle"        , c("value", "step"),
-  "FloatText"        , "TextStyle"        , c("value", "step"),
-  "BoundedIntText"   , "TextStyle"        , c("value", "min", "max", "step"),
-  "BoundedFloatText" , "TextStyle"        , c("value", "min", "max", "step"),
-  "HTML"             , "HTMLStyle"        , c("value", "placeholder"),
-  "HTMLMath"         , "HTMLMathStyle"    , c("value", "placeholder"),
-  "ToggleButton"     , "ToggleButtonStyle", c("value"),
-  "Label"            , "LabelStyle"       , c("value", "placeholder"),
-  "IntProgress"      , "ProgressStyle"    , c("value", "min", "max"),
-  "FloatProgress"    , "ProgressStyle"    , c("value", "min", "max"),
-  "Password"         , NULL               , c("value"),
-  "Box"              , NULL               , c("children"),
-  "HBox"             , NULL               , c("children"),
-  "VBox"             , NULL               , c("children"),
-  "GridBox"          , NULL               , c("children"),
-  "Tab"              , NULL               , c("children"),
-  "Stack"            , NULL               , c("children"),
-  "Button"           , "ButtonStyle"      , c("description"),
-  "Textarea"         , NULL               , c("value", "rows", "placeholder"),
-  "Time"             , NULL               , c("value", "min", "max", "step"),
-  "Select"           , NULL               , c("options", "index")
+  "Accordion"            , NULL               , c("children"),
+  "Checkbox"             , "CheckboxStyle"    , c("value"),
+  "ColorPicker"          , NULL               , c("value"),
+  "ColorsInput"          , NULL               , c("value", "description", "description_allow_html", "placeholder"),
+  "Combobox"             , NULL               , c("value"),
+  "DatePicker"           , NULL               , c("value", "min", "max", "step"),
+  "Datetime"             , NULL               , c("value", "min", "max"),
+  "NaiveDatetime"        , NULL               , c("value", "min", "max"),
+  "IntSlider"            , "SliderStyle"      , c("value", "min", "max", "step"),
+  "FloatSlider"          , "SliderStyle"      , c("value", "min", "max", "step"),
+  "FloatLogSlider"       , "SliderStyle"      , c("value", "min", "max", "step"),
+  "FloatRangeSlider"     , "SliderStyle"      , c("value", "min", "max", "step"),
+  "IntRangeSlider"       , "SliderStyle"      , c("value", "min", "max", "step"),
+  "Text"                 , "TextStyle"        , c("value", "placeholder"),
+  "IntText"              , "TextStyle"        , c("value", "step"),
+  "FloatText"            , "TextStyle"        , c("value", "step"),
+  "BoundedIntText"       , "TextStyle"        , c("value", "min", "max", "step"),
+  "BoundedFloatText"     , "TextStyle"        , c("value", "min", "max", "step"),
+  "HTML"                 , "HTMLStyle"        , c("value", "placeholder"),
+  "HTMLMath"             , "HTMLMathStyle"    , c("value", "placeholder"),
+  "ToggleButton"         , "ToggleButtonStyle", c("value"),
+  "Label"                , "LabelStyle"       , c("value", "placeholder"),
+  "IntProgress"          , "ProgressStyle"    , c("value", "min", "max"),
+  "FloatProgress"        , "ProgressStyle"    , c("value", "min", "max"),
+  "Password"             , NULL               , c("value"),
+  "Box"                  , NULL               , c("children"),
+  "HBox"                 , NULL               , c("children"),
+  "VBox"                 , NULL               , c("children"),
+  "GridBox"              , NULL               , c("children"),
+  "Tab"                  , NULL               , c("children"),
+  "Stack"                , NULL               , c("children"),
+  "Button"               , "ButtonStyle"      , c("description"),
+  "Textarea"             , NULL               , c("value", "rows", "placeholder"),
+  "Time"                 , NULL               , c("value", "min", "max", "step"),
+  "Select"               , NULL               , c("options", "index"),
+  "SelectMultiple"       , NULL               , c("options", "index"),
+  "SelectionSlider"      , NULL               , c("options", "index"),
+  "SelectionRangeSlider" , NULL               , c("options", "index"),
 )
 
 generated_dom_file <- file("R/generated-DOM.R", open = "w")
@@ -95,9 +98,6 @@ close(generated_dom_file)
 # IntsInput
 # Play
 # RadioButton
-# SelectMultiple
-# SelectionRangeSlider
-# SelectionSlider
 # TagsInput
 # ToggleButtons
 # Valid
